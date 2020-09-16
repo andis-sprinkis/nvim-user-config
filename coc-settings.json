@@ -1,0 +1,11 @@
+{
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.enableFloatHighlight": true,
+    "coc.preferences.bracketEnterImprove": true,
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.autoTrigger": "trigger",
+    "suggest.acceptSuggestionOnCommitCharacter": true,
+    "suggest.enablePreview": true,
+    "snippets.ultisnips.enable": false,
+    "html.autoClosingTags": true
+}
