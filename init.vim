@@ -7,6 +7,7 @@ if !filereadable(autoload_plug_path)
 endif
 unlet autoload_plug_path
 
+" Determine OS
 if !exists("g:os")
     if has("win64") || has("win32") || has("win16")
         let g:os = "Windows"
