@@ -79,7 +79,9 @@ Plug 'tpope/vim-surround'
 call plug#end()
 
 " window title
-set title
+if g:os == "Windows"
+    set title
+endif
 
 " leader key
 let mapleader="\<space>"
