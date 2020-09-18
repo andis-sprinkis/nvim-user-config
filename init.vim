@@ -16,6 +16,9 @@ if !exists("g:os")
     endif
 endif
 
+" disable filetypes in vim-polyglot
+let g:polyglot_disabled = ['markdown']
+
 " LOAD PLUGINS
 call plug#begin()
 " statusline
@@ -346,7 +349,6 @@ endfunction
 " Filetypes
 au FileType markdown set syntax=off
 au FileType markdown.mdx set syntax=off
-let g:polyglot_disabled = ['markdown']
 
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
