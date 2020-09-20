@@ -78,6 +78,8 @@ Plug 'editorconfig/editorconfig-vim'
 " Plug 'junegunn/vim-peekaboo'
 " surround chars with chars
 Plug 'tpope/vim-surround'
+" jump to references and definitions in files
+Plug 'pechorin/any-jump.vim'
 
 call plug#end()
 
@@ -369,3 +371,30 @@ let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
 nmap <Leader>k :SplitjoinJoin<cr>
 nmap <Leader>j :SplitjoinSplit<cr>
+
+" any-jump
+let g:any_jump_disable_default_keybindings = 1
+nnoremap <leader>aj :AnyJump<CR>
+nnoremap <leader>aa :AnyJumpArg 
+xnoremap <leader>aj :AnyJumpVisual<CR>
+nnoremap <leader>ab :AnyJumpBack<CR>
+nnoremap <leader>al :AnyJumpLastResults<CR>
+let g:any_jump_window_width_ratio  = 0.8
+let g:any_jump_window_height_ratio = 0.85
+let g:any_jump_window_top_offset   = 3
+let g:any_jump_colors = {
+      \"plain_text":         "Comment",
+      \"preview":            "Comment",
+      \"preview_keyword":    "Operator",
+      \"heading_text":       "Function",
+      \"heading_keyword":    "Identifier",
+      \"group_text":         "Comment",
+      \"group_name":         "Function",
+      \"more_button":        "Operator",
+      \"more_explain":       "Comment",
+      \"result_line_number": "Comment",
+      \"result_text":        "Statement",
+      \"result_path":        "String",
+      \"help":               "Comment"
+      \}
+
