@@ -6,6 +6,5 @@
     "suggest.autoTrigger": "trigger",
     "suggest.acceptSuggestionOnCommitCharacter": true,
     "suggest.enablePreview": true,
-    "snippets.ultisnips.enable": false,
-    "html.autoClosingTags": true
+    "snippets.ultisnips.enable": false
 }
