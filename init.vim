@@ -40,6 +40,7 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'coc-extensions/coc-svelte', {'do': 'yarn install --frozen-lockfile'}
 " indent indicator line
 Plug 'Yggdroot/indentLine'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 " general syntax highlighintg
 Plug 'sheerun/vim-polyglot'
 " commenting
@@ -283,6 +284,8 @@ let loaded_netrw = 0
 " indent plugin
 let g:indentLine_color_gui = '#3c3836'
 let g:indentLine_char = '▏'
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_first_char = '▏'
 
 " fzf 
 function! ShowGitFiles()
