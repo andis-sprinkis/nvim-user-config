@@ -400,3 +400,5 @@ let g:any_jump_colors = {
       \"help":               "Comment"
       \}
 
+" dirvish
+let g:dirvish_mode = ':sort ,^.*[\/],'
