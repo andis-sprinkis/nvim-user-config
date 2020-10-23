@@ -81,6 +81,11 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
 " jump to references and definitions in files
 Plug 'pechorin/any-jump.vim'
+" generate jsdoc block
+Plug 'heavenshell/vim-jsdoc', { 
+  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+  \ 'do': 'make install'
+\}
 
 call plug#end()
 
