@@ -19,6 +19,11 @@ endif
 " disable filetypes in vim-polyglot
 let g:polyglot_disabled = ['markdown']
 
+" bash on Windows path
+if g:os == "Windows"
+    let $PATH = "C:\\Program\ Files\\Git\\usr\\bin;" . $PATH
+endif
+
 " LOAD PLUGINS
 call plug#begin()
 " statusline
