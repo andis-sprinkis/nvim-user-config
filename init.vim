@@ -68,7 +68,7 @@ Plug 'sinetoami/lightline-hunks'
 " buffer cycling and list
 Plug 'mihaifm/bufstop'
 " fzflukelbd/vim-scrollwrapped
-if g:os == "Windows"
+if g:os == "Windows" || g:os == "Darwin"
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 endif
 Plug 'junegunn/fzf.vim'
