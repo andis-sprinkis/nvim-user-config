@@ -91,6 +91,8 @@ Plug 'heavenshell/vim-jsdoc', {
   \ 'for': ['javascript', 'javascript.jsx','typescript'], 
   \ 'do': 'make install'
 \}
+" detect document indentation
+Plug 'tpope/vim-sleuth'
 
 call plug#end()
 
