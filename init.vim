@@ -311,7 +311,7 @@ nnoremap <silent><tab> :call ShowGitFiles()<cr>
 nnoremap <silent><s-tab> :Files<cr>
 nnoremap <silent><leader>e :Rg<cr>
 
-let $FZF_DEFAULT_OPTS = "--tabstop=4 --cycle --color bw --layout=reverse"
+let $FZF_DEFAULT_OPTS = "--tabstop=4 --cycle --no-color --layout=reverse"
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 
 " Use tab for trigger completion with characters ahead and navigate.
