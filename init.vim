@@ -24,6 +24,9 @@ if g:os == "Windows"
     let $PATH = "C:\\Program\ Files\\Git\\usr\\bin;" . $PATH
 endif
 
+" set default indentation before sleuth init
+set tabstop=4 shiftwidth=4 expandtab
+
 " LOAD PLUGINS
 call plug#begin()
 " statusline
@@ -231,7 +234,6 @@ set wildmenu
 set wildmode=longest:list,full
 
 " tabs and spaces
-set tabstop=4 shiftwidth=4 expandtab
 autocmd FileType graphql setlocal shiftwidth=4 softtabstop=4 expandtab
 
 " dispay special chars
