@@ -415,3 +415,6 @@ let g:any_jump_colors = {
 
 " dirvish
 let g:dirvish_mode = ':sort ,^.*[\/],'
+
+" jsdoc lehre libray location
+let g:jsdoc_lehre_path = '~/node_modules/.bin/lehre'
