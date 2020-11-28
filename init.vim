@@ -25,7 +25,7 @@ if g:os == "Windows"
 endif
 
 " set default indentation before sleuth init
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=2 shiftwidth=2 expandtab
 
 " LOAD PLUGINS
 call plug#begin()
@@ -232,9 +232,6 @@ set relativenumber
 " command line completion
 set wildmenu
 set wildmode=longest:list,full
-
-" tabs and spaces
-autocmd FileType graphql setlocal shiftwidth=4 softtabstop=4 expandtab
 
 " dispay special chars
 "set listchars=eol:⦙,tab:»\ 
