@@ -64,6 +64,8 @@ Plug 'justinmk/vim-dirvish'
 Plug 'tpope/vim-fugitive'
 " git indicators in gutter
 Plug 'airblade/vim-gitgutter'
+" git commit messages under cursor
+Plug 'rhysd/git-messenger.vim'
 " color scheme
 Plug 'lifepillar/vim-gruvbox8'
 " Plug 'arcticicestudio/nord-vim'
