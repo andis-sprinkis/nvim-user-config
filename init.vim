@@ -200,6 +200,7 @@ filetype plugin indent on
 " set foldlevel=99
 " hi Folded gui=NONE term=NONE cterm=NONE
 set foldmethod=syntax
+set foldlevel=99
 
 " hidden bufers
 set hidden
