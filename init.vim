@@ -55,7 +55,7 @@ Plug 'sheerun/vim-polyglot'
 " commenting
 Plug 'tpope/vim-commentary'
 " folding
-Plug 'pseewald/vim-anyfold'
+" Plug 'pseewald/vim-anyfold'
 " sudo
 Plug 'lambdalisue/suda.vim'
 " directory tree
@@ -195,10 +195,11 @@ set encoding=utf-8
 
 " folding
 filetype plugin indent on
-autocmd Filetype * AnyFoldActivate
-let g:anyfold_fold_comments=1
-set foldlevel=99
-hi Folded gui=NONE term=NONE cterm=NONE
+" autocmd Filetype * AnyFoldActivate
+" let g:anyfold_fold_comments=1
+" set foldlevel=99
+" hi Folded gui=NONE term=NONE cterm=NONE
+set foldmethod=syntax
 
 " hidden bufers
 set hidden
