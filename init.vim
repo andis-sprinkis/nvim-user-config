@@ -99,6 +99,8 @@ Plug 'heavenshell/vim-jsdoc', {
 \}
 " detect document indentation
 Plug 'tpope/vim-sleuth'
+" higlight word under cursor
+Plug 'RRethy/vim-illuminate'
 
 call plug#end()
 
