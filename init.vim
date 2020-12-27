@@ -216,7 +216,7 @@ set nohlsearch
 " colors
 set termguicolors
 set background=dark
-colorscheme gruvbox8
+colorscheme gruvbox8_hard
 " colorscheme orbital
 " colorscheme nord
 syntax on
