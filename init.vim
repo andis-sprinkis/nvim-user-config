@@ -39,13 +39,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 " indent indicator line
 Plug 'Yggdroot/indentLine'
-" Plug 'lukas-reineke/indent-blankline.nvim'
 " general syntax highlighintg
 Plug 'sheerun/vim-polyglot'
 " commenting
 Plug 'tpope/vim-commentary'
-" folding
-" Plug 'pseewald/vim-anyfold'
 " sudo
 Plug 'lambdalisue/suda.vim'
 " directory tree
@@ -58,14 +55,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/git-messenger.vim'
 " color scheme
 Plug 'lifepillar/vim-gruvbox8'
-" Plug 'arcticicestudio/nord-vim'
 " git hunks in lightline
 Plug 'sinetoami/lightline-hunks'
 " buffer cycling and list
 Plug 'mihaifm/bufstop'
 " fzflukelbd/vim-scrollwrapped
 if g:os == "Windows" || g:os == "Darwin"
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 endif
 Plug 'junegunn/fzf.vim'
 " common *nix actions
@@ -86,7 +82,7 @@ Plug 'pechorin/any-jump.vim'
 Plug 'heavenshell/vim-jsdoc', { 
   \ 'for': ['javascript', 'javascript.jsx','typescript'], 
   \ 'do': 'make install'
-\}
+\ }
 " detect document indentation
 Plug 'tpope/vim-sleuth'
 " higlight word under cursor
@@ -164,24 +160,24 @@ nnoremap <C-q> :q<CR>
 
 " lightline setup
 let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             ['lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'filetype' ] ]
-      \ },
-      \ 'inactive': {
-      \   'left': [
-      \             ['lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \            [ 'percent' ] ,
-      \            [ 'filetype' ] ]
-      \  },
-      \ 'component_function': {
-      \  'lightline_hunks': 'lightline#hunks#composer',
-      \ }
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             ['lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
+  \   'right': [ [ 'lineinfo' ],
+  \              [ 'percent' ],
+  \              [ 'filetype' ] ]
+  \ },
+  \ 'inactive': {
+  \   'left': [
+  \             ['lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
+  \   'right': [ [ 'lineinfo' ],
+  \            [ 'percent' ] ,
+  \            [ 'filetype' ] ]
+  \  },
+  \ 'component_function': {
+  \  'lightline_hunks': 'lightline#hunks#composer',
   \ }
+\ }
 
 let g:lightline.colorscheme = 'gruvboxdark'
 
@@ -199,10 +195,6 @@ set encoding=utf-8
 
 " folding
 filetype plugin indent on
-" autocmd Filetype * AnyFoldActivate
-" let g:anyfold_fold_comments=1
-" set foldlevel=99
-" hi Folded gui=NONE term=NONE cterm=NONE
 set foldmethod=syntax
 set foldlevel=99
 
@@ -219,8 +211,6 @@ set nohlsearch
 set termguicolors
 set background=dark
 colorscheme gruvbox8_hard
-" colorscheme orbital
-" colorscheme nord
 syntax on
 let g:gitgutter_override_sign_column_highlight = 1
 
@@ -270,26 +260,25 @@ set clipboard=unnamedplus
 
 " centered floating window 
 function! CreateCenteredFloatingWindow()
-    let height = float2nr(&lines * 0.85)
-    let top = ((&lines - height) / 2) - 1
-    let width = float2nr(&columns - (&columns * 2 / 12))
-    let left = float2nr((&columns - width) / 2)
-    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
-
-    let top = "╭" . repeat("─", width - 2) . "╮"
-    let mid = "│" . repeat(" ", width - 2) . "│"
-    let bot = "╰" . repeat("─", width - 2) . "╯"
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-    let s:buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    au BufWipeout <buffer> exe 'bw '.s:buf
+  let height = float2nr(&lines * 0.85)
+  let top = ((&lines - height) / 2) - 1
+  let width = float2nr(&columns - (&columns * 2 / 12))
+  let left = float2nr((&columns - width) / 2)
+  let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+  let top = "╭" . repeat("─", width - 2) . "╮"
+  let mid = "│" . repeat(" ", width - 2) . "│"
+  let bot = "╰" . repeat("─", width - 2) . "╯"
+  let lines = [top] + repeat([mid], height - 2) + [bot]
+  let s:buf = nvim_create_buf(v:false, v:true)
+  call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+  call nvim_open_win(s:buf, v:true, opts)
+  set winhl=Normal:Floating
+  let opts.row += 1
+  let opts.height -= 2
+  let opts.col += 2
+  let opts.width -= 4
+  call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+  au BufWipeout <buffer> exe 'bw '.s:buf
 endfunction
 
 " view register content in floating window
@@ -311,12 +300,12 @@ autocmd TermOpen * IndentLinesDisable
 
 " fzf 
 function! ShowGitFiles()
-    let gitDirExists = system("git rev-parse --git-dir") == ".git\n"
-    if gitDirExists == 1
-        execute "GFiles --exclude-standard --others --cached"
-    elseif gitDirExists == 0
-        execute "Files"
-    endif
+  let gitDirExists = system("git rev-parse --git-dir") == ".git\n"
+  if gitDirExists == 1
+    execute "GFiles --exclude-standard --others --cached"
+  elseif gitDirExists == 0
+    execute "Files"
+  endif
 endfunction
 
 nnoremap <silent><tab> :call ShowGitFiles()<cr>
@@ -330,9 +319,9 @@ let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -407,20 +396,20 @@ let g:any_jump_window_width_ratio  = 0.8
 let g:any_jump_window_height_ratio = 0.85
 let g:any_jump_window_top_offset   = 3
 let g:any_jump_colors = {
-      \"plain_text":         "Comment",
-      \"preview":            "Comment",
-      \"preview_keyword":    "Operator",
-      \"heading_text":       "Function",
-      \"heading_keyword":    "Identifier",
-      \"group_text":         "Comment",
-      \"group_name":         "Function",
-      \"more_button":        "Operator",
-      \"more_explain":       "Comment",
-      \"result_line_number": "Comment",
-      \"result_text":        "Statement",
-      \"result_path":        "String",
-      \"help":               "Comment"
-      \}
+  \"plain_text":         "Comment",
+  \"preview":            "Comment",
+  \"preview_keyword":    "Operator",
+  \"heading_text":       "Function",
+  \"heading_keyword":    "Identifier",
+  \"group_text":         "Comment",
+  \"group_name":         "Function",
+  \"more_button":        "Operator",
+  \"more_explain":       "Comment",
+  \"result_line_number": "Comment",
+  \"result_text":        "Statement",
+  \"result_path":        "String",
+  \"help":               "Comment"
+  \}
 
 " dirvish
 let g:dirvish_mode = ':sort ,^.*[\/],'
