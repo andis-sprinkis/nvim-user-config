@@ -37,16 +37,6 @@ Plug 'andis-spr/lightline-gruvbox-dark.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " snippets
 Plug 'honza/vim-snippets'
-" coc extensions
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-Plug 'coc-extensions/coc-svelte', {'do': 'yarn install --frozen-lockfile'}
 " indent indicator line
 Plug 'Yggdroot/indentLine'
 " Plug 'lukas-reineke/indent-blankline.nvim'
@@ -103,6 +93,18 @@ Plug 'tpope/vim-sleuth'
 Plug 'RRethy/vim-illuminate'
 
 call plug#end()
+
+" coc.nvim extensions
+let g:coc_global_extensions = [
+  \ "coc-tsserver",
+  \ "coc-highlight",
+  \ "coc-snippets",
+  \ "coc-json",
+  \ "coc-eslint", 
+  \ "coc-html",
+  \ "coc-css",
+  \ "coc-clangd"
+\ ]
 
 " window title
 if g:os == "Windows"

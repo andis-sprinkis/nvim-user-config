@@ -8,5 +8,6 @@
     "suggest.enablePreview": true,
     "snippets.ultisnips.enable": false,
     "typescript.format.semicolons": "remove",
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "highlight.colors.enable": true
 }
