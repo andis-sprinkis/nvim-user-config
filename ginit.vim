@@ -1,4 +1,4 @@
-let s:fontsize = 12
+let s:fontsize = 13
 execute "GuiFont! Cascadia Code PL:h" . s:fontsize
 function! AdjustFontSize(amount)
   let s:fontsize = s:fontsize+a:amount
