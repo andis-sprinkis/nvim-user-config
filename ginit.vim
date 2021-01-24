@@ -22,6 +22,7 @@ if !exists("g:os")
     endif
 endif
 
+" go to partition root when no path specified
 if g:os == "Windows" && (expand("%:p")) == ""
   cd /
 endif
