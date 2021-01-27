@@ -87,6 +87,8 @@ Plug 'heavenshell/vim-jsdoc', {
 Plug 'tpope/vim-sleuth'
 " higlight word under cursor
 Plug 'RRethy/vim-illuminate'
+" f movement highlights
+Plug 'unblevable/quick-scope'
 
 call plug#end()
 
@@ -416,3 +418,6 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " jsdoc lehre libray location
 let g:jsdoc_lehre_path = '~/node_modules/.bin/lehre'
+
+" quick scope
+let g:qs_buftype_blacklist = ['terminal', 'nofile']
