@@ -88,7 +88,7 @@ Plug 'tpope/vim-sleuth'
 " higlight word under cursor
 Plug 'RRethy/vim-illuminate'
 " f movement highlights
-Plug 'unblevable/quick-scope'
+" Plug 'unblevable/quick-scope'
 
 call plug#end()
 
