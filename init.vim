@@ -279,9 +279,6 @@ function! CreateCenteredFloatingWindow()
   au BufWipeout <buffer> exe 'bw '.s:buf
 endfunction
 
-" view register content in floating window
-let g:peekaboo_window="call CreateCenteredFloatingWindow()"
-
 " sudo
 let g:suda_smart_edit = 1
 
@@ -367,17 +364,6 @@ au FileType markdown.mdx set syntax=off
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
-" beacon
-" let g:beacon_shrink = 0
-" let g:beacon_fade = 0
-" let g:beacon_size = 1
-" let g:beacon_timeout = 200
-" let g:beacon_minimal_jump = 10
-" nmap n n:Beacon<cr>
-" nmap N N:Beacon<cr>
-" nmap * *:Beacon<cr>
-" nmap # #:Beacon<cr>
-
 " splitjoin mappings
 let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
@@ -414,6 +400,3 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " jsdoc lehre libray location
 let g:jsdoc_lehre_path = '~/node_modules/.bin/lehre'
-
-" quick scope
-let g:qs_buftype_blacklist = ['terminal', 'nofile']
