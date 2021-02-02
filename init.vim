@@ -66,14 +66,10 @@ endif
 Plug 'junegunn/fzf.vim'
 " common *nix actions
 Plug 'tpope/vim-eunuch'
-" indicate cursor jump
-" Plug 'danilamihailov/beacon.nvim'
 " split between single and multiline forms
 Plug 'AndrewRadev/splitjoin.vim'
 " read editorconfig
 Plug 'editorconfig/editorconfig-vim'
-" view register content
-" Plug 'junegunn/vim-peekaboo'
 " surround chars with chars
 Plug 'tpope/vim-surround'
 " jump to references and definitions in files
@@ -87,8 +83,8 @@ Plug 'heavenshell/vim-jsdoc', {
 Plug 'tpope/vim-sleuth'
 " higlight word under cursor
 Plug 'RRethy/vim-illuminate'
-" f movement highlights
-" Plug 'unblevable/quick-scope'
+" move visual selection
+Plug 'Jorengarenar/vim-MvVis'
 
 call plug#end()
 
