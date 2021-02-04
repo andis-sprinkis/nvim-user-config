@@ -85,6 +85,8 @@ Plug 'tpope/vim-sleuth'
 Plug 'RRethy/vim-illuminate'
 " move visual selection
 Plug 'Jorengarenar/vim-MvVis'
+" more granular word motions
+Plug 'chaoren/vim-wordmotion'
 
 call plug#end()
 
