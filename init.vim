@@ -29,6 +29,7 @@ set tabstop=2 shiftwidth=2 expandtab
 
 " LOAD PLUGINS
 call plug#begin()
+
 " statusline
 Plug 'itchyny/lightline.vim'
 " lightline-theme
@@ -45,7 +46,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 " sudo
 Plug 'lambdalisue/suda.vim'
-" directory tree
+" directory browser
 Plug 'justinmk/vim-dirvish'
 " git general integration
 Plug 'tpope/vim-fugitive'
@@ -59,7 +60,7 @@ Plug 'lifepillar/vim-gruvbox8'
 Plug 'sinetoami/lightline-hunks'
 " buffer cycling and list
 Plug 'mihaifm/bufstop'
-" fzflukelbd/vim-scrollwrapped
+" fzf integration
 if g:os == "Windows" || g:os == "Darwin"
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 endif
@@ -87,6 +88,8 @@ Plug 'RRethy/vim-illuminate'
 Plug 'Jorengarenar/vim-MvVis'
 " more granular word motions
 Plug 'chaoren/vim-wordmotion'
+" highlight patterns and ranges for Ex commands
+Plug 'markonm/traces.vim'
 
 call plug#end()
 
