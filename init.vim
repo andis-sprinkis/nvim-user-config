@@ -2,18 +2,18 @@
 let autoload_plug_path = stdpath('data') . '/site/autoload/plug.vim'
 if !filereadable(autoload_plug_path)
   silent execute '!curl -fLo ' . autoload_plug_path . '  --create-dirs 
-      \ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
+    \ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 unlet autoload_plug_path
 
 " Determine OS
 if !exists("g:os")
-    if has("win64") || has("win32") || has("win16")
-        let g:os = "Windows"
-    else
-        let g:os = substitute(system('uname'), '\n', '', '')
-    endif
+  if has("win64") || has("win32") || has("win16")
+    let g:os = "Windows"
+  else
+    let g:os = substitute(system('uname'), '\n', '', '')
+  endif
 endif
 
 " disable filetypes in vim-polyglot
@@ -21,15 +21,14 @@ let g:polyglot_disabled = ['markdown']
 
 " bash on Windows path
 if g:os == "Windows"
-    let $PATH = "C:\\Program\ Files\\Git\\usr\\bin;" . $PATH
+  let $PATH = "C:\\Program\ Files\\Git\\usr\\bin;" . $PATH
 endif
 
-" set default indentation before sleuth init
+" set default indentation
 set tabstop=2 shiftwidth=2 expandtab
 
-" LOAD PLUGINS
+" load plugins
 call plug#begin()
-
 " statusline
 Plug 'itchyny/lightline.vim'
 " lightline-theme
@@ -92,7 +91,6 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'markonm/traces.vim'
 " table creation
 Plug 'dhruvasagar/vim-table-mode'
-
 call plug#end()
 
 " coc.nvim extensions
@@ -167,26 +165,24 @@ nnoremap <C-q> :q<CR>
 let g:lightline = {
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
-  \             ['lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
+  \     ['lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
   \   'right': [ [ 'lineinfo' ],
-  \              [ 'percent' ],
-  \              [ 'filetype' ] ]
+  \     [ 'percent' ],
+  \     [ 'filetype' ] ]
   \ },
   \ 'inactive': {
   \   'left': [
-  \             ['lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
+  \     ['lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
   \   'right': [ [ 'lineinfo' ],
-  \            [ 'percent' ] ,
-  \            [ 'filetype' ] ]
+  \     [ 'percent' ] ,
+  \     [ 'filetype' ] ]
   \  },
   \ 'component_function': {
-  \  'lightline_hunks': 'lightline#hunks#composer',
+  \   'lightline_hunks': 'lightline#hunks#composer',
   \ }
 \ }
 
 let g:lightline.colorscheme = 'gruvboxdark'
-
-" let g:lightline.colorscheme = 'nord'
 
 " jump between git hunks
 nmap <Leader>gn <Plug>GitGutterNextHunk
@@ -208,9 +204,6 @@ set hidden
 
 " no search highlight
 set nohlsearch
-
-" higlight line under cursor
-"set cursorline
 
 " colors
 set termguicolors
@@ -237,7 +230,6 @@ set wildmenu
 set wildmode=longest:list,full
 
 " dispay special chars
-"set listchars=eol:⦙,tab:»\ 
 set listchars=eol:¶,tab:»\ 
 set list
 
@@ -348,10 +340,10 @@ else
 endif
 
 " coc reformatting bindings
-nmap <leader>f  <Plug>(coc-format-selected)
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>F  <Plug>(coc-format)
-xmap <leader>F  <Plug>(coc-format)
+nmap <leader>f <Plug>(coc-format-selected)
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>F <Plug>(coc-format)
+xmap <leader>F <Plug>(coc-format)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -400,7 +392,7 @@ let g:any_jump_colors = {
   \"result_text":        "Statement",
   \"result_path":        "String",
   \"help":               "Comment"
-  \}
+\}
 
 " dirvish
 let g:dirvish_mode = ':sort ,^.*[\/],'
