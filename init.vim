@@ -90,6 +90,8 @@ Plug 'Jorengarenar/vim-MvVis'
 Plug 'chaoren/vim-wordmotion'
 " highlight patterns and ranges for Ex commands
 Plug 'markonm/traces.vim'
+" table creation
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
