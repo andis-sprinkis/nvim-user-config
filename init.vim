@@ -2,7 +2,7 @@
 let autoload_plug_path = stdpath('data') . '/site/autoload/plug.vim'
 if !filereadable(autoload_plug_path)
   silent execute '!curl -fLo ' . autoload_plug_path . '  --create-dirs 
-    \ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
+    \ "https://raw.githubusercontent.com/andis-sprinkis/vim-plug/master/plug.vim"'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 unlet autoload_plug_path
@@ -30,67 +30,67 @@ set tabstop=2 shiftwidth=2 expandtab
 " load plugins
 call plug#begin()
 " statusline
-Plug 'itchyny/lightline.vim'
+Plug 'andis-sprinkis/lightline.vim'
 " lightline-theme
-Plug 'andis-spr/lightline-gruvbox-dark.vim'
+Plug 'andis-sprinkis/lightline-gruvbox-dark.vim'
 " VSCode plugins
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'andis-sprinkis/coc.nvim', {'branch': 'release'}
 " snippets
-Plug 'honza/vim-snippets'
+Plug 'andis-sprinkis/vim-snippets'
 " indent indicator line
-Plug 'Yggdroot/indentLine'
+Plug 'andis-sprinkis/indentLine'
 " general syntax highlighintg
-Plug 'sheerun/vim-polyglot'
+Plug 'andis-sprinkis/vim-polyglot'
 " commenting
-Plug 'tpope/vim-commentary'
+Plug 'andis-sprinkis/vim-commentary'
 " sudo
-Plug 'lambdalisue/suda.vim'
+Plug 'andis-sprinkis/suda.vim'
 " directory browser
-Plug 'justinmk/vim-dirvish'
+Plug 'andis-sprinkis/vim-dirvish'
 " git general integration
-Plug 'tpope/vim-fugitive'
+Plug 'andis-sprinkis/vim-fugitive'
 " git indicators in gutter
-Plug 'airblade/vim-gitgutter'
+Plug 'andis-sprinkis/vim-gitgutter'
 " git commit messages under cursor
-Plug 'rhysd/git-messenger.vim'
+Plug 'andis-sprinkis/git-messenger.vim'
 " color scheme
-Plug 'lifepillar/vim-gruvbox8'
+Plug 'andis-sprinkis/vim-gruvbox8'
 " git hunks in lightline
-Plug 'sinetoami/lightline-hunks'
+Plug 'andis-sprinkis/lightline-hunks'
 " buffer cycling and list
-Plug 'mihaifm/bufstop'
+Plug 'andis-sprinkis/bufstop'
 " fzf integration
 if g:os == "Windows" || g:os == "Darwin"
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'andis-sprinkis/fzf', { 'do': { -> fzf#install() } }
 endif
-Plug 'junegunn/fzf.vim'
+Plug 'andis-sprinkis/fzf.vim'
 " common *nix actions
-Plug 'tpope/vim-eunuch'
+Plug 'andis-sprinkis/vim-eunuch'
 " split between single and multiline forms
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'andis-sprinkis/splitjoin.vim'
 " read editorconfig
-Plug 'editorconfig/editorconfig-vim'
+Plug 'andis-sprinkis/editorconfig-vim'
 " surround chars with chars
-Plug 'tpope/vim-surround'
+Plug 'andis-sprinkis/vim-surround'
 " jump to references and definitions in files
-Plug 'pechorin/any-jump.vim'
+Plug 'andis-sprinkis/any-jump.vim'
 " generate jsdoc block
-Plug 'heavenshell/vim-jsdoc', { 
+Plug 'andis-sprinkis/vim-jsdoc', { 
   \ 'for': ['javascript', 'javascript.jsx','typescript'], 
   \ 'do': 'make install'
 \ }
 " detect document indentation
-Plug 'tpope/vim-sleuth'
+Plug 'andis-sprinkis/vim-sleuth'
 " higlight word under cursor
-Plug 'RRethy/vim-illuminate'
+Plug 'andis-sprinkis/vim-illuminate'
 " move visual selection
-Plug 'Jorengarenar/vim-MvVis'
+Plug 'andis-sprinkis/vim-MvVis'
 " more granular word motions
-Plug 'chaoren/vim-wordmotion'
+Plug 'andis-sprinkis/vim-wordmotion'
 " highlight patterns and ranges for Ex commands
-Plug 'markonm/traces.vim'
+Plug 'andis-sprinkis/traces.vim'
 " table creation
-Plug 'dhruvasagar/vim-table-mode'
+Plug 'andis-sprinkis/vim-table-mode'
 call plug#end()
 
 " coc.nvim extensions
