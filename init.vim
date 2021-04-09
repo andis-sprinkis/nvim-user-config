@@ -91,6 +91,8 @@ Plug 'andis-sprinkis/vim-wordmotion'
 Plug 'andis-sprinkis/traces.vim'
 " table creation
 Plug 'andis-sprinkis/vim-table-mode'
+" markdown preview
+Plug 'andis-sprinkis/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()
 
 " coc.nvim extensions
