@@ -238,6 +238,9 @@ set list
 " terminal buffer settings
 au TermOpen * setlocal nonumber norelativenumber signcolumn=no
 
+" terminal auto insert mode
+au TermOpen term://* startinsert
+
 " unfocus terminal
 tnoremap <C-w> <C-\><C-n>
 
