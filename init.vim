@@ -404,3 +404,6 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " jsdoc lehre libray location
 let g:jsdoc_lehre_path = '~/node_modules/.bin/lehre'
+
+" coc jump to definition
+nnoremap <silent><nowait><leader>d :call CocActionAsync('jumpDefinition', 'split')<cr>
