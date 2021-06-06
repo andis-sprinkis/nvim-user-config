@@ -1,5 +1,5 @@
 " get os
-runtime! get-os.vim
+ru! get-os.vim
 
 " set default indentation
 set tabstop=2 shiftwidth=2 expandtab

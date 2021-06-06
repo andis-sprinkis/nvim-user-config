@@ -1,1 +1,1 @@
-runtime! plugin-post/plugin/*.vim
+ru! plugin-post/plugin/*.vim

@@ -14,7 +14,7 @@ GuiPopupmenu 0
 GuiTabline 0
 
 " Determine OS
-runtime! get-os.vim
+ru! get-os.vim
 
 " go to partition root when no path specified
 if g:os == "Windows" && (expand("%:p")) == ""
