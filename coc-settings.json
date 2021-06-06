@@ -1,5 +1,5 @@
 {
-    "coc.preferences.formatOnType": true,
+    /* "coc.preferences.formatOnType": true, */
     "coc.preferences.enableFloatHighlight": true,
     "coc.preferences.bracketEnterImprove": true,
     "suggest.triggerAfterInsertEnter": true,
@@ -9,5 +9,29 @@
     "snippets.ultisnips.enable": false,
     "typescript.format.semicolons": "remove",
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-    "highlight.colors.enable": true
+    "highlight.colors.enable": true,
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cc",
+                "cpp",
+                "c++",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
+    }
 }

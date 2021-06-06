@@ -14,13 +14,7 @@ GuiPopupmenu 0
 GuiTabline 0
 
 " Determine OS
-if !exists("g:os")
-    if has("win64") || has("win32") || has("win16")
-        let g:os = "Windows"
-    else
-        let g:os = substitute(system('uname'), '\n', '', '')
-    endif
-endif
+runtime! get-os.vim
 
 " go to partition root when no path specified
 if g:os == "Windows" && (expand("%:p")) == ""
