@@ -73,6 +73,11 @@ Plug 'andis-sprinkis/traces.vim'
 Plug 'andis-sprinkis/vim-table-mode'
 " markdown preview
 Plug 'andis-sprinkis/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+" fix cursor hold
+Plug 'antoinemadec/FixCursorHold.nvim'
+" cmake
+Plug 'cdelledonne/vim-cmake'
+
 call plug#end()
 
 " coc.nvim extensions
