@@ -9,110 +9,69 @@ unlet autoload_plug_path
 
 " Plug plugins
 call plug#begin()
-
-" Statusline
-Plug 'andis-sprinkis/lightline.vim'
-
-" lightline theme
-Plug 'andis-sprinkis/lightline-gruvbox-dark.vim'
-
-" Conquer of completion
-Plug 'andis-sprinkis/coc.nvim', {'branch': 'release'}
-
-" Snippets
-Plug 'andis-sprinkis/vim-snippets'
-
-" Indentation indicator
-Plug 'andis-sprinkis/indentLine'
-
-" Syntax highlighintg
-Plug 'andis-sprinkis/vim-polyglot'
-
-" Commenting
-Plug 'andis-sprinkis/vim-commentary'
-
-" sudo
-Plug 'andis-sprinkis/suda.vim'
-
-" Directory browser
-Plug 'andis-sprinkis/vim-dirvish'
-
-" git general integration
-Plug 'andis-sprinkis/vim-fugitive'
-
-" git indicators in gutter
-Plug 'andis-sprinkis/vim-gitgutter'
-
-" git commit messages under cursor
-Plug 'andis-sprinkis/git-messenger.vim'
-
-" Color scheme
+" 'lifepillar/vim-gruvbox8
 Plug 'andis-sprinkis/vim-gruvbox8'
-
-" git hunks in lightline
+" 'itchyny/lightline.vim'
+Plug 'andis-sprinkis/lightline.vim'
+" 'andis-sprinkis/lightline-gruvbox-dark.vim'
+Plug 'andis-sprinkis/lightline-gruvbox-dark.vim'
+" 'neoclide/coc.nvim'
+Plug 'andis-sprinkis/coc.nvim', {'branch': 'release'}
+" 'honza/vim-snippets'
+Plug 'andis-sprinkis/vim-snippets'
+" 'Yggdroot/indentLine'
+Plug 'andis-sprinkis/indentLine'
+" 'sheerun/vim-polyglot'
+Plug 'andis-sprinkis/vim-polyglot'
+" 'tpope/vim-commentary'
+Plug 'andis-sprinkis/vim-commentary'
+" 'lambdalisue/suda.vim'
+Plug 'andis-sprinkis/suda.vim'
+" 'justinmk/vim-dirvish'
+Plug 'andis-sprinkis/vim-dirvish'
+" 'tpope/vim-fugitive'
+Plug 'andis-sprinkis/vim-fugitive'
+" 'airblade/vim-gitgutter'
+Plug 'andis-sprinkis/vim-gitgutter'
+" 'sineto/lightline-hunks'
 Plug 'andis-sprinkis/lightline-hunks'
-
-" Buffer cycling and list
+" 'rhysd/git-messenger.vim'
+Plug 'andis-sprinkis/git-messenger.vim'
+" 'mihaifm/bufstop'
 Plug 'andis-sprinkis/bufstop'
-
-" fzf
-if g:os == "Windows" || g:os == "Darwin"
-  Plug 'andis-sprinkis/fzf', { 'do': { -> fzf#install() } }
-endif
+" 'junegunn/fzf'
+if g:os == "Windows" || g:os == "Darwin" | Plug 'andis-sprinkis/fzf', { 'do': { -> fzf#install() } } | endif
+" 'junegunn/fzf.vim'
 Plug 'andis-sprinkis/fzf.vim'
-
-" Common *nix actions
+" 'tpope/vim-eunuch'
 Plug 'andis-sprinkis/vim-eunuch'
-
-" Split between single and multiline forms
+" 'AndrewRadev/splitjoin.vim'
 Plug 'andis-sprinkis/splitjoin.vim'
-
-" Read editorconfig
+" 'editorconfig/editorconfig-vim'
 Plug 'andis-sprinkis/editorconfig-vim'
-
-" Surround chars with chars
-" Plug 'andis-sprinkis/vim-surround'
-
-" Jump to references and definitions in files
+" 'pechorin/any-jump.vim'
 Plug 'andis-sprinkis/any-jump.vim'
-
-" JSDoc
-Plug 'andis-sprinkis/vim-jsdoc', { 
-  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
-  \ 'do': 'make install'
-\ }
-
-" Detect document indentation
-Plug 'andis-sprinkis/vim-sleuth'
-
-" Higlight word under cursor
+" 'heavenshell/vim-jsdoc'
+Plug 'andis-sprinkis/vim-jsdoc', { 'for': ['javascript', 'javascript.jsx','typescript'], 'do': 'make install' }
+" 'tpope/vim-sleuth'
+Plug 'andis-sprinkis/vim-sleuth' 
+" 'RRethy/vim-illuminate'
 Plug 'andis-sprinkis/vim-illuminate'
-
-" Move visual selection
+" 'Jorengarenar/vim-MvVis'
 Plug 'andis-sprinkis/vim-MvVis'
-
-" More granular word motions
+" 'markonm/traces.vim'
 Plug 'andis-sprinkis/vim-wordmotion'
-
-" Highlight patterns and ranges for Ex commands
+" 'markonm/traces.vim'
 Plug 'andis-sprinkis/traces.vim'
-
-" Table creation
+" 'dhruvasagar/vim-table-mode'
 Plug 'andis-sprinkis/vim-table-mode'
-
-" Markdown preview
+" 'iamcco/markdown-preview.nvim'
 Plug 'andis-sprinkis/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-
-" Fix cursor hold
-" Forked from 'antoinemadec/FixCursorHold.nvim'
+" 'antoinemadec/FixCursorHold.nvim'
 Plug 'andis-sprinkis/FixCursorHold.nvim'
-
-" CMake
-" Forked from 'cdelledonne/vim-cmake'
+" 'cdelledonne/vim-cmake'
 Plug 'andis-sprinkis/vim-cmake'
-
-" GoogleTest
-" Forked from 'alepez/vim-gtest'
+" 'alepez/vim-gtest'
 Plug 'andis-sprinkis/vim-gtest'
 call plug#end()
 
