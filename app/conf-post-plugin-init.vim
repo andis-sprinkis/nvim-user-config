@@ -137,8 +137,5 @@ nnoremap <C-h> <C-W><C-H>
 nnoremap <silent><leader>s :split<cr>
 nnoremap <silent><leader>vs :vsplit<cr>
 
-" close window
-nnoremap <C-q> :q<CR>
-
 " normal mode terminal
 tnoremap <C-w> <C-\><C-n>
