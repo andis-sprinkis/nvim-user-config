@@ -70,7 +70,7 @@ Plug 'andis-sprinkis/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " 'antoinemadec/FixCursorHold.nvim'
 Plug 'andis-sprinkis/FixCursorHold.nvim'
 " 'cdelledonne/vim-cmake'
-Plug 'andis-sprinkis/vim-cmake'
+if executable("cmake") == 1 | Plug 'andis-sprinkis/vim-cmake' | endif
 " 'alepez/vim-gtest'
 Plug 'andis-sprinkis/vim-gtest'
 call plug#end()
