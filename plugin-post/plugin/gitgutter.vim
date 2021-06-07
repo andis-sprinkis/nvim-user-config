@@ -5,4 +5,3 @@ autocmd BufWritePost,WinEnter * GitGutter
 " jump between git hunks
 nmap <Leader>hn <Plug>GitGutterNextHunk
 nmap <Leader>hp <Plug>GitGutterPrevHunk
-
