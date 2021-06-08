@@ -27,6 +27,3 @@ set clipboard=unnamedplus
 let loaded_netrw = 0
 syntax on
 filetype plugin indent on
-au VimResized * wincmd =
-au TermOpen * setlocal nonumber norelativenumber signcolumn=no
-au TermOpen term://* startinsert " terminal auto insert mode
