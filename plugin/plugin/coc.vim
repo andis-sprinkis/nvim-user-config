@@ -6,6 +6,8 @@ if executable("yarn")
     \ "coc-json",
     \ "coc-eslint", 
     \ "coc-html",
-    \ "coc-css"
+    \ "coc-css",
+    \ "coc-svg",
+    \ "coc-vimlsp",
   \ ]
 endif
