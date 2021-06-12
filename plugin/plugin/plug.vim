@@ -1,4 +1,3 @@
-" Plug managed plugins
 call plug#begin()
 " 'lifepillar/vim-gruvbox8
 Plug 'andis-sprinkis/vim-gruvbox8'
@@ -7,7 +6,7 @@ Plug 'andis-sprinkis/lightline.vim'
 " 'andis-sprinkis/lightline-gruvbox-dark.vim'
 Plug 'andis-sprinkis/lightline-gruvbox-dark.vim'
 " 'neoclide/coc.nvim'
-Plug 'andis-sprinkis/coc.nvim', {'branch': 'release'}
+if executable("yarn") == 1 | Plug 'andis-sprinkis/coc.nvim', {'branch': 'release'} | endif
 " 'honza/vim-snippets'
 Plug 'andis-sprinkis/vim-snippets'
 " 'Yggdroot/indentLine'
@@ -17,7 +16,7 @@ Plug 'andis-sprinkis/vim-polyglot'
 " 'tpope/vim-commentary'
 Plug 'andis-sprinkis/vim-commentary'
 " 'lambdalisue/suda.vim'
-Plug 'andis-sprinkis/suda.vim'
+if executable("sudo") | Plug 'andis-sprinkis/suda.vim' | endif
 " 'justinmk/vim-dirvish'
 Plug 'andis-sprinkis/vim-dirvish'
 if g:nogit == 0
@@ -59,7 +58,7 @@ Plug 'andis-sprinkis/traces.vim'
 " 'dhruvasagar/vim-table-mode'
 Plug 'andis-sprinkis/vim-table-mode'
 " 'iamcco/markdown-preview.nvim'
-Plug 'andis-sprinkis/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+if executable("yarn") | Plug 'andis-sprinkis/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } | endif
 " 'antoinemadec/FixCursorHold.nvim'
 Plug 'andis-sprinkis/FixCursorHold.nvim'
 " 'cdelledonne/vim-cmake'

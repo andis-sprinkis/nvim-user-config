@@ -1,2 +1,4 @@
-ru! plugin-pre/app/bootstrap-plug.vim
-ru! plugin-pre/app/options.vim
+ru! get-os.vim
+ru! plugin-pre/app/nogit.vim
+ru! plugin-pre/app/bash-on-windows.vim
+ru! plugin-pre/app/option.vim

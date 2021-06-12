@@ -1,3 +1,6 @@
+let loaded_netrw = 0
+syntax on
+filetype plugin indent on
 if g:os == "Windows" | set title | endif
 set noshowmode
 set mouse=a
@@ -24,6 +27,3 @@ set noswapfile
 set updatetime=100
 set shortmess+=c
 set clipboard=unnamedplus
-let loaded_netrw = 0
-syntax on
-filetype plugin indent on
