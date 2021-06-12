@@ -45,8 +45,6 @@ Plug 'andis-sprinkis/editorconfig-vim'
 Plug 'andis-sprinkis/any-jump.vim'
 " 'heavenshell/vim-jsdoc'
 Plug 'andis-sprinkis/vim-jsdoc', { 'for': ['javascript', 'javascript.jsx','typescript'], 'do': 'make install' }
-" 'tpope/vim-sleuth'
-Plug 'andis-sprinkis/vim-sleuth' 
 " 'RRethy/vim-illuminate'
 Plug 'andis-sprinkis/vim-illuminate'
 " 'Jorengarenar/vim-MvVis'
