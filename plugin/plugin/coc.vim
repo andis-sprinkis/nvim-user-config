@@ -1,4 +1,4 @@
-if executable("yarn")
+if g:RequirementsCocNvim
   let g:coc_global_extensions = [
     \ "coc-tsserver",
     \ "coc-highlight",
