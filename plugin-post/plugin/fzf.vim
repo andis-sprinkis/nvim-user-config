@@ -1,4 +1,4 @@
-if !g:RequirementsGitPlugins
+if !g:requirementGitPlugins
   nnoremap <silent><tab> :Files<cr>
 else
   function! ShowGitFiles()
