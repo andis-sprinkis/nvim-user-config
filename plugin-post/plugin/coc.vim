@@ -1,4 +1,3 @@
-if executable("node") && executable("yarn")
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -87,4 +86,3 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 " Mappings for CoCList
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>d  :<C-u>CocList diagnostics<cr>
-endif
