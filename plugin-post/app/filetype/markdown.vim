@@ -1,3 +1,3 @@
 " disable markdown syntax highlighting
-au FileType markdown set syntax=off
-au FileType markdown.mdx set syntax=off
+autocmd FileType markdown set conceallevel=0
+autocmd FileType markdown.mdx set conceallevel=0
