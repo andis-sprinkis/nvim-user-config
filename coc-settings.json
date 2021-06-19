@@ -1,5 +1,4 @@
 {
-    /* "coc.preferences.formatOnType": true, */
     "coc.preferences.enableFloatHighlight": true,
     "coc.preferences.bracketEnterImprove": true,
     "suggest.triggerAfterInsertEnter": true,
