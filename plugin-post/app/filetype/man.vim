@@ -1,1 +1,1 @@
-autocmd FileType man setlocal signcolumn=no number relativenumber
+autocmd FileType man setlocal signcolumn=no
