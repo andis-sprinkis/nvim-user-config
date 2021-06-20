@@ -1,1 +1,1 @@
-autocmd FileType man setlocal signcolumn=no
+au FileType man setlocal signcolumn=no
