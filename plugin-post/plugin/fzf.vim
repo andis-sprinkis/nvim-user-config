@@ -15,6 +15,7 @@ endif
 
 nnoremap <silent><s-tab> :Files<cr>
 nnoremap <silent><leader>e :Rg<cr>
+
 if executable("bat")
   let $BAT_THEME = "ansi"
   let $BAT_STYLE = "plain"
@@ -22,4 +23,5 @@ if executable("bat")
 else
   let $FZF_DEFAULT_OPTS = "--tabstop=2 --cycle --color=dark --layout=reverse"
 endif
-let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'relative': v:true, 'yoffset': 0.5 } }
