@@ -9,6 +9,8 @@ Plug 'andis-sprinkis/lightline-gruvbox-dark.vim'
 if g:requirementCocNvim | Plug 'andis-sprinkis/coc.nvim', {'branch': 'release'} | endif
 " 'honza/vim-snippets'
 Plug 'andis-sprinkis/vim-snippets'
+" Plug 'kassio/neoterm'
+Plug 'andis-sprinkis/neoterm'
 " 'Yggdroot/indentLine'
 Plug 'andis-sprinkis/indentLine'
 " 'sheerun/vim-polyglot'
