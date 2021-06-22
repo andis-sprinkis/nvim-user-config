@@ -24,4 +24,4 @@ else
   let $FZF_DEFAULT_OPTS = "--tabstop=2 --cycle --color=dark --layout=reverse"
 endif
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'relative': v:true, 'yoffset': 0.5 } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'relative': 'editor', 'yoffset': 0.5 } }
