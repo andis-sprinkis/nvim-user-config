@@ -2,7 +2,7 @@ let loaded_netrw = 0
 syntax on
 filetype plugin indent on
 if g:os == "Windows" | set title | endif
-if g:os != "Windows" | let $LANG = "en_US.UTF-8"| endif
+if g:os != "Windows" | let $LANG = "en_US.UTF-8" | endif
 if g:os == "Windows" | let $PATH = "C:\\Program\ Files\\Git\\usr\\bin;" . $PATH | endif " set bash on Windows path
 set noshowmode
 set mouse=a
