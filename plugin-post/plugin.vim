@@ -13,3 +13,4 @@ ru! plugin-post/plugin/lightline.vim
 ru! plugin-post/plugin/splitjoin.vim
 if g:requirementSudaVim | ru! plugin-post/plugin/suda.vim | endif
 ru! plugin-post/plugin/vim-gruvbox8.vim
+ru! plugin-post/plugin/registers.nvim.vim
