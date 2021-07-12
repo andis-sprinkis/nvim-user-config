@@ -1,3 +1,3 @@
-Clone batch script to integrate Neovim Qt in Windows Explorer environment:
+Clone Batch script to integrate Neovim Qt in Windows Explorer environment:
 
 git clone git@github.com:andis-sprinkis/neovim-qt-win-shell.git
