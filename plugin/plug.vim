@@ -46,7 +46,7 @@ Plug 'andis-sprinkis/editorconfig-vim'
 " 'pechorin/any-jump.vim'
 Plug 'andis-sprinkis/any-jump.vim'
 " 'kkoomen/vim-doge'
-Plug 'andis-sprinkis/vim-doge'
+if g:requirementVimDoge | Plug 'andis-sprinkis/vim-doge' | endif
 " 'RRethy/vim-illuminate'
 Plug 'andis-sprinkis/vim-illuminate'
 " 'Jorengarenar/vim-MvVis'
