@@ -65,6 +65,4 @@ Plug 'andis-sprinkis/FixCursorHold.nvim'
 if g:requirementVimCmake == 1 | Plug 'andis-sprinkis/vim-cmake' | endif
 " 'alepez/vim-gtest'
 if g:requirementVimGtest == 1 | Plug 'andis-sprinkis/vim-gtest' | endif
-" 'tversteeg/registers.nvim'
-" Plug 'andis-sprinkis/registers.nvim', { 'branch': 'main' }
 call plug#end()
