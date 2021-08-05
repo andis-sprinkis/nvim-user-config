@@ -2,10 +2,9 @@ if !g:requirementGitPlugins
   nnoremap <silent><tab> :Files<cr>
 else
   function! ShowGitFiles()
-    let gitDirExists = system("git rev-parse --git-dir") == ".git\n"
-    if gitDirExists == 1
+    if system("git rev-parse --git-dir") == ".git\n"
       execute "GFiles --exclude-standard --others --cached"
-    elseif gitDirExists == 0
+    else
       execute "Files"
     endif
   endfunction
