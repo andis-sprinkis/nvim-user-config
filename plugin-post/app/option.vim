@@ -1,9 +1,6 @@
 let loaded_netrw = 0
 syntax on
 filetype plugin indent on
-if g:os == "Windows" | set title | endif
-if g:os != "Windows" | let $LANG = "en_US.UTF-8" | endif
-if g:os == "Windows" | let $PATH = "C:\\Program\ Files\\Git\\usr\\bin;" . $PATH | endif " set bash on Windows path
 set noshowmode
 set mouse=a
 set splitbelow splitright
@@ -23,3 +20,12 @@ set nobackup nowritebackup
 set noswapfile
 set updatetime=100
 set clipboard=unnamedplus
+if g:os == "Windows"
+  set title
+  let $PATH = "C:\\Program\ Files\\Git\\usr\\bin;" . $PATH " set bash on Windows path
+else
+  let $LANG = "en_US.UTF-8"
+endif
+au VimResized * wincmd =
+au TermOpen * setlocal nonumber norelativenumber signcolumn=no
+au TermOpen term://* startinsert
