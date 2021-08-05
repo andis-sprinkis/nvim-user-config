@@ -2,10 +2,7 @@ ru! plugin-post/plugin/anyjump.vim
 ru! plugin-post/plugin/bufstop.vim
 ru! plugin-post/plugin/dirvish.vim
 if g:requirementCocNvim | ru! plugin-post/plugin/coc.vim | endif
-if g:requirementGitPlugins 
-  ru! plugin-post/plugin/fugitive.vim
-  ru! plugin-post/plugin/gitgutter.vim
-endif
+if g:requirementGitPlugins | ru! plugin-post/plugin/gitgutter.vim | endif
 ru! plugin-post/plugin/fzf.vim
 ru! plugin-post/plugin/indentline.vim
 if g:requirementVimDoge | ru! plugin-post/plugin/vim-doge.vim | endif
