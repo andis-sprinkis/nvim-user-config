@@ -1,7 +1,7 @@
 " lightline setup
 let g:lightline = {
   \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
+  \   'left': [ [ 'paste' ],
   \     ['lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
   \   'right': [ [ 'lineinfo' ],
   \     [ 'percent' ],
