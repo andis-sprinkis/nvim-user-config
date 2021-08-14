@@ -1,4 +1,3 @@
-" any-jump
 let g:any_jump_disable_default_keybindings = 1
 " nnoremap <leader>aj :AnyJump<CR>
 " xnoremap <leader>aj :AnyJumpVisual<CR>

@@ -1,4 +1,3 @@
-" lightline setup
 let g:lightline = {
   \ 'active': {
     \ 'left': [ [ 'paste' ], [ 'lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
