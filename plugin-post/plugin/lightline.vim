@@ -8,7 +8,6 @@ let g:lightline = {
     \ 'left': [ [ 'lightline_hunks', 'readonly', 'relativepath', 'modified' ] ],
     \ 'right': [ [ 'lineinfo' ], [ 'percent' ] , [ 'filetype' ] ]
   \ },
-  \ 'component_function': { 'lightline_hunks': 'lightline#hunks#composer' }
+  \ 'component_function': { 'lightline_hunks': 'lightline#hunks#composer' },
+  \ 'colorscheme': 'gruvboxdark'
 \ }
-
-let g:lightline.colorscheme = 'gruvboxdark'
