@@ -2,6 +2,7 @@ let g:coc_global_extensions = [
   \ "coc-tsserver",
   \ "coc-highlight",
   \ "coc-snippets",
+  \ "coc-prettier",
   \ "coc-json",
   \ "coc-eslint", 
   \ "coc-html",
