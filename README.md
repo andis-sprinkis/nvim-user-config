@@ -16,3 +16,5 @@
 ## Requirements
 
 See `plugin-pre/requirement.vim`.
+
+Some plugins (e.g. [fzf.vim](https://github.com/junegunn/fzf.vim)) may require Bash compatible shell and some common *nix utilities to work on Windows. For those cases `plugin-post/app/option.vim` adds `%%ProgramFiles%%\\Git\\usr\\bin` to `%PATH%`.
