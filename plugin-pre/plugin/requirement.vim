@@ -1,8 +1,8 @@
 if !executable("git")
   let g:nogitplugin = 1
 else
-  " Allows setting a startup variable to disable loading git plugins
-  " (for use cases with a slow IO e.g. remote SSHFS mounts).
+  " Allows setting a startup variable to disable loading git plugins,
+  " for use cases with slow file system IO e.g. remote SSHFS mounts.
   if !exists("g:nogitplugin") | let g:nogitplugin = 0 | endif
 endif
 
