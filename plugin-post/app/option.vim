@@ -22,7 +22,7 @@ set updatetime=100
 set clipboard=unnamedplus
 if g:os == "Windows"
   set title
-  let $PATH = "C:\\Program\ Files\\Git\\usr\\bin;" . $PATH " set bash on Windows path
+  let $PATH = "%%ProgramFiles%%\\Git\\usr\\bin;" . $PATH " set bash on Windows path
 else
   let $LANG = "en_US.UTF-8"
 endif
