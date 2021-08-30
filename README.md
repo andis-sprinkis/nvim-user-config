@@ -2,14 +2,14 @@
 
 ## File structure and initialization
 
-1. `plugin-pre/` - stores config. that needs to be set before initialization of plugins
-   1. `app/_init.vim` - loads Neovim specific configuration
-   1. `plugin/_init.vim` - loads plugin specific configuration
-1. `plugin/` - stores config. for installing and initalizing the plugins
-   1. `_init.vim` - loads plug.vim bootstrap, then initializes plugins managed by [vim-plug](https://github.com/junegunn/vim-plug) and [coc.nvim](https://github.com/neoclide/coc.nvim)
-1. `plugin-post/` - stores config. that needs to be set after initialization of plugins
-   1. `app/_init.vim` - loads Neovim specific configuration
-   1. `plugin/_init.vim` - loads plugin specific configuration
+1. `plugin-pre/` - stores config. that needs to be set before loading of plugins
+   1. `app/_init.vim` - Neovim specific configuration
+   1. `plugin/_init.vim` - plugin specific configuration
+1. `plugin/` - stores config. for loading the plugins
+   1. `_init.vim` - loads plug.vim bootstrap, then plugins managed by [vim-plug](https://github.com/junegunn/vim-plug) and [coc.nvim](https://github.com/neoclide/coc.nvim)
+1. `plugin-post/` - stores config. that needs to be set after loading of plugins
+   1. `app/_init.vim` - Neovim specific configuration
+   1. `plugin/_init.vim` - plugin specific configuration
 
 `init.vim` loads Neovim configuration in the order described above.
 
