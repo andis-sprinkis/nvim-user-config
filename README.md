@@ -6,7 +6,7 @@
    1. `app/_init.vim` - Neovim specific configuration
    1. `plugin/_init.vim` - plugin specific configuration
 1. `plugin/` - configuration for loading the plugins
-   1. `_init.vim` - loads plug.vim bootstrap, then plugins managed by [vim-plug](https://github.com/junegunn/vim-plug) and [coc.nvim](https://github.com/neoclide/coc.nvim)
+   1. `_init.vim` - loads [vim-plug](https://github.com/junegunn/vim-plug) bootstrap, then plugins managed by [vim-plug](https://github.com/junegunn/vim-plug) and [coc.nvim](https://github.com/neoclide/coc.nvim)
 1. `plugin-post/` - configuration that needs to be set after loading of plugins
    1. `app/_init.vim` - Neovim specific configuration
    1. `plugin/_init.vim` - plugin specific configuration
