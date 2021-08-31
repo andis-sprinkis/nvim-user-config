@@ -1,14 +1,7 @@
 let s:fontname = "CascadiaCodePL"
 let s:fontsize = 10
 
-function! AdjustFontSize(amount)
-  let s:fontsize = s:fontsize+a:amount
-  execute 'set guifont=' . s:fontname . ':h' . s:fontsize
-endfunction
+execute 'set guifont=' . s:fontname . ':h' . s:fontsize
 
-call AdjustFontSize(0)
-
-noremap <C-ScrollWheelUp> :call AdjustFontSize(1)<CR>
-noremap <C-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
-inoremap <C-ScrollWheelUp> <Esc>:call AdjustFontSize(1)<CR>a
-inoremap <C-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
+let neoray_key_increase_fontsize='<C-ScrollWheelUp>'
+let neoray_key_decrease_fontsize='<C-ScrollWheelDown>'
