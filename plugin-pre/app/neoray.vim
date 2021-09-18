@@ -1,5 +1,5 @@
 let s:fontname = 'CascadiaCodePL'
-let s:fontsize = 14
+let s:fontsize = 13
 
 execute 'set guifont=' . s:fontname . ':h' . s:fontsize
 
