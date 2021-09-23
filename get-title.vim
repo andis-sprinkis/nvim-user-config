@@ -4,4 +4,4 @@ fun! GetTitle()
   else
     let &titlestring = expand('%:p') . ' - NVIM'
   endif
-endfunction
+endfun

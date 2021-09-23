@@ -3,8 +3,8 @@ let s:fontsize = 13
 
 fun! AdjustFontSize(amount)
   let s:fontsize = s:fontsize+a:amount
-  execute "GuiFont! " . s:fontname . ":h" . s:fontsize
-endfunction
+  exe "GuiFont! " . s:fontname . ":h" . s:fontsize
+endfun
 
 call AdjustFontSize(0)
 

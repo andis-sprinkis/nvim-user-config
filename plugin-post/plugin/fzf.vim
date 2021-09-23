@@ -3,11 +3,11 @@ if !g:requirementGitPlugins
 else
   fun! ShowGitFiles()
     if system("git rev-parse --git-dir") == ".git\n"
-      execute "GFiles --exclude-standard --others --cached"
+      exe "GFiles --exclude-standard --others --cached"
     else
-      execute "Files"
+      exe "Files"
     endif
-  endfunction
+  endfun
 
   nnoremap <silent><tab> :call ShowGitFiles()<cr>
 endif
