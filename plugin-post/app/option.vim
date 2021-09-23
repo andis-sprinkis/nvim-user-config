@@ -1,8 +1,7 @@
 let loaded_netrw = 0
 syntax on
 filetype plugin indent on
-set title
-set titlelen=1000
+set title titlelen=1000
 set noshowmode
 set mouse=a
 set splitbelow splitright
