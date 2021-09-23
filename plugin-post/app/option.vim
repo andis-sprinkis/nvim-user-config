@@ -2,7 +2,7 @@ let loaded_netrw = 0
 syntax on
 filetype plugin indent on
 set title
-au bufenter * call GetTitle()
+set titlelen=1000
 set noshowmode
 set mouse=a
 set splitbelow splitright
