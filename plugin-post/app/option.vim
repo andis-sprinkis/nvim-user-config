@@ -1,6 +1,8 @@
 let loaded_netrw = 0
 syntax on
 filetype plugin indent on
+set title
+au bufenter * call GetTitle()
 set noshowmode
 set mouse=a
 set splitbelow splitright
@@ -21,7 +23,6 @@ set noswapfile
 set updatetime=100
 set clipboard=unnamedplus
 if g:os == "Windows"
-  set title
   let $PATH = "%%ProgramFiles%%\\Git\\usr\\bin;" . $PATH " set bash on Windows path
 else
   let $LANG = "en_US.UTF-8"

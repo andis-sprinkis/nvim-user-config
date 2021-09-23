@@ -1,7 +1,7 @@
 if !g:requirementGitPlugins
   nnoremap <silent><tab> :Files<cr>
 else
-  function! ShowGitFiles()
+  fun! ShowGitFiles()
     if system("git rev-parse --git-dir") == ".git\n"
       execute "GFiles --exclude-standard --others --cached"
     else
