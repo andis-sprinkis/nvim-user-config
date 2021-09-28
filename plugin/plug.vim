@@ -51,6 +51,8 @@ if g:requirementVimDoge | Plug 'andis-sprinkis/vim-doge' | endif
 Plug 'andis-sprinkis/vim-illuminate'
 " 'Jorengarenar/vim-MvVis'
 Plug 'andis-sprinkis/vim-MvVis'
+" 'dyng/ctrlsf.vim'
+Plug 'dyng/ctrlsf.vim'
 " 'jdhao/better-escape.vim'
 Plug 'andis-sprinkis/better-escape.vim'
 " 'chaoren/vim-wordmotion'
