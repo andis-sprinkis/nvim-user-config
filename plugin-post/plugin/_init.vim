@@ -1,5 +1,4 @@
 ru! plugin-post/plugin/anyjump.vim
-ru! plugin-post/plugin/better-escape.vim
 ru! plugin-post/plugin/bufstop.vim
 ru! plugin-post/plugin/dirvish.vim
 if g:requirementCocNvim | ru! plugin-post/plugin/coc.vim | endif
