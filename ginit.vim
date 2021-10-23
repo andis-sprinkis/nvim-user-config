@@ -5,12 +5,12 @@ lua <<EOF
 local fontname = 'Cascadia Code PL'
 local fontsize = 13
 
-function _G.AdjustFontSize(amount)
+function AdjustFontSize(amount)
   fontsize = fontsize + amount
   vim.api.nvim_command('GuiFont! ' .. fontname .. ':h' .. tostring(fontsize))
 end
 
-_G.AdjustFontSize(0)
+AdjustFontSize(0)
 
 vim.api.nvim_set_keymap('n', '<C-ScrollWheelUp>', ':call AdjustFontSize(1)<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-ScrollWheelDown>', ':call AdjustFontSize(-1)<CR>', { noremap = true })
