@@ -1,0 +1,5 @@
+require('plugin-pre.app._init')
+require('plugin-pre.plugin._init')
+require('plugin._init')
+require('plugin-post.app._init')
+require('plugin-post.plugin._init')

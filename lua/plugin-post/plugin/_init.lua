@@ -1,3 +1,4 @@
+vim.api.nvim_exec([[
 ru! plugin-post/plugin/anyjump.vim
 ru! plugin-post/plugin/bufstop.vim
 ru! plugin-post/plugin/dirvish.vim
@@ -10,3 +11,4 @@ ru! plugin-post/plugin/splitjoin.vim
 if g:requirementSudaVim | ru! plugin-post/plugin/suda.vim | endif
 ru! plugin-post/plugin/vim-gruvbox8.vim
 ru! plugin-post/plugin/lightline.vim
+]], false)

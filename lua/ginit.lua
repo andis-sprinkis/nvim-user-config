@@ -1,7 +1,8 @@
-" Determine OS
+-- Determine OS
+vim.api.nvim_exec([[
 ru! get-os.vim
+]])
 
-lua <<EOF
 local fontname = 'Cascadia Code PL'
 local fontsize = 13
 
@@ -27,4 +28,3 @@ GuiTabline 0
 if vim.g.os == 'Windows' and vim.fn.expand('%:p') == '' then
   vim.api.nvim_command('cd /')
 end
-EOF
