@@ -3,8 +3,8 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.fn.system({'git', 'clone', '--depth=1', 'https://github.com/andis-sprinkis/paq-nvim.git', install_path})
 end
 
-require "paq" {
-  --  "savq/paq-nvim";
+local packages = {
+  -- 'savq/paq-nvim';
   'andis-sprinkis/paq-nvim';
   -- 'wbthomason/packer.nvim';
   'andis-sprinkis/paq-nvim';
@@ -14,8 +14,6 @@ require "paq" {
   'andis-sprinkis/lightline.vim';
   -- 'andis-sprinkis/lightline.vim';
   'andis-sprinkis/lightline-gruvbox-dark.vim';
-  -- 'neoclide/coc.nvim';
-  { 'andis-sprinkis/coc.nvim', branch = 'release' };
   -- 'honza/vim-snippets';
   'andis-sprinkis/vim-snippets';
   -- 'kassio/neoterm';
@@ -26,24 +24,12 @@ require "paq" {
   'andis-sprinkis/vim-polyglot';
   -- 'tpope/vim-commentary';
   'andis-sprinkis/vim-commentary';
-  -- 'lambdalisue/suda.vim';
-  'andis-sprinkis/suda.vim';
   -- 'justinmk/vim-dirvish';
   'andis-sprinkis/vim-dirvish';
-  -- 'tpope/vim-fugitive';
-  'andis-sprinkis/vim-fugitive';
-  -- 'airblade/vim-gitgutter';
-  'andis-sprinkis/vim-gitgutter';
-  -- 'sineto/lightline-hunks';
-  'andis-sprinkis/lightline-hunks';
-  -- 'rhysd/git-messenger.vim';
-  'andis-sprinkis/git-messenger.vim';
   -- 'mihaifm/bufstop';
   'andis-sprinkis/bufstop';
   -- 'junegunn/fzf';
   { 'andis-sprinkis/fzf', run = 'fzf#install' };
-  -- 'junegunn/fzf.vim';
-  'andis-sprinkis/fzf.vim';
   -- 'tpope/vim-eunuch';
   'andis-sprinkis/vim-eunuch';
   -- 'AndrewRadev/splitjoin.vim';
@@ -52,8 +38,6 @@ require "paq" {
   'andis-sprinkis/editorconfig-vim';
   -- 'pechorin/any-jump.vim';
   'andis-sprinkis/any-jump.vim';
-  -- 'kkoomen/vim-doge';
-  'andis-sprinkis/vim-doge';
   -- 'RRethy/vim-illuminate';
   'andis-sprinkis/vim-illuminate';
   -- 'Jorengarenar/vim-MvVis';
@@ -70,8 +54,31 @@ require "paq" {
   { 'andis-sprinkis/markdown-preview.nvim', run = 'cd app && yarn install' };
   -- 'antoinemadec/FixCursorHold.nvim';
   'andis-sprinkis/FixCursorHold.nvim';
-  -- 'cdelledonne/vim-cmake';
-  'andis-sprinkis/vim-cmake';
-  -- 'alepez/vim-gtest';
-  'andis-sprinkis/vim-gtest';
 }
+
+-- 'neoclide/coc.nvim';
+if vim.g.requirementCocNvim then table.insert(packages, { 'andis-sprinkis/coc.nvim', branch = 'release' }) end
+-- 'lambdalisue/suda.vim'
+if vim.g.requirementSudaVim then table.insert(packages, 'andis-sprinkis/suda.vim') end
+if vim.g.requirementGitPlugins then
+  -- 'tpope/vim-fugitive';
+  table.insert(packages, 'andis-sprinkis/vim-fugitive')
+  -- 'airblade/vim-gitgutter';
+  table.insert(packages, 'andis-sprinkis/vim-gitgutter')
+  -- 'sineto/lightline-hunks';
+  table.insert(packages, 'andis-sprinkis/lightline-hunks')
+  -- 'rhysd/git-messenger.vim';
+  table.insert(packages, 'andis-sprinkis/git-messenger.vim')
+end
+-- 'junegunn/fzf'
+if vim.g.requirementFzfInstall then table.insert(packages, { 'andis-sprinkis/fzf', run = 'fzf#install' }) end
+-- 'kkoomen/vim-doge'
+if vim.g.requirementVimDoge then table.insert(packages, 'andis-sprinkis/vim-doge') end
+-- 'iamcco/markdown-preview.nvim'
+if vim.g.requirementMarkdownPreviewNvim then table.insert(packages, { 'andis-sprinkis/markdown-preview.nvim', run = 'cd app && yarn install' }) end
+-- 'cdelledonne/vim-cmake'
+if vim.g.requirementVimCmake then table.insert(packages, 'andis-sprinkis/vim-cmake') end
+-- 'alepez/vim-gtest'
+if vim.g.requirementVimGtest then table.insert(packages, 'andis-sprinkis/vim-gtest') end
+
+require('paq')(packages)
