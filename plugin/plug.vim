@@ -1,4 +1,6 @@
-call plug#begin()
+lua <<EOF
+vim.fn['plug#begin']()
+vim.api.nvim_exec([[
 " 'lifepillar/vim-gruvbox8
 Plug 'andis-sprinkis/vim-gruvbox8'
 " 'itchyny/lightline.vim'
@@ -67,4 +69,6 @@ Plug 'andis-sprinkis/FixCursorHold.nvim'
 if g:requirementVimCmake == 1 | Plug 'andis-sprinkis/vim-cmake' | endif
 " 'alepez/vim-gtest'
 if g:requirementVimGtest == 1 | Plug 'andis-sprinkis/vim-gtest' | endif
-call plug#end()
+]], false)
+vim.fn['plug#end']()
+EOF

@@ -2,7 +2,7 @@ lua <<EOF
 vim.api.nvim_exec([[
   syntax on
   filetype plugin indent on
-]], true)
+]], false)
 vim.g.loaded_netrw = 0
 vim.opt.backup = false
 vim.opt.clipboard = 'unnamedplus'
@@ -41,5 +41,5 @@ vim.api.nvim_exec([[
 au VimResized * wincmd =
 au TermOpen * setlocal nonumber norelativenumber signcolumn=no
 au TermOpen term://* startinsert
-]], true)
+]], false)
 EOF

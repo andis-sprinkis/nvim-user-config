@@ -5,23 +5,23 @@ lua <<EOF
 local fontname = 'Cascadia Code PL'
 local fontsize = 13
 
-function _G.AdjustFontSize(amount)
+function AdjustFontSize(amount)
   fontsize = fontsize + amount
   vim.api.nvim_command('GuiFont! ' .. fontname .. ':h' .. tostring(fontsize))
 end
 
-_G.AdjustFontSize(0)
+AdjustFontSize(0)
 
-vim.api.nvim_set_keymap('n', '<C-ScrollWheelUp>', ':lua _G.AdjustFontSize(1)<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-ScrollWheelDown>', ':lua _G.AdjustFontSize(-1)<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-ScrollWheelUp>', '<Esc>:lua _G.AdjustFontSize(1)<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-ScrollWheelDown>', '<Esc>:lua _G.AdjustFontSize(-1)<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-ScrollWheelUp>', ':lua AdjustFontSize(1)<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-ScrollWheelDown>', ':lua AdjustFontSize(-1)<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-ScrollWheelUp>', '<Esc>:lua AdjustFontSize(1)<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-ScrollWheelDown>', '<Esc>:lua AdjustFontSize(-1)<CR>', { noremap = true, silent = true })
 
 -- disable GUI widgets
 vim.api.nvim_exec([[
 GuiPopupmenu 0
 GuiTabline 0
-]], true)
+]], false)
 
 -- go to partition root when no path specified
 if vim.g.os == 'Windows' and vim.fn.expand('%:p') == '' then
