@@ -1,3 +1,4 @@
+lua <<< EOF
 -- Determine OS
 vim.api.nvim_exec([[
 ru! get-os.vim
@@ -28,3 +29,4 @@ GuiTabline 0
 if vim.g.os == 'Windows' and vim.fn.expand('%:p') == '' then
   vim.api.nvim_command('cd /')
 end
+EOF
