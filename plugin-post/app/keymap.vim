@@ -1,27 +1,28 @@
-" leader key
-let mapleader="\<space>"
+lua <<EOF
+vim.g.mapleader = ' '
 
-" move over linebreak
-nnoremap h <bs>
-nnoremap l <space>
-vnoremap h <bs>
-vnoremap l <space>
+-- move over linebreak
+vim.api.nvim_set_keymap('n', 'h', '<bs>', { noremap = true })
+vim.api.nvim_set_keymap('n', 'l', '<space>', { noremap = true })
+vim.api.nvim_set_keymap('v', 'h', '<bs>', { noremap = true })
+vim.api.nvim_set_keymap('v', 'l', '<space>', { noremap = true })
 
-" resize splits
-nnoremap <silent><C-A-j> :resize +2<cr>
-nnoremap <silent><C-A-k> :resize -2<cr>
-nnoremap <silent><C-A-l> :vertical resize +4<cr>
-nnoremap <silent><C-A-h> :vertical resize -4<cr>
+-- resize splits
+vim.api.nvim_set_keymap('n', '<C-A-j>', ':resize +2<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-A-k>', ':resize -2<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-A-l>', ':vertical resize +4<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-A-h>', ':vertical resize +4<cr>', { noremap = true, silent = true })
 
-" quicker split switching
-nnoremap <C-j> <C-W><C-J>
-nnoremap <C-k> <C-W><C-K>
-nnoremap <C-l> <C-W><C-L>
-nnoremap <C-h> <C-W><C-H>
+-- quicker split switching
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-W><C-J>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-W><C-K>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-W><C-L>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-W><C-H>', { noremap = true })
 
-" creating splits
-nnoremap <silent><leader>s :split<cr>
-nnoremap <silent><leader>vs :vsplit<cr>
+-- creating splits
+vim.api.nvim_set_keymap('n', 's', ':split<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'vs', ':vsplit<cr>', { noremap = true, silent = true })
 
-" insert to normal mode in terminal
-tnoremap <C-w> <C-\><C-n>
+-- insert to normal mode in terminal
+vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n>', { noremap = true })
+EOF

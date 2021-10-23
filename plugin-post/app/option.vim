@@ -1,31 +1,45 @@
-let loaded_netrw = 0
-syntax on
-filetype plugin indent on
-set title titlelen=1000
-set noshowmode
-set mouse=a
-set splitbelow splitright
-set winblend=10
-set encoding=utf-8
-set foldmethod=syntax foldlevel=99
-set hidden " hidden bufers
-set nohlsearch
-set signcolumn=yes:2
-set fcs=eob:\  " hide empty line indicator
-set termguicolors
-set number
-set relativenumber
-set wildmenu wildmode=longest:list,full
-set list listchars=eol:¶,tab:»\ 
-set nobackup nowritebackup
-set noswapfile
-set updatetime=100
-set clipboard=unnamedplus
-if g:os == "Windows"
-  let $PATH = "%%ProgramFiles%%\\Git\\usr\\bin;" . $PATH " set bash on Windows path
+lua <<EOF
+vim.api.nvim_exec([[
+  syntax on
+  filetype plugin indent on
+]], true)
+vim.g.loaded_netrw = 0
+vim.opt.backup = false
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.encoding = 'utf-8'
+vim.opt.fcs = { eob = '' }
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'syntax'
+vim.opt.hidden = true
+vim.opt.hlsearch = false
+vim.opt.list = true
+vim.opt.mouse = 'a'
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.showmode = false
+vim.opt.signcolumn = 'yes:2'
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.swapfile = false
+vim.opt.termguicolors = true
+vim.opt.title = true
+vim.opt.titlelen = 1000
+vim.opt.updatetime = 100
+vim.opt.wildmenu = true
+vim.opt.wildmode = { 'longest:list', 'full' }
+vim.opt.winblend = 10
+vim.opt.writebackup = false
+vim.opt.listchars = { eol = '¶', tab = '» ' }
+
+if vim.g.os == 'Windows' then
+  vim.env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. vim.env.PATH
 else
-  let $LANG = "en_US.UTF-8"
-endif
+  vim.env.LANG = 'en_US.UTF-8'
+end
+
+vim.api.nvim_exec([[
 au VimResized * wincmd =
 au TermOpen * setlocal nonumber norelativenumber signcolumn=no
 au TermOpen term://* startinsert
+]], true)
+EOF

@@ -1,16 +1,18 @@
-if !executable("git")
-  let g:nogitplugin = 1
+lua <<EOF
+if vim.fn.executable('git') == false then
+  vim.g.nogitplugin = true
 else
-  " Allows setting a startup variable to disable loading git plugins.
-  " For use cases with slow file system IO e.g. remote SSHFS mounts.
-  if !exists("g:nogitplugin") | let g:nogitplugin = 0 | endif
-endif
+  if vim.g.nogitplugin == nil then 
+    vim.g.nogitplugin = false 
+  end
+end
 
-let g:requirementGitPlugins = g:nogitplugin == 0
-let g:requirementCocNvim = executable("node") && executable("yarn")
-let g:requirementSudaVim = executable("sudo")
-let g:requirementFzfInstall = g:os == "Windows" || g:os == "Darwin"
-let g:requirementVimDoge = executable("node")
-let g:requirementMarkdownPreviewNvim = executable("node") && executable("yarn")
-let g:requirementVimCmake = executable("cmake")
-let g:requirementVimGtest = executable("gtester")
+vim.g.requirementCocNvim = vim.fn.executable('node') and vim.fn.executable('yarn')
+vim.g.requirementSudaVim = vim.fn.executable('sudo')
+vim.g.requirementFzfInstall = vim.g.os == 'Windows' or vim.g.os == 'Darwin'
+vim.g.requirementVimDoge = vim.fn.executable('node')
+vim.g.requirementGitPlugins = vim.g.nogitplugin == false
+vim.g.requirementMarkdownPreviewNvim = vim.fn.executable('node') or vim.fn.executable('yarn')
+vim.g.requirementVimCmake = vim.fn.executable('cmake')
+vim.g.requirementVimGtest = vim.fn.executable('gtester')
+EOF

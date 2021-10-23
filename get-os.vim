@@ -1,7 +1,9 @@
-if !exists("g:os")
-  if has("win64") || has("win32") || has("win16")
-    let g:os = "Windows"
+lua <<EOF
+if vim.g.os == nil then
+  if (vim.fn.has('win64') == 1 or vim.fn.has('win32') == 1 or vim.fn.has('win16') == 1) then
+    vim.g.os = 'Windows'
   else
-    let g:os = substitute(system('uname'), '\n', '', '')
-  endif
-endif
+    vim.g.os = vim.fn.substitute(vim.fn.system('uname'), '\n', '', '')
+  end
+end
+EOF

@@ -1,7 +1,7 @@
-let s:fontname = 'CascadiaCodePL'
-let s:fontsize = 13
-
-exe 'set guifont=' . s:fontname . ':h' . s:fontsize
-
-NeoraySet KeyZoomIn <C-ScrollWheelUp>
-NeoraySet KeyZoomOut <C-ScrollWheelDown>
+lua <<EOF
+vim.opt.guifont = 'CascadiaCodePL:h13'
+vim.api.nvim_exec([[
+  NeoraySet KeyZoomIn <C-ScrollWheelUp>
+  NeoraySet KeyZoomOut <C-ScrollWheelDown>
+]], true)
+EOF

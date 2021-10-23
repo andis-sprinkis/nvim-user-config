@@ -1,24 +1,30 @@
-let s:fontname = "Cascadia Code PL"
-let s:fontsize = 13
-
-fun! AdjustFontSize(amount)
-  let s:fontsize = s:fontsize+a:amount
-  exe "GuiFont! " . s:fontname . ":h" . s:fontsize
-endfun
-
-call AdjustFontSize(0)
-
-noremap <C-ScrollWheelUp> :call AdjustFontSize(1)<CR>
-noremap <C-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
-inoremap <C-ScrollWheelUp> <Esc>:call AdjustFontSize(1)<CR>a
-inoremap <C-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
-
-" Disable GUI widgets
-GuiPopupmenu 0
-GuiTabline 0
-
 " Determine OS
 ru! get-os.vim
 
-" Go to partition root when no path specified
-if g:os == "Windows" && (expand("%:p")) == "" | cd / | endif
+lua <<EOF
+local fontname = 'Cascadia Code PL'
+local fontsize = 13
+
+function _G.AdjustFontSize(amount)
+  fontsize = fontsize + amount
+  vim.api.nvim_command('GuiFont! ' .. fontname .. ':h' .. tostring(fontsize))
+end
+
+_G.AdjustFontSize(0)
+
+vim.api.nvim_set_keymap('n', '<C-ScrollWheelUp>', ':call AdjustFontSize(1)<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-ScrollWheelDown>', ':call AdjustFontSize(-1)<CR>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-ScrollWheelUp>', '<Esc>:call AdjustFontSize(1)<CR>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-ScrollWheelDown>', '<Esc>:call AdjustFontSize(-1)<CR>', { noremap = true })
+
+-- disable GUI widgets
+vim.api.nvim_exec([[
+GuiPopupmenu 0
+GuiTabline 0
+]], true)
+
+-- go to partition root when no path specified
+if vim.g.os == 'Windows' and vim.fn.expand('%:p') == '' then
+  vim.api.nvim_command('cd /')
+end
+EOF
