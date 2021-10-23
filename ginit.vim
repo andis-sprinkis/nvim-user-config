@@ -5,17 +5,17 @@ lua <<EOF
 local fontname = 'Cascadia Code PL'
 local fontsize = 13
 
-function AdjustFontSize(amount)
+function _G.AdjustFontSize(amount)
   fontsize = fontsize + amount
   vim.api.nvim_command('GuiFont! ' .. fontname .. ':h' .. tostring(fontsize))
 end
 
-AdjustFontSize(0)
+_G.AdjustFontSize(0)
 
-vim.api.nvim_set_keymap('n', '<C-ScrollWheelUp>', ':call AdjustFontSize(1)<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-ScrollWheelDown>', ':call AdjustFontSize(-1)<CR>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<C-ScrollWheelUp>', '<Esc>:call AdjustFontSize(1)<CR>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<C-ScrollWheelDown>', '<Esc>:call AdjustFontSize(-1)<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-ScrollWheelUp>', 'lua _G.AdjustFontSize(1)<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-ScrollWheelDown>', ':lua _G.AdjustFontSize(-1)<CR>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-ScrollWheelUp>', '<Esc>:lua _G.AdjustFontSize(1)<CR>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-ScrollWheelDown>', '<Esc>:lua G.AdjustFontSize(-1)<CR>', { noremap = true })
 
 -- disable GUI widgets
 vim.api.nvim_exec([[
