@@ -1,4 +1,3 @@
-lua <<EOF
 if vim.fn.executable('git') == false then
   vim.g.nogitplugin = true
 else
@@ -15,4 +14,3 @@ vim.g.requirementGitPlugins = vim.g.nogitplugin == false
 vim.g.requirementMarkdownPreviewNvim = vim.fn.executable('node') == 1 or vim.fn.executable('yarn') == 1
 vim.g.requirementVimCmake = vim.fn.executable('cmake') == 1
 vim.g.requirementVimGtest = vim.fn.executable('gtester') == 1
-EOF
