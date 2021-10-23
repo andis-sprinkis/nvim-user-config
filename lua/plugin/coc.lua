@@ -1,4 +1,3 @@
-lua <<EOF
 vim.g.coc_global_extensions = {
   'coc-tsserver',
   'coc-highlight',
@@ -11,4 +10,3 @@ vim.g.coc_global_extensions = {
   'coc-svg',
   'coc-vimlsp',
 }
-EOF

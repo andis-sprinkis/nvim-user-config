@@ -1,4 +1,9 @@
-lua <<EOF
+local autoload_plug_path = vim.fn.stdpath('data') .. '/site/autoload/plug.vim'
+if vim.fn.filereadable(autoload_plug_path) == 0 then
+  vim.cmd('!curl -fLo ' .. autoload_plug_path .. '  --create-dirs "https://raw.githubusercontent.com/andis-sprinkis/vim-plug/master/plug.vim"')
+  vim.cmd('autocmd VimEnter * PlugInstall --sync | source $MYVIMRC')
+end
+
 vim.fn['plug#begin']()
 vim.api.nvim_exec([[
 " 'lifepillar/vim-gruvbox8
@@ -71,4 +76,3 @@ if g:requirementVimCmake == 1 | Plug 'andis-sprinkis/vim-cmake' | endif
 if g:requirementVimGtest == 1 | Plug 'andis-sprinkis/vim-gtest' | endif
 ]], false)
 vim.fn['plug#end']()
-EOF
