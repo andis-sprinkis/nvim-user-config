@@ -1,8 +1,6 @@
 lua <<EOF
 -- Determine OS
-vim.api.nvim_exec([[
-ru! get-os.vim
-]])
+vim.cmd('ru! get-os.vim')
 
 local fontname = 'Cascadia Code PL'
 local fontsize = 13
