@@ -1,4 +1,3 @@
-lua <<EOF
 if vim.env.requirementGitPlugins == false then
   vim.api.nvim_set_keymap('n', '<tab>', ':Files<cr>', { noremap = true, silent = true })
 else
@@ -25,4 +24,3 @@ else
 end
 
 vim.g.fzf_layout = { window = { width = 0.9, height = 0.95, relative = 'editor', yoffset = 0.5 } }
-EOF

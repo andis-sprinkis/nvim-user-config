@@ -1,4 +1,3 @@
-lua <<EOF
 vim.g.mapleader = ' '
 
 -- move over linebreak
@@ -25,4 +24,3 @@ vim.api.nvim_set_keymap('n', 'vs', ':vsplit<cr>', { noremap = true, silent = tru
 
 -- insert to normal mode in terminal
 vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n>', { noremap = true })
-EOF

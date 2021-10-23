@@ -1,4 +1,3 @@
-lua <<EOF
 vim.g.any_jump_disable_default_keybindings = 1
 vim.g.any_jump_window_width_ratio = 0.8
 vim.g.any_jump_window_height_ratio = 0.85
@@ -19,9 +18,8 @@ vim.g.any_jump_colors = {
   result_path = 'String',
   help = 'Comment'
 }
-EOF
 
-" nnoremap <leader>aj :AnyJump<CR>
-" xnoremap <leader>aj :AnyJumpVisual<CR>
-" nnoremap <leader>aa :AnyJumpArg 
-" nnoremap <leader>al :AnyJumpLastResults<CR>
+-- nnoremap <leader>aj :AnyJump<CR>
+-- xnoremap <leader>aj :AnyJumpVisual<CR>
+-- nnoremap <leader>aa :AnyJumpArg 
+-- nnoremap <leader>al :AnyJumpLastResults<CR>

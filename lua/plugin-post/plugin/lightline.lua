@@ -1,4 +1,3 @@
-lua <<EOF
 vim.g.lightline = {
   active = {
     left = { { 'paste' }, { 'lightline_hunks', 'readonly', 'relativepath', 'modified' } },
@@ -11,4 +10,3 @@ vim.g.lightline = {
   component_function = { lightline_hunks = 'lightline#hunks#composer' },
   colorscheme = 'gruvboxdark'
 }
-EOF
