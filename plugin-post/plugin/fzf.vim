@@ -1,26 +1,28 @@
-if !g:requirementGitPlugins
-  nnoremap <silent><tab> :Files<cr>
+lua <<EOF
+if vim.env.requirementGitPlugins == false then
+  vim.api.nvim_set_keymap('n', '<tab>', ':Files<cr>', { noremap = true, silent = true })
 else
-  fun! ShowGitFiles()
-    if system("git rev-parse --git-dir") == ".git\n"
-      exe "GFiles --exclude-standard --others --cached"
+  function ShowGitFiles()
+    if vim.fn.system('git rev-parse --git-dir') == '.git\n' then
+      vim.cmd('GFiles --exclude-standard --others --cached')
     else
-      exe "Files"
-    endif
-  endfun
+      vim.cmd('Files')
+    end
+  end
 
-  nnoremap <silent><tab> :call ShowGitFiles()<cr>
-endif
+  vim.api.nvim_set_keymap('n', '<tab>', ':lua ShowGitFiles()<cr>', { noremap = true, silent = true })
+end
 
-nnoremap <silent><s-tab> :Files<cr>
-nnoremap <silent><leader>e :Rg<cr>
+vim.api.nvim_set_keymap('n', '<s-tab>', ':Files<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>e', ':Rg<cr>', { noremap = true, silent = true })
 
-if executable("bat")
-  let $BAT_THEME = "ansi"
-  let $BAT_STYLE = "plain"
-  let $FZF_DEFAULT_OPTS = "--tabstop=2 --cycle --color=dark --layout=reverse-list --preview 'bat --color=always --line-range=:300 {}' --preview-window=up,62%,wrap"
+if vim.fn.executable('bat') == 1 then
+  vim.env.BAT_THEME = 'ansi'
+  vim.env.BAT_STYLE = 'plain'
+  vim.env.FZF_DEFAULT_OPTS = '--tabstop=2 --cycle --color=dark --layout=reverse-list --preview \'bat --color=always --line-range=:300 {}\' --preview-window=up,62%,wrap'
 else
-  let $FZF_DEFAULT_OPTS = "--tabstop=2 --cycle --color=dark --layout=reverse-list --preview-window=up,62%,wrap"
-endif
+  vim.env.FZF_DEFAULT_OPTS = '--tabstop=2 --cycle --color=dark --layout=reverse-list --preview-window=up,62%,wrap'
+end
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.95, 'relative': 'editor', 'yoffset': 0.5 } }
+vim.g.fzf_layout = { window = { width = 0.9, height = 0.95, relative = 'editor', yoffset = 0.5 } }
+EOF
