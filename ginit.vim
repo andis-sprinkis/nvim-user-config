@@ -1,4 +1,4 @@
-lua <<< EOF
+lua <<EOF
 -- Determine OS
 vim.api.nvim_exec([[
 ru! get-os.vim
