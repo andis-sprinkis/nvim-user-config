@@ -1,7 +1,7 @@
-vim.api.nvim_exec([[
+vim.cmd([[
   syntax on
   filetype plugin indent on
-]], false)
+]])
 vim.g.loaded_netrw = 0
 vim.opt.backup = false
 vim.opt.clipboard = 'unnamedplus'
@@ -36,8 +36,8 @@ else
   vim.env.LANG = 'en_US.UTF-8'
 end
 
-vim.api.nvim_exec([[
+vim.cmd([[
 au VimResized * wincmd =
 au TermOpen * setlocal nonumber norelativenumber signcolumn=no
 au TermOpen term://* startinsert
-]], false)
+]])

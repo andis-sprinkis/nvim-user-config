@@ -1,5 +1,5 @@
 vim.opt.guifont = 'CascadiaCodePL:h13'
-vim.api.nvim_exec([[
+vim.cmd([[
   NeoraySet KeyZoomIn <C-ScrollWheelUp>
   NeoraySet KeyZoomOut <C-ScrollWheelDown>
-]], false)
+]])

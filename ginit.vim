@@ -18,10 +18,10 @@ vim.api.nvim_set_keymap('i', '<C-ScrollWheelUp>', '<Esc>:lua AdjustFontSize(1)<C
 vim.api.nvim_set_keymap('i', '<C-ScrollWheelDown>', '<Esc>:lua AdjustFontSize(-1)<CR>', { noremap = true, silent = true })
 
 -- disable GUI widgets
-vim.api.nvim_exec([[
+vim.cmd([[
 GuiPopupmenu 0
 GuiTabline 0
-]], false)
+]])
 
 -- go to partition root when no path specified
 if vim.g.os == 'Windows' and vim.fn.expand('%:p') == '' then
