@@ -28,8 +28,8 @@ local packages = {
   'andis-sprinkis/vim-dirvish';
   -- 'mihaifm/bufstop';
   'andis-sprinkis/bufstop';
-  -- 'junegunn/fzf';
-  { 'andis-sprinkis/fzf', run = 'fzf#install' };
+  -- 'junegunn/fzf.vim'
+  'andis-sprinkis/fzf.vim'
   -- 'tpope/vim-eunuch';
   'andis-sprinkis/vim-eunuch';
   -- 'AndrewRadev/splitjoin.vim';
