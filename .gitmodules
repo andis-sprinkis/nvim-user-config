@@ -1,3 +1,0 @@
-[submodule "nvim-win-shell"]
-	path = nvim_win_shell
-	url = git@github.com:andis-sprinkis/nvim-win-shell.git
