@@ -51,10 +51,10 @@ local packages = {
 }
 
 -- 'neoclide/coc.nvim';
-if vim.g.requirementCocNvim then table.insert(packages, { 'andis-sprinkis/coc.nvim', branch = 'release' }) end
+if vim.g.meetsPlugRequirement.cocNvim then table.insert(packages, { 'andis-sprinkis/coc.nvim', branch = 'release' }) end
 -- 'lambdalisue/suda.vim'
-if vim.g.requirementSudaVim then table.insert(packages, 'andis-sprinkis/suda.vim') end
-if vim.g.requirementGitPlugins then
+if vim.g.meetsPlugRequirement.sudaVim then table.insert(packages, 'andis-sprinkis/suda.vim') end
+if vim.g.meetsPlugRequirement.gitPlugins then
   -- 'tpope/vim-fugitive';
   table.insert(packages, 'andis-sprinkis/vim-fugitive')
   -- 'airblade/vim-gitgutter';
@@ -65,16 +65,16 @@ if vim.g.requirementGitPlugins then
   table.insert(packages, 'andis-sprinkis/git-messenger.vim')
 end
 -- 'junegunn/fzf'
-if vim.g.requirementFzfInstall then table.insert(packages, { 'andis-sprinkis/fzf', run = vim.fn['fzf#install'] }) end
+if vim.g.meetsPlugRequirement.fzfInstall then table.insert(packages, { 'andis-sprinkis/fzf', run = vim.fn['fzf#install'] }) end
   -- 'junegunn/fzf.vim';
-if vim.g.requirementFzfVim then table.insert(packages, 'andis-sprinkis/fzf.vim') end
+if vim.g.meetsPlugRequirement.fzfVim then table.insert(packages, 'andis-sprinkis/fzf.vim') end
 -- 'kkoomen/vim-doge'
-if vim.g.requirementVimDoge then table.insert(packages, 'andis-sprinkis/vim-doge') end
+if vim.g.meetsPlugRequirement.vimDoge then table.insert(packages, 'andis-sprinkis/vim-doge') end
 -- 'iamcco/markdown-preview.nvim'
-if vim.g.requirementMarkdownPreviewNvim then table.insert(packages, { 'andis-sprinkis/markdown-preview.nvim', run = vim.fn['mkdp#util#install'] }) end
+if vim.g.meetsPlugRequirement.markdownPreview then table.insert(packages, { 'andis-sprinkis/markdown-preview.nvim', run = vim.fn['mkdp#util#install'] }) end
 -- 'cdelledonne/vim-cmake'
-if vim.g.requirementVimCmake then table.insert(packages, 'andis-sprinkis/vim-cmake') end
+if vim.g.meetsPlugRequirement.vimCmake then table.insert(packages, 'andis-sprinkis/vim-cmake') end
 -- 'alepez/vim-gtest'
-if vim.g.requirementVimGtest then table.insert(packages, 'andis-sprinkis/vim-gtest') end
+if vim.g.meetsPlugRequirement.vimGtest then table.insert(packages, 'andis-sprinkis/vim-gtest') end
 
 require('paq')(packages)

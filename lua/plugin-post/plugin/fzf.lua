@@ -1,4 +1,4 @@
-if vim.env.requirementGitPlugins == false then
+if not vim.g.meetsPlugRequirement.gitPlugins then
   vim.api.nvim_set_keymap('n', '<tab>', ':Files<cr>', { noremap = true, silent = true })
 else
   function ShowGitFiles()
