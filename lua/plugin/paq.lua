@@ -6,8 +6,6 @@ end
 local packages = {
   -- 'savq/paq-nvim';
   'andis-sprinkis/paq-nvim';
-  -- 'wbthomason/packer.nvim';
-  'andis-sprinkis/paq-nvim';
   -- 'lifepillar/vim-gruvbox8
   'andis-sprinkis/vim-gruvbox8';
   -- 'itchyny/lightline.vim';
@@ -28,8 +26,6 @@ local packages = {
   'andis-sprinkis/vim-dirvish';
   -- 'mihaifm/bufstop';
   'andis-sprinkis/bufstop';
-  -- 'junegunn/fzf.vim';
-  'andis-sprinkis/fzf.vim';
   -- 'tpope/vim-eunuch';
   'andis-sprinkis/vim-eunuch';
   -- 'AndrewRadev/splitjoin.vim';
@@ -50,8 +46,6 @@ local packages = {
   'andis-sprinkis/traces.vim';
   -- 'dhruvasagar/vim-table-mode';
   'andis-sprinkis/vim-table-mode';
-  -- 'iamcco/markdown-preview.nvim';
-  { 'andis-sprinkis/markdown-preview.nvim', run = vim.fn['mkdp#util#install'] };
   -- 'antoinemadec/FixCursorHold.nvim';
   'andis-sprinkis/FixCursorHold.nvim';
 }
@@ -72,10 +66,12 @@ if vim.g.requirementGitPlugins then
 end
 -- 'junegunn/fzf'
 if vim.g.requirementFzfInstall then table.insert(packages, { 'andis-sprinkis/fzf', run = vim.fn['fzf#install'] }) end
+  -- 'junegunn/fzf.vim';
+if vim.g.requirementFzfVim then table.insert(packages, 'andis-sprinkis/fzf.vim') end
 -- 'kkoomen/vim-doge'
 if vim.g.requirementVimDoge then table.insert(packages, 'andis-sprinkis/vim-doge') end
 -- 'iamcco/markdown-preview.nvim'
-if vim.g.requirementMarkdownPreviewNvim then table.insert(packages, { 'andis-sprinkis/markdown-preview.nvim', run = 'cd app && yarn install' }) end
+if vim.g.requirementMarkdownPreviewNvim then table.insert(packages, { 'andis-sprinkis/markdown-preview.nvim', run = vim.fn['mkdp#util#install'] }) end
 -- 'cdelledonne/vim-cmake'
 if vim.g.requirementVimCmake then table.insert(packages, 'andis-sprinkis/vim-cmake') end
 -- 'alepez/vim-gtest'
