@@ -9,7 +9,6 @@ if vim.g.meets_plug_requirement.nvim_spectre then require('plugin_post.plugin.nv
 if vim.g.meets_plug_requirement.suda then require('plugin_post.plugin.suda') end
 if vim.g.meets_plug_requirement.vim_doge then require('plugin_post.plugin.vim_doge') end
 
-require('plugin_post.plugin.anyjump')
 require('plugin_post.plugin.bufstop')
 require('plugin_post.plugin.dirvish')
 require('plugin_post.plugin.indentline')

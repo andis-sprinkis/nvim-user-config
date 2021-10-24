@@ -34,8 +34,6 @@ local packages = {
   'andis-sprinkis/splitjoin.vim';
   -- 'editorconfig/editorconfig-vim';
   'andis-sprinkis/editorconfig-vim';
-  -- 'pechorin/any-jump.vim';
-  'andis-sprinkis/any-jump.vim';
   -- 'RRethy/vim-illuminate';
   'andis-sprinkis/vim-illuminate';
   -- 'Jorengarenar/vim-MvVis';
