@@ -1,2 +1,2 @@
 require('plugin.paq')
-if vim.g.meetsPlugRequirement.cocNvim == true then require('plugin.coc') end
+if vim.g.meetsPlugRequirement.cocNvim then require('plugin.coc') end
