@@ -6,7 +6,8 @@
 1. [`lua/plugin-pre/`](lua/plugin-pre/) - configuration that needs to be set before loading plugins
    1. [`app/_init.lua`](lua/plugin-pre/app/_init.lua) - Neovim specific configuration
    1. [`plugin/_init.lua`](lua/plugin-pre/plugin/_init.lua) - plugins specific configuration
-1. [`lua/plugin/_init.lua`](lua/plugin/_init.lua) - [paq-nvim](https://github.com/savq/paq-nvim) bootstrap, then plugins managed by [paq-nvim](https://github.com/savq/paq-nvim) and [coc.nvim](https://github.com/neoclide/coc.nvim)
+1. [`lua/plugin/`](lua/plugin/) - configuration for loading plugins
+   1. [`lua/plugin/_init.lua`](lua/plugin/_init.lua) - loads [paq-nvim](https://github.com/savq/paq-nvim) bootstrap, then plugins managed by [paq-nvim](https://github.com/savq/paq-nvim) and [coc.nvim](https://github.com/neoclide/coc.nvim)
 1. [`lua/plugin-post/`](lua/plugin-post/) - configuration that needs to be set after loading plugins
    1. [`app/_init.lua`](lua/plugin-post/app/_init.lua) - Neovim specific configuration
    1. [`plugin/_init.lua`](lua/plugin-post/plugin/_init.lua) - plugins specific configuration
