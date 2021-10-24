@@ -1,12 +1,14 @@
 vim.cmd([[
 au FileType spectre_panel setlocal signcolumn=no
 
-nnoremap <nowait><leader>f :lua require('spectre').open()<CR>
+" search global
+nnoremap <silent><nowait><leader>r :lua require('spectre').open()<CR>
+nnoremap <silent><nowait><leader>rg :lua require('spectre').open()<CR>
 
 " search current word
-nnoremap <nowait><leader>fw :lua require('spectre').open_visual({select_word=true})<CR>
-vnoremap <nowait><leader>fw :lua require('spectre').open_visual()<CR>
+nnoremap <silent><nowait><leader>rw :lua require('spectre').open_visual({select_word=true})<CR>
+vnoremap <silent><nowait><leader>rw :lua require('spectre').open_visual()<CR>
 
 " search in current file
-nnoremap <nowait><leader>fp viw:lua require('spectre').open_file_search()<cr>
+nnoremap <silent><nowait><leader>rf viw:lua require('spectre').open_file_search()<cr>
 ]])
