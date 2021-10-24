@@ -1,12 +1,13 @@
-if vim.g.meetsPlugRequirement.cocNvim then
+if vim.g.meets_plug_requirement.coc_nvim then
   require('plugin_post.plugin.coc') 
   vim.cmd('ru! plugin_post/plugin/coc.vim')
 end
 
-if vim.g.meetsPlugRequirement.fzfVim then require('plugin_post.plugin.fzf') end
-if vim.g.meetsPlugRequirement.gitPlugins then require('plugin_post.plugin.gitgutter') end
-if vim.g.meetsPlugRequirement.suda then require('plugin_post.plugin.suda') end
-if vim.g.meetsPlugRequirement.vimDoge then require('plugin_post.plugin.vim_doge') end
+if vim.g.meets_plug_requirement.fzf_vim then require('plugin_post.plugin.fzf') end
+if vim.g.meets_plug_requirement.git_plugins then require('plugin_post.plugin.gitgutter') end
+if vim.g.meets_plug_requirement.nvim_spectre then require('plugin_post.plugin.nvim_spectre') end
+if vim.g.meets_plug_requirement.suda then require('plugin_post.plugin.suda') end
+if vim.g.meets_plug_requirement.vim_doge then require('plugin_post.plugin.vim_doge') end
 
 require('plugin_post.plugin.anyjump')
 require('plugin_post.plugin.bufstop')

@@ -6,7 +6,9 @@ end
 local packages = {
   -- 'savq/paq-nvim';
   'andis-sprinkis/paq-nvim';
-  -- 'lifepillar/vim-gruvbox8
+  -- 'nvim-lua/plenary.nvim';
+  'andis-sprinkis/plenary.nvim';
+  -- 'lifepillar/vim-gruvbox8;
   'andis-sprinkis/vim-gruvbox8';
   -- 'itchyny/lightline.vim';
   'andis-sprinkis/lightline.vim';
@@ -51,10 +53,10 @@ local packages = {
 }
 
 -- 'neoclide/coc.nvim';
-if vim.g.meetsPlugRequirement.cocNvim then table.insert(packages, { 'andis-sprinkis/coc.nvim', branch = 'release' }) end
+if vim.g.meets_plug_requirement.coc_nvim then table.insert(packages, { 'andis-sprinkis/coc.nvim', branch = 'release' }) end
 -- 'lambdalisue/suda.vim'
-if vim.g.meetsPlugRequirement.sudaVim then table.insert(packages, 'andis-sprinkis/suda.vim') end
-if vim.g.meetsPlugRequirement.gitPlugins then
+if vim.g.meets_plug_requirement.suda_vim then table.insert(packages, 'andis-sprinkis/suda.vim') end
+if vim.g.meets_plug_requirement.git_plugins then
   -- 'tpope/vim-fugitive';
   table.insert(packages, 'andis-sprinkis/vim-fugitive')
   -- 'airblade/vim-gitgutter';
@@ -65,16 +67,18 @@ if vim.g.meetsPlugRequirement.gitPlugins then
   table.insert(packages, 'andis-sprinkis/git-messenger.vim')
 end
 -- 'junegunn/fzf'
-if vim.g.meetsPlugRequirement.fzfInstall then table.insert(packages, { 'andis-sprinkis/fzf', run = vim.fn['fzf#install'] }) end
+if vim.g.meets_plug_requirement.fzf_install then table.insert(packages, { 'andis-sprinkis/fzf', run = vim.fn['fzf#install'] }) end
   -- 'junegunn/fzf.vim';
-if vim.g.meetsPlugRequirement.fzfVim then table.insert(packages, 'andis-sprinkis/fzf.vim') end
+if vim.g.meets_plug_requirement.fzf_vim then table.insert(packages, 'andis-sprinkis/fzf.vim') end
 -- 'kkoomen/vim-doge'
-if vim.g.meetsPlugRequirement.vimDoge then table.insert(packages, 'andis-sprinkis/vim-doge') end
+if vim.g.meets_plug_requirement.vim_doge then table.insert(packages, 'andis-sprinkis/vim-doge') end
 -- 'iamcco/markdown-preview.nvim'
-if vim.g.meetsPlugRequirement.markdownPreview then table.insert(packages, { 'andis-sprinkis/markdown-preview.nvim', run = vim.fn['mkdp#util#install'] }) end
+if vim.g.meets_plug_requirement.markdown_preview then table.insert(packages, { 'andis-sprinkis/markdown-preview.nvim', run = vim.fn['mkdp#util#install'] }) end
 -- 'cdelledonne/vim-cmake'
-if vim.g.meetsPlugRequirement.vimCmake then table.insert(packages, 'andis-sprinkis/vim-cmake') end
+if vim.g.meets_plug_requirement.vim_cmake then table.insert(packages, 'andis-sprinkis/vim-cmake') end
 -- 'alepez/vim-gtest'
-if vim.g.meetsPlugRequirement.vimGtest then table.insert(packages, 'andis-sprinkis/vim-gtest') end
+if vim.g.meets_plug_requirement.vim_gtest then table.insert(packages, 'andis-sprinkis/vim-gtest') end
+-- 'windwp/nvim-spectre';
+if vim.g.meets_plug_requirement.nvim_spectre then table.insert(packages, 'andis-sprinkis/nvim-spectre') end
 
 require('paq')(packages)

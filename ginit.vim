@@ -2,12 +2,12 @@ lua <<EOF
 -- Determine OS
 require('get_os')
 
-local fontname = 'Cascadia Code PL'
-local fontsize = 13
+local font_name = 'Cascadia Code PL'
+local font_size = 13
 
 function AdjustFontSize(amount)
-  fontsize = fontsize + amount
-  vim.api.nvim_command('GuiFont! ' .. fontname .. ':h' .. tostring(fontsize))
+  font_size = font_size + amount
+  vim.api.nvim_command('GuiFont! ' .. font_name .. ':h' .. tostring(font_size))
 end
 
 AdjustFontSize(0)
