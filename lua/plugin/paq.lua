@@ -12,7 +12,8 @@ local packages = {
   'andis-sprinkis/vim-gruvbox8';
   -- 'itchyny/lightline.vim';
   'andis-sprinkis/lightline.vim';
-  -- 'andis-sprinkis/lightline.vim';
+  ---- 'nvim-lualine/lualine.nvim';
+  -- 'andis-sprinkis/lualine.nvim';
   'andis-sprinkis/lightline-gruvbox-dark.vim';
   -- 'honza/vim-snippets';
   'andis-sprinkis/vim-snippets';
