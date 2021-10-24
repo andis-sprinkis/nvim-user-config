@@ -6,7 +6,7 @@ end
 if vim.g.meetsPlugRequirement.fzfVim then require('plugin_post.plugin.fzf') end
 if vim.g.meetsPlugRequirement.gitPlugins then require('plugin_post.plugin.gitgutter') end
 if vim.g.meetsPlugRequirement.suda then require('plugin_post.plugin.suda') end
-if vim.g.meetsPlugRequirement.vimDoge then require('plugin_post.plugin.vim-doge') end
+if vim.g.meetsPlugRequirement.vimDoge then require('plugin_post.plugin.vim_doge') end
 
 require('plugin_post.plugin.anyjump')
 require('plugin_post.plugin.bufstop')
@@ -14,4 +14,4 @@ require('plugin_post.plugin.dirvish')
 require('plugin_post.plugin.indentline')
 require('plugin_post.plugin.lightline')
 require('plugin_post.plugin.splitjoin')
-require('plugin_post.plugin.vim-gruvbox8')
+require('plugin_post.plugin.vim_gruvbox8')
