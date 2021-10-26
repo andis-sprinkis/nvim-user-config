@@ -1,8 +1,4 @@
-if vim.g.meets_plug_requirement.coc_nvim then
-  require('plugin_post.plugin.coc') 
-  vim.cmd('ru! plugin_post/plugin/coc.vim')
-end
-
+if vim.g.meets_plug_requirement.coc_nvim then vim.cmd('ru! plugin_post/plugin/coc.vim') end
 if vim.g.meets_plug_requirement.fzf_vim then require('plugin_post.plugin.fzf') end
 if vim.g.meets_plug_requirement.git_plugins then require('plugin_post.plugin.gitgutter') end
 if vim.g.meets_plug_requirement.nvim_spectre then require('plugin_post.plugin.nvim_spectre') end
