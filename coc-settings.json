@@ -9,6 +9,7 @@
   "typescript.format.semicolons": "remove",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "highlight.colors.enable": true,
+  "Lua.diagnostics.globals": ["vim"],
   "languageserver": {
     "ccls": {
       "command": "ccls",
