@@ -1,8 +1,8 @@
 if vim.fn.executable('git') == false then
   vim.g.nogitplugin = true
 else
-  if vim.g.nogitplugin == nil then 
-    vim.g.nogitplugin = false 
+  if vim.g.nogitplugin == nil then
+    vim.g.nogitplugin = false
   end
 end
 
