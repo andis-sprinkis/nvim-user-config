@@ -49,5 +49,4 @@ if vim.g.meets_plug_requirement.vim_doge then vim.cmd('Plug \'andis-sprinkis/vim
 if vim.g.meets_plug_requirement.vim_gtest then vim.cmd('Plug \'andis-sprinkis/vim-gtest\'') end
 if vim.g.meets_plug_requirement.nvim_spectre then vim.cmd('Plug \'andis-sprinkis/nvim-spectre\'') end
 
-
 vim.fn['plug#end']()
