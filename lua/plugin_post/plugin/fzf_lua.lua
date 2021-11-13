@@ -9,19 +9,19 @@ end
 
 require'fzf-lua'.setup({
   -- fzf_colors = {
-  --     ["fg"] = { "fg", "CursorLine" },
-  --     ["bg"] = { "bg", "Normal" },
-  --     ["hl"] = { "fg", "Comment" },
-  --     ["fg+"] = { "fg", "Normal" },
-  --     ["bg+"] = { "bg", "CursorLine" },
-  --     ["hl+"] = { "fg", "Statement" },
-  --     ["info"] = { "fg", "PreProc" },
-  --     ["prompt"] = { "fg", "Conditional" },
-  --     ["pointer"] = { "fg", "Exception" },
-  --     ["marker"] = { "fg", "Keyword" },
-  --     ["spinner"] = { "fg", "Label" },
-  --     ["header"] = { "fg", "Comment" },
-  --     ["gutter"] = { "bg", "Normal" },
+  --   ["fg"] = { "fg", "CursorLine" },
+  --   ["bg"] = { "bg", "Normal" },
+  --   ["hl"] = { "fg", "Comment" },
+  --   ["fg+"] = { "fg", "Normal" },
+  --   ["bg+"] = { "bg", "CursorLine" },
+  --   ["hl+"] = { "fg", "Statement" },
+  --   ["info"] = { "fg", "PreProc" },
+  --   ["prompt"] = { "fg", "Conditional" },
+  --   ["pointer"] = { "fg", "Exception" },
+  --   ["marker"] = { "fg", "Keyword" },
+  --   ["spinner"] = { "fg", "Label" },
+  --   ["header"] = { "fg", "Comment" },
+  --   ["gutter"] = { "bg", "Normal" },
   -- },
   previewers = {
     cat = {
@@ -35,22 +35,23 @@ require'fzf-lua'.setup({
     },
   },
   files = {
-    previewer = previewer,
     git_icons = false
   },
   git = {
     files = {
-      previewer = previewer,
       git_icons = false
     },
   },
   grep = {
-    previewer = previewer,
     git_icons = false
   },
   winopts =  {
     height = 0.955,
-    width = 0.935
+    width = 0.935,
+    preview = {
+      default = previewer,
+      wrap = 'wrap'
+    },
   }
 })
 
