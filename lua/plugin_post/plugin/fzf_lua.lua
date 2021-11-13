@@ -1,8 +1,6 @@
 local previewer = 'cat'
 
-if vim.fn.executable('bat') == 1 then
-  previewer = 'bat'
-end
+if vim.fn.executable('bat') == 1 then previewer = 'bat' end
 
 function IsInGitDir()
   return vim.fn.system('git rev-parse --git-dir') == '.git\n'
@@ -17,10 +15,10 @@ function ShowFiles(withGit)
 end
 
 function ShowGrep()
-    require('fzf-lua').live_grep({ previewer = previewer })
+  require('fzf-lua').live_grep({ previewer = previewer })
 end
 
-if not vim.g.meets_plug_requirement.git_plugins then
+if not vim.g.plug_requirement.git_plugins then
   vim.api.nvim_set_keymap('n', '<tab>', ':lua ShowFiles(false)<cr>', { noremap = true, silent = true })
 else
   vim.api.nvim_set_keymap('n', '<tab>', ':lua ShowFiles(IsInGitDir())<cr>', { noremap = true, silent = true })
