@@ -25,13 +25,13 @@ require'fzf-lua'.setup({
   -- },
   previewers = {
     cat = {
-      cmd             = "cat",
-      args            = "",
+      cmd = "cat",
+      args = "",
     },
     bat = {
-      cmd             = "bat",
-      args            = "--style=plain,changes --color always",
-      theme           = 'ansi'
+      cmd = "bat",
+      args = "--style=plain,changes --color always",
+      theme = 'ansi'
     },
   },
   files = {
