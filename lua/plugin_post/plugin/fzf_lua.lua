@@ -1,10 +1,58 @@
 local previewer = 'cat'
-if vim.fn.executable('bat') == 1 then previewer = 'bat' end
+if vim.fn.executable('bat') == 1 then
+  previewer = 'bat'
+elseif vim.fn.executable('cat') == 1 then
+  previewer = 'cat'
+else
+  previewer = 'builtin'
+end
 
-local winopts = {
-  height = 0.955,
-  width = 0.935
-}
+require'fzf-lua'.setup({
+  -- fzf_colors = {
+  --     ["fg"] = { "fg", "CursorLine" },
+  --     ["bg"] = { "bg", "Normal" },
+  --     ["hl"] = { "fg", "Comment" },
+  --     ["fg+"] = { "fg", "Normal" },
+  --     ["bg+"] = { "bg", "CursorLine" },
+  --     ["hl+"] = { "fg", "Statement" },
+  --     ["info"] = { "fg", "PreProc" },
+  --     ["prompt"] = { "fg", "Conditional" },
+  --     ["pointer"] = { "fg", "Exception" },
+  --     ["marker"] = { "fg", "Keyword" },
+  --     ["spinner"] = { "fg", "Label" },
+  --     ["header"] = { "fg", "Comment" },
+  --     ["gutter"] = { "bg", "Normal" },
+  -- },
+  previewers = {
+    cat = {
+      cmd             = "cat",
+      args            = "",
+    },
+    bat = {
+      cmd             = "bat",
+      args            = "--style=plain,changes --color always",
+      theme           = 'ansi'
+    },
+  },
+  files = {
+    previewer = previewer,
+    git_icons = false
+  },
+  git = {
+    files = {
+      previewer = previewer,
+      git_icons = false
+    },
+  },
+  grep = {
+    previewer = previewer,
+    git_icons = false
+  },
+  winopts =  {
+    height = 0.955,
+    width = 0.935
+  }
+})
 
 function IsInGitDir()
   return vim.fn.system('git rev-parse --git-dir') == '.git\n'
@@ -12,14 +60,14 @@ end
 
 function ShowFiles(withGit)
   if (withGit) then
-    require('fzf-lua').git_files({ previewer = previewer, winopts = winopts, git_icons = false })
+    require('fzf-lua').git_files()
   else
-    require('fzf-lua').files({ previewer = previewer, winopts = winopts })
+    require('fzf-lua').files()
   end
 end
 
 function ShowGrep()
-  require('fzf-lua').grep({ previewer = previewer, winopts = winopts, search = '' })
+  require('fzf-lua').grep({ search = '' })
 end
 
 if vim.g.plug_requirement.git_plugins then
