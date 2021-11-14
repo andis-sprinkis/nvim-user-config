@@ -50,7 +50,9 @@ require'fzf-lua'.setup({
     width = 0.935,
     preview = {
       default = previewer,
-      wrap = 'wrap'
+      wrap = 'wrap',
+      layout = 'vertical',
+      vertical = 'up:60%',
     },
   }
 })
