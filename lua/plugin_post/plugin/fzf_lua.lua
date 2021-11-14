@@ -46,8 +46,8 @@ require'fzf-lua'.setup({
     git_icons = false
   },
   winopts =  {
-    height = 0.955,
-    width = 0.935,
+    height = 0.9375,
+    width = 0.9375,
     preview = {
       default = previewer,
       wrap = 'wrap',
