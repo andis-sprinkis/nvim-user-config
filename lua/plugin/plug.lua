@@ -9,7 +9,6 @@ vim.fn['plug#begin']()
 if vim.g.plug_requirement.git_plugins then
   vim.cmd([[
     Plug 'andis-sprinkis/git-messenger.vim'
-    Plug 'andis-sprinkis/lightline-hunks'
     Plug 'andis-sprinkis/vim-fugitive'
     Plug 'andis-sprinkis/vim-gitgutter'
   ]])
