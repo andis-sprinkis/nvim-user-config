@@ -1,29 +1,37 @@
+local a = {}
+local b = {
+  'branch',
+  { 'diff', colored = false },
+  { 'filename', file_status = true, path = 1, shorting_target = 0 }
+}
+local c = {}
+local x = { 'filetype' }
+local y = { 'progress' }
+local z = { 'location' }
+
 require('lualine').setup {
   options = {
-    icons_enabled = true,
-    theme = 'auto',
-    component_separators = {left = '', right = ''},
-    section_separators = {left = '', right = ''},
+    icons_enabled = false,
+    theme = 'gruvbox_dark',
+    component_separators = { left = '|', right = '|' },
+    section_separators = {},
     disabled_filetypes = {},
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff',
-                  {'diagnostics', sources={'nvim_lsp', 'coc'}}},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_a = a,
+    lualine_b = b,
+    lualine_c = c,
+    lualine_x = x,
+    lualine_y = y,
+    lualine_z = z
   },
   inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  extensions = {}
+    lualine_a = a,
+    lualine_b = b,
+    lualine_c = c,
+    lualine_x = x,
+    lualine_y = y,
+    lualine_z = z
+  }
 }
