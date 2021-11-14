@@ -20,34 +20,52 @@ local colors = {
 
 local theme = {
   normal = {
-    a = { bg = colors.base2, fg = colors.base03 },
-    b = { bg = colors.base01, fg = colors.base3 },
-    c = { bg = colors.base02, fg = colors.base2 },
-  },
-  insert = {
     a = { bg = colors.cyan, fg = colors.base03 },
     b = { bg = colors.base01, fg = colors.base3 },
-    c = { bg = colors.base01, fg = colors.base3 },
+    c = { bg = colors.base02, fg = colors.base1 },
+    x = { bg = colors.base02, fg = colors.base2 },
+    y = { bg = colors.base01, fg = colors.base2 },
+    z = { bg = colors.base0, fg = colors.base03 },
   },
-  visual = {
-    a = { bg = colors.yellow, fg = colors.base03 },
-    b = { bg = colors.base01, fg = colors.base3 },
-    c = { bg = colors.base0, fg = colors.base03 },
-  },
-  replace = {
-    a = { bg = colors.red, fg = colors.base03 },
-    b = { bg = colors.base01, fg = colors.base3 },
-    c = { bg = colors.base03, fg = colors.base3 },
-  },
-  command = {
+  insert = {
     a = { bg = colors.green, fg = colors.base03 },
     b = { bg = colors.base01, fg = colors.base3 },
-    c = { bg = colors.base0, fg = colors.base03 },
+    c = { bg = colors.base02, fg = colors.base1 },
+    x = { bg = colors.base02, fg = colors.base2 },
+    y = { bg = colors.base01, fg = colors.base2 },
+    z = { bg = colors.base0, fg = colors.base03 },
+  },
+  visual = {
+    a = { bg = colors.peach, fg = colors.base03 },
+    b = { bg = colors.base01, fg = colors.base3 },
+    c = { bg = colors.base02, fg = colors.base1 },
+    x = { bg = colors.base02, fg = colors.base2 },
+    y = { bg = colors.base01, fg = colors.base2 },
+    z = { bg = colors.base0, fg = colors.base03 },
+  },
+  replace = {
+    a = { bg = colors.yellow, fg = colors.base03 },
+    b = { bg = colors.base01, fg = colors.base3 },
+    c = { bg = colors.base02, fg = colors.base1 },
+    x = { bg = colors.base02, fg = colors.base2 },
+    y = { bg = colors.base01, fg = colors.base2 },
+    z = { bg = colors.base0, fg = colors.base03 },
+  },
+  command = {
+    a = { bg = colors.cyan, fg = colors.base03 },
+    b = { bg = colors.base01, fg = colors.base3 },
+    c = { bg = colors.base02, fg = colors.base1 },
+    x = { bg = colors.base02, fg = colors.base2 },
+    y = { bg = colors.base01, fg = colors.base2 },
+    z = { bg = colors.base0, fg = colors.base03 },
   },
   inactive = {
-    a = { bg = colors.base02, fg = colors.base2 },
-    b = { bg = colors.base02, fg = colors.base2 },
-    c = { bg = colors.base02, fg = colors.base2 },
+    a = { bg = colors.base01, fg = colors.base03 },
+    b = { bg = colors.base02, fg = colors.base1 },
+    c = { bg = colors.base02, fg = colors.base0 },
+    x = { bg = colors.base02, fg = colors.base0 },
+    y = { bg = colors.base02, fg = colors.base0 },
+    z = { bg = colors.base01, fg = colors.base03 },
   },
 }
 
@@ -57,14 +75,14 @@ local b = {
   { 'diff', colored = false },
   { 'filename', file_status = true, path = 1, shorting_target = 0 }
 }
-local c = {}
+local c = { }
 local x = { 'filetype' }
 local y = { 'progress' }
 local z = { 'location' }
 
 require('lualine').setup {
   options = {
-    icons_enabled = false,
+    icons_enabled = true,
     theme = theme,
     component_separators = { left = '|', right = '|' },
     section_separators = {},
