@@ -10,7 +10,7 @@ vim.api.nvim_set_keymap('v', 'l', '<space>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-A-j>', ':resize +2<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-A-k>', ':resize -2<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-A-l>', ':vertical resize +4<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-A-h>', ':vertical resize +4<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-A-h>', ':vertical resize -4<cr>', { noremap = true, silent = true })
 
 -- quicker split switching
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-W><C-J>', { noremap = true })
