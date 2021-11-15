@@ -112,8 +112,8 @@ local sections = {
   lualine_a = { },
   lualine_b = {
     {
-      'branch',
-      fmt = function(data) return fmt_data(data, 'left', weighted_width(20, 2), 65) end
+      'FugitiveHead',
+      fmt = function(data) return fmt_data(data, 'left', weighted_width(20, 4), 50) end
     },
     {
       'diff',
@@ -125,20 +125,20 @@ local sections = {
       file_status = true,
       path = 1,
       shorting_target = 0,
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(47, 3.6)) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(50, 3.7)) end
     }
   },
   lualine_c = { },
   lualine_x = {
     {
       'filetype',
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(14, 4), 65) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(14, 4), 50) end
     }
   },
   lualine_y = {
     {
       'progress',
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(20, 50), 65) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(20, 50), 50) end
     }
   },
   lualine_z = {
