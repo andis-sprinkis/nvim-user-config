@@ -71,9 +71,10 @@ local theme = {
 
 local a = {}
 local b = {
-  'branch',
+  { 'branch', fmt = function(data) return data:sub(1,28) end
+  },
   { 'diff', colored = false },
-  { 'filename', file_status = true, path = 1, shorting_target = 0 }
+  { 'filename', file_status = true, path = 1, shorting_target = 50 }
 }
 local c = { }
 local x = { 'filetype' }
