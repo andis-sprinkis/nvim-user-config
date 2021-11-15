@@ -74,7 +74,7 @@ local b = {
   {
     'branch',
     fmt = function(data)
-      local section_len = 20
+      local section_len = vim.fn.winwidth(0) * 2 / 16
       if (string.len(data) <= section_len) then
         return data:sub(1,section_len)
       else
@@ -87,7 +87,16 @@ local b = {
     'filename',
     file_status = true,
     path = 1,
-    shorting_target = 55,
+    shorting_target = 0,
+    fmt = function(data)
+      local section_len = vim.fn.winwidth(0) / 2.25
+      if (string.len(data) <= section_len) then
+        return data:sub(-section_len)
+      else
+        return '<' .. data:sub(-section_len)
+      end
+      return data
+    end
   }
 }
 local c = { }
