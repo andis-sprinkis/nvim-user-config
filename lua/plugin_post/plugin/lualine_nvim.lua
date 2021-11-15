@@ -70,7 +70,7 @@ local theme = {
 }
 
 local weighted_width = function(percentage, weight_multiplier)
-  local full_width_minimum = 220
+  local full_width_minimum = 300
   local distance_to_full_width_minimum = vim.fn.winwidth(0) / full_width_minimum
   if distance_to_full_width_minimum >= 1 then distance_to_full_width_minimum = 1 end
 
@@ -113,38 +113,38 @@ local sections = {
   lualine_b = {
     {
       'branch',
-      fmt = function(data) return fmt_data(data, 'left', weighted_width(12, 1.5), 30) end
+      fmt = function(data) return fmt_data(data, 'left', weighted_width(20, 2), 65) end
     },
     {
       'diff',
       colored = false,
-      fmt = function(data) return fmt_data(data, 'left', weighted_width(22, 7)) end
+      fmt = function(data) return fmt_data(data, 'left', weighted_width(22, 7), 75) end
     },
     {
       'filename',
       file_status = true,
       path = 1,
       shorting_target = 0,
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(42, 3.2)) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(47, 3.6)) end
     }
   },
   lualine_c = { },
   lualine_x = {
     {
       'filetype',
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(14, 4), 80) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(14, 4), 65) end
     }
   },
   lualine_y = {
     {
       'progress',
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(9, 7), 60) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(20, 50), 65) end
     }
   },
   lualine_z = {
     {
       'location',
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(22, 5)) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(30, 100), 10) end
     }
   }
 }
