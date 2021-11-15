@@ -71,10 +71,24 @@ local theme = {
 
 local a = {}
 local b = {
-  { 'branch', fmt = function(data) return data:sub(1,28) end
+  {
+    'branch',
+    fmt = function(data)
+      local section_len = 20
+      if (string.len(data) <= section_len) then
+        return data:sub(1,section_len)
+      else
+        return data:sub(1,section_len) .. '>'
+      end
+    end
   },
   { 'diff', colored = false },
-  { 'filename', file_status = true, path = 1, shorting_target = 50 }
+  {
+    'filename',
+    file_status = true,
+    path = 1,
+    shorting_target = 55,
+  }
 }
 local c = { }
 local x = { 'filetype' }
