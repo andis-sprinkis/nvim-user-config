@@ -69,40 +69,85 @@ local theme = {
   },
 }
 
-local a = {}
-local b = {
-  {
-    'branch',
-    fmt = function(data)
-      local section_len = vim.fn.winwidth(0) * 2 / 16
-      if (string.len(data) <= section_len) then
-        return data:sub(1,section_len)
-      else
-        return data:sub(1,section_len) .. '>'
-      end
+local weighted_width = function(percentage, weight_multiplier)
+  local full_width_minimum = 220
+  local distance_to_full_width_minimum = vim.fn.winwidth(0) / full_width_minimum
+  if distance_to_full_width_minimum >= 1 then distance_to_full_width_minimum = 1 end
+
+  local weight = distance_to_full_width_minimum * weight_multiplier
+  if weight >= 1 then weight = 1 end
+
+  local width_allocated_by_percentage = (vim.fn.winwidth(0) / 100) * percentage
+  local weighted_component_width = width_allocated_by_percentage * weight
+
+  return weighted_component_width
+end
+
+local fmt_data = function(data, alignment, section_width, hide_treshold)
+  if (hide_treshold ~= nil) then
+    if (vim.fn.winwidth(0) < hide_treshold) then
+      return 0
     end
+  end
+
+  if (alignment == 'left') then
+    if (string.len(data) <= section_width) then
+      return data:sub(1,section_width)
+    else
+      return data:sub(1,section_width - 1) .. '>'
+    end
+  end
+
+  if (alignment == 'right') then
+    if (string.len(data) <= section_width) then
+      return data:sub(-section_width)
+    else
+      return '<' .. data:sub(-section_width + 1)
+    end
+  end
+
+end
+
+local sections = {
+  lualine_a = { },
+  lualine_b = {
+    {
+      'branch',
+      fmt = function(data) return fmt_data(data, 'left', weighted_width(12, 1.5), 30) end
+    },
+    {
+      'diff',
+      colored = false,
+      fmt = function(data) return fmt_data(data, 'left', weighted_width(22, 7)) end
+    },
+    {
+      'filename',
+      file_status = true,
+      path = 1,
+      shorting_target = 0,
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(42, 3.2)) end
+    }
   },
-  { 'diff', colored = false },
-  {
-    'filename',
-    file_status = true,
-    path = 1,
-    shorting_target = 0,
-    fmt = function(data)
-      local section_len = vim.fn.winwidth(0) / 2.25
-      if (string.len(data) <= section_len) then
-        return data:sub(-section_len)
-      else
-        return '<' .. data:sub(-section_len)
-      end
-      return data
-    end
+  lualine_c = { },
+  lualine_x = {
+    {
+      'filetype',
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(14, 4), 80) end
+    }
+  },
+  lualine_y = {
+    {
+      'progress',
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(9, 7), 60) end
+    }
+  },
+  lualine_z = {
+    {
+      'location',
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(22, 5)) end
+    }
   }
 }
-local c = { }
-local x = { 'filetype' }
-local y = { 'progress' }
-local z = { 'location' }
 
 require('lualine').setup {
   options = {
@@ -113,20 +158,6 @@ require('lualine').setup {
     disabled_filetypes = {},
     always_divide_middle = true,
   },
-  sections = {
-    lualine_a = a,
-    lualine_b = b,
-    lualine_c = c,
-    lualine_x = x,
-    lualine_y = y,
-    lualine_z = z
-  },
-  inactive_sections = {
-    lualine_a = a,
-    lualine_b = b,
-    lualine_c = c,
-    lualine_x = x,
-    lualine_y = y,
-    lualine_z = z
-  }
+  sections = sections,
+  inactive_sections = sections
 }
