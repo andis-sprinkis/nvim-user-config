@@ -115,12 +115,13 @@ local sections = {
       function()
         local head = vim.fn.FugitiveHead()
         if (vim.g.plug_requirement.git_plugins and head ~= '') then
+          if vim.fn.winwidth(0) < 60 then return '' end
           return ' ' .. head
         end
 
         return ''
       end,
-      fmt = function(data) return fmt_data(data, 'left', weighted_width(20, 4), 50) end
+      fmt = function(data) return fmt_data(data, 'left', weighted_width(20, 4), 40) end
     },
     {
       'diff',
