@@ -84,10 +84,8 @@ local weighted_width = function(percentage, weight_multiplier)
 end
 
 local fmt_data = function(data, alignment, section_width, hide_treshold)
-  if (hide_treshold ~= nil) then
-    if (vim.fn.winwidth(0) < hide_treshold) then
-      return 0
-    end
+  if (hide_treshold ~= nil and vim.fn.winwidth(0) < hide_treshold) then
+    return 0
   end
 
   if (alignment == 'left') then
@@ -146,7 +144,7 @@ local sections = {
   lualine_y = {
     {
       'progress',
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(20, 50), 50) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(20, 50), 40) end
     }
   },
   lualine_z = {
