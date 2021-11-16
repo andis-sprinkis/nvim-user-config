@@ -112,7 +112,14 @@ local sections = {
   lualine_a = { },
   lualine_b = {
     {
-      'FugitiveHead',
+      function()
+        local head = vim.fn.FugitiveHead()
+        if (vim.g.plug_requirement.git_plugins and head ~= '') then
+          return ' ' .. head
+        end
+
+        return ''
+      end,
       fmt = function(data) return fmt_data(data, 'left', weighted_width(20, 4), 50) end
     },
     {
