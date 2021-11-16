@@ -105,13 +105,21 @@ local fmt_data = function(data, alignment, section_width, hide_treshold)
   end
 end
 
+local git_head = function()
+  if (vim.g.plug_requirement.git_plugins) then
+    return vim.fn.FugitiveHead()
+  end
+
+  return ''
+end
+
 local sections = {
   lualine_a = { },
   lualine_b = {
     {
       function()
-        local head = vim.fn.FugitiveHead()
-        if (vim.g.plug_requirement.git_plugins and head ~= '') then
+        local head = git_head()
+        if (head ~= '') then
           if vim.fn.winwidth(0) < 60 then return '' end
           return ' ' .. head
         end
@@ -130,7 +138,13 @@ local sections = {
       file_status = true,
       path = 1,
       shorting_target = 0,
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(50, 3.7)) end
+      fmt = function(data)
+        if (git_head() ~= '') then
+          return fmt_data(data, 'right', weighted_width(50, 3.7))
+        end
+
+        return fmt_data(data, 'right', weighted_width(60, 5))
+      end
     }
   },
   lualine_c = { },
@@ -143,13 +157,13 @@ local sections = {
   lualine_y = {
     {
       'progress',
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(20, 50), 40) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(1000, 1000), 20) end
     }
   },
   lualine_z = {
     {
       'location',
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(30, 100), 10) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(1000, 1000), 20) end
     }
   }
 }
