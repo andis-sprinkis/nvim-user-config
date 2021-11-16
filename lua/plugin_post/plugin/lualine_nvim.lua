@@ -103,7 +103,6 @@ local fmt_data = function(data, alignment, section_width, hide_treshold)
       return '<' .. data:sub(-section_width + 1)
     end
   end
-
 end
 
 local sections = {
