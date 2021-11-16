@@ -70,7 +70,7 @@ local theme = {
 }
 
 local weighted_width = function(percentage, weight_multiplier)
-  local full_width_minimum = 300
+  local full_width_minimum = 350
   local distance_to_full_width_minimum = vim.fn.winwidth(0) / full_width_minimum
   if distance_to_full_width_minimum >= 1 then distance_to_full_width_minimum = 1 end
 
@@ -120,7 +120,7 @@ local sections = {
       function()
         local head = git_head()
         if (head ~= '') then
-          if vim.fn.winwidth(0) < 60 then return '' end
+          if vim.fn.winwidth(0) < 70 then return '' end
           return ' ' .. head
         end
 
@@ -131,7 +131,7 @@ local sections = {
     {
       'diff',
       colored = false,
-      fmt = function(data) return fmt_data(data, 'left', weighted_width(22, 7), 75) end
+      fmt = function(data) return fmt_data(data, 'left', weighted_width(22, 7), 80) end
     },
     {
       'filename',
@@ -140,10 +140,10 @@ local sections = {
       shorting_target = 0,
       fmt = function(data)
         if (git_head() ~= '') then
-          return fmt_data(data, 'right', weighted_width(50, 3.7))
+          return fmt_data(data, 'right', weighted_width(70, 2))
         end
 
-        return fmt_data(data, 'right', weighted_width(60, 5))
+        return fmt_data(data, 'right', weighted_width(70, 4))
       end
     }
   },
@@ -151,7 +151,7 @@ local sections = {
   lualine_x = {
     {
       'filetype',
-      fmt = function(data) return fmt_data(data, 'right', weighted_width(14, 4), 50) end
+      fmt = function(data) return fmt_data(data, 'right', weighted_width(25, 5), 50) end
     }
   },
   lualine_y = {
