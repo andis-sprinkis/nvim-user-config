@@ -10,7 +10,6 @@ if vim.g.plug_requirement.git_plugins then
   vim.cmd([[
     Plug 'andis-sprinkis/git-messenger.vim'
     Plug 'andis-sprinkis/vim-fugitive'
-    " Plug 'andis-sprinkis/vim-gitgutter'
     Plug 'andis-sprinkis/gitsigns.nvim'
   ]])
 end
@@ -21,7 +20,6 @@ Plug 'andis-sprinkis/FixCursorHold.nvim'
 Plug 'andis-sprinkis/bufstop'
 Plug 'andis-sprinkis/editorconfig-vim'
 Plug 'andis-sprinkis/indentLine'
-" Plug 'andis-sprinkis/lualine.nvim'
 Plug 'andis-sprinkis/neoterm'
 Plug 'andis-sprinkis/registers.nvim'
 Plug 'andis-sprinkis/splitjoin.vim'
