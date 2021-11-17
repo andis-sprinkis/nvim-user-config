@@ -2,6 +2,7 @@ vim.cmd([[
   syntax on
   filetype plugin indent on
 ]])
+
 vim.g.loaded_netrw = 0
 vim.opt.backup = false
 vim.opt.clipboard = 'unnamedplus'
