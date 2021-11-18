@@ -36,21 +36,21 @@ Plug 'andis-sprinkis/vim-table-mode'
 Plug 'andis-sprinkis/vim-wordmotion'
 ]])
 
-if vim.g.plug_requirement.fzf_install then vim.cmd('Plug \'andis-sprinkis/fzf\', { \'do\': { -> fzf#install() } }') end
+if vim.g.plug_requirement.fzf_install then vim.cmd([[Plug 'andis-sprinkis/fzf', { 'do': { -> fzf#install() } }]]) end
 if vim.g.plug_requirement.fzf_lua then
 vim.cmd([[
 Plug 'andis-sprinkis/fzf-lua'
 Plug 'andis-sprinkis/nvim-fzf'
 ]])
 end
-if vim.g.plug_requirement.fzf_vim then vim.cmd('Plug \'andis-sprinkis/fzf.vim\'') end
+if vim.g.plug_requirement.fzf_vim then vim.cmd([[Plug 'andis-sprinkis/fzf.vim']]) end
 
-if vim.g.plug_requirement.coc_nvim then vim.cmd('Plug \'andis-sprinkis/coc.nvim\', {\'branch\': \'release\'}') end
-if vim.g.plug_requirement.markdown_preview then vim.cmd('Plug \'andis-sprinkis/markdown-preview.nvim\'') end
-if vim.g.plug_requirement.suda then vim.cmd('Plug \'andis-sprinkis/suda.vim\'') end
-if vim.g.plug_requirement.vim_cmake then vim.cmd('Plug \'andis-sprinkis/vim-cmake\'') end
-if vim.g.plug_requirement.vim_doge then vim.cmd('Plug \'andis-sprinkis/vim-doge\'') end
-if vim.g.plug_requirement.vim_gtest then vim.cmd('Plug \'andis-sprinkis/vim-gtest\'') end
-if vim.g.plug_requirement.nvim_spectre then vim.cmd('Plug \'andis-sprinkis/nvim-spectre\'') end
+if vim.g.plug_requirement.coc_nvim then vim.cmd([[Plug 'andis-sprinkis/coc.nvim', {'branch': 'release'}]]) end
+if vim.g.plug_requirement.markdown_preview then vim.cmd([[Plug 'andis-sprinkis/markdown-preview.nvim']]) end
+if vim.g.plug_requirement.suda then vim.cmd([[Plug 'andis-sprinkis/suda.vim']]) end
+if vim.g.plug_requirement.vim_cmake then vim.cmd([[Plug 'andis-sprinkis/vim-cmake']]) end
+if vim.g.plug_requirement.vim_doge then vim.cmd([[Plug 'andis-sprinkis/vim-doge']]) end
+if vim.g.plug_requirement.vim_gtest then vim.cmd([[Plug 'andis-sprinkis/vim-gtest']]) end
+if vim.g.plug_requirement.nvim_spectre then vim.cmd([[Plug 'andis-sprinkis/nvim-spectre']]) end
 
 vim.fn['plug#end']()
