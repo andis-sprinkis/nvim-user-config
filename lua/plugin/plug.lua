@@ -44,7 +44,7 @@ Plug 'andis-sprinkis/nvim-fzf'
 ]])
 end
 if vim.g.plug_requirement.fzf_vim then vim.cmd([[Plug 'andis-sprinkis/fzf.vim']]) end
-if vim.g.plug_requirement.coc_nvim then vim.cmd([[Plug 'andis-sprinkis/coc.nvim', {'branch': 'release'}]]) end
+if vim.g.plug_requirement.coc_nvim then vim.cmd([[Plug 'andis-sprinkis/coc.nvim', { 'branch': 'release' }]]) end
 if vim.g.plug_requirement.markdown_preview then vim.cmd([[Plug 'andis-sprinkis/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }]]) end
 if vim.g.plug_requirement.suda then vim.cmd([[Plug 'andis-sprinkis/suda.vim']]) end
 if vim.g.plug_requirement.vim_cmake then vim.cmd([[Plug 'andis-sprinkis/vim-cmake']]) end
