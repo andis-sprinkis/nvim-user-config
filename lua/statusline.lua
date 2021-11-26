@@ -3,7 +3,7 @@ local M = {}
 local function highlight(num, active)
   if active == 1 then
     if num == 1 then
-      return '%#PmenuSel#'
+      return '%#StatusLineNC#'
     else
       return '%#StatusLine#'
     end
@@ -69,21 +69,7 @@ function M.blame()
   return ''
 end
 
--- local function filetype_symbol()
---   local ok, res = pcall(vim.api.nvim_call_function, 'WebDevIconsGetFileTypeSymbol', {})
---   if ok then
---     return res
---   end
---   local name = vim.api.nvim_buf_get_name(0)
---   res = require'nvim-web-devicons'.get_icon(name, vim.bo.filetype, {default = true})
---   return res
--- end
-
 function M.filetype()
-  -- return table.concat({
-  --   vim.bo.filetype,
-  --   filetype_symbol()
-  -- } , ' ')
   return vim.bo.filetype
 end
 
@@ -98,10 +84,6 @@ function M.encodingAndFormat()
     local f = vim.bo.fileformat
     if f ~= 'unix' then
       r[#r+1] = '['..f..']'
-      local ok, res = pcall(vim.api.nvim_call_function, 'WebDevIconsGetFileFormatSymbol')
-      if ok then
-        r[#r+1] = res
-      end
     end
 
     return table.concat(r, ' ')
