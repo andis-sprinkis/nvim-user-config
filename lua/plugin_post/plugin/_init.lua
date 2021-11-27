@@ -8,6 +8,5 @@ if vim.g.plug_requirement.vim_doge then require('plugin_post.plugin.vim_doge') e
 require('plugin_post.plugin.bufstop')
 require('plugin_post.plugin.commented_nvim')
 require('plugin_post.plugin.dirvish')
-require('plugin_post.plugin.indentline')
 require('plugin_post.plugin.splitjoin')
 require('plugin_post.plugin.vim_gruvbox8')
