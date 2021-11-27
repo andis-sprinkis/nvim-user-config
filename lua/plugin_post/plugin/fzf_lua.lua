@@ -73,7 +73,7 @@ function ShowGrep()
   require('fzf-lua').grep({ search = '' })
 end
 
-if vim.g.plug_requirement.git_plugins then
+if vim.g.plug_reqr.git_plugins then
   vim.api.nvim_set_keymap('n', '<tab>', ':lua ShowFiles(IsInGitDir())<cr>', { noremap = true, silent = true })
 else
   vim.api.nvim_set_keymap('n', '<tab>', ':lua ShowFiles(false)<cr>', { noremap = true, silent = true })
