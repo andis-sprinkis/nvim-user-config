@@ -1,14 +1,11 @@
-vim.cmd([[
-au FileType spectre_panel setlocal signcolumn=no
+vim.cmd([[au FileType spectre_panel setlocal signcolumn=no]])
 
-" search global
-nnoremap <silent><nowait><leader>r :lua require('spectre').open()<CR>
-nnoremap <silent><nowait><leader>rg :lua require('spectre').open()<CR>
+-- search global
+vim.api.nvim_set_keymap('n', '<Leader>rr', ":lua require('spectre').open()<cr>", { noremap = true, nowait = true, silent = true })
 
-" search current word
-nnoremap <silent><nowait><leader>rw :lua require('spectre').open_visual({select_word=true})<CR>
-vnoremap <silent><nowait><leader>rw :lua require('spectre').open_visual()<CR>
+-- search current word
+vim.api.nvim_set_keymap('n', '<Leader>rw', ":lua require('spectre').open_visual({select_word=true})<cr>", { noremap = true, nowait = true, silent = true })
+vim.api.nvim_set_keymap('v', '<Leader>rw', ":lua require('spectre').open_visual()<cr>", { noremap = true, nowait = true, silent = true })
 
-" search in current file
-nnoremap <silent><nowait><leader>rf viw:lua require('spectre').open_file_search()<cr>
-]])
+-- search in current file
+vim.api.nvim_set_keymap('n', '<Leader>rf', ":lua require('spectre').open_file_search()<cr>", { noremap = true, nowait = true, silent = true })
