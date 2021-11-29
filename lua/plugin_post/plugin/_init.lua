@@ -6,7 +6,7 @@ if vim.g.plug_reqr.nvim_spectre then require('plugin_post.plugin.nvim_spectre') 
 if vim.g.plug_reqr.suda then require('plugin_post.plugin.suda') end
 if vim.g.plug_reqr.vim_doge then require('plugin_post.plugin.vim_doge') end
 require('plugin_post.plugin.bufstop')
-require('plugin_post.plugin.commented_nvim')
+require('plugin_post.plugin.comment_nvim')
 require('plugin_post.plugin.dirvish')
 require('plugin_post.plugin.indent_blankline_nvim')
 require('plugin_post.plugin.splitjoin')
