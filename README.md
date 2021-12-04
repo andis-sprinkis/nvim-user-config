@@ -2,11 +2,11 @@
 
 ## Bootstrap
 
-- Linux, macOS
+### *nix shell
 ```bash
 git clone https://github.com/andis-sprinkis/nvim-user-config $HOME/.config/nvim
 ```
-- Windows
+### CMD/PS on Windows
 ```dosbatch
 git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvim
 ```
