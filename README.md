@@ -14,7 +14,7 @@ git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvi
 
 ### Minimal config option
 
-Minimal custom configuration without any of the below mentioned plugins:
+Minimal configuration without any of the below mentioned plugins:
 ```bash
 git checkout minimal-config
 ```
