@@ -18,3 +18,7 @@
 
 - [`lua/plugin_pre/plugin/requirement.lua`](lua/plugin_pre/plugin/requirement.lua) specifies external depencencies some of the plugins require, not enabling these plugins and their configurations if the dependencies are not met.
 - Some of the plugins (e.g. [fzf.vim](https://github.com/junegunn/fzf.vim)) require Bash compatible shell and some common \*nix utilities to work. For those specific plugins to work on Microsoft Windows the [`lua/plugin_post/app/option.lua`](lua/plugin_post/app/option.lua) adds `%%ProgramFiles%%\\Git\\usr\\bin` to `%PATH%` pointing to [Git for Windows](https://gitforwindows.org/) Bash and utilities.
+
+## Minimal config
+
+`git checkout minimal-config` - for use of a minimal Neovim config without any of the above mentioned plugins.
