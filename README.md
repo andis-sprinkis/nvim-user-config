@@ -7,7 +7,7 @@
 git clone https://github.com/andis-sprinkis/nvim-user-config $HOME/.config/nvim
 ```
 
-### CMD/PS on Windows:
+### CMD/PS on Windows
 ```dos
 git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvim
 ```
