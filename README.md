@@ -1,5 +1,16 @@
 # Andis Neovim configuration files
 
+## Bootstrap
+
+- Linux, macOS
+```bash
+git clone https://github.com/andis-sprinkis/nvim-user-config $HOME/.config/nvim
+```
+- Windows
+```dosbatch
+git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvim
+```
+
 ## Initialization
 
 [`init.lua`](init.lua) loads the configuration in following order:
