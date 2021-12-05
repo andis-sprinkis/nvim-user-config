@@ -1,6 +1,6 @@
 # Andis Neovim configuration files
 
-## Bootstrap
+## Installation
 
 ### *nix shell
 ```bash
