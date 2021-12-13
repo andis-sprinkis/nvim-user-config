@@ -3,17 +3,21 @@
 ## Installation
 
 ### *nix shell
+
 ```bash
 git clone https://github.com/andis-sprinkis/nvim-user-config $HOME/.config/nvim
 ```
 
 ### CMD/PS on Windows
+
 ```dos
 git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvim
 ```
 
 ### Minimal config option
+
 Minimal configuration without any of the below mentioned plugins:
+
 ```bash
 git checkout minimal-config
 ```
