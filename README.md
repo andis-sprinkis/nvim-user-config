@@ -11,7 +11,6 @@ git clone https://github.com/andis-sprinkis/nvim-user-config $HOME/.config/nvim
 ```dos
 git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvim
 ```
-
 ### Minimal config option
 
 Minimal configuration without any of the below mentioned plugins:
