@@ -36,12 +36,7 @@ Plug 'andis-sprinkis/vim-wordmotion'
 ]])
 
 if vim.g.plug_reqr.fzf_install then vim.cmd([[Plug 'andis-sprinkis/fzf', { 'do': { -> fzf#install() } }]]) end
-if vim.g.plug_reqr.fzf_lua then
-vim.cmd([[
-Plug 'andis-sprinkis/fzf-lua'
-Plug 'andis-sprinkis/nvim-fzf'
-]])
-end
+if vim.g.plug_reqr.fzf_lua then vim.cmd([[Plug 'andis-sprinkis/fzf-lua']]) end
 if vim.g.plug_reqr.fzf_vim then vim.cmd([[Plug 'andis-sprinkis/fzf.vim']]) end
 if vim.g.plug_reqr.coc_nvim then vim.cmd([[Plug 'andis-sprinkis/coc.nvim', { 'branch': 'release' }]]) end
 if vim.g.plug_reqr.markdown_preview then vim.cmd([[Plug 'andis-sprinkis/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }]]) end
