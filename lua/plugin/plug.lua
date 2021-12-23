@@ -33,6 +33,7 @@ Plug 'andis-sprinkis/vim-polyglot'
 Plug 'andis-sprinkis/vim-snippets'
 Plug 'andis-sprinkis/vim-table-mode'
 Plug 'andis-sprinkis/vim-wordmotion'
+Plug 'andis-sprinkis/fm-nvim'
 ]])
 
 if vim.g.plug_reqr.fzf_install then vim.cmd([[Plug 'andis-sprinkis/fzf', { 'do': { -> fzf#install() } }]]) end
