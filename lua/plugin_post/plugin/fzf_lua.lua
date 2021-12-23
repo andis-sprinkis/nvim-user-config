@@ -54,6 +54,9 @@ require'fzf-lua'.setup({
       layout = 'vertical',
       vertical = 'up:60%',
     },
+    hl = {
+      border = 'FloatBorder'
+    }
   }
 })
 
