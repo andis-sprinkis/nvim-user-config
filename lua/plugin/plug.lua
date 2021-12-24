@@ -43,7 +43,7 @@ if vim.g.plug_reqr.coc_nvim then vim.cmd([[Plug 'andis-sprinkis/coc.nvim', { 'br
 if vim.g.plug_reqr.markdown_preview then vim.cmd([[Plug 'andis-sprinkis/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }]]) end
 if vim.g.plug_reqr.suda then vim.cmd([[Plug 'andis-sprinkis/suda.vim']]) end
 if vim.g.plug_reqr.vim_cmake then vim.cmd([[Plug 'andis-sprinkis/vim-cmake']]) end
-if vim.g.plug_reqr.vim_doge then vim.cmd([[Plug 'andis-sprinkis/vim-doge']]) end
+if vim.g.plug_reqr.vim_doge then vim.cmd([[Plug 'andis-sprinkis/vim-doge', { 'do': { -> doge#install() } }]]) end
 if vim.g.plug_reqr.vim_gtest then vim.cmd([[Plug 'andis-sprinkis/vim-gtest']]) end
 if vim.g.plug_reqr.nvim_spectre then vim.cmd([[Plug 'andis-sprinkis/nvim-spectre']]) end
 
