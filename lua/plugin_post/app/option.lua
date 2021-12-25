@@ -26,7 +26,7 @@ vim.opt.title = true
 vim.opt.titlelen = 1000
 vim.opt.updatetime = 100
 vim.opt.wildmenu = true
-vim.opt.wildmode = { 'longest:list', 'full' }
+vim.opt.wildmode = { 'longest:full', 'full' }
 vim.opt.winblend = 10
 vim.opt.writebackup = false
 vim.opt.listchars = { eol = '¶', tab = '» ' }
