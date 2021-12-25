@@ -89,15 +89,6 @@ function M.encodingAndFormat()
     return table.concat(r, ' ')
 end
 
-local function recording()
-    local reg = vim.fn.reg_recording()
-    if reg ~= '' then
-        return '%#ModeMsg#  RECORDING['..reg..']  '
-    else
-        return ''
-    end
-end
-
 function M.bufname()
   local ratio = 0.5
   local width = math.floor(vim.api.nvim_win_get_width(0) * ratio)
@@ -124,7 +115,6 @@ end
 function M.statusline(active)
   return table.concat{
     highlight(1, active),
-    recording(),
     pad(func('hunks')),
     highlight(2, active),
     pad(func('lsp_status', active)),
