@@ -38,10 +38,6 @@ function M.lsp_status(active)
     end
   end
 
-  if vim.g.metals_status then
-    status[#status+1] = vim.g.metals_status:gsub('%%', '%%%%')
-  end
-
   local r = table.concat(status, ' ')
 
   return r == '' and 'LSP' or r
