@@ -91,7 +91,7 @@ set shortmess+=c
 set clipboard=unnamedplus
 
 " netrw
-nnoremap - :Explore<cr>
+nnoremap <silent><nowait>- :Explore<cr>
 let g:netrw_liststyle= 1
 
 " switch buffers
