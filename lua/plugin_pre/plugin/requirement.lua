@@ -15,7 +15,5 @@ vim.g.plug_reqr = {
   vim_doge = vim.fn.executable('node') == 1;
   git_plugins = vim.g.nogitplugin == false;
   markdown_preview = vim.fn.executable('node') == 1 or vim.fn.executable('yarn') == 1;
-  vim_cmake = vim.fn.executable('cmake') == 1;
-  vim_gtest = vim.fn.executable('gtester') == 1;
   nvim_spectre = vim.fn.executable('sed') == 1;
 }
