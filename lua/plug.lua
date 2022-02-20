@@ -13,6 +13,13 @@ if vim.g.plug_reqr.git_plugins then
   ]])
 end
 
+if vim.g.plug_reqr.treesitter then
+  vim.cmd([[
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+  ]])
+end
+
 vim.cmd([[
 Plug 'nathom/filetype.nvim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -28,13 +35,12 @@ Plug 'justinmk/vim-dirvish'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'markonm/traces.vim'
 Plug 'mihaifm/bufstop'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'tversteeg/registers.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'neovim/nvim-lspconfig'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'L3MON4D3/LuaSnip'
@@ -46,7 +52,6 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 ]])
 
-if vim.g.plug_reqr.fzf_install then vim.cmd([[Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }]]) end
 if vim.g.plug_reqr.fzf_lua then vim.cmd([[Plug 'ibhagwan/fzf-lua']]) end
 if vim.g.plug_reqr.fzf_vim then vim.cmd([[Plug 'junegunn/fzf.vim']]) end
 if vim.g.plug_reqr.markdown_preview then vim.cmd([[Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}]]) end

@@ -16,7 +16,7 @@ git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvi
 
 ### Minimal config option
 
-Minimal configuration without any of the below mentioned plugins:
+Alternative minimal configuration without any of the mentioned plugins or dependencies:
 
 ```bash
 git checkout minimal-config
@@ -36,19 +36,18 @@ git checkout minimal-config
    1. [`plugin/_init.lua`](lua/plugin_post/plugin/_init.lua) - plugins specific configuration
 1. [`lua/statusline.lua`](lua/statusline.lua) - sets statusline
 
-## Requirements
+## Dependencies
 
-- [`lua/plugin_pre/plugin/requirement.lua`](lua/plugin_pre/plugin/requirement.lua) specifies external depencencies some of the plugins require, not enabling these plugins and their configurations if the dependencies are not met.
-- Some of the plugins (e.g. [fzf.vim](https://github.com/junegunn/fzf.vim)) require Bash compatible shell and some common \*nix utilities to work. For those specific plugins to work on Microsoft Windows the [`lua/plugin_post/app/option.lua`](lua/plugin_post/app/option.lua) adds `%%ProgramFiles%%\\Git\\usr\\bin` to `%PATH%` pointing to [Git for Windows](https://gitforwindows.org/) Bash and utilities.
-
-### LSP server packages
-
+- System:
+  - `bash`
+  - `git`
+  - `lua-language-server`
+  - `node`
+  - `sed`
+  - `tree-sitter`
 - NPM:
-  - `typescript`
-  - `typescript-language-server`
-  - `vscode-langservers-extracted`
   - `bash-language-server`
   - `stylelint-lsp`
-- System:
-  - `lua-language-server`
-  - `tree-sitter`
+  - `typescript-language-server`
+  - `typescript`
+  - `vscode-langservers-extracted`
