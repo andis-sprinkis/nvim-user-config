@@ -49,7 +49,6 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'David-Kunz/cmp-npm'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'EdenEast/nightfox.nvim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'chrisbra/Colorizer'
 ]])
