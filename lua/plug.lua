@@ -21,7 +21,6 @@ if vim.g.plug_reqr.treesitter then
 end
 
 vim.cmd([[
-Plug 'nathom/filetype.nvim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Jorengarenar/vim-MvVis'
 Plug 'RRethy/vim-illuminate'
@@ -51,6 +50,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'David-Kunz/cmp-npm'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'EdenEast/nightfox.nvim'
 ]])
 
 if vim.g.plug_reqr.fzf_lua then vim.cmd([[Plug 'ibhagwan/fzf-lua']]) end
