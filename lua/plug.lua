@@ -28,7 +28,6 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'chaoren/vim-wordmotion'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ellisonleao/gruvbox.nvim'
 Plug 'is0n/fm-nvim'
 Plug 'justinmk/vim-dirvish'
 Plug 'lukas-reineke/indent-blankline.nvim'
@@ -51,6 +50,8 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'David-Kunz/cmp-npm'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'EdenEast/nightfox.nvim'
+Plug 'shaunsingh/nord.nvim'
+Plug 'chrisbra/Colorizer'
 ]])
 
 if vim.g.plug_reqr.fzf_lua then vim.cmd([[Plug 'ibhagwan/fzf-lua']]) end
