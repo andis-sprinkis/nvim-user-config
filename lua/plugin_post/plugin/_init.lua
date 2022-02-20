@@ -1,4 +1,7 @@
-if vim.g.plug_reqr.coc_nvim then vim.cmd('ru! lua/plugin_post/plugin/coc.vim') end
+require('plugin_post.plugin.indent_blankline_nvim')
+require('plugin_post.plugin.nvim_treesitter')
+require('plugin_post.plugin.nvim_cmp')
+require('plugin_post.plugin.nvim_lspconfig')
 if vim.g.plug_reqr.fzf_lua then require('plugin_post.plugin.fzf_lua') end
 if vim.g.plug_reqr.fzf_vim then require('plugin_post.plugin.fzf_vim') end
 if vim.g.plug_reqr.git_plugins then require('plugin_post.plugin.gitsigns_nvim') end
@@ -9,6 +12,5 @@ require('plugin_post.plugin.bufstop')
 require('plugin_post.plugin.comment_nvim')
 require('plugin_post.plugin.dirvish')
 require('plugin_post.plugin.fm_nvim')
-require('plugin_post.plugin.indent_blankline_nvim')
 require('plugin_post.plugin.splitjoin')
-require('plugin_post.plugin.vim_gruvbox8')
+require('plugin_post.plugin.gruvbox_nvim')

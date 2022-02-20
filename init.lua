@@ -1,6 +1,6 @@
 require('plugin_pre.app._init')
 require('plugin_pre.plugin._init')
-require('plugin._init')
+require('plug')
 require('plugin_post.app._init')
 require('plugin_post.plugin._init')
 require('statusline')

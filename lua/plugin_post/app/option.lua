@@ -30,6 +30,8 @@ vim.opt.wildmode = { 'longest:full', 'full' }
 vim.opt.winblend = 10
 vim.opt.writebackup = false
 vim.opt.listchars = { eol = '¶', tab = '» ' }
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+vim.opt.breakindent = true
 
 if vim.g.os == 'Windows' then
   vim.env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. vim.env.PATH

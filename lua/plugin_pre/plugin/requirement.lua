@@ -7,7 +7,6 @@ else
 end
 
 vim.g.plug_reqr = {
-  coc_nvim = vim.fn.executable('node') == 1 and vim.fn.executable('yarn') == 1;
   suda_vim = vim.fn.executable('sudo') == 1;
   fzf_install = vim.g.os == 'Windows' or vim.g.os == 'Darwin';
   fzf_vim = vim.g.os == 'Windows' and (vim.fn.executable('bash') == 1);
