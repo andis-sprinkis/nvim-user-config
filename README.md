@@ -27,6 +27,6 @@ git checkout minimal-config
 - System:
   - `bash`
   - `git`
-  - `lua-language-server`
+  - `node`
   - `sed`
   - `tree-sitter`

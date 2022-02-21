@@ -14,5 +14,6 @@ vim.g.plug_reqr = {
   git_plugins = vim.g.nogitplugin == false;
   markdown_preview = vim.fn.executable('node') == 1 or vim.fn.executable('yarn') == 1;
   nvim_spectre = vim.fn.executable('sed') == 1;
-  treesitter = vim.fn.executable('tree-sitter') == 1
+  treesitter = vim.fn.executable('tree-sitter') == 1,
+  lsp_plugins = vim.fn.executable('node') == 1
 }

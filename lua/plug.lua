@@ -20,6 +20,13 @@ if vim.g.plug_reqr.treesitter then
   ]])
 end
 
+if vim.g.plug_reqr.lsp_plugins then
+  vim.cmd([[
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'williamboman/nvim-lsp-installer'
+  ]])
+end
+
 vim.cmd([[
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Jorengarenar/vim-MvVis'
@@ -39,8 +46,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'tversteeg/registers.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
