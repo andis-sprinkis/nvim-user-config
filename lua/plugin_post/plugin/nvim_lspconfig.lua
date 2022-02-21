@@ -35,19 +35,6 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 -- generic
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = {
-  'bashls',
-  'cssls',
-  'eslint',
-  'html',
-  'jsonls',
-  'stylelint_lsp',
-  'sumeko_lua',
-  'tsserver',
-}
-
 local flags = {
   -- This will be the default in neovim 0.7+
   debounce_text_changes = 150,
@@ -55,39 +42,37 @@ local flags = {
 
 local init_server = function (lsp)
   if lsp == 'sumeko_lua' then
-    -- if vim.fn.executable('lua-language-server') then
-      local runtime_path = vim.split(package.path, ';')
-      table.insert(runtime_path, "lua/?.lua")
-      table.insert(runtime_path, "lua/?/init.lua")
+    local runtime_path = vim.split(package.path, ';')
+    table.insert(runtime_path, "lua/?.lua")
+    table.insert(runtime_path, "lua/?/init.lua")
 
-      require'lspconfig'.sumneko_lua.setup {
-        settings = {
-          Lua = {
-            runtime = {
-              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-              version = 'LuaJIT',
-              -- Setup your lua path
-              path = runtime_path,
-            },
-            diagnostics = {
-              -- Get the language server to recognize the `vim` global
-              globals = {'vim'},
-            },
-            workspace = {
-              -- Make the server aware of Neovim runtime files
-              library = vim.api.nvim_get_runtime_file("", true),
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-              enable = false,
-            },
+    require'lspconfig'.sumneko_lua.setup {
+      settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+            -- Setup your lua path
+            path = runtime_path,
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = {'vim'},
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
           },
         },
-        on_attach = on_attach,
-        flags = flags,
-        capabilities = capabilities,
-      }
-    -- end
+      },
+      on_attach = on_attach,
+      flags = flags,
+      capabilities = capabilities,
+    }
   else
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,
@@ -97,4 +82,4 @@ local init_server = function (lsp)
   end
 end
 
-for _, lsp in pairs(servers) do init_server(lsp) end
+for _, lsp in pairs(require('lsp_servers').servers) do init_server(lsp) end

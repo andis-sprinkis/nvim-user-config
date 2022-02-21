@@ -1,4 +1,5 @@
 if vim.g.plug_reqr.treesitter then require('plugin_post.plugin.nvim_treesitter') end
+require('plugin_post.plugin.nvim_lsp_installer')
 require('plugin_post.plugin.nvim_cmp')
 require('plugin_post.plugin.nvim_lspconfig')
 if vim.g.plug_reqr.fzf_lua then require('plugin_post.plugin.fzf_lua') end
