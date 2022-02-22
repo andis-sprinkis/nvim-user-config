@@ -1,6 +1,4 @@
 vim.opt.background = 'dark'
-vim.g.nord_contrast = true
-vim.g.nord_borders = true
-
--- Load the colorscheme
-require('nord').set()
+vim.g.vscode_style = "dark"
+vim.g.vscode_italic_comment = 1
+vim.cmd[[colorscheme vscode]]

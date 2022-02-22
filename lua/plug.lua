@@ -55,8 +55,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'David-Kunz/cmp-npm'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'shaunsingh/nord.nvim'
 Plug 'chrisbra/Colorizer'
+Plug 'Mofiqul/vscode.nvim'
 ]])
 
 if vim.g.plug_reqr.fzf_lua then vim.cmd([[Plug 'ibhagwan/fzf-lua']]) end
