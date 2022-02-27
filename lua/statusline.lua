@@ -16,7 +16,11 @@ function M.hldefs()
   local bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background
   for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
     local hl = vim.api.nvim_get_hl_by_name('Diagnostic'..ty, true)
-    vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x guibg=#%6x'):format(ty, hl.foreground, bg))
+    if (bg ~= nil and bg > 255) then
+      vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x guibg=#%6x'):format(ty, hl.foreground, bg))
+    else
+      vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x'):format(ty, hl.foreground))
+    end
   end
 end
 
@@ -129,10 +133,10 @@ end
 -- Only set up WinEnter autocmd when the WinLeave autocmd runs
 vim.cmd[[
   augroup statusline
-    autocmd WinLeave,FocusLost * autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
-    autocmd WinLeave,FocusLost * let &l:statusline=v:lua.statusline.statusline(0)
-    autocmd VimEnter           * let &statusline=v:lua.statusline.statusline(1)
-    autocmd ColorScheme        * lua statusline.hldefs()
+    autocmd WinLeave,FocusLost   * autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
+    autocmd WinLeave,FocusLost   * let &l:statusline=v:lua.statusline.statusline(0)
+    autocmd VimEnter             * let &statusline=v:lua.statusline.statusline(1)
+    autocmd ColorScheme,VimEnter * lua statusline.hldefs()
   augroup END
 ]]
 
