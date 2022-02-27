@@ -136,7 +136,7 @@ vim.cmd[[
     autocmd WinLeave,FocusLost   * autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
     autocmd WinLeave,FocusLost   * let &l:statusline=v:lua.statusline.statusline(0)
     autocmd VimEnter             * let &statusline=v:lua.statusline.statusline(1)
-    autocmd ColorScheme,VimEnter * lua statusline.hldefs()
+    " autocmd ColorScheme,VimEnter * lua statusline.hldefs()
   augroup END
 ]]
 
