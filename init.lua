@@ -1,5 +1,6 @@
 require('plugin_pre.app._init')
 require('plugin_pre.plugin._init')
+require('requirement')
 require('plug')
 require('plugin_post.app._init')
 require('plugin_post.plugin._init')
