@@ -27,6 +27,14 @@ if vim.g.plug_reqr.lsp_plugins then
   ]])
 end
 
+if vim.g.plug_reqr.dap_plugins then
+  vim.cmd([[
+    Plug 'Pocco81/DAPInstall.nvim'
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'theHamsta/nvim-dap-virtual-text'
+  ]])
+end
+
 vim.cmd([[
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Jorengarenar/vim-MvVis'
