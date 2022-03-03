@@ -26,6 +26,7 @@ git checkout minimal-config
 
 - System:
   - `bash`
+  - `bat`
   - `git`
   - `node`
   - `sed`
