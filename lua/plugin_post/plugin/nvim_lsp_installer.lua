@@ -56,10 +56,6 @@ lsp_installer.on_server_ready(function(server)
       flags = flags,
     }
 
-    -- (optional) Customize the options passed to the server
-    -- if server.name == "tsserver" then
-    --     opts.root_dir = function() ... end
-    -- end
     if server.name == 'sumneko_lua' then
       opts.settings = {
         Lua = {
@@ -67,7 +63,6 @@ lsp_installer.on_server_ready(function(server)
             -- Get the language server to recognize the `vim` global
             globals = {'vim'},
           },
-          -- Do not send telemetry data containing a randomized but unique identifier
           telemetry = {
             enable = false,
           },
@@ -75,8 +70,30 @@ lsp_installer.on_server_ready(function(server)
       }
     end
 
-    -- This setup() function will take the provided server configuration and decorate it with the necessary properties
-    -- before passing it onwards to lspconfig.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    if server.name == 'jsonls' then
+      opts.settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+        },
+      }
+    end
+
+    if server.name == 'tsserver' then
+      opts.on_attach = function(client, bufnr)
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+
+        on_attach(client, bufnr)
+      end
+    end
+
     server:setup(opts)
 end)
+
+local null_ls = require('null-ls')
+
+null_ls.setup {
+  sources = {
+    null_ls.builtins.formatting.prettier,
+  }
+}

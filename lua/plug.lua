@@ -22,6 +22,9 @@ end
 
 if vim.g.plug_reqr.lsp_plugins then
   vim.cmd([[
+    Plug 'b0o/schemastore.nvim'
+    Plug 'jose-elias-alvarez/null-ls.nvim'
+    Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/nvim-lsp-installer'
   ]])
