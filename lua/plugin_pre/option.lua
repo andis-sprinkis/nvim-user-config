@@ -1,12 +1,6 @@
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-
-vim.cmd([[
-syntax on
-filetype plugin indent on
-]])
-
 vim.g.loaded_netrw = 0
 vim.opt.backup = false
 vim.opt.clipboard = 'unnamedplus'
@@ -44,7 +38,10 @@ else
 end
 
 vim.cmd([[
-au VimResized * wincmd =
-au TermOpen * setlocal nonumber norelativenumber signcolumn=no
-au TermOpen term://* startinsert
+  syntax on
+  filetype plugin indent on
+
+  au VimResized * wincmd =
+  au TermOpen * setlocal nonumber norelativenumber signcolumn=no
+  au TermOpen term://* startinsert
 ]])
