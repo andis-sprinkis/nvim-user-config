@@ -8,5 +8,6 @@ return {
     'stylelint_lsp',
     'sumeko_lua',
     'tsserver',
+    'null-ls'
   }
 }
