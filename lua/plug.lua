@@ -72,10 +72,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tversteeg/registers.nvim'
 
 call plug#end()
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
 ]])
 
 require('impatient')
-
-vim.cmd([[
-  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
-]])
