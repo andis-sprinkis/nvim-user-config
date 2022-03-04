@@ -82,8 +82,5 @@ if vim.g.plug_reqr.nvim_spectre then vim.cmd([[Plug 'nvim-pack/nvim-spectre']]) 
 vim.fn['plug#end']()
 
 vim.cmd([[
-  autocmd VimEnter *
-    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \|   PlugInstall --sync | q
-    \| endif
+  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
 ]])
