@@ -17,6 +17,7 @@ if vim.g.plug_reqr.treesitter then
   vim.cmd([[
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   ]])
 end
 
