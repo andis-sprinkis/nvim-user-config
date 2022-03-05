@@ -31,7 +31,7 @@ require'fzf-lua'.setup({
     bat = {
       cmd = 'bat',
       args = '--style=plain,changes --color always',
-      theme = 'ansi'
+      theme = 'Visual Studio Dark+'
     },
   },
   files = {
@@ -76,7 +76,7 @@ function ShowGrep()
   require('fzf-lua').grep({ search = '' })
 end
 
-if vim.g.plug_reqr.git_plugins then
+if vim.g.sys_reqr.git_plugins then
   vim.api.nvim_set_keymap('n', '<tab>', ':lua ShowFiles(IsInGitDir())<cr>', { noremap = true, silent = true })
 else
   vim.api.nvim_set_keymap('n', '<tab>', ':lua ShowFiles(false)<cr>', { noremap = true, silent = true })

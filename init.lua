@@ -1,5 +1,3 @@
 require('plugin_pre._init')
-require('plug_reqr')
 require('plug')
 require('plugin_post._init')
-require('statusline')

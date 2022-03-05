@@ -1,21 +1,30 @@
-if vim.g.plug_reqr.treesitter then
-  require('Comment').setup {
-    pre_hook = function(ctx)
-      local U = require 'Comment.utils'
+local util = require('util')
 
-      local location = nil
-      if ctx.ctype == U.ctype.block then
-        location = require('ts_context_commentstring.utils').get_cursor_location()
-      elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-        location = require('ts_context_commentstring.utils').get_visual_start_location()
-      end
+util.with_reqr({
+  dependency = {
+    sys_reqr = { 'treesitter' },
+    plugs = { 'nvim-treesitter', 'nvim-ts-context-commentstring' },
+    unmet_cb = function () require('Comment').setup() end,
+  },
+  dependant = {
+    cb = function ()
+      require('Comment').setup {
+        pre_hook = function(ctx)
+          local U = require 'Comment.utils'
 
-      return require('ts_context_commentstring.internal').calculate_commentstring {
-        key = ctx.ctype == U.ctype.line and '__default' or '__multiline',
-        location = location,
+          local location = nil
+          if ctx.ctype == U.ctype.block then
+            location = require('ts_context_commentstring.utils').get_cursor_location()
+          elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+            location = require('ts_context_commentstring.utils').get_visual_start_location()
+          end
+
+          return require('ts_context_commentstring.internal').calculate_commentstring {
+            key = ctx.ctype == U.ctype.line and '__default' or '__multiline',
+            location = location,
+          }
+        end,
       }
-    end,
-  }
-else
-  require('Comment').setup()
-end
+    end
+  },
+})

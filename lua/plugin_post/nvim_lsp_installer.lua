@@ -1,12 +1,16 @@
 local lsp_installer = require "nvim-lsp-installer"
 
--- vim.diagnostic.config({
---   virtual_text = false,
--- })
+local lsp_servers = {
+  'bashls',
+  'cssls',
+  'html',
+  'jsonls',
+  'stylelint_lsp',
+  'sumeko_lua',
+  'tsserver'
+}
 
--- Include the servers you want to have installed by default below
-
-for _, name in pairs(require('lsp_servers').servers) do
+for _, name in pairs(lsp_servers) do
   local server_is_found, server = lsp_installer.get_server(name)
   if server_is_found and not server:is_installed() then
     print('Installing ' .. name)

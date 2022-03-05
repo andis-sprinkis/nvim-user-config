@@ -4,21 +4,42 @@ if vim.fn.filereadable(autoload_plug_path) == 0 then
   vim.cmd('autocmd VimEnter * PlugInstall --sync | source $MYVIMRC')
 end
 
+if vim.fn.executable('git') == false then
+  vim.g.nogitplugin = true
+else
+  if vim.g.nogitplugin == nil then
+    vim.g.nogitplugin = false
+  end
+end
+
+vim.g.sys_reqr = {
+  suda_vim = vim.fn.executable('sudo') == 1,
+  fzf_vim = vim.g.os == 'Windows' and (vim.fn.executable('bash') == 1),
+  fzf_lua = vim.g.os ~= 'Windows',
+  dap_plugins = vim.g.os ~= 'Windows',
+  vim_doge = vim.fn.executable('node') == 1,
+  git_plugins = vim.g.nogitplugin == false,
+  markdown_preview = vim.fn.executable('node') == 1 or vim.fn.executable('yarn') == 1,
+  nvim_spectre = vim.fn.executable('sed') == 1,
+  treesitter = vim.fn.executable('tree-sitter') == 1,
+  lsp_plugins = vim.fn.executable('node') == 1,
+}
+
 vim.cmd([[
 call plug#begin()
 
-if g:plug_reqr['git_plugins']
+if g:sys_reqr['git_plugins']
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'tpope/vim-fugitive'
 end
 
-if g:plug_reqr['treesitter']
+if g:sys_reqr['treesitter']
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 endif
 
-if g:plug_reqr['lsp_plugins']
+if g:sys_reqr['lsp_plugins']
   Plug 'MunifTanjim/eslint.nvim'
   Plug 'MunifTanjim/prettier.nvim'
   Plug 'b0o/schemastore.nvim'
@@ -27,18 +48,18 @@ if g:plug_reqr['lsp_plugins']
   Plug 'williamboman/nvim-lsp-installer'
 endif
 
-if g:plug_reqr['dap_plugins']
+if g:sys_reqr['dap_plugins']
   Plug 'Pocco81/DAPInstall.nvim'
   Plug 'mfussenegger/nvim-dap'
   Plug 'theHamsta/nvim-dap-virtual-text'
 endif
 
-if g:plug_reqr['fzf_lua'] | Plug 'ibhagwan/fzf-lua' | endif
-if g:plug_reqr['fzf_vim'] | Plug 'junegunn/fzf.vim' | endif
-if g:plug_reqr['markdown_preview'] | Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']} | endif
-if g:plug_reqr['nvim_spectre'] | Plug 'nvim-pack/nvim-spectre' | endif
-if g:plug_reqr['suda_vim'] | Plug 'lambdalisue/suda.vim' | endif
-if g:plug_reqr['vim_doge'] | Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } } | endif
+if g:sys_reqr['fzf_lua'] | Plug 'ibhagwan/fzf-lua' | endif
+if g:sys_reqr['fzf_vim'] | Plug 'junegunn/fzf.vim' | endif
+if g:sys_reqr['markdown_preview'] | Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']} | endif
+if g:sys_reqr['nvim_spectre'] | Plug 'nvim-pack/nvim-spectre' | endif
+if g:sys_reqr['suda_vim'] | Plug 'lambdalisue/suda.vim' | endif
+if g:sys_reqr['vim_doge'] | Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } } | endif
 
 Plug 'lewis6991/impatient.nvim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -74,5 +95,3 @@ Plug 'tversteeg/registers.nvim'
 call plug#end()
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
 ]])
-
-require('impatient')
