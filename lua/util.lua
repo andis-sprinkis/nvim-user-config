@@ -1,4 +1,6 @@
 local function has_module(modules)
+  if modules == nil then return true end
+
   local function is_module_available(name)
     if package.loaded[name] then
       return true
@@ -23,9 +25,7 @@ end
 
 
 local function has_sys_reqr(requirements)
-  if requirements == nil then
-    return true
-  end
+  if requirements == nil then return true end
 
   for _, value in ipairs(requirements) do
     if not vim.g.sys_reqr[value] then return false end
@@ -35,9 +35,7 @@ local function has_sys_reqr(requirements)
 end
 
 local function has_plugs (plugs)
-  if plugs == nil then
-    return true
-  end
+  if plugs == nil then return true end
 
   for _, value in ipairs(plugs) do
     if not vim.g.plugs[value] then return false end
@@ -46,7 +44,7 @@ local function has_plugs (plugs)
   return true
 end
 
-local function require_all(modules)
+local function require_all (modules)
   for _, value in ipairs(modules) do require(value) end
 end
 
