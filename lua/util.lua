@@ -16,9 +16,7 @@ local function has_module(modules)
     end
   end
 
-  for _, value in ipairs(modules) do
-    if not is_module_available[value] then return false end
-  end
+  for _, value in ipairs(modules) do if not is_module_available[value] then return false end end
 
   return true
 end
@@ -27,9 +25,7 @@ end
 local function has_sys_reqr(requirements)
   if requirements == nil then return true end
 
-  for _, value in ipairs(requirements) do
-    if not vim.g.sys_reqr[value] then return false end
-  end
+  for _, value in ipairs(requirements) do if not vim.g.sys_reqr[value] then return false end end
 
   return true
 end
@@ -37,30 +33,30 @@ end
 local function has_plugs (plugs)
   if plugs == nil then return true end
 
-  for _, value in ipairs(plugs) do
-    if not vim.g.plugs[value] then return false end
-  end
+  for _, value in ipairs(plugs) do if not vim.g.plugs[value] then return false end end
 
   return true
 end
 
 local function require_all (modules)
-  for _, value in ipairs(modules) do require(value) end
+  if (modules ~= nil) then for _, value in ipairs(modules) do require(value) end end
+end
+
+local function call_cb(cb)
+  if cb ~= nil then cb() end
 end
 
 local function with_reqr (args)
-  if args.dependency.sys_reqr ~= nil and not has_sys_reqr(args.dependency.sys_reqr) then
-    if args.dependency.unmet_cb ~= nil then args.dependency.unmet_cb() end
+  if (args.dependency.sys_reqr ~= nil and not has_sys_reqr(args.dependency.sys_reqr))
+    or (args.dependency.plugs ~= nil and not has_plugs(args.dependency.plugs))
+  then
+    call_cb(args.dependant.unmet_cb)
     return
   end
-  if args.dependency.plugs ~= nil and not has_plugs(args.dependency.plugs) then
-    if args.dependency.unmet_cb ~= nil then args.dependency.unmet_cb() end
-    return
-  end
-  if args.dependant.modules ~= nil then require_all(args.dependant.modules) end
-  if args.dependant.cb ~= nil then args.dependant.cb() end
-end
 
+  require_all(args.dependant.modules)
+  call_cb(args.dependant.cb)
+end
 
 return {
   has_module = has_module,
