@@ -49,11 +49,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'npm', keyword_length = 4 },
-  }, {
     { name = 'buffer' },
-  },
-  {
     { name = 'path' }
   })
 })
@@ -62,7 +58,6 @@ cmp.setup({
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
     { name = 'cmp_git' },
-  }, {
     { name = 'buffer' },
   })
 })
@@ -77,10 +72,11 @@ cmp.setup.cmdline('/', {
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
+    { name = 'cmdline' },
+    { name = 'path' },
+    { name = 'buffer' },
   })
 })
 
 require("luasnip.loaders.from_vscode").load()
+require("cmp_git").setup()

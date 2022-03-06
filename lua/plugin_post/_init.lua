@@ -63,7 +63,7 @@ local modules = {
   },
   {
     dependant = { modules = { 'plugin_post.nvim_cmp' } },
-    dependency = { plugs = { 'nvim-cmp', 'luasnip' } }
+    dependency = { plugs = { 'nvim-cmp', 'cmp_luasnip' } }
   },
   {
     dependant = { modules = { 'plugin_post.splitjoin' } },
