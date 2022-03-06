@@ -6,10 +6,8 @@ end
 
 if vim.fn.executable('git') == false then
   vim.g.nogitplugin = true
-else
-  if vim.g.nogitplugin == nil then
-    vim.g.nogitplugin = false
-  end
+elseif vim.g.nogitplugin == nil then
+  vim.g.nogitplugin = false
 end
 
 vim.g.sys_reqr = {
