@@ -55,7 +55,7 @@ local modules = {
   },
   {
     dependant = { modules = { 'plugin_post.fm_nvim' } },
-    dependency = { plugs = { 'fm-nvim' } }
+    dependency = { sys_reqr = { 'fm_nvim' }, plugs = { 'fm-nvim' } }
   },
   {
     dependant = { modules = { 'plugin_post.indent_blankline_nvim' } },

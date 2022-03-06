@@ -28,6 +28,7 @@ git checkout minimal-config
   - `bash`
   - `bat`
   - `git`
+  - `lf`
   - `node`
   - `sed`
   - `tree-sitter`

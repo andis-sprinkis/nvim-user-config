@@ -11,16 +11,18 @@ elseif vim.g.nogitplugin == nil then
 end
 
 vim.g.sys_reqr = {
-  suda_vim = vim.fn.executable('sudo') == 1,
-  fzf_vim = vim.g.os == 'Windows' and (vim.fn.executable('bash') == 1),
-  fzf_lua = vim.g.os ~= 'Windows',
   dap_plugins = vim.g.os ~= 'Windows',
-  vim_doge = vim.fn.executable('node') == 1,
+  fm_nvim = vim.fn.executable('lf') == 1,
+  fzf = vim.g.os == 'Windows' or vim.g.os == 'Darwin',
+  fzf_lua = vim.g.os ~= 'Windows',
+  fzf_vim = vim.g.os == 'Windows' and (vim.fn.executable('bash') == 1),
   git_plugins = vim.g.nogitplugin == false,
+  lsp_plugins = vim.fn.executable('node') == 1,
   markdown_preview = vim.fn.executable('node') == 1 or vim.fn.executable('yarn') == 1,
   nvim_spectre = vim.fn.executable('sed') == 1,
+  suda_vim = vim.fn.executable('sudo') == 1,
   treesitter = vim.fn.executable('tree-sitter') == 1,
-  lsp_plugins = vim.fn.executable('node') == 1,
+  vim_doge = vim.fn.executable('node') == 1,
 }
 
 vim.cmd([[
@@ -52,6 +54,7 @@ if g:sys_reqr['dap_plugins']
   Plug 'theHamsta/nvim-dap-virtual-text'
 endif
 
+if g:sys_reqr['fzf'] | Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }' | endif
 if g:sys_reqr['fzf_lua'] | Plug 'ibhagwan/fzf-lua' | endif
 if g:sys_reqr['fzf_vim'] | Plug 'junegunn/fzf.vim' | endif
 if g:sys_reqr['markdown_preview'] | Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']} | endif
@@ -78,7 +81,6 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'petertriho/cmp-git'
 Plug 'is0n/fm-nvim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'justinmk/vim-dirvish'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'markonm/traces.vim'
