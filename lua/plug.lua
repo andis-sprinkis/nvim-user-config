@@ -40,7 +40,6 @@ if g:sys_reqr['treesitter']
 endif
 
 if g:sys_reqr['lsp_plugins']
-  Plug 'MunifTanjim/eslint.nvim'
   Plug 'b0o/schemastore.nvim'
   Plug 'jose-elias-alvarez/null-ls.nvim'
   Plug 'neovim/nvim-lspconfig'
