@@ -1,12 +1,8 @@
-local has_plugs = require('util').has_plugs
-
 local null_ls = require('null-ls')
 
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.prettier.with({
-      prefer_local = "node_modules/.bin",
-    }),
+    null_ls.builtins.formatting.prettier,
   },
   on_attach = function(client, bufnr)
     local map_opts = { noremap = true, silent = true }
@@ -20,17 +16,3 @@ null_ls.setup({
     end
   end,
 })
-
-if has_plugs({ 'eslint.nvim' }) then
-  local eslint = require("eslint")
-  eslint.setup({
-    bin = "eslint",
-  })
-end
-
--- if has_plugs({ 'prettier.nvim' }) then
---   local prettier = require("prettier")
---   prettier.setup({
---     bin = "prettier",
---   })
--- end

@@ -3,6 +3,7 @@ local lsp_installer = require "nvim-lsp-installer"
 local lsp_servers = {
   'bashls',
   'cssls',
+  'eslint',
   'html',
   'jsonls',
   'stylelint_lsp',
