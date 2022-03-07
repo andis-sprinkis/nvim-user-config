@@ -54,7 +54,7 @@ if g:sys_reqr['dap_plugins']
   Plug 'theHamsta/nvim-dap-virtual-text'
 endif
 
-if g:sys_reqr['fzf'] | Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }' | endif
+if g:sys_reqr['fzf'] | Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | endif
 if g:sys_reqr['fzf_lua'] | Plug 'ibhagwan/fzf-lua' | endif
 if g:sys_reqr['fzf_vim'] | Plug 'junegunn/fzf.vim' | endif
 if g:sys_reqr['markdown_preview'] | Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']} | endif
@@ -94,5 +94,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tversteeg/registers.nvim'
 
 call plug#end()
+
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
 ]])
