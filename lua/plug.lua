@@ -23,6 +23,7 @@ vim.g.sys_reqr = {
   suda_vim = vim.fn.executable('sudo') == 1,
   treesitter = vim.fn.executable('tree-sitter') == 1,
   vim_doge = vim.fn.executable('node') == 1,
+  vim_hexokinase = vim.fn.executable('go') == 1
 }
 
 vim.cmd([[
@@ -59,6 +60,7 @@ if g:sys_reqr['markdown_preview'] | Plug 'iamcco/markdown-preview.nvim', { 'do':
 if g:sys_reqr['nvim_spectre'] | Plug 'nvim-pack/nvim-spectre' | endif
 if g:sys_reqr['suda_vim'] | Plug 'lambdalisue/suda.vim' | endif
 if g:sys_reqr['vim_doge'] | Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } } | endif
+if g:sys_reqr['vim_hexokinase'] | Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } | endif
 
 Plug 'lewis6991/impatient.nvim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -69,7 +71,6 @@ Plug 'Mofiqul/vscode.nvim'
 Plug 'RRethy/vim-illuminate'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'chaoren/vim-wordmotion'
-Plug 'chrisbra/Colorizer'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'hrsh7th/cmp-buffer'
