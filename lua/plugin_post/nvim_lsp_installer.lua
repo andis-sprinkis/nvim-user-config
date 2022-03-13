@@ -6,9 +6,10 @@ local lsp_servers = {
   'eslint',
   'html',
   'jsonls',
+  'pylsp',
   'stylelint_lsp',
   'sumeko_lua',
-  'tsserver'
+  'tsserver',
 }
 
 for _, name in pairs(lsp_servers) do
