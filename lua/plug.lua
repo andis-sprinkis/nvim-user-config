@@ -23,7 +23,8 @@ vim.g.sys_reqr = {
   suda_vim = vim.fn.executable('sudo') == 1,
   treesitter = vim.fn.executable('tree-sitter') == 1,
   vim_doge = vim.fn.executable('node') == 1,
-  vim_hexokinase = vim.fn.executable('go') == 1
+  vim_hexokinase = vim.fn.executable('go') == 1,
+  cmp_spell = vim.fn.executable('aspell') == 1
 }
 
 vim.cmd([[
@@ -53,6 +54,7 @@ if g:sys_reqr['dap_plugins']
   Plug 'theHamsta/nvim-dap-virtual-text'
 endif
 
+if g:sys_reqr['cmp_spell'] | Plug 'f3fora/cmp-spell' | endif
 if g:sys_reqr['fzf'] | Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | endif
 if g:sys_reqr['fzf_lua'] | Plug 'ibhagwan/fzf-lua' | endif
 if g:sys_reqr['fzf_vim'] | Plug 'junegunn/fzf.vim' | endif
