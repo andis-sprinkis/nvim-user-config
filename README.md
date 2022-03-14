@@ -25,6 +25,7 @@ git checkout minimal-config
 ## Dependencies
 
 - System:
+  - `aspell`
   - `bash`
   - `bat`
   - `git`
