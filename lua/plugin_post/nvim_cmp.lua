@@ -21,9 +21,13 @@ local gitcommit_sources = {
   { name = 'buffer' },
 }
 
-local cmdline_sources = {
+local cmdline_cmd_sources = {
   { name = 'cmdline' },
   { name = 'path' },
+  { name = 'buffer' },
+}
+
+local cmdline_lookup_sources = {
   { name = 'buffer' },
 }
 
@@ -35,7 +39,7 @@ require('util').with_reqr({
   dependant = {
     cb = function ()
       vim.opt.spell = true
-      vim.opt.spelllang = { 'en_us', 'lv' }
+      vim.opt.spelllang = { 'en_us' }
 
       vim.cmd[[
         highlight clear SpellBad
@@ -46,7 +50,7 @@ require('util').with_reqr({
 
       table.insert(main_sources, { name = 'spell' })
       table.insert(gitcommit_sources, { name = 'spell' })
-      table.insert(cmdline_sources, { name = 'spell' })
+      table.insert(cmdline_cmd_sources, { name = 'spell' })
     end
   }
 })
@@ -92,21 +96,13 @@ cmp.setup({
 })
 
 -- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources(gitcommit_sources)
-})
+cmp.setup.filetype('gitcommit', { sources = cmp.config.sources(gitcommit_sources) })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer' }
-  }
-})
+cmp.setup.cmdline('/', { sources = cmp.config.sources(cmdline_lookup_sources) })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  sources = cmp.config.sources(cmdline_sources)
-})
+cmp.setup.cmdline(':', { sources = cmp.config.sources(cmdline_cmd_sources) })
 
 require("luasnip.loaders.from_vscode").load()
 require("cmp_git").setup()
