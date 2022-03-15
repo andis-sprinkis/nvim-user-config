@@ -31,30 +31,6 @@ local cmdline_lookup_sources = {
   { name = 'buffer' },
 }
 
-require('util').with_reqr({
-  dependency = {
-    sys_reqr = { 'cmp_spell' },
-    plugs = { 'cmp-spell' }
-  },
-  dependant = {
-    cb = function ()
-      vim.opt.spell = true
-      vim.opt.spelllang = { 'en_us' }
-
-      vim.cmd[[
-        highlight clear SpellBad
-        highlight clear SpellRare
-        highlight clear SpellLocal
-        highlight clear SpellCap
-      ]]
-
-      table.insert(main_sources, { name = 'spell' })
-      table.insert(gitcommit_sources, { name = 'spell' })
-      table.insert(cmdline_cmd_sources, { name = 'spell' })
-    end
-  }
-})
-
 cmp.setup({
   snippet = {
     expand = function(args)
