@@ -70,6 +70,10 @@ local modules = {
     dependency = { plugs = { 'splitjoin.vim' } }
   },
   {
+    dependant = { modules = { 'plugin_post.cmdbuf_nvim' } },
+    dependency = { plugs = { 'cmdbuf.nvim' } }
+  },
+  {
     dependant = { modules = { 'plugin_post.statusline' } },
     dependency = { sys_reqr = { 'git_plugins', 'lsp_plugins' }, plugs = { 'nvim-lsp-installer', 'null-ls.nvim', 'gitsigns.nvim' } },
   },
