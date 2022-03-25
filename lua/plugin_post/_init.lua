@@ -18,6 +18,10 @@ local modules = {
     dependency = { sys_reqr = { 'git_plugins' }, plugs = { 'gitsigns.nvim' } }
   },
   {
+    dependant = { modules = { 'plugin_post.nvim_cmp' } },
+    dependency = { plugs = { 'nvim-cmp', 'cmp_luasnip' } }
+  },
+  {
     dependant = { modules = { 'plugin_post.null_ls_nvim', 'plugin_post.nvim_lsp_installer' } },
     dependency = { sys_reqr = { 'lsp_plugins' }, plugs = { 'null-ls.nvim', 'nvim-lsp-installer' } }
   },
@@ -60,10 +64,6 @@ local modules = {
   {
     dependant = { modules = { 'plugin_post.indent_blankline_nvim' } },
     dependency = { plugs = { 'indent-blankline.nvim' } }
-  },
-  {
-    dependant = { modules = { 'plugin_post.nvim_cmp' } },
-    dependency = { plugs = { 'nvim-cmp', 'cmp_luasnip' } }
   },
   {
     dependant = { modules = { 'plugin_post.splitjoin' } },

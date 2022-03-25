@@ -92,6 +92,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'tversteeg/registers.nvim'
+" Plug 'uga-rosa/cmp-dictionary'
 
 call plug#end()
 
