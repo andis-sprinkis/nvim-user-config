@@ -8,11 +8,13 @@ local main_sources = {
   { name = 'luasnip' },
   { name = 'buffer' },
   { name = 'path' },
+  { name = 'emoji' }
 }
 
 local gitcommit_sources = {
   { name = 'cmp_git' },
   { name = 'buffer' },
+  { name = 'emoji' }
 }
 
 local cmdline_cmd_sources = {
