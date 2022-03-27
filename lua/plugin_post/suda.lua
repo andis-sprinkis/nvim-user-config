@@ -1,1 +1,1 @@
-vim.g.suda_smart_edit = 1
+vim.g.suda_smart_edit = 0
