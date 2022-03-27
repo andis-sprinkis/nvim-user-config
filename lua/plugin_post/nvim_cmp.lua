@@ -1,7 +1,7 @@
 local cmp = require'cmp'
 local luasnip = require("luasnip")
 
--- local with_reqr = require('util').with_reqr
+local with_reqr = require('util').with_reqr
 
 local main_sources = {
   { name = 'nvim_lsp' },
@@ -32,7 +32,7 @@ with_reqr({
       table.insert(main_sources, { name = 'npm', keyword_length = 4 })
     end,
   },
-  dependency = { plugs = { 'cmp-npm' } }
+  dependency = { plugs = { 'cmp-npm', 'plenary.nvim' } }
 })
 
 -- with_reqr({
