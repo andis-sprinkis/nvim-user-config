@@ -25,11 +25,16 @@ local cmdline_lookup_sources = {
   { name = 'buffer' },
 }
 
--- with_reqr({
---   dependant = { cb = function () require('cmp-npm').setup({}) end },
---   dependency = { plugs = { 'cmp-npm' } }
--- })
---
+with_reqr({
+  dependant = {
+    cb = function ()
+      require('cmp-npm').setup({})
+      table.insert(main_sources, { name = 'npm', keyword_length = 4 })
+    end,
+  },
+  dependency = { plugs = { 'cmp-npm' } }
+})
+
 -- with_reqr({
 --   dependant = {
 --     cb = function ()
