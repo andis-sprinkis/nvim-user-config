@@ -6,6 +6,10 @@ local modules = {
     dependency = { plugs = { 'impatient.nvim' } }
   },
   {
+    dependant = { modules = { 'plugin_post.guess_indent_nvim' } },
+    dependency = { plugs = { 'guess-indent.nvim' } }
+  },
+  {
     dependant = { modules = { 'plugin_post.fzf_lua' } },
     dependency = { sys_reqr = { 'fzf_lua' }, plugs = { 'fzf-lua' } }
   },
