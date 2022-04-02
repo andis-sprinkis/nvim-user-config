@@ -10,7 +10,7 @@ local lsp_servers = {
   'jsonls',
   'pylsp',
   'stylelint_lsp',
-  'sumeko_lua',
+  'sumneko_lua',
   'tsserver',
 }
 

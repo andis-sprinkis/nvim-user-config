@@ -1,7 +1,7 @@
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-vim.g.loaded_netrw = 0
+vim.g.loaded_netrwPlugin = 0
 vim.opt.backup = false
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.encoding = 'utf-8'

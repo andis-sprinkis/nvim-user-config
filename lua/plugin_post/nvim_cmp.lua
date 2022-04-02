@@ -1,14 +1,13 @@
 local cmp = require'cmp'
 local luasnip = require("luasnip")
 
-local with_reqr = require('util').with_reqr
-
 local main_sources = {
   { name = 'nvim_lsp' },
   { name = 'luasnip' },
   { name = 'buffer' },
   { name = 'path' },
-  { name = 'emoji' }
+  { name = 'emoji' },
+  { name = 'npm', keyword_length = 4 }
 }
 
 local gitcommit_sources = {
@@ -26,37 +25,6 @@ local cmdline_cmd_sources = {
 local cmdline_lookup_sources = {
   { name = 'buffer' },
 }
-
-with_reqr({
-  dependant = {
-    cb = function ()
-      require('cmp-npm').setup({})
-      table.insert(main_sources, { name = 'npm', keyword_length = 4 })
-    end,
-  },
-  dependency = { plugs = { 'cmp-npm', 'plenary.nvim' } }
-})
-
--- with_reqr({
---   dependant = {
---     cb = function ()
---       table.insert(main_sources, { name = 'dictionary' })
---       table.insert(gitcommit_sources, { name = 'dictionary' })
---       table.insert(cmdline_cmd_sources, { name = 'dictionary' })
---
---       require("cmp_dictionary").setup({
---         dic = {
---           ["*"] = {
---             "~/.local/share/dict/words/en.dict",
---             "~/.local/share/dict/words/lv.dict",
---           }
---         },
---         async = true
---       })
---     end,
---   },
---   dependency = { plugs = { 'cmp-dictionary' } }
--- })
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))

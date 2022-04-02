@@ -3,5 +3,14 @@ require('indent_blankline').setup({
   show_first_indent_level = true,
   char = '▏',
   blankline_char = '▏',
-  filetype_exclude = { 'help', 'terminal', 'man', 'spectre_panel', 'Fm', 'lsp-installer', '' },
+  filetype_exclude = {
+    '',
+    'Fm',
+    'help',
+    'lsp-installer',
+    'man',
+    'packer',
+    'spectre_panel',
+    'terminal',
+  },
 })
