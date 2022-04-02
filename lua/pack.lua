@@ -43,7 +43,7 @@ require('packer').startup(function(use)
     {
       cond = { vim.g.sys_reqr['git_plugins'] },
       { 'tpope/vim-fugitive' },
-    {
+      {
         'lewis6991/gitsigns.nvim',
         config = function() require('plugin_post.gitsigns_nvim') end,
       },
