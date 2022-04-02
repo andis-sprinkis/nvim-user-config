@@ -158,12 +158,12 @@ require('packer').startup(function(use)
     },
     {
       'lukas-reineke/indent-blankline.nvim',
-        config = function() require('plugin_post.indent_blankline_nvim') end 
+      config = function() require('plugin_post.indent_blankline_nvim') end 
     },
     {
-        'mihaifm/bufstop',
-        config = function() require('plugin_post.bufstop') end 
-      },
+      'mihaifm/bufstop',
+      config = function() require('plugin_post.bufstop') end 
+    },
     {
       'numToStr/Comment.nvim',
       config = function() require('plugin_post.comment_nvim') end 
