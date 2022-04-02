@@ -39,7 +39,7 @@ require('packer').startup(function(use)
     { 'dhruvasagar/vim-table-mode' },
     { 'editorconfig/editorconfig-vim' },
     { 'tpope/vim-eunuch' },
-    { 'tversteeg/registers.nvim' }, 
+    { 'tversteeg/registers.nvim' },
     {
       cond = { vim.g.sys_reqr['git_plugins'] },
       { 'tpope/vim-fugitive' },
@@ -49,7 +49,7 @@ require('packer').startup(function(use)
       },
     },
     {
-      'nvim-treesitter/nvim-treesitter', 
+      'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       cond = { vim.g.sys_reqr['treesitter'] },
       config = function() require('plugin_post.nvim_treesitter') end,
@@ -57,7 +57,7 @@ require('packer').startup(function(use)
         { 'JoosepAlviste/nvim-ts-context-commentstring' },
         { 'nvim-treesitter/nvim-treesitter-textobjects' },
       }
-    }, 
+    },
     {
       'williamboman/nvim-lsp-installer',
       cond = { vim.g.sys_reqr['lsp_plugins'] },
@@ -120,9 +120,9 @@ require('packer').startup(function(use)
       run = function () vim.fn['mkdp#util#install']() end,
       ft = { 'markdown', 'vim-plug' },
     },
-    { 
+    {
       'AndrewRadev/splitjoin.vim',
-      config = function() require('plugin_post.splitjoin') end 
+      config = function() require('plugin_post.splitjoin') end
     },
     {
         'Mofiqul/vscode.nvim',
@@ -136,8 +136,8 @@ require('packer').startup(function(use)
       'notomo/cmdbuf.nvim',
       config = function() require('plugin_post.cmdbuf_nvim') end,
     },
-    { 
-      'hrsh7th/nvim-cmp', 
+    {
+      'hrsh7th/nvim-cmp',
       requires = {
         { 'L3MON4D3/LuaSnip' },
         { 'rafamadriz/friendly-snippets' },
@@ -150,23 +150,23 @@ require('packer').startup(function(use)
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-path' },
       },
-      config = function() require('plugin_post.nvim_cmp') end 
+      config = function() require('plugin_post.nvim_cmp') end
     },
-    { 
-      'justinmk/vim-dirvish', 
-      config = function() require('plugin_post.dirvish') end 
+    {
+      'justinmk/vim-dirvish',
+      config = function() require('plugin_post.dirvish') end
     },
     {
       'lukas-reineke/indent-blankline.nvim',
-      config = function() require('plugin_post.indent_blankline_nvim') end 
+      config = function() require('plugin_post.indent_blankline_nvim') end
     },
     {
       'mihaifm/bufstop',
-      config = function() require('plugin_post.bufstop') end 
+      config = function() require('plugin_post.bufstop') end
     },
     {
       'numToStr/Comment.nvim',
-      config = function() require('plugin_post.comment_nvim') end 
+      config = function() require('plugin_post.comment_nvim') end
     },
   }
 
