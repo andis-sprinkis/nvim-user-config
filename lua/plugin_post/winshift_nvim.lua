@@ -23,8 +23,5 @@ require("winshift").setup({
       "terminal",
       "quickfix",
     },
-    bufname = {   -- List of regex patterns matching ignored buffer names
-      [[.*foo/bar/baz\.qux]]
-    },
   },
 })
