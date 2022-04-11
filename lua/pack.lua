@@ -41,6 +41,10 @@ require('packer').startup(function(use)
     { 'tpope/vim-eunuch' },
     { 'tversteeg/registers.nvim' },
     {
+      'sindrets/winshift.nvim',
+      config = function() require('plugin_post.winshift_nvim') end,
+    },
+    {
       cond = { vim.g.sys_reqr['git_plugins'] },
       { 'tpope/vim-fugitive' },
       {
