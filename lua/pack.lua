@@ -133,9 +133,9 @@ require('packer').startup(function(use)
       config = function() require('plugin_post.splitjoin') end
     },
     {
-        'Mofiqul/vscode.nvim',
-        config = function() require('plugin_post.colorscheme') end,
-      },
+      'Mofiqul/vscode.nvim',
+      config = function() require('plugin_post.colorscheme') end,
+    },
     {
       'NMAC427/guess-indent.nvim',
       config = function() require('plugin_post.guess_indent_nvim') end,
