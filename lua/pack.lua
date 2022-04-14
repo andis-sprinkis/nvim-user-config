@@ -40,6 +40,7 @@ require('packer').startup(function(use)
     { 'editorconfig/editorconfig-vim' },
     { 'tpope/vim-eunuch' },
     { 'tversteeg/registers.nvim' },
+    { 'haringsrob/nvim_context_vt' },
     {
       'sindrets/winshift.nvim',
       config = function() require('plugin_post.winshift_nvim') end,
@@ -65,7 +66,10 @@ require('packer').startup(function(use)
     {
       'williamboman/nvim-lsp-installer',
       cond = { vim.g.sys_reqr['lsp_plugins'] },
-      config = function() require('plugin_post.nvim_lsp_installer') end,
+      config = function()
+        require('plugin_post.nvim_lsp_installer')
+        require('plugin_post.null_ls_nvim')
+      end,
       requires = {
         { 'b0o/schemastore.nvim' },
         { 'jose-elias-alvarez/null-ls.nvim' },
