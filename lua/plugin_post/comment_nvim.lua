@@ -12,14 +12,14 @@ if vim.g.sys_reqr['treesitter'] then
         -- Determine the location where to calculate commentstring from
         local location = nil
         if ctx.ctype == U.ctype.block then
-            location = require('ts_context_commentstring.utils').get_cursor_location()
+          location = require('ts_context_commentstring.utils').get_cursor_location()
         elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-            location = require('ts_context_commentstring.utils').get_visual_start_location()
+          location = require('ts_context_commentstring.utils').get_visual_start_location()
         end
 
         return require('ts_context_commentstring.internal').calculate_commentstring({
-            key = type,
-            location = location,
+          key = type,
+          location = location,
         })
       end
     end,
