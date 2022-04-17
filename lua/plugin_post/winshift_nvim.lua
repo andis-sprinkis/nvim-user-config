@@ -25,3 +25,5 @@ require("winshift").setup({
     },
   },
 })
+
+vim.api.nvim_set_keymap('n', '<Leader>w', ':WinShift<cr>', { silent = true })
