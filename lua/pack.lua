@@ -40,7 +40,11 @@ require('packer').startup(function(use)
     { 'editorconfig/editorconfig-vim' },
     { 'tpope/vim-eunuch' },
     { 'tversteeg/registers.nvim' },
-    { 'haringsrob/nvim_context_vt' },
+    {
+      'haringsrob/nvim_context_vt',
+      cond = { vim.g.sys_reqr['treesitter'] },
+      config = require('plugin_post.nvim_context_vt_nvim'),
+    },
     {
       'sindrets/winshift.nvim',
       config = function() require('plugin_post.winshift_nvim') end,
