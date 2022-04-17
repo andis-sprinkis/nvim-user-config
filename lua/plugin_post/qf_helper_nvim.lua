@@ -36,9 +36,9 @@ return function ()
     " p jumps without leaving quickfix
     autocmd FileType qf lua vim.api.nvim_buf_set_keymap(0, "n", "<C-p>", "<CR><C-W>p", { noremap = true, silent = true })
     " <C-k> scrolls up and jumps without leaving quickfix
-    autocmd FileType qf lua vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", "k<CR><C-W>p", { noremap = true, silent = true })
+    autocmd FileType qf lua vim.api.nvim_buf_set_keymap(0, "n", "<S-k>", "k<CR><C-W>p", { noremap = true, silent = true })
     " <C-j> scrolls down and jumps without leaving quickfix
-    autocmd FileType qf lua vim.api.nvim_buf_set_keymap(0, "n", "<C-j>", "j<CR><C-W>p", { noremap = true, silent = true })
+    autocmd FileType qf lua vim.api.nvim_buf_set_keymap(0, "n", "<S-j>", "j<CR><C-W>p", { noremap = true, silent = true })
     " { and } navigates up and down by file
     autocmd FileType qf lua vim.api.nvim_buf_set_keymap( 0, "n", "{", '<cmd>lua require"qf_helper".navigate(-1, {by_file = true})<CR><C-W>p', { noremap = true, silent = true })
     autocmd FileType qf lua vim.api.nvim_buf_set_keymap( 0, "n", "}", '<cmd>lua require"qf_helper".navigate(1, {by_file = true})<CR><C-W>p', { noremap = true, silent = true })
