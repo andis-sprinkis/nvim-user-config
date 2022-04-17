@@ -41,6 +41,10 @@ require('packer').startup(function(use)
     { 'tpope/vim-eunuch' },
     { 'tversteeg/registers.nvim' },
     {
+      'stevearc/qf_helper.nvim',
+      config = require('plugin_post.qf_helper_nvim'),
+    },
+    {
       'haringsrob/nvim_context_vt',
       cond = { vim.g.sys_reqr['treesitter'] },
       config = require('plugin_post.nvim_context_vt_nvim'),
@@ -119,7 +123,7 @@ require('packer').startup(function(use)
     {
       'kkoomen/vim-doge',
       run = function() vim.fn['doge#install']() end,
-      config = require('plugin_post.vim_doge'),
+      setup = require('plugin_post.vim_doge_setup'),
       cond = { vim.g.sys_reqr['vim_doge'] },
     },
     {
