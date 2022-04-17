@@ -85,6 +85,7 @@ require('packer').startup(function(use)
       },
     },
     {
+      -- TODO: provide dap configuration
       cond = vim.g.sys_reqr['dap_plugins'],
       { 'Pocco81/DAPInstall.nvim' },
       { 'mfussenegger/nvim-dap' },

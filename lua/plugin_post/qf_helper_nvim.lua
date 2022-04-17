@@ -4,6 +4,7 @@ return function ()
     sort_lsp_diagnostics = true, -- Sort LSP diagnostic results
     quickfix = {
       autoclose = true,          -- Autoclose qf if it's the only open window
+      -- TODO: configure bindings
       default_bindings = false,   -- Set up recommended bindings in qf window
       default_options = true,    -- Set recommended buffer and window options
       max_height = 15,           -- Max qf height when using open() or toggle()
@@ -13,6 +14,7 @@ return function ()
     },
     loclist = {                  -- The same options, but for the loclist
       autoclose = true,
+      -- TODO: configure bindings
       default_bindings = false,
       default_options = true,
       max_height = 15,
