@@ -1,1 +1,3 @@
-vim.g.dirvish_mode = ':sort ,^.*[\\/],'
+return function ()
+  vim.g.dirvish_mode = ':sort ,^.*[\\/],'
+end

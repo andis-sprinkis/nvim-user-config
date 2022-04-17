@@ -47,21 +47,21 @@ require('packer').startup(function(use)
     },
     {
       'sindrets/winshift.nvim',
-      config = function() require('plugin_post.winshift_nvim') end,
+      config = require('plugin_post.winshift_nvim'),
     },
     {
       cond = { vim.g.sys_reqr['git_plugins'] },
       { 'tpope/vim-fugitive' },
       {
         'lewis6991/gitsigns.nvim',
-        config = function() require('plugin_post.gitsigns_nvim') end,
+        config = require('plugin_post.gitsigns_nvim'),
       },
     },
     {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       cond = { vim.g.sys_reqr['treesitter'] },
-      config = function() require('plugin_post.nvim_treesitter') end,
+      config = require('plugin_post.nvim_treesitter'),
       requires = {
         { 'JoosepAlviste/nvim-ts-context-commentstring' },
         { 'nvim-treesitter/nvim-treesitter-textobjects' },
@@ -71,8 +71,8 @@ require('packer').startup(function(use)
       'williamboman/nvim-lsp-installer',
       cond = { vim.g.sys_reqr['lsp_plugins'] },
       config = function()
-        require('plugin_post.nvim_lsp_installer')
-        require('plugin_post.null_ls_nvim')
+        require('plugin_post.nvim_lsp_installer')()
+        require('plugin_post.null_ls_nvim')()
       end,
       requires = {
         { 'b0o/schemastore.nvim' },
@@ -94,31 +94,32 @@ require('packer').startup(function(use)
     {
       'ibhagwan/fzf-lua',
       cond = { vim.g.sys_reqr['fzf_lua'] },
-      config = function() require('plugin_post.fzf_lua') end
+      config = require('plugin_post.fzf_lua')
     },
     {
       'junegunn/fzf.vim',
       cond = { vim.g.sys_reqr['fzf_vim'] },
-      config = function() require('plugin_post.fzf_vim') end
+      config = require('plugin_post.fzf_vim')
     },
     {
       'is0n/fm-nvim',
       cond = { vim.g.sys_reqr['fm_nvim'] },
-      config = function() require('plugin_post.fm_nvim') end,
+      config = require('plugin_post.fm_nvim')
     },
     {
       'nvim-pack/nvim-spectre',
       cond = { vim.g.sys_reqr['nvim_spectre'] },
-      config = function() require('plugin_post.nvim_spectre') end,
+      config = require('plugin_post.nvim_spectre'),
     },
     {
       'lambdalisue/suda.vim',
       cond = { vim.g.sys_reqr['suda_vim'] },
-      config = function() require('plugin_post.suda') end,
+      config = require('plugin_post.suda'),
     },
     {
       'kkoomen/vim-doge',
       run = function() vim.fn['doge#install']() end,
+      config = require('plugin_post.vim_doge'),
       cond = { vim.g.sys_reqr['vim_doge'] },
     },
     {
@@ -134,19 +135,19 @@ require('packer').startup(function(use)
     },
     {
       'AndrewRadev/splitjoin.vim',
-      config = function() require('plugin_post.splitjoin') end
+      config = require('plugin_post.splitjoin')
     },
     {
       'Mofiqul/vscode.nvim',
-      config = function() require('plugin_post.colorscheme') end,
+      config = require('plugin_post.colorscheme')
     },
     {
       'NMAC427/guess-indent.nvim',
-      config = function() require('plugin_post.guess_indent_nvim') end,
+      config = require('plugin_post.guess_indent_nvim')
     },
     {
       'notomo/cmdbuf.nvim',
-      config = function() require('plugin_post.cmdbuf_nvim') end,
+      config = require('plugin_post.cmdbuf_nvim')
     },
     {
       'hrsh7th/nvim-cmp',
@@ -162,24 +163,24 @@ require('packer').startup(function(use)
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-path' },
       },
-      config = function() require('plugin_post.nvim_cmp') end
+      config = require('plugin_post.nvim_cmp')
     },
     {
       'justinmk/vim-dirvish',
-      config = function() require('plugin_post.dirvish') end
+      config = require('plugin_post.dirvish')
     },
     {
       'lukas-reineke/indent-blankline.nvim',
-      config = function() require('plugin_post.indent_blankline_nvim') end
+      config = require('plugin_post.indent_blankline_nvim')
     },
     {
       'mihaifm/bufstop',
-      config = function() require('plugin_post.bufstop') end
+      config = require('plugin_post.bufstop')
     },
     {
       'numToStr/Comment.nvim',
       tag = 'v0.6',
-      config = function() require('plugin_post.comment_nvim') end
+      config = require('plugin_post.comment_nvim')
     },
   }
 

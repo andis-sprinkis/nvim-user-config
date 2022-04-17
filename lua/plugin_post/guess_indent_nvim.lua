@@ -1,1 +1,3 @@
-require('guess-indent').setup {}
+return function ()
+  require('guess-indent').setup {}
+end
