@@ -44,11 +44,11 @@ require('packer').startup(function(use)
       'stevearc/qf_helper.nvim',
       config = require('plugin_post.qf_helper_nvim'),
     },
-    {
-      'haringsrob/nvim_context_vt',
-      cond = { vim.g.sys_reqr['treesitter'] },
-      config = require('plugin_post.nvim_context_vt_nvim'),
-    },
+    -- {
+    --   'haringsrob/nvim_context_vt',
+    --   cond = { vim.g.sys_reqr['treesitter'] },
+    --   config = require('plugin_post.nvim_context_vt_nvim'),
+    -- },
     {
       'sindrets/winshift.nvim',
       config = require('plugin_post.winshift_nvim'),
