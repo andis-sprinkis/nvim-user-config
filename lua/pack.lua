@@ -47,6 +47,7 @@ require('packer').startup(function(use)
     -- {
     --   'haringsrob/nvim_context_vt',
     --   cond = { vim.g.sys_reqr['treesitter'] },
+    --   after = { 'nvim-treesitter' },
     --   config = require('plugin_post.nvim_context_vt_nvim'),
     -- },
     {
