@@ -44,12 +44,12 @@ require('packer').startup(function(use)
       'stevearc/qf_helper.nvim',
       config = require('plugin_post.qf_helper_nvim'),
     },
-    -- {
-    --   'haringsrob/nvim_context_vt',
-    --   cond = { vim.g.sys_reqr['treesitter'] },
-    --   after = { 'nvim-treesitter' },
-    --   config = require('plugin_post.nvim_context_vt_nvim'),
-    -- },
+    {
+      'haringsrob/nvim_context_vt',
+      cond = { vim.g.sys_reqr['treesitter'] },
+      after = { 'nvim-treesitter' },
+      config = require('plugin_post.nvim_context_vt_nvim'),
+    },
     {
       'sindrets/winshift.nvim',
       config = require('plugin_post.winshift_nvim'),
@@ -185,7 +185,6 @@ require('packer').startup(function(use)
     },
     {
       'numToStr/Comment.nvim',
-      tag = 'v0.6',
       config = require('plugin_post.comment_nvim')
     },
   }
