@@ -134,8 +134,8 @@ require('packer').startup(function(use)
       cond = { vim.g.sys_reqr['vim_hexokinase'] },
     },
     {
-      cond = { vim.g.sys_reqr['markdown_preview'] },
       'iamcco/markdown-preview.nvim',
+      cond = { vim.g.sys_reqr['markdown_preview'] },
       run = function () vim.fn['mkdp#util#install']() end,
       ft = { 'markdown', 'vim-plug' },
     },
