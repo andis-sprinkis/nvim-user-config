@@ -73,6 +73,12 @@ require('packer').startup(function(use)
       }
     },
     {
+      'm-demare/hlargs.nvim',
+      cond = { vim.g.sys_reqr['treesitter'] },
+      requires = { 'nvim-treesitter/nvim-treesitter' },
+      config = require('plugin_post.hlargs_nvim'),
+    },
+    {
       'williamboman/nvim-lsp-installer',
       cond = { vim.g.sys_reqr['lsp_plugins'] },
       config = function()
