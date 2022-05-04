@@ -41,6 +41,10 @@ require('packer').startup(function(use)
     { 'tpope/vim-eunuch' },
     { 'tversteeg/registers.nvim' },
     {
+      'mrjones2014/smart-splits.nvim',
+      config = require('plugin_post.smart_splits_nvim'),
+    },
+    {
       'stevearc/qf_helper.nvim',
       config = require('plugin_post.qf_helper_nvim'),
     },
