@@ -19,12 +19,14 @@ return function ()
 
   local cmdline_cmd_sources = {
     { name = 'cmdline' },
+    { name = 'cmdline_history' },
     { name = 'path' },
     { name = 'buffer' },
   }
 
   local cmdline_lookup_sources = {
     { name = 'buffer' },
+    { name = 'cmdline_history' },
   }
 
   local has_words_before = function()
@@ -49,24 +51,15 @@ return function ()
       }),
       ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ["<Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
+        if cmp.visible() then cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then luasnip.expand_or_jump()
+        elseif has_words_before() then cmp.complete()
+        else fallback() end 
       end, { "i", "s" }),
       ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
+        if cmp.visible() then cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then luasnip.jump(-1)
+        else fallback() end
       end, { "i", "s" }),
     },
     sources = cmp.config.sources(main_sources)
@@ -77,6 +70,7 @@ return function ()
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', { sources = cmp.config.sources(cmdline_lookup_sources) })
+  cmp.setup.cmdline('?', { sources = cmp.config.sources(cmdline_lookup_sources) })
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', { sources = cmp.config.sources(cmdline_cmd_sources) })

@@ -166,6 +166,7 @@ require('packer').startup(function(use)
       requires = {
         { 'L3MON4D3/LuaSnip' },
         { 'rafamadriz/friendly-snippets' },
+        { 'dmitmel/cmp-cmdline-history' },
         { 'saadparwaiz1/cmp_luasnip' },
         { 'David-Kunz/cmp-npm' },
         { 'petertriho/cmp-git' },
