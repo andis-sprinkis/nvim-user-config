@@ -133,7 +133,7 @@ end
 -- Only set up WinEnter autocmd when the WinLeave autocmd runs
 vim.cmd[[
   augroup statusline
-    autocmd WinLeave,FocusLost   * autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
+    autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
     autocmd WinLeave,FocusLost   * let &l:statusline=v:lua.statusline.statusline(0)
     autocmd VimEnter             * let &statusline=v:lua.statusline.statusline(1)
     " autocmd ColorScheme,VimEnter * lua statusline.hldefs()
