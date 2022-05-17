@@ -1,4 +1,5 @@
-return function ()
+return function()
+  -- TODO: conditional common chars for tty session
   require('indent_blankline').setup({
     show_current_context = true,
     show_first_indent_level = true,

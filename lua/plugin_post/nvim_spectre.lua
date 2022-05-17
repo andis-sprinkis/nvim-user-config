@@ -1,4 +1,4 @@
-return function ()
+return function()
   vim.cmd([[au FileType spectre_panel setlocal signcolumn=no]])
 
   -- search global

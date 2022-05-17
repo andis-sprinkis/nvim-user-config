@@ -1,4 +1,4 @@
-return function ()
+return function()
   vim.g.BufstopSpeedKeys = { '<F1>', '<F2>', '<F3>', '<F4>', '<F5>', '<F6>' }
   vim.g.BufstopLeader = ''
   vim.g.BufstopAutoSpeedToggle = 1

@@ -1,4 +1,4 @@
-return function ()
+return function()
   local lsp_installer = require "nvim-lsp-installer"
 
   local lsp_servers = {
@@ -25,7 +25,7 @@ return function ()
 
   -- Mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  local map_opts = { noremap=true, silent=true }
+  local map_opts = { noremap = true, silent = true }
   vim.api.nvim_set_keymap('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', map_opts)
   vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', map_opts)
   vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', map_opts)
@@ -100,38 +100,38 @@ return function ()
   -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
   -- or if the server is already installed).
   lsp_installer.on_server_ready(function(server)
-      local config = make_config()
+    local config = make_config()
 
-      if server.name == 'sumneko_lua' then
-        config.settings = {
-          Lua = {
-            diagnostics = {
-              -- Get the language server to recognize the `vim` global
-              globals = {'vim'},
-            },
-            telemetry = {
-              enable = false,
-            },
+    if server.name == 'sumneko_lua' then
+      config.settings = {
+        Lua = {
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = { 'vim' },
           },
-        }
-      end
-
-      if server.name == 'jsonls' then
-        config.settings = {
-          json = {
-            schemas = require('schemastore').json.schemas(),
+          telemetry = {
+            enable = false,
           },
-        }
+        },
+      }
+    end
+
+    if server.name == 'jsonls' then
+      config.settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+        },
+      }
+    end
+
+    if server.name == 'tsserver' then
+      config.on_attach = function(client, bufnr)
+        remove_formatting_capabilities(client)
+
+        on_attach(client, bufnr)
       end
+    end
 
-      if server.name == 'tsserver' then
-        config.on_attach = function(client, bufnr)
-          remove_formatting_capabilities(client)
-
-          on_attach(client, bufnr)
-        end
-      end
-
-      server:setup(config)
+    server:setup(config)
   end)
 end

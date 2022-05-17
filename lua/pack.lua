@@ -17,10 +17,10 @@ vim.g.sys_reqr = {
 }
 
 local packer_bootstrap
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' .. vim.o.runtimepath
-  packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 end
 
 require('packer').startup(function(use)
@@ -148,7 +148,7 @@ require('packer').startup(function(use)
     {
       'iamcco/markdown-preview.nvim',
       cond = { vim.g.sys_reqr['markdown_preview'] },
-      run = function () vim.fn['mkdp#util#install']() end,
+      run = function() vim.fn['mkdp#util#install']() end,
       ft = { 'markdown', 'vim-plug' },
     },
     {

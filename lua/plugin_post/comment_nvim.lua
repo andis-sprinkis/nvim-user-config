@@ -1,4 +1,4 @@
-return function ()
+return function()
   if vim.g.sys_reqr['treesitter'] then
     require('Comment').setup {
       ---@param ctx Ctx

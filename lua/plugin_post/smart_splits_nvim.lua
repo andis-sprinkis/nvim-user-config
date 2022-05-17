@@ -1,4 +1,4 @@
-return function ()
+return function()
   -- require('smart-splits').setup({
   --   -- Ignored filetypes (only while resizing)
   --   ignored_filetypes = {
