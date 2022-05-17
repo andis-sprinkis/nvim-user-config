@@ -72,7 +72,7 @@ set tabstop=2 shiftwidth=2 expandtab
 
 " dispay special chars
 "set listchars=eol:⦙,tab:»\ 
-set listchars=space:·,trail:·,eol:¶,tab:»\ 
+set listchars=space:·,trail:·,eol:↲,tab:»\ 
 set list
 
 " terminal buffer settings
