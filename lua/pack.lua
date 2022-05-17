@@ -101,7 +101,6 @@ require('packer').startup(function(use)
       requires = {
         {
           'Pocco81/dap-buddy.nvim',
-          commit = '24923c3819a450a772bb8f675926d530e829665f',
         },
         { 'theHamsta/nvim-dap-virtual-text' },
       },
