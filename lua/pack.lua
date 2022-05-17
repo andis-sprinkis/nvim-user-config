@@ -96,11 +96,13 @@ require('packer').startup(function(use)
       },
     },
     {
-      -- TODO: provide dap configuration
+      'mfussenegger/nvim-dap',
       cond = vim.g.sys_reqr['dap_plugins'],
-      { 'Pocco81/DAPInstall.nvim' },
-      { 'mfussenegger/nvim-dap' },
-      { 'theHamsta/nvim-dap-virtual-text' },
+      requires = {
+        { 'Pocco81/dap-buddy.nvim' },
+        { 'theHamsta/nvim-dap-virtual-text' },
+      },
+      config = require('plugin_post.nvim_dap')
     },
     {
       'junegunn/fzf',
