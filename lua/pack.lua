@@ -99,7 +99,10 @@ require('packer').startup(function(use)
       'mfussenegger/nvim-dap',
       cond = vim.g.sys_reqr['dap_plugins'],
       requires = {
-        { 'Pocco81/dap-buddy.nvim' },
+        {
+          'Pocco81/dap-buddy.nvim',
+          commit = '24923c3819a450a772bb8f675926d530e829665f',
+        },
         { 'theHamsta/nvim-dap-virtual-text' },
       },
       config = require('plugin_post.nvim_dap')
