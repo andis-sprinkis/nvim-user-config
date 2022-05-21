@@ -36,6 +36,7 @@ if vim.g.os == 'Windows' then
   vim.env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. vim.env.PATH
 else
   vim.env.LANG = 'en_US.UTF-8'
+  vim.env.PATH = vim.fn.stdpath('config') .. '/bin:' .. vim.env.PATH
 end
 
 vim.cmd([[
