@@ -27,7 +27,6 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = { 'longest:full', 'full' }
 vim.opt.winblend = 10
 vim.opt.writebackup = false
--- TODO: conditional common chars for tty session
 vim.opt.listchars = { eol = '↲', tab = '» ' }
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.breakindent = true
