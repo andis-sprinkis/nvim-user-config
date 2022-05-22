@@ -41,6 +41,11 @@ require('packer').startup(function(use)
     { 'tpope/vim-eunuch' },
     { 'tversteeg/registers.nvim' },
     {
+      'jghauser/follow-md-links.nvim',
+      cond = { vim.g.sys_reqr['treesitter'] },
+      requires = { 'nvim-treesitter/nvim-treesitter' },
+    },
+    {
       'mrjones2014/smart-splits.nvim',
       config = require('plugin_post.smart_splits_nvim'),
     },
