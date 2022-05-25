@@ -2,7 +2,7 @@
 
 ## Installation
 
-Via *nix shell:
+Via \*nix shell:
 
 ```bash
 git clone https://github.com/andis-sprinkis/nvim-user-config $HOME/.config/nvim
