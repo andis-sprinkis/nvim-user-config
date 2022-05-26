@@ -12,6 +12,7 @@ return function()
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
+    { name = 'zsh' },
     { name = 'emoji' },
     { name = 'npm', keyword_length = 4 }
   }
@@ -83,6 +84,7 @@ return function()
     { name = 'cmdline_history' },
     { name = 'path' },
     { name = 'buffer' },
+    { name = 'zsh' },
   }
 
   cmp.setup.cmdline(':', {
