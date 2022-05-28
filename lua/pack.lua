@@ -10,6 +10,7 @@ vim.g.sys_reqr = {
   lsp_plugins = vim.fn.executable('node') == 1,
   markdown_preview = vim.fn.executable('node') == 1,
   nvim_spectre = vim.fn.executable('sed') == 1,
+  nvim_gfold_lua = vim.fn.executable('gfold') == 1,
   suda_vim = vim.fn.executable('sudo') == 1,
   treesitter = vim.fn.executable('tree-sitter') == 1,
   vim_doge = vim.fn.executable('node') == 1,
@@ -70,6 +71,11 @@ require('packer').startup(function(use)
         'lewis6991/gitsigns.nvim',
         config = require('plugin_post.gitsigns_nvim'),
       },
+      {
+        "AckslD/nvim-gfold.lua",
+        cond = { vim.g.sys_reqr['nvim_gfold_lua'] },
+        config = require('plugin_post.nvim_gfold_lua'),
+      }
     },
     {
       'nvim-treesitter/nvim-treesitter',
