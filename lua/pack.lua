@@ -30,6 +30,7 @@ require('packer').startup(function(use)
       'lewis6991/impatient.nvim',
       config = function() require('impatient') end,
     },
+    { 'stevearc/dressing.nvim' },
     { 'wbthomason/packer.nvim' },
     { 'nvim-lua/plenary.nvim' },
     { 'Jorengarenar/vim-MvVis' },

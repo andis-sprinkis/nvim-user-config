@@ -1,6 +1,10 @@
 return function()
-  -- TODO: add UI picker (e.g. dressing.nvim)
-  -- and vim command for
-  -- lua require('gfold').pick_repo()
-  require('gfold').setup()
+  require('gfold').setup({
+    picker = {
+      -- what to do when selecting a repo
+      -- by default changes cwd
+      on_select = require('gfold.actions').change_cwd,
+    },
+  })
+  vim.cmd([[command! Gfold execute "lua require('gfold').pick_repo()"]])
 end
