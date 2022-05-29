@@ -6,6 +6,7 @@ return function()
       on_select = function (repo, idx)
         require('gfold.actions').change_cwd(repo, idx)
         if repo then
+          vim.cmd("split")
           vim.cmd("edit " .. repo.path)
         end
       end,
