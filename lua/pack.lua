@@ -182,6 +182,7 @@ require('packer').startup(function(use)
         { 'rafamadriz/friendly-snippets' },
         { 'dmitmel/cmp-cmdline-history' },
         { 'saadparwaiz1/cmp_luasnip' },
+        { 'lukas-reineke/cmp-rg' },
         { 'David-Kunz/cmp-npm' },
         { 'petertriho/cmp-git' },
         { 'hrsh7th/cmp-buffer' },
