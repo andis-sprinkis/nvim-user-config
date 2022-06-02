@@ -72,11 +72,11 @@ require('packer').startup(function(use)
         'lewis6991/gitsigns.nvim',
         config = require('plugin_post.gitsigns_nvim'),
       },
-      {
-        "AckslD/nvim-gfold.lua",
-        cond = { vim.g.sys_reqr['nvim_gfold_lua'] },
-        config = require('plugin_post.nvim_gfold_lua'),
-      }
+      -- {
+      --   "AckslD/nvim-gfold.lua",
+      --   cond = { vim.g.sys_reqr['nvim_gfold_lua'] },
+      --   config = require('plugin_post.nvim_gfold_lua'),
+      -- }
     },
     {
       'nvim-treesitter/nvim-treesitter',
