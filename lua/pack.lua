@@ -42,6 +42,7 @@ require('packer').startup(function(use)
     { 'editorconfig/editorconfig-vim' },
     { 'tpope/vim-eunuch' },
     { 'tversteeg/registers.nvim' },
+    { 'jghauser/mkdir.nvim' },
     {
       'jghauser/follow-md-links.nvim',
       cond = { vim.g.sys_reqr['treesitter'] },
