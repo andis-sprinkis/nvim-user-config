@@ -2,6 +2,7 @@ return function()
   local lsp_installer = require "nvim-lsp-installer"
 
   local lsp_servers = {
+    'awk_ls',
     'bashls',
     'clangd',
     'cmake',
