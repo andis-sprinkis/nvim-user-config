@@ -1,3 +1,8 @@
+if vim.g.os == nil then
+  if (vim.fn.has('win64') == 1) then vim.g.os = 'Windows'
+  else vim.g.os = vim.fn.substitute(vim.fn.system('uname'), '\n', '', '') end
+end
+
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
@@ -30,6 +35,7 @@ vim.opt.writebackup = false
 vim.opt.listchars = { eol = '↲', tab = '» ' }
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.breakindent = true
+vim.g.man_hard_wrap = true
 
 if vim.g.os == 'Windows' then
   vim.env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. vim.env.PATH
@@ -43,6 +49,21 @@ vim.cmd([[
   filetype plugin indent on
 
   au VimResized * wincmd =
+
   au TermOpen * setlocal nonumber norelativenumber signcolumn=no
   au TermOpen term://* startinsert
+
+  au FileType help setlocal signcolumn=no
+  au FileType man setlocal signcolumn=no
 ]])
+
+if vim.g.neoray == 1 then
+  vim.opt.guifont = 'CascadiaCodePL:h13'
+
+  vim.cmd([[
+    NeoraySet KeyZoomIn <C-ScrollWheelUp>
+    NeoraySet KeyZoomOut <C-ScrollWheelDown>
+    NeoraySet WindowSize 108x40
+    NeoraySet WindowState centered
+  ]])
+end
