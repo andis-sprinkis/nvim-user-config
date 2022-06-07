@@ -15,6 +15,7 @@ vim.g.sys_reqr = {
   treesitter = vim.fn.executable('tree-sitter') == 1,
   vim_doge = vim.fn.executable('node') == 1,
   vim_hexokinase = vim.fn.executable('go') == 1,
+  cmp_zsh = vim.fn.executable('zsh') == 1,
 }
 
 local packer_bootstrap
@@ -190,7 +191,9 @@ require('packer').startup(function(use)
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-cmdline' },
         { 'hrsh7th/cmp-emoji' },
-        { 'tamago324/cmp-zsh' },
+        { 'tamago324/cmp-zsh',
+          cond = { vim.g.sys_reqr['cmp_zsh'] }
+        },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-path' },
       },
