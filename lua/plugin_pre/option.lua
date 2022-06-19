@@ -45,9 +45,6 @@ else
 end
 
 vim.cmd([[
-  syntax on
-  filetype plugin indent on
-
   au VimResized * wincmd =
 
   au TermOpen * setlocal nonumber norelativenumber signcolumn=no
