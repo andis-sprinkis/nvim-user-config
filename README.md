@@ -27,7 +27,6 @@ git checkout minimal-config
 - System:
   - `bash`
   - `bat`
-  - `gfold`
   - `git`
   - `go`
   - `lf`
