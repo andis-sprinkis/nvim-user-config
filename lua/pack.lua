@@ -51,6 +51,10 @@ require('packer').startup(function(use)
       requires = { 'nvim-treesitter/nvim-treesitter' },
     },
     {
+      "luukvbaal/stabilize.nvim",
+      config = require('plugin_post.stabilize_nvim')
+    },
+    {
       'mrjones2014/smart-splits.nvim',
       config = require('plugin_post.smart_splits_nvim'),
     },
