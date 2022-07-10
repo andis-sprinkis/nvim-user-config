@@ -1,12 +1,10 @@
-vim.g.nogitplugin = (vim.fn.executable('git') == false) or vim.g.nogitplugin == true
-
 vim.g.sys_reqr = {
   dap_plugins = vim.g.os ~= 'Windows',
   fm_nvim = vim.fn.executable('lf') == 1,
   fzf = vim.g.os == 'Windows' or vim.g.os == 'Darwin',
   fzf_lua = vim.g.os ~= 'Windows',
   fzf_vim = vim.g.os == 'Windows' and (vim.fn.executable('bash') == 1),
-  git_plugins = vim.g.nogitplugin == false,
+  git_plugins = vim.fn.executable('git') == 1,
   lsp_plugins = vim.fn.executable('node') == 1,
   markdown_preview = vim.fn.executable('node') == 1,
   nvim_spectre = vim.fn.executable('sed') == 1,
