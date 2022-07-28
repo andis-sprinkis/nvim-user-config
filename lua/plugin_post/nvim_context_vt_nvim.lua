@@ -6,5 +6,6 @@ return function ()
       return '  In "' .. utils.get_node_text(node)[1] .. '"'
     end,
     highlight = 'Whitespace',
+    disable_virtual_lines = true,
   })
 end
