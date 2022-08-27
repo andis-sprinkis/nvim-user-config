@@ -98,7 +98,6 @@ function M.bufname()
 
     if (vim.g.os == 'Windows') then
       _, _, commit, relpath = name:find([[^fugitive:\\.*\%.git.*\(%x-)\(.*)]])
-      name = relpath..'@'..commit:sub(1, 7)
     else
       _, _, commit, relpath = name:find([[^fugitive://.*/%.git.*/(%x-)/(.*)]])
     end
