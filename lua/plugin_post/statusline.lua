@@ -94,7 +94,15 @@ function M.bufname()
   local width = math.floor(vim.api.nvim_win_get_width(0) * ratio)
   local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':.')
   if vim.startswith(name, 'fugitive') then
-    local _, _, commit, relpath = name:find([[^fugitive://.*/%.git.*/(%x-)/(.*)]])
+    local _, commit, relpath
+
+    if (vim.g.os == 'Windows') then
+      _, _, commit, relpath = name:find([[^fugitive:\\.*\%.git.*\(%x-)\(.*)]])
+      name = relpath..'@'..commit:sub(1, 7)
+    else
+      _, _, commit, relpath = name:find([[^fugitive://.*/%.git.*/(%x-)/(.*)]])
+    end
+
     name = relpath..'@'..commit:sub(1, 7)
   end
   if #name > width then
