@@ -3,7 +3,7 @@ return function()
 
   local lsp_servers = {
     'awk_ls',
-    'bashls',
+    -- 'bashls',
     'clangd',
     'cmake',
     'cssls',
