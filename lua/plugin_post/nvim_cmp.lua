@@ -11,7 +11,6 @@ return function()
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },
-    { name = 'rg' },
     { name = 'path' },
     { name = 'zsh' },
     { name = 'emoji' },
