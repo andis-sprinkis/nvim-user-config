@@ -15,7 +15,7 @@ end
 function M.hldefs()
   local bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background
   for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
-    local hl = vim.api.nvim_get_hl_by_name('Diagnostic'..ty, true)
+    local hl = vim.api.nvim_get_hl_by_name('Diagnostic' .. ty, true)
     if (bg ~= nil and bg > 255) then
       vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x guibg=#%6x'):format(ty, hl.foreground, bg))
     else
@@ -32,12 +32,12 @@ function M.lsp_status(active)
   local status = {}
 
   for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
-    local n = vim.diagnostic.get(0, {severity=ty})
+    local n = vim.diagnostic.get(0, { severity = ty })
     if #n > 0 then
       if active == 1 then
-        table.insert(status, ('%%#Diagnostic%sStatus# %s:%s'):format(ty, ty:sub(1,1), #n))
+        table.insert(status, ('%%#Diagnostic%sStatus# %s:%s'):format(ty, ty:sub(1, 1), #n))
       else
-        table.insert(status, (' %s:%s'):format(ty:sub(1,1), #n))
+        table.insert(status, (' %s:%s'):format(ty:sub(1, 1), #n))
       end
     end
   end
@@ -51,7 +51,7 @@ function M.hunks()
   if vim.b.gitsigns_status then
     local status = vim.b.gitsigns_head
     if vim.b.gitsigns_status ~= '' then
-      status = status ..' '..vim.b.gitsigns_status
+      status = status .. ' ' .. vim.b.gitsigns_status
     end
     return status
   elseif vim.g.gitsigns_head then
@@ -74,19 +74,19 @@ function M.filetype()
 end
 
 function M.encodingAndFormat()
-    local e = vim.bo.fileencoding and vim.bo.fileencoding or vim.o.encoding
+  local e = vim.bo.fileencoding and vim.bo.fileencoding or vim.o.encoding
 
-    local r = {}
-    if e ~= 'utf-8' then
-      r[#r+1] = e
-    end
+  local r = {}
+  if e ~= 'utf-8' then
+    r[#r + 1] = e
+  end
 
-    local f = vim.bo.fileformat
-    if f ~= 'unix' then
-      r[#r+1] = '['..f..']'
-    end
+  local f = vim.bo.fileformat
+  if f ~= 'unix' then
+    r[#r + 1] = '[' .. f .. ']'
+  end
 
-    return table.concat(r, ' ')
+  return table.concat(r, ' ')
 end
 
 function M.bufname()
@@ -102,32 +102,32 @@ function M.bufname()
       _, _, commit, relpath = name:find([[^fugitive://.*/%.git.*/(%x-)/(.*)]])
     end
 
-    name = relpath..'@'..commit:sub(1, 7)
+    name = relpath .. '@' .. commit:sub(1, 7)
   end
   if #name > width then
-    name = '...'..name:sub(-width)
+    name = '...' .. name:sub(-width)
   end
   return name
 end
 
 local function pad(x)
-  return '%( '..x..' %)'
+  return '%( ' .. x .. ' %)'
 end
 
 local function func(name, active)
   active = active or 1
-  return '%{%v:lua.statusline.'..name..'('..tostring(active)..')%}'
+  return '%{%v:lua.statusline.' .. name .. '(' .. tostring(active) .. ')%}'
 end
 
 function M.statusline(active)
-  return table.concat{
+  return table.concat {
     highlight(1, active),
     pad(func('hunks')),
     highlight(2, active),
     pad(func('lsp_status', active)),
     highlight(2, active),
     '%=',
-    pad(func('bufname')..'%m%r%h%q'),
+    pad(func('bufname') .. '%m%r%h%q'),
     -- '%<%0.60f%m%r',  -- file.txt[+][RO]
     '%=',
     pad(func('filetype')),
@@ -138,7 +138,7 @@ function M.statusline(active)
 end
 
 -- Only set up WinEnter autocmd when the WinLeave autocmd runs
-vim.cmd[[
+vim.cmd [[
   augroup statusline
     autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
     autocmd WinLeave,FocusLost   * let &l:statusline=v:lua.statusline.statusline(0)

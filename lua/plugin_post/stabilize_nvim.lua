@@ -1,3 +1,3 @@
-return function ()
+return function()
   require("stabilize").setup()
 end

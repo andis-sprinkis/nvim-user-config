@@ -21,7 +21,8 @@ local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.n
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' .. vim.o.runtimepath
-  packer_bootstrap = vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+  packer_bootstrap = vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+    install_path })
 end
 
 require('packer').startup(function(use)
@@ -77,11 +78,6 @@ require('packer').startup(function(use)
         'lewis6991/gitsigns.nvim',
         config = require('plugin_post.gitsigns_nvim'),
       },
-      -- {
-      --   "AckslD/nvim-gfold.lua",
-      --   cond = { vim.g.sys_reqr['nvim_gfold_lua'] },
-      --   config = require('plugin_post.nvim_gfold_lua'),
-      -- }
     },
     {
       'nvim-treesitter/nvim-treesitter',
@@ -100,17 +96,16 @@ require('packer').startup(function(use)
       config = require('plugin_post.hlargs_nvim'),
     },
     {
-      'williamboman/nvim-lsp-installer',
+      "williamboman/mason.nvim",
       cond = { vim.g.sys_reqr['lsp_plugins'] },
-      config = function()
-        require('plugin_post.nvim_lsp_installer')()
-        require('plugin_post.null_ls_nvim')()
-      end,
+      config = require('plugin_post.mason_nvim'),
       requires = {
         { 'b0o/schemastore.nvim' },
+        { 'jayp0521/mason-null-ls.nvim' },
         { 'jose-elias-alvarez/null-ls.nvim' },
         { 'neovim/nvim-lspconfig' },
-      },
+        { 'williamboman/mason-lspconfig.nvim' },
+      }
     },
     {
       'mfussenegger/nvim-dap',
