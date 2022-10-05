@@ -10,7 +10,7 @@ vim.g.loaded_netrwPlugin = 0
 vim.opt.backup = false
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.encoding = 'utf-8'
-vim.opt.fcs = { eob = '' }
+vim.opt.fcs = { eob = nil }
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'syntax'
 vim.opt.hidden = true

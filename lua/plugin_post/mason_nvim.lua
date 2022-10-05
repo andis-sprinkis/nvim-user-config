@@ -44,15 +44,15 @@ return function()
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', map_opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', map_opts)
 
-    if client.resolved_capabilities.document_formatting then
-      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', map_opts)
+    if client.server_capabilities.documentFormattingProvider then
+      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', map_opts)
     end
 
-    if client.resolved_capabilities.document_range_formatting then
-      vim.api.nvim_buf_set_keymap(bufnr, 'x', '<Leader>f', '<cmd>lua vim.lsp.buf.range_formatting({})<CR>', map_opts)
+    if client.server_capabilities.documentRangeFormattingProvider then
+      vim.api.nvim_buf_set_keymap(bufnr, 'x', '<Leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', map_opts)
     end
 
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.documentHighlightProvider then
       vim.cmd([[
         augroup lsp_document_highlight
           autocmd! * <buffer>
@@ -62,7 +62,7 @@ return function()
       ]])
     end
 
-    vim.cmd([[command! Format execute 'lua vim.lsp.buf.formatting()']])
+    vim.cmd([[command! Format execute 'lua vim.lsp.buf.format({ async = true })']])
   end
 
   local function make_config()
@@ -77,8 +77,8 @@ return function()
   end
 
   local function remove_formatting_capabilities(client)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.documentFormattingProvider  = false
+    client.server_capabilities.documentRangeFormattingProvider = false
   end
 
   local lspconfig = require("lspconfig")
@@ -140,12 +140,12 @@ return function()
       null_ls.builtins.formatting.prettier,
     },
     on_attach = function(client, bufnr)
-      if client.resolved_capabilities.document_formatting then
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", map_opts)
+      if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", map_opts)
       end
 
-      if client.resolved_capabilities.document_range_formatting then
-        vim.api.nvim_buf_set_keymap(bufnr, "x", "<Leader>f", "<cmd>lua vim.lsp.buf.range_formatting({})<CR>", map_opts)
+      if client.server_capabilities.documentRangeFormattingProvider then
+        vim.api.nvim_buf_set_keymap(bufnr, "x", "<Leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", map_opts)
       end
     end,
   })
