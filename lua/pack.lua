@@ -40,8 +40,10 @@ require('packer').startup(function(use)
     { 'dhruvasagar/vim-table-mode' },
     { 'editorconfig/editorconfig-vim' },
     { 'tpope/vim-eunuch' },
-    { 'tversteeg/registers.nvim' },
     { 'jghauser/mkdir.nvim' },
+    { 'tversteeg/registers.nvim',
+      config = require('plugin_post.registers_nvim')
+    },
     {
       'jghauser/follow-md-links.nvim',
       cond = { vim.g.sys_reqr['treesitter'] },
