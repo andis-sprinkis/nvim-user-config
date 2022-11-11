@@ -211,6 +211,10 @@ require('packer').startup(function(use)
       'numToStr/Comment.nvim',
       config = require('plugin_post.comment_nvim')
     },
+    {
+      "andrewferrier/debugprint.nvim",
+      config = require('plugin_post.debugprint_nvim'),
+    }
   }
 
   if packer_bootstrap then require('packer').sync() end
