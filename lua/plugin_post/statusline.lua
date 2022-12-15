@@ -60,13 +60,15 @@ function M.hunks()
   return ''
 end
 
-function M.blame()
-  if vim.b.gitsigns_blame_line_dict then
-    local info = vim.b.gitsigns_blame_line_dict
-    local date_time = require('gitsigns.util').get_relative_time(tonumber(info.author_time))
-    return string.format('%s - %s', info.author, date_time)
+function M.swenv()
+  if (vim.g.sys_reqr.swenv) then
+    local venv = require('swenv.api').get_current_venv()
+    if venv then
+      return "venv:" .. venv.name
+    else
+      return ''
+    end
   end
-  return ''
 end
 
 function M.filetype()
@@ -123,6 +125,7 @@ function M.statusline(active)
   return table.concat {
     highlight(1, active),
     pad(func('hunks')),
+    pad(func('swenv')),
     highlight(2, active),
     pad(func('lsp_status', active)),
     highlight(2, active),

@@ -12,5 +12,6 @@ return function()
       end,
     },
   })
+
   vim.cmd([[command! Gfold execute "lua require('gfold').pick_repo()"]])
 end
