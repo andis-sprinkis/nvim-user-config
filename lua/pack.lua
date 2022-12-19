@@ -1,4 +1,5 @@
 vim.g.sys_reqr = {
+  cmp_zsh = vim.fn.executable('zsh') == 1,
   dap_plugins = vim.g.os ~= 'Windows',
   fm_nvim = vim.fn.executable('lf') == 1,
   fzf = vim.g.os == 'Windows' or vim.g.os == 'Darwin',
@@ -7,14 +8,13 @@ vim.g.sys_reqr = {
   git_plugins = vim.fn.executable('git') == 1,
   lsp_plugins = vim.fn.executable('node') == 1,
   markdown_preview = vim.fn.executable('node') == 1,
-  nvim_spectre = vim.fn.executable('sed') == 1,
   nvim_gfold_lua = vim.fn.executable('gfold') == 1,
+  nvim_spectre = vim.fn.executable('sed') == 1,
   suda_vim = vim.fn.executable('sudo') == 1,
+  swenv = vim.fn.executable('python3') == 1,
   treesitter = vim.fn.executable('tree-sitter') == 1,
   vim_doge = vim.fn.executable('node') == 1,
   vim_hexokinase = vim.fn.executable('go') == 1,
-  cmp_zsh = vim.fn.executable('zsh') == 1,
-  swenv = vim.fn.executable('python3') == 1
 }
 
 local packer_bootstrap
