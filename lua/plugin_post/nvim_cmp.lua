@@ -1,5 +1,5 @@
 return function()
-  local cmp = require 'cmp'
+  local cmp = require("cmp")
   local luasnip = require("luasnip")
 
   local has_words_before = function()
@@ -13,6 +13,7 @@ return function()
     { name = 'buffer' },
     { name = 'path' },
     { name = 'zsh' },
+    { name = 'tmux' },
     { name = 'emoji' },
     { name = 'npm', keyword_length = 4 }
   }
@@ -85,6 +86,7 @@ return function()
     { name = 'path' },
     { name = 'buffer' },
     { name = 'zsh' },
+    { name = 'tmux' },
   }
 
   cmp.setup.cmdline(':', {

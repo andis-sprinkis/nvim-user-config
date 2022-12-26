@@ -1,4 +1,5 @@
 vim.g.sys_reqr = {
+  cmp_tmux = vim.fn.executable('tmux') == 1,
   cmp_zsh = vim.fn.executable('zsh') == 1,
   dap_plugins = vim.g.os ~= 'Windows',
   fm_nvim = vim.fn.executable('lf') == 1,
@@ -195,6 +196,9 @@ require('packer').startup(function(use)
         { 'hrsh7th/cmp-emoji' },
         { 'tamago324/cmp-zsh',
           cond = { vim.g.sys_reqr['cmp_zsh'] }
+        },
+        { 'andersevenrud/cmp-tmux',
+          cond = { vim.g.sys_reqr.cmp_tmux }
         },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-path' },
