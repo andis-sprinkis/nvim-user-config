@@ -1,14 +1,12 @@
 vim.g.mapleader = ' '
 
 -- move over linebreak
-vim.api.nvim_set_keymap('n', 'h', '<bs>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'l', '<space>', { noremap = true })
-vim.api.nvim_set_keymap('v', 'h', '<bs>', { noremap = true })
-vim.api.nvim_set_keymap('v', 'l', '<space>', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, 'h', '<bs>')
+vim.keymap.set({ 'n', 'v' }, 'l', '<space>')
 
 -- creating splits
-vim.api.nvim_set_keymap('n', '<leader>v', ':split<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>o', ':vsplit<cr>', { noremap = true, silent = true })
+vim.keymap.set({ 'n' }, '<leader>v', vim.cmd.split, { silent = true })
+vim.keymap.set({ 'n' }, '<leader>o', vim.cmd.vsplit, { silent = true })
 
 -- insert to normal mode in terminal
-vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n>', { noremap = true })
+vim.keymap.set({ 't' }, '<C-w>', '<C-\\><C-n>')

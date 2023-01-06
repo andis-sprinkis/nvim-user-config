@@ -1,8 +1,8 @@
 return function()
   if not vim.g.sys_reqr.git_plugins then
-    vim.api.nvim_set_keymap('n', '<tab>', ':Files<cr>', { noremap = true, silent = true })
+    vim.keymap.set('n', '<tab>', ':Files<cr>', { silent = true })
   else
-    function ShowGitFiles()
+    local function showFiles()
       if vim.fn.system('git rev-parse --git-dir') == '.git\n' then
         vim.cmd('GFiles --exclude-standard --others --cached')
       else
@@ -10,11 +10,11 @@ return function()
       end
     end
 
-    vim.api.nvim_set_keymap('n', '<tab>', ':lua ShowGitFiles()<cr>', { noremap = true, silent = true })
+    vim.keymap.set('n', '<tab>', function() showFiles() end, { silent = true })
   end
 
-  vim.api.nvim_set_keymap('n', '<s-tab>', ':Files<cr>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>e', ':Rg<cr>', { noremap = true, silent = true })
+  vim.keymap.set('n', '<s-tab>', ':Files<cr>', { silent = true })
+  vim.keymap.set('n', '<leader>e', ':Rg<cr>', { silent = true })
 
   if vim.fn.executable('bat') == 1 then
     vim.env.BAT_THEME = 'Visual Studio Dark+'
