@@ -65,10 +65,6 @@ require('packer').startup(function(use)
       config = require('plugin_post.smart_splits_nvim'),
     },
     {
-      'stevearc/qf_helper.nvim',
-      config = require('plugin_post.qf_helper_nvim'),
-    },
-    {
       'haringsrob/nvim_context_vt',
       cond = { vim.g.sys_reqr['treesitter'] },
       after = { 'nvim-treesitter' },
@@ -177,10 +173,6 @@ require('packer').startup(function(use)
     {
       'NMAC427/guess-indent.nvim',
       config = require('plugin_post.guess_indent_nvim')
-    },
-    {
-      'notomo/cmdbuf.nvim',
-      config = require('plugin_post.cmdbuf_nvim')
     },
     {
       'hrsh7th/nvim-cmp',

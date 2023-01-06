@@ -15,15 +15,17 @@ return function()
 
   -- Mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  local map_opts = { noremap = true, silent = true }
-  vim.api.nvim_set_keymap('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', map_opts)
-  vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', map_opts)
-  vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', map_opts)
-  vim.api.nvim_set_keymap('n', '<Leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', map_opts)
+  local map_opts = { silent = true }
+  vim.keymap.set({ 'n' }, '<Leader>d', vim.diagnostic.open_float, map_opts)
+  vim.keymap.set({ 'n' }, '[d', vim.diagnostic.goto_prev, map_opts)
+  vim.keymap.set({ 'n' }, ']d', vim.diagnostic.goto_next, map_opts)
+  vim.keymap.set({ 'n' }, '<Leader>q', vim.diagnostic.setloclist, map_opts)
 
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
   local on_attach = function(client, bufnr)
+    local buf_map_opts = { silent = true, buffer = bufnr }
+
     require 'illuminate'.on_attach(client)
 
     -- Enable completion triggered by <c-x><c-o>
@@ -31,25 +33,25 @@ return function()
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', map_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', map_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', map_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', map_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', map_opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>wa', '<cmd>lua vim.lsp.buf.add_workLeader_folder()<CR>', map_opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>wr', '<cmd>lua vim.lsp.buf.remove_workLeader_folder()<CR>', map_opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workLeader_folders()))<CR>', map_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', map_opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', map_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', map_opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', map_opts)
+    vim.keymap.set({ 'n' }, 'gD', vim.lsp.buf.declaration, buf_map_opts)
+    vim.keymap.set({ 'n' }, 'gd', vim.lsp.buf.definition, buf_map_opts)
+    vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, buf_map_opts)
+    vim.keymap.set({ 'n' }, 'gi', vim.lsp.buf.implementation, buf_map_opts)
+    vim.keymap.set({ 'n' }, '<C-s>', vim.lsp.buf.signature_help, buf_map_opts)
+    -- vim.keymap.set({ 'n' }, '<Leader>wa', vim.lsp.buf.add_workLeader_folder, buf_map_opts)
+    -- vim.keymap.set({ 'n' }, '<Leader>wr', vim.lsp.buf.remove_workLeader_folder, buf_map_opts)
+    -- vim.keymap.set({ 'n' }, '<Leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workLeader_folders())) end, buf_map_opts)
+    vim.keymap.set({ 'n' }, '<Leader>D', vim.lsp.buf.type_definition, buf_map_opts)
+    -- vim.keymap.set({ 'n' }, '<Leader>rn', vim.lsp.buf.rename, buf_map_opts)
+    vim.keymap.set({ 'n' }, '<Leader>ca', vim.lsp.buf.code_action, buf_map_opts)
+    vim.keymap.set({ 'n' }, 'gr', vim.lsp.buf.references, buf_map_opts)
 
     if client.server_capabilities.documentFormattingProvider then
-      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', map_opts)
+      vim.keymap.set({ 'n' }, '<Leader>f', function() vim.lsp.buf.format({ async = true }) end, buf_map_opts)
     end
 
     if client.server_capabilities.documentRangeFormattingProvider then
-      vim.api.nvim_buf_set_keymap(bufnr, 'x', '<Leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', map_opts)
+      vim.keymap.set({ 'x' }, '<Leader>f', function() vim.lsp.buf.format({ async = true }) end, buf_map_opts)
     end
 
     if client.server_capabilities.documentHighlightProvider then
@@ -77,7 +79,7 @@ return function()
   end
 
   local function remove_formatting_capabilities(client)
-    client.server_capabilities.documentFormattingProvider  = false
+    client.server_capabilities.documentFormattingProvider      = false
     client.server_capabilities.documentRangeFormattingProvider = false
   end
 
@@ -140,12 +142,14 @@ return function()
       null_ls.builtins.formatting.prettier,
     },
     on_attach = function(client, bufnr)
+      local buf_map_opts = { silent = true, buffer = bufnr }
+
       if client.server_capabilities.documentFormattingProvider then
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", map_opts)
+        vim.keymap.set({ 'n' }, '<Leader>f', function() vim.lsp.buf.format({ async = true }) end, buf_map_opts)
       end
 
       if client.server_capabilities.documentRangeFormattingProvider then
-        vim.api.nvim_buf_set_keymap(bufnr, "x", "<Leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", map_opts)
+        vim.keymap.set({ 'x' }, '<Leader>f', function() vim.lsp.buf.format({ async = true }) end, buf_map_opts)
       end
     end,
   })
