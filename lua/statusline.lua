@@ -130,7 +130,6 @@ function M.statusline(active)
     pad(func('swenv')),
     highlight(2, active),
     pad(func('lsp_status', active)),
-    highlight(2, active),
     '%=',
     pad(func('bufname') .. '%m%r%h%q'),
     -- '%<%0.60f%m%r',  -- file.txt[+][RO]
