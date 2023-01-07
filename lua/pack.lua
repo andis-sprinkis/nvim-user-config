@@ -9,7 +9,6 @@ vim.g.sys_reqr = {
   git_plugins = vim.fn.executable('git') == 1,
   lsp_plugins = vim.fn.executable('node') == 1,
   markdown_preview = vim.fn.executable('node') == 1,
-  nvim_gfold_lua = vim.fn.executable('gfold') == 1,
   nvim_spectre = vim.fn.executable('sed') == 1,
   suda_vim = vim.fn.executable('sudo') == 1,
   swenv = vim.fn.executable('python3') == 1,

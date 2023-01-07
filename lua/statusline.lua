@@ -1,28 +1,24 @@
 local M = {}
 
 local function highlight(num, active)
-  if active == 1 then
-    if num == 1 then return '%#StatusLineNC#' end
-
-    return '%#StatusLine#'
-  end
+  if (active == 1 and num ~= 1) then return '%#StatusLine#' end
 
   return '%#StatusLineNC#'
 end
 
-function M.hldefs()
-  local bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background
-
-  for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
-    local hl = vim.api.nvim_get_hl_by_name('Diagnostic' .. ty, true)
-
-    if (bg ~= nil and bg > 255) then
-      vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x guibg=#%6x'):format(ty, hl.foreground, bg))
-    else
-      vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x'):format(ty, hl.foreground))
-    end
-  end
-end
+-- function M.hldefs()
+--   local bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background
+--
+--   for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
+--     local hl = vim.api.nvim_get_hl_by_name('Diagnostic' .. ty, true)
+--
+--     if (bg ~= nil and bg > 255) then
+--       vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x guibg=#%6x'):format(ty, hl.foreground, bg))
+--     else
+--       vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x'):format(ty, hl.foreground))
+--     end
+--   end
+-- end
 
 function M.lsp_status(active)
   if (not vim.g.sys_reqr.lsp_plugins) or vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then return '' end
@@ -150,7 +146,6 @@ vim.cmd [[
   augroup statusline
     autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
     autocmd WinLeave,FocusLost   * let &l:statusline=v:lua.statusline.statusline(0)
-    autocmd VimEnter             * let &statusline=v:lua.statusline.statusline(1)
     " autocmd ColorScheme,VimEnter * lua statusline.hldefs()
   augroup END
 ]]
