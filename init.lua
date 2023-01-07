@@ -1,2 +1,4 @@
-require('plugin_pre._init')
+require('option')
+require('keymap')
 require('pack')
+require('statusline')

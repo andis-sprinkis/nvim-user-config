@@ -36,7 +36,7 @@ require('packer').startup(function(use)
     {
       'AckslD/swenv.nvim',
       requires = { 'stevearc/dressing.nvim' },
-      config = require('plugin_post.swenv_nvim'),
+      config = require('plugin.swenv_nvim'),
     },
     { 'stevearc/dressing.nvim' },
     { 'wbthomason/packer.nvim' },
@@ -49,7 +49,7 @@ require('packer').startup(function(use)
     { 'tpope/vim-eunuch' },
     { 'jghauser/mkdir.nvim' },
     { 'tversteeg/registers.nvim',
-      config = require('plugin_post.registers_nvim')
+      config = require('plugin.registers_nvim')
     },
     {
       'jghauser/follow-md-links.nvim',
@@ -58,35 +58,35 @@ require('packer').startup(function(use)
     },
     {
       "luukvbaal/stabilize.nvim",
-      config = require('plugin_post.stabilize_nvim')
+      config = require('plugin.stabilize_nvim')
     },
     {
       'mrjones2014/smart-splits.nvim',
-      config = require('plugin_post.smart_splits_nvim'),
+      config = require('plugin.smart_splits_nvim'),
     },
     {
       'haringsrob/nvim_context_vt',
       cond = { vim.g.sys_reqr['treesitter'] },
       after = { 'nvim-treesitter' },
-      config = require('plugin_post.nvim_context_vt_nvim'),
+      config = require('plugin.nvim_context_vt_nvim'),
     },
     {
       'sindrets/winshift.nvim',
-      config = require('plugin_post.winshift_nvim'),
+      config = require('plugin.winshift_nvim'),
     },
     {
       cond = { vim.g.sys_reqr['git_plugins'] },
       { 'tpope/vim-fugitive' },
       {
         'lewis6991/gitsigns.nvim',
-        config = require('plugin_post.gitsigns_nvim'),
+        config = require('plugin.gitsigns_nvim'),
       },
     },
     {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       cond = { vim.g.sys_reqr['treesitter'] },
-      config = require('plugin_post.nvim_treesitter'),
+      config = require('plugin.nvim_treesitter'),
       requires = {
         { 'JoosepAlviste/nvim-ts-context-commentstring' },
         { 'nvim-treesitter/nvim-treesitter-textobjects' },
@@ -96,12 +96,12 @@ require('packer').startup(function(use)
       'm-demare/hlargs.nvim',
       cond = { vim.g.sys_reqr['treesitter'] },
       requires = { 'nvim-treesitter/nvim-treesitter' },
-      config = require('plugin_post.hlargs_nvim'),
+      config = require('plugin.hlargs_nvim'),
     },
     {
       "williamboman/mason.nvim",
       cond = { vim.g.sys_reqr['lsp_plugins'] },
-      config = require('plugin_post.mason_nvim'),
+      config = require('plugin.mason_nvim'),
       requires = {
         { 'b0o/schemastore.nvim' },
         { 'jayp0521/mason-null-ls.nvim' },
@@ -113,7 +113,7 @@ require('packer').startup(function(use)
     {
       'mfussenegger/nvim-dap',
       cond = vim.g.sys_reqr['dap_plugins'],
-      config = require('plugin_post.nvim_dap')
+      config = require('plugin.nvim_dap')
     },
     {
       'junegunn/fzf',
@@ -123,32 +123,32 @@ require('packer').startup(function(use)
     {
       'ibhagwan/fzf-lua',
       cond = { vim.g.sys_reqr['fzf_lua'] },
-      config = require('plugin_post.fzf_lua')
+      config = require('plugin.fzf_lua')
     },
     {
       'junegunn/fzf.vim',
       cond = { vim.g.sys_reqr['fzf_vim'] },
-      config = require('plugin_post.fzf_vim')
+      config = require('plugin.fzf_vim')
     },
     {
       'is0n/fm-nvim',
       cond = { vim.g.sys_reqr['fm_nvim'] },
-      config = require('plugin_post.fm_nvim')
+      config = require('plugin.fm_nvim')
     },
     {
       'nvim-pack/nvim-spectre',
       cond = { vim.g.sys_reqr['nvim_spectre'] },
-      config = require('plugin_post.nvim_spectre'),
+      config = require('plugin.nvim_spectre'),
     },
     {
       'lambdalisue/suda.vim',
       cond = { vim.g.sys_reqr['suda_vim'] },
-      config = require('plugin_post.suda'),
+      config = require('plugin.suda'),
     },
     {
       'kkoomen/vim-doge',
       run = function() vim.fn['doge#install']() end,
-      setup = require('plugin_post.vim_doge_setup'),
+      setup = require('plugin.vim_doge_setup'),
       cond = { vim.g.sys_reqr['vim_doge'] },
     },
     {
@@ -164,15 +164,15 @@ require('packer').startup(function(use)
     },
     {
       'AndrewRadev/splitjoin.vim',
-      config = require('plugin_post.splitjoin')
+      config = require('plugin.splitjoin')
     },
     {
       'Mofiqul/vscode.nvim',
-      config = require('plugin_post.colorscheme')
+      config = require('plugin.colorscheme')
     },
     {
       'NMAC427/guess-indent.nvim',
-      config = require('plugin_post.guess_indent_nvim')
+      config = require('plugin.guess_indent_nvim')
     },
     {
       'hrsh7th/nvim-cmp',
@@ -195,31 +195,29 @@ require('packer').startup(function(use)
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-path' },
       },
-      config = require('plugin_post.nvim_cmp')
+      config = require('plugin.nvim_cmp')
     },
     {
       'justinmk/vim-dirvish',
-      config = require('plugin_post.dirvish')
+      config = require('plugin.dirvish')
     },
     {
       'lukas-reineke/indent-blankline.nvim',
-      config = require('plugin_post.indent_blankline_nvim')
+      config = require('plugin.indent_blankline_nvim')
     },
     {
       'mihaifm/bufstop',
-      config = require('plugin_post.bufstop')
+      config = require('plugin.bufstop')
     },
     {
       'numToStr/Comment.nvim',
-      config = require('plugin_post.comment_nvim')
+      config = require('plugin.comment_nvim')
     },
     {
       "andrewferrier/debugprint.nvim",
-      config = require('plugin_post.debugprint_nvim'),
+      config = require('plugin.debugprint_nvim'),
     }
   }
 
   if packer_bootstrap then require('packer').sync() end
 end)
-
-if vim.g.sys_reqr['git_plugins'] and vim.g.sys_reqr['lsp_plugins'] then require('plugin_post.statusline') end

@@ -1,3 +1,5 @@
+if not (vim.g.sys_reqr['git_plugins'] and vim.g.sys_reqr['lsp_plugins']) then return end
+
 local M = {}
 
 local function highlight(num, active)
