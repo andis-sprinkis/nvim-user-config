@@ -1,23 +1,21 @@
-if not (vim.g.sys_reqr['git_plugins'] and vim.g.sys_reqr['lsp_plugins']) then return end
-
 local M = {}
 
 local function highlight(num, active)
   if active == 1 then
-    if num == 1 then
-      return '%#StatusLineNC#'
-    else
-      return '%#StatusLine#'
-    end
-  else
-    return '%#StatusLineNC#'
+    if num == 1 then return '%#StatusLineNC#' end
+
+    return '%#StatusLine#'
   end
+
+  return '%#StatusLineNC#'
 end
 
 function M.hldefs()
   local bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background
+
   for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
     local hl = vim.api.nvim_get_hl_by_name('Diagnostic' .. ty, true)
+
     if (bg ~= nil and bg > 255) then
       vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x guibg=#%6x'):format(ty, hl.foreground, bg))
     else
@@ -27,14 +25,13 @@ function M.hldefs()
 end
 
 function M.lsp_status(active)
-  if vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
-    return ''
-  end
+  if (not vim.g.sys_reqr.lsp_plugins) or vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then return '' end
 
   local status = {}
 
   for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
     local n = vim.diagnostic.get(0, { severity = ty })
+
     if #n > 0 then
       if active == 1 then
         table.insert(status, ('%%#Diagnostic%sStatus# %s:%s'):format(ty, ty:sub(1, 1), #n))
@@ -50,27 +47,33 @@ function M.lsp_status(active)
 end
 
 function M.hunks()
+  if not vim.g.sys_reqr.git_plugins then return '' end
+
   if vim.b.gitsigns_status then
     local status = vim.b.gitsigns_head
+
     if vim.b.gitsigns_status ~= '' then
       status = status .. ' ' .. vim.b.gitsigns_status
     end
+
     return status
   elseif vim.g.gitsigns_head then
     return vim.g.gitsigns_head
   end
+
   return ''
 end
 
 function M.swenv()
-  if (vim.g.sys_reqr.swenv) then
-    local venv = require('swenv.api').get_current_venv()
-    if venv then
-      return "venv:" .. venv.name
-    else
-      return ''
-    end
+  if (not vim.g.sys_reqr.swenv) then return '' end
+
+  local venv = require('swenv.api').get_current_venv()
+
+  if venv then
+    return "venv:" .. venv.name
   end
+
+  return ''
 end
 
 function M.filetype()
@@ -97,7 +100,8 @@ function M.bufname()
   local ratio = 0.5
   local width = math.floor(vim.api.nvim_win_get_width(0) * ratio)
   local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':.')
-  if vim.startswith(name, 'fugitive') then
+
+  if (vim.g.sys_reqr.git_plugins and vim.startswith(name, 'fugitive')) then
     local _, commit, relpath
 
     if (vim.g.os == 'Windows') then
@@ -108,15 +112,15 @@ function M.bufname()
 
     name = relpath .. '@' .. commit:sub(1, 7)
   end
+
   if #name > width then
     name = '...' .. name:sub(-width)
   end
+
   return name
 end
 
-local function pad(x)
-  return '%( ' .. x .. ' %)'
-end
+local function pad(x) return '%( ' .. x .. ' %)' end
 
 local function func(name, active)
   active = active or 1
@@ -138,11 +142,10 @@ function M.statusline(active)
     pad(func('filetype')),
     pad(func('encodingAndFormat')),
     highlight(1, active),
-    ' %3p%% %2l(%02c)/%-3L ', -- 80% 65[12]/120
+    ' %3p%% %2l(%02c)/%-3L ', -- 80% 65(12)/120
   }
 end
 
--- Only set up WinEnter autocmd when the WinLeave autocmd runs
 vim.cmd [[
   augroup statusline
     autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
