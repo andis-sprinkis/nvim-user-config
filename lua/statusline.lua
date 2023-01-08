@@ -6,20 +6,6 @@ local function highlight(num, active)
   return '%#StatusLineNC#'
 end
 
--- function M.hldefs()
---   local bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background
---
---   for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
---     local hl = vim.api.nvim_get_hl_by_name('Diagnostic' .. ty, true)
---
---     if (bg ~= nil and bg > 255) then
---       vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x guibg=#%6x'):format(ty, hl.foreground, bg))
---     else
---       vim.cmd(('highlight Diagnostic%sStatus guifg=#%6x'):format(ty, hl.foreground))
---     end
---   end
--- end
-
 function M.lsp_status(active)
   if (not vim.g.sys_reqr.lsp_plugins) or vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then return '' end
 
@@ -132,12 +118,11 @@ function M.statusline(active)
     pad(func('lsp_status', active)),
     '%=',
     pad(func('bufname') .. '%m%r%h%q'),
-    -- '%<%0.60f%m%r',  -- file.txt[+][RO]
     '%=',
     pad(func('filetype')),
     pad(func('encodingAndFormat')),
     highlight(1, active),
-    ' %3p%% %2l(%02c)/%-3L ', -- 80% 65(12)/120
+    ' %3p%% %2l(%02c)/%-3L ',
   }
 end
 
@@ -145,7 +130,6 @@ vim.cmd [[
   augroup statusline
     autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
     autocmd WinLeave,FocusLost   * let &l:statusline=v:lua.statusline.statusline(0)
-    " autocmd ColorScheme,VimEnter * lua statusline.hldefs()
   augroup END
 ]]
 
