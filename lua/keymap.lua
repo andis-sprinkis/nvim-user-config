@@ -1,5 +1,8 @@
 vim.g.mapleader = ' '
 
+-- access to command mode with ';'
+vim.keymap.set({ 'n', 'v' }, ';', ':' )
+
 -- move over linebreak
 vim.keymap.set({ 'n', 'v' }, 'h', '<bs>')
 vim.keymap.set({ 'n', 'v' }, 'l', '<space>')
