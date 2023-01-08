@@ -43,7 +43,7 @@ else
   vim.env.PATH = vim.fn.stdpath('config') .. '/bin:' .. vim.env.PATH
 end
 
-local au_option = vim.api.nvim_create_augroup('option', { clear = true })
+local au_option = vim.api.nvim_create_augroup('option', {})
 
 vim.api.nvim_create_autocmd(
   { 'VimResized' },

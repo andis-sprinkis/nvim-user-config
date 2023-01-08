@@ -126,7 +126,7 @@ function M.statusline(active)
   }
 end
 
-local au_statusline = vim.api.nvim_create_augroup('statusline', { clear = true })
+local au_statusline = vim.api.nvim_create_augroup('statusline', {})
 
 vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
   group = au_statusline,

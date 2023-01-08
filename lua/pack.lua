@@ -1,5 +1,7 @@
 vim.g.exec = {
   bash = vim.fn.executable('bash') == 1,
+  bat = vim.fn.executable('bat') == 1,
+  cat = vim.fn.executable('cat') == 1,
   git = vim.fn.executable('git') == 1,
   go = vim.fn.executable('go') == 1,
   lf = vim.fn.executable('lf') == 1,
