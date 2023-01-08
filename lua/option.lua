@@ -47,21 +47,45 @@ local au_option = vim.api.nvim_create_augroup('option', { clear = true })
 
 vim.api.nvim_create_autocmd(
   { 'VimResized' },
-  { group = au_option, command = 'wincmd =' }
+  {
+    group = au_option,
+    callback = function()
+      vim.cmd.wincmd('=')
+    end
+  }
 )
 vim.api.nvim_create_autocmd(
   { 'TermOpen' },
-  { group = au_option, command = 'setlocal nonumber norelativenumber signcolumn=no' }
+  {
+    group = au_option,
+    callback = function()
+      vim.opt_local.number = false
+      vim.opt_local.relativenumber = false
+      vim.opt_local.signcolumn = 'no'
+    end
+  }
 )
 
 vim.api.nvim_create_autocmd(
   { 'TermOpen' },
-  { group = au_option, pattern = { 'term://*' }, command = 'startinsert' }
+  {
+    group = au_option,
+    pattern = { 'term://*' },
+    callback = function()
+      vim.cmd.startinsert()
+    end
+  }
 )
 
 vim.api.nvim_create_autocmd(
   { 'FileType' },
-  { group = au_option, pattern = { 'help', 'man' }, command = 'setlocal signcolumn=no' }
+  {
+    group = au_option,
+    pattern = { 'help', 'man' },
+    callback = function()
+      vim.opt_local.signcolumn = 'no'
+    end
+  }
 )
 
 if vim.g.neoray then
