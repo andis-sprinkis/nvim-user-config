@@ -43,6 +43,9 @@ nnoremap l <space>
 vnoremap h <bs>
 vnoremap l <space>
 
+nnoremap ; :
+vnoremap ; :
+
 nnoremap <silent><C-A-j> :resize +2<cr>
 nnoremap <silent><C-A-k> :resize -2<cr>
 nnoremap <silent><C-A-l> :vertical resize +4<cr>
