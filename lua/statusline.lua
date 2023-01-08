@@ -127,11 +127,11 @@ function M.statusline(active)
 end
 
 vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
-  command = 'let &l:statusline=v:lua.statusline.statusline(1)',
+  callback = function () vim.wo.statusline = _G.statusline.statusline(1) end
 })
 
 vim.api.nvim_create_autocmd({ 'WinLeave', 'FocusLost' }, {
-  command = 'let &l:statusline=v:lua.statusline.statusline(0)',
+  callback = function () vim.wo.statusline = _G.statusline.statusline(0) end
 })
 
 _G.statusline = M
