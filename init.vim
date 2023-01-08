@@ -1,9 +1,12 @@
-colorscheme peachpuff
+colorscheme lunaperche
+let $LANG = 'en_US.UTF-8'
 let g:man_hard_wrap = 1
 let g:netrw_liststyle= 1
 let mapleader="\<space>"
 set background=dark
+set breakindent
 set clipboard=unnamedplus
+set completeopt=menu,menuone,noselect
 set encoding=utf-8
 set fcs=eob:\ 
 set foldlevel=99
@@ -21,14 +24,18 @@ set shortmess+=c
 set splitbelow
 set splitright
 set tabstop=2 shiftwidth=2 expandtab
+set title
+set titlelen=1000
 set wildmenu
-set wildmode=longest:list,full
+set wildmode=longest:full,full
 syntax on
 
 au FileType help setlocal signcolumn=no
 au FileType man setlocal signcolumn=no
+
 au TermOpen * setlocal nonumber norelativenumber signcolumn=no
 au TermOpen term://* startinsert
+
 au VimResized * wincmd =
 
 nnoremap h <bs>
