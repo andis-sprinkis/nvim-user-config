@@ -88,6 +88,17 @@ vim.api.nvim_create_autocmd(
   }
 )
 
+vim.api.nvim_create_autocmd(
+  { 'FileType' },
+  {
+    group = au_option,
+    pattern = { 'make' },
+    callback = function()
+      vim.opt_local.expandtab = false
+    end
+  }
+)
+
 if vim.g.neoray == 1 then
   vim.opt.guifont = 'CascadiaCodePL:h13'
 
