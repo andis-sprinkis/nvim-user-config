@@ -126,12 +126,13 @@ function M.statusline(active)
   }
 end
 
-vim.cmd [[
-  augroup statusline
-    autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
-    autocmd WinLeave,FocusLost * let &l:statusline=v:lua.statusline.statusline(0)
-  augroup END
-]]
+vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
+  command = 'let &l:statusline=v:lua.statusline.statusline(1)',
+})
+
+vim.api.nvim_create_autocmd({ 'WinLeave', 'FocusLost' }, {
+  command = 'let &l:statusline=v:lua.statusline.statusline(0)',
+})
 
 _G.statusline = M
 
