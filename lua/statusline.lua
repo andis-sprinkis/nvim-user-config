@@ -129,7 +129,7 @@ end
 vim.cmd [[
   augroup statusline
     autocmd BufWinEnter,WinEnter,FocusGained * let &l:statusline=v:lua.statusline.statusline(1)
-    autocmd WinLeave,FocusLost   * let &l:statusline=v:lua.statusline.statusline(0)
+    autocmd WinLeave,FocusLost * let &l:statusline=v:lua.statusline.statusline(0)
   augroup END
 ]]
 
