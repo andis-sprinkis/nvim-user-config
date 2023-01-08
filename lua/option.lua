@@ -88,7 +88,7 @@ vim.api.nvim_create_autocmd(
   }
 )
 
-if vim.g.neoray then
+if vim.g.neoray == 1 then
   vim.opt.guifont = 'CascadiaCodePL:h13'
 
   vim.cmd([[
