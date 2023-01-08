@@ -43,17 +43,28 @@ else
   vim.env.PATH = vim.fn.stdpath('config') .. '/bin:' .. vim.env.PATH
 end
 
-vim.cmd([[
-  au VimResized * wincmd =
+local au_option = vim.api.nvim_create_augroup('option', { clear = true })
 
-  au TermOpen * setlocal nonumber norelativenumber signcolumn=no
-  au TermOpen term://* startinsert
+vim.api.nvim_create_autocmd(
+  { 'VimResized' },
+  { group = au_option, command = 'wincmd =' }
+)
+vim.api.nvim_create_autocmd(
+  { 'TermOpen' },
+  { group = au_option, command = 'setlocal nonumber norelativenumber signcolumn=no' }
+)
 
-  au FileType help setlocal signcolumn=no
-  au FileType man setlocal signcolumn=no
-]])
+vim.api.nvim_create_autocmd(
+  { 'TermOpen' },
+  { group = au_option, pattern = { 'term://*' }, command = 'startinsert' }
+)
 
-if vim.g.neoray == 1 then
+vim.api.nvim_create_autocmd(
+  { 'FileType' },
+  { group = au_option, pattern = { 'help', 'man' }, command = 'setlocal signcolumn=no' }
+)
+
+if vim.g.neoray then
   vim.opt.guifont = 'CascadiaCodePL:h13'
 
   vim.cmd([[
