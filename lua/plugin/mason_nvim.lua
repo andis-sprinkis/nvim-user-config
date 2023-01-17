@@ -21,6 +21,8 @@ return function()
   vim.keymap.set({ 'n' }, ']d', vim.diagnostic.goto_next, map_opts)
   vim.keymap.set({ 'n' }, '<Leader>q', vim.diagnostic.setloclist, map_opts)
 
+  local function buf_format() vim.lsp.buf.format({ async = true }) end
+
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
   local on_attach = function(client, bufnr)
@@ -47,28 +49,16 @@ return function()
     vim.keymap.set({ 'n' }, 'gr', vim.lsp.buf.references, buf_map_opts)
 
     if client.server_capabilities.documentFormattingProvider then
-      vim.keymap.set({ 'n' }, '<Leader>f', function() vim.lsp.buf.format({ async = true }) end, buf_map_opts)
+      vim.keymap.set({ 'n' }, '<Leader>f', buf_format, buf_map_opts)
     end
 
     if client.server_capabilities.documentRangeFormattingProvider then
-      vim.keymap.set({ 'x' }, '<Leader>f', function() vim.lsp.buf.format({ async = true }) end, buf_map_opts)
-    end
-
-    if client.server_capabilities.documentHighlightProvider then
-      vim.cmd([[
-        augroup lsp_document_highlight
-          autocmd! * <buffer>
-          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-      ]])
+      vim.keymap.set({ 'x' }, '<Leader>f', buf_format, buf_map_opts)
     end
 
     vim.api.nvim_create_user_command(
       'Format',
-      function()
-        vim.lsp.buf.format({ async = true })
-      end,
+      buf_format,
       { bang = true }
     )
   end
@@ -92,6 +82,7 @@ return function()
   local lspconfig = require("lspconfig")
 
   require("mason").setup()
+
   require("mason-lspconfig").setup({ ensure_installed = lsp_servers })
 
   require("mason-lspconfig").setup_handlers({
@@ -149,11 +140,11 @@ return function()
       local buf_map_opts = { silent = true, buffer = bufnr }
 
       if client.server_capabilities.documentFormattingProvider then
-        vim.keymap.set({ 'n' }, '<Leader>f', function() vim.lsp.buf.format({ async = true }) end, buf_map_opts)
+        vim.keymap.set({ 'n' }, '<Leader>f', buf_format, buf_map_opts)
       end
 
       if client.server_capabilities.documentRangeFormattingProvider then
-        vim.keymap.set({ 'x' }, '<Leader>f', function() vim.lsp.buf.format({ async = true }) end, buf_map_opts)
+        vim.keymap.set({ 'x' }, '<Leader>f', buf_format, buf_map_opts)
       end
     end,
   })
