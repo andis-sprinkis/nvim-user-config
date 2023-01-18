@@ -18,12 +18,14 @@ set noshowmode
 set noswapfile
 set number
 set relativenumber
+set scrolljump=-100
 set shortmess+=c
 set splitbelow
 set splitright
 set tabstop=2 shiftwidth=2 expandtab
 set title
 set titlelen=1000
+set updatetime=100
 set wildmenu
 set wildmode=longest:full,full
 syntax on
