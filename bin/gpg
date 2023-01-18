@@ -1,7 +1,5 @@
 #!/bin/sh
 
-if [ -n "$FUGITIVE" ]; then
-  set -- --pinentry-mode loopback "$@"
-fi
+[ -n "$FUGITIVE" ] && set -- --pinentry-mode loopback "$@"
 
 exec /usr/bin/gpg "$@"
