@@ -1,27 +1,32 @@
 if (vim.fn.has('win64') == 1) then vim.g.os = 'Windows'
 else vim.g.os = vim.fn.substitute(vim.fn.system('uname'), '\n', '', '') end
 
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
 vim.g.loaded_netrwPlugin = 0
+vim.g.man_hard_wrap = true
 vim.opt.backup = false
+vim.opt.breakindent = true
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+vim.opt.expandtab = true
 vim.opt.fcs = { eob = nil }
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'syntax'
 vim.opt.hlsearch = false
 vim.opt.list = true
+vim.opt.listchars = { eol = '↲', tab = '» ' }
 vim.opt.mouse = 'a'
 vim.opt.number = true
+vim.opt.pumblend = 10
 vim.opt.relativenumber = true
 vim.opt.scrolljump = -100
+vim.opt.scrolloff = 0
+vim.opt.shiftwidth = 2
 vim.opt.showmode = false
 vim.opt.signcolumn = 'yes:2'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.scrolloff = 0
 vim.opt.swapfile = false
+vim.opt.tabstop = 2
 vim.opt.termguicolors = true
 vim.opt.title = true
 vim.opt.titlelen = 1000
@@ -29,12 +34,7 @@ vim.opt.updatetime = 100
 vim.opt.wildmenu = true
 vim.opt.wildmode = { 'longest:full', 'full' }
 vim.opt.winblend = 10
-vim.opt.pumblend = 10
 vim.opt.writebackup = false
-vim.opt.listchars = { eol = '↲', tab = '» ' }
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-vim.opt.breakindent = true
-vim.g.man_hard_wrap = true
 
 if vim.g.os == 'Windows' then
   vim.env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. vim.env.PATH
