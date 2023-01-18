@@ -15,6 +15,7 @@ vim.opt.list = true
 vim.opt.mouse = 'a'
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.scrolljump = -100
 vim.opt.showmode = false
 vim.opt.signcolumn = 'yes:2'
 vim.opt.splitbelow = true
