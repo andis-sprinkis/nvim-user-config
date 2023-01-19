@@ -14,7 +14,6 @@ vim.opt.hlsearch = false
 vim.opt.list = true
 vim.opt.listchars = { eol = '↲', tab = '» ' }
 vim.opt.mouse = 'a'
-vim.opt.number = true
 vim.opt.pumblend = 10
 vim.opt.relativenumber = true
 vim.opt.scrolljump = -100
