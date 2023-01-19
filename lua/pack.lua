@@ -10,7 +10,6 @@ vim.g.exec = {
   sed = vim.fn.executable('sed') == 1,
   sudo = vim.fn.executable('sudo') == 1,
   tmux = vim.fn.executable('tmux') == 1,
-  treesitter = vim.fn.executable('tree-sitter') == 1,
   zsh = vim.fn.executable('zsh') == 1,
 }
 
@@ -28,7 +27,6 @@ vim.g.sys_reqr = {
   nvim_spectre = vim.g.exec.sed,
   suda_vim = vim.g.exec.sudo,
   swenv = vim.g.exec.python3,
-  treesitter = vim.g.exec.treesitter,
   vim_doge = vim.g.exec.node,
   vim_hexokinase = vim.g.exec.go,
 }
@@ -75,7 +73,6 @@ require('packer').startup(function(use)
     },
     {
       'jghauser/follow-md-links.nvim',
-      cond = { vim.g.sys_reqr['treesitter'] },
       requires = { 'nvim-treesitter/nvim-treesitter' },
     },
     {
@@ -88,7 +85,6 @@ require('packer').startup(function(use)
     },
     {
       'haringsrob/nvim_context_vt',
-      cond = { vim.g.sys_reqr['treesitter'] },
       after = { 'nvim-treesitter' },
       config = require('plugin.nvim_context_vt_nvim'),
     },
@@ -107,7 +103,6 @@ require('packer').startup(function(use)
     {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
-      cond = { vim.g.sys_reqr['treesitter'] },
       config = require('plugin.nvim_treesitter'),
       requires = {
         { 'JoosepAlviste/nvim-ts-context-commentstring' },
@@ -116,7 +111,6 @@ require('packer').startup(function(use)
     },
     {
       'm-demare/hlargs.nvim',
-      cond = { vim.g.sys_reqr['treesitter'] },
       requires = { 'nvim-treesitter/nvim-treesitter' },
       config = require('plugin.hlargs_nvim'),
     },
