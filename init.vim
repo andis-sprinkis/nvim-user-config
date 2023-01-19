@@ -13,7 +13,6 @@ set mouse=a
 set nohlsearch
 set noshowmode
 set noswapfile
-set number
 set relativenumber
 set scrolljump=-100
 set shortmess+=c
