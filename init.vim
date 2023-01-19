@@ -10,16 +10,21 @@ set foldmethod=syntax
 set list
 set listchars=space:·,trail:·,eol:↲,tab:»\ 
 set mouse=a
+set nobackup
 set nohlsearch
 set noshowmode
 set noswapfile
+set nowritebackup
+set pumblend=10
 set relativenumber
 set scrolljump=-100
 set shortmess+=c
 set tabstop=2 shiftwidth=2 expandtab
+set termguicolors
 set title
 set titlelen=1000
 set updatetime=100
+set winblend=10
 syntax on
 
 au FileType help setlocal signcolumn=no
