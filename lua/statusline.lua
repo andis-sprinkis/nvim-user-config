@@ -16,7 +16,7 @@ function M.lsp_status()
   return r == '' and 'LSP' or r
 end
 
-function M.hunks()
+function M.git_hunks()
   if not vim.g.sys_reqr.git_plugins then return '' end
 
   if vim.b.gitsigns_status then
@@ -26,7 +26,7 @@ function M.hunks()
   return vim.g.gitsigns_head and vim.g.gitsigns_head or ''
 end
 
-function M.swenv()
+function M.py_swenv()
   if (not vim.g.sys_reqr.swenv) then return '' end
 
   local venv = require('swenv.api').get_current_venv()
@@ -34,9 +34,9 @@ function M.swenv()
   return venv and "venv:" .. venv.name or ''
 end
 
-function M.filetype() return vim.bo.filetype end
+function M.ft() return vim.bo.filetype end
 
-function M.encodingAndFormat()
+function M.fenc_ffmat()
   local e = vim.bo.fileencoding and vim.bo.fileencoding or vim.o.encoding
 
   local r = {}
@@ -50,7 +50,7 @@ function M.encodingAndFormat()
   return table.concat(r, ' ')
 end
 
-function M.bufname()
+function M.bname()
   local ratio = 0.5
   local width = math.floor(vim.api.nvim_win_get_width(0) * ratio)
   local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':.')
@@ -81,15 +81,15 @@ local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 function M.statusline(active)
   return table.concat {
     highlight(1, active),
-    pad(func('hunks')),
-    pad(func('swenv')),
+    pad(func('git_hunks')),
+    pad(func('py_swenv')),
     highlight(2, active),
     pad(func('lsp_status')),
     '%=',
-    pad(func('bufname') .. '%m%r%h%q'),
+    pad(func('bname') .. '%m%r%h%q'),
     '%=',
-    pad(func('filetype')),
-    pad(func('encodingAndFormat')),
+    pad(func('ft')),
+    pad(func('fenc_ffmat')),
     highlight(1, active),
     ' %3p%% %2l(%02c)/%-3L ',
   }
