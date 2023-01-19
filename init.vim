@@ -5,8 +5,6 @@ let g:netrw_liststyle= 1
 let mapleader="\<space>"
 set breakindent
 set clipboard=unnamedplus
-set completeopt=menu,menuone,noselect
-set fcs=eob:\ 
 set foldlevel=99
 set foldmethod=syntax
 set hidden
@@ -20,14 +18,11 @@ set number
 set relativenumber
 set scrolljump=-100
 set shortmess+=c
-set splitbelow
-set splitright
 set tabstop=2 shiftwidth=2 expandtab
 set title
 set titlelen=1000
 set updatetime=100
 set wildmenu
-set wildmode=longest:full,full
 syntax on
 
 au FileType help setlocal signcolumn=no
