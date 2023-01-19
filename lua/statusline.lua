@@ -74,7 +74,7 @@ function M.bname()
   return name
 end
 
-local function highlight(num, active) return (active == 1 and num ~= 1) and '%#StatusLine#' or '%#StatusLineNC#' end
+local function highlight(num, active) return (active and num ~= 1) and '%#StatusLine#' or '%#StatusLineNC#' end
 local function pad(x) return '%( ' .. x .. ' %)' end
 local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
@@ -99,12 +99,12 @@ local au_statusline = vim.api.nvim_create_augroup('statusline', {})
 
 vim.api.nvim_create_autocmd({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
   group = au_statusline,
-  callback = function() vim.wo.statusline = _G.statusline.statusline(1) end
+  callback = function() vim.wo.statusline = _G.statusline.statusline(true) end
 })
 
 vim.api.nvim_create_autocmd({ 'WinLeave', 'FocusLost' }, {
   group = au_statusline,
-  callback = function() vim.wo.statusline = _G.statusline.statusline(0) end
+  callback = function() vim.wo.statusline = _G.statusline.statusline(false) end
 })
 
 _G.statusline = M
