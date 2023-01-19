@@ -71,12 +71,7 @@ return function()
     { name = 'cmdline_history' },
   }
 
-  cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources(cmdline_lookup_sources),
-  })
-
-  cmp.setup.cmdline('?', {
+  cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources(cmdline_lookup_sources),
   })
