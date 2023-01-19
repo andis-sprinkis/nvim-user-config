@@ -1,18 +1,14 @@
 return function()
-  if not vim.g.sys_reqr.git_plugins then
-    vim.keymap.set('n', '<tab>', ':Files<cr>', { silent = true })
-  else
-    local function showFiles()
-      if vim.fn.system('git rev-parse --git-dir') == '.git\n' then
-        vim.cmd('GFiles --exclude-standard --others --cached')
-      else
-        vim.cmd('Files')
-      end
+  local function show_files_with_git()
+    if vim.fn.system('git rev-parse --git-dir') == '.git\n' then
+      vim.cmd('GFiles --exclude-standard --others --cached')
+      return
     end
 
-    vim.keymap.set('n', '<tab>', function() showFiles() end, { silent = true })
+    vim.cmd('Files')
   end
 
+  vim.keymap.set('n', '<tab>', vim.g.sys_reqr.git_plugins and show_files_with_git or ':Files<cr>', { silent = true })
   vim.keymap.set('n', '<s-tab>', ':Files<cr>', { silent = true })
   vim.keymap.set('n', '<leader>e', ':Rg<cr>', { silent = true })
 

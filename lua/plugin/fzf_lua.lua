@@ -1,5 +1,8 @@
 return function()
-  local previewer = 'cat'
+  local fzflua = require('fzf-lua')
+
+  local previewer
+
   if vim.g.exec.bat then
     previewer = 'bat'
   elseif vim.g.exec.cat then
@@ -8,7 +11,7 @@ return function()
     previewer = 'builtin'
   end
 
-  require 'fzf-lua'.setup({
+  fzflua.setup({
     fzf_colors = {
       ['fg'] = { 'fg', 'CursorLine' },
       ['bg'] = { 'bg', 'Normal' },
@@ -61,26 +64,16 @@ return function()
     }
   })
 
-  local function isInGitDir()
-    return vim.fn.system('git rev-parse --git-dir') == '.git\n'
-  end
-
-  local function showFiles(withGit)
-    if (withGit) then
-      require('fzf-lua').git_files()
-
+  local function show_files_with_git()
+    if vim.fn.system('git rev-parse --git-dir') == '.git\n' then
+      fzflua.git_files()
       return
     end
 
-    require('fzf-lua').files()
+    fzflua.files()
   end
 
-  if vim.g.sys_reqr.git_plugins then
-    vim.keymap.set({ 'n' }, '<tab>', function() showFiles(isInGitDir()) end, { silent = true })
-  else
-    vim.keymap.set({ 'n' }, '<tab>', function() showFiles() end, { silent = true })
-  end
-
-  vim.keymap.set('n', '<s-tab>', function() showFiles() end, { silent = true })
-  vim.keymap.set('n', '<leader>e', function() require('fzf-lua').grep({ search = '' }) end, { silent = true })
+  vim.keymap.set({ 'n' }, '<tab>', vim.g.sys_reqr.git_plugins and show_files_with_git or fzflua.files, { silent = true })
+  vim.keymap.set({ 'n' }, '<s-tab>', fzflua.files, { silent = true })
+  vim.keymap.set({ 'n' }, '<leader>e', function() fzflua.grep({ search = '' }) end, { silent = true })
 end

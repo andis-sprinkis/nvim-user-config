@@ -8,9 +8,7 @@ return function()
     {
       group = au_spectre,
       pattern = 'spectre_panel',
-      callback = function()
-        vim.opt_local.signcolumn = 'no'
-      end
+      callback = function() vim.opt_local.signcolumn = 'no' end
     }
   )
 
