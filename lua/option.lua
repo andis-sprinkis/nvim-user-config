@@ -3,6 +3,7 @@ else vim.g.os = vim.fn.substitute(vim.fn.system('uname'), '\n', '', '') end
 
 vim.g.loaded_netrwPlugin = 0
 vim.g.man_hard_wrap = true
+vim.g.mapleader = ' '
 vim.opt.backup = false
 vim.opt.breakindent = true
 vim.opt.clipboard = 'unnamedplus'
@@ -28,6 +29,13 @@ vim.opt.titlelen = 1000
 vim.opt.updatetime = 100
 vim.opt.winblend = 10
 vim.opt.writebackup = false
+
+vim.keymap.set({ 'n', 'v' }, ';', ':')
+vim.keymap.set({ 'n', 'v' }, 'h', '<bs>')
+vim.keymap.set({ 'n', 'v' }, 'l', '<space>')
+vim.keymap.set({ 'n' }, '<leader>v', vim.cmd.split, { silent = true })
+vim.keymap.set({ 'n' }, '<leader>o', vim.cmd.vsplit, { silent = true })
+vim.keymap.set({ 't' }, '<C-w>', '<C-\\><C-n>')
 
 if vim.g.os == 'Windows' then
   vim.env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. vim.env.PATH
