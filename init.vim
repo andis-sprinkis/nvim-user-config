@@ -7,7 +7,6 @@ set breakindent
 set clipboard=unnamedplus
 set foldlevel=99
 set foldmethod=syntax
-set hidden
 set list
 set listchars=space:·,trail:·,eol:↲,tab:»\ 
 set mouse=a
