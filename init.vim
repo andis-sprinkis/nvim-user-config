@@ -5,6 +5,7 @@ let g:netrw_liststyle= 1
 let mapleader="\<space>"
 set breakindent
 set clipboard=unnamedplus
+set expandtab
 set foldlevel=99
 set foldmethod=syntax
 set list
@@ -15,11 +16,13 @@ set nohlsearch
 set noshowmode
 set noswapfile
 set nowritebackup
+set number
 set pumblend=10
 set relativenumber
 set scrolljump=-100
+set shiftwidth=2
 set shortmess+=c
-set tabstop=2 shiftwidth=2 expandtab
+set tabstop=2
 set termguicolors
 set title
 set titlelen=1000
