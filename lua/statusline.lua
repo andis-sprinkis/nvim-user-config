@@ -6,7 +6,7 @@ local function highlight(num, active)
   return '%#StatusLineNC#'
 end
 
-function M.lsp_status(active)
+function M.lsp_status()
   if (not vim.g.sys_reqr.lsp_plugins) or vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then return '' end
 
   local status = {}
@@ -14,13 +14,7 @@ function M.lsp_status(active)
   for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
     local n = vim.diagnostic.get(0, { severity = ty })
 
-    if #n > 0 then
-      if active == 1 then
-        table.insert(status, ('%%#Diagnostic%sStatus# %s:%s'):format(ty, ty:sub(1, 1), #n))
-      else
-        table.insert(status, (' %s:%s'):format(ty:sub(1, 1), #n))
-      end
-    end
+    if #n > 0 then table.insert(status, (' %s:%s'):format(ty:sub(1, 1), #n)) end
   end
 
   local r = table.concat(status, ' ')
@@ -32,16 +26,14 @@ function M.hunks()
   if not vim.g.sys_reqr.git_plugins then return '' end
 
   if vim.b.gitsigns_status then
-    local status = vim.b.gitsigns_head
-
     if vim.b.gitsigns_status ~= '' then
-      status = status .. ' ' .. vim.b.gitsigns_status
+      return vim.b.gitsigns_head .. ' ' .. vim.b.gitsigns_status
     end
 
-    return status
-  elseif vim.g.gitsigns_head then
-    return vim.g.gitsigns_head
+    return vim.b.gitsigns_head
   end
+
+  if vim.g.gitsigns_head then return vim.g.gitsigns_head end
 
   return ''
 end
@@ -51,16 +43,12 @@ function M.swenv()
 
   local venv = require('swenv.api').get_current_venv()
 
-  if venv then
-    return "venv:" .. venv.name
-  end
+  if venv then return "venv:" .. venv.name end
 
   return ''
 end
 
-function M.filetype()
-  return vim.bo.filetype
-end
+function M.filetype() return vim.bo.filetype end
 
 function M.encodingAndFormat()
   local e = vim.bo.fileencoding and vim.bo.fileencoding or vim.o.encoding
@@ -71,9 +59,7 @@ function M.encodingAndFormat()
   end
 
   local f = vim.bo.fileformat
-  if f ~= 'unix' then
-    r[#r + 1] = '[' .. f .. ']'
-  end
+  if f ~= 'unix' then r[#r + 1] = '[' .. f .. ']' end
 
   return table.concat(r, ' ')
 end
@@ -104,10 +90,7 @@ end
 
 local function pad(x) return '%( ' .. x .. ' %)' end
 
-local function func(name, active)
-  active = active or 1
-  return '%{%v:lua.statusline.' .. name .. '(' .. tostring(active) .. ')%}'
-end
+local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
 function M.statusline(active)
   return table.concat {
@@ -115,7 +98,7 @@ function M.statusline(active)
     pad(func('hunks')),
     pad(func('swenv')),
     highlight(2, active),
-    pad(func('lsp_status', active)),
+    pad(func('lsp_status')),
     '%=',
     pad(func('bufname') .. '%m%r%h%q'),
     '%=',
