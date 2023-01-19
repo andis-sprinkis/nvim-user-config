@@ -1,11 +1,5 @@
 local M = {}
 
-local function highlight(num, active)
-  if (active == 1 and num ~= 1) then return '%#StatusLine#' end
-
-  return '%#StatusLineNC#'
-end
-
 function M.lsp_status()
   if (not vim.g.sys_reqr.lsp_plugins) or vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then return '' end
 
@@ -26,16 +20,10 @@ function M.hunks()
   if not vim.g.sys_reqr.git_plugins then return '' end
 
   if vim.b.gitsigns_status then
-    if vim.b.gitsigns_status ~= '' then
-      return vim.b.gitsigns_head .. ' ' .. vim.b.gitsigns_status
-    end
-
-    return vim.b.gitsigns_head
+    return vim.b.gitsigns_status == '' and vim.b.gitsigns_head or vim.b.gitsigns_head .. ' ' .. vim.b.gitsigns_status
   end
 
-  if vim.g.gitsigns_head then return vim.g.gitsigns_head end
-
-  return ''
+  return vim.g.gitsigns_head and vim.g.gitsigns_head or ''
 end
 
 function M.swenv()
@@ -43,9 +31,7 @@ function M.swenv()
 
   local venv = require('swenv.api').get_current_venv()
 
-  if venv then return "venv:" .. venv.name end
-
-  return ''
+  return venv and "venv:" .. venv.name or ''
 end
 
 function M.filetype() return vim.bo.filetype end
@@ -88,8 +74,8 @@ function M.bufname()
   return name
 end
 
+local function highlight(num, active) return (active == 1 and num ~= 1) and '%#StatusLine#' or '%#StatusLineNC#' end
 local function pad(x) return '%( ' .. x .. ' %)' end
-
 local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
 function M.statusline(active)
