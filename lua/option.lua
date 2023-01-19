@@ -14,6 +14,7 @@ vim.opt.hlsearch = false
 vim.opt.list = true
 vim.opt.listchars = { eol = '↲', tab = '» ' }
 vim.opt.mouse = 'a'
+vim.opt.number = true
 vim.opt.pumblend = 10
 vim.opt.relativenumber = true
 vim.opt.scrolljump = -100
@@ -59,6 +60,7 @@ vim.api.nvim_create_autocmd(
   {
     group = au_option,
     callback = function()
+      vim.opt_local.number = false
       vim.opt_local.relativenumber = false
       vim.opt_local.signcolumn = 'no'
     end
