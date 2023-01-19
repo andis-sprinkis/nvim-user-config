@@ -21,7 +21,6 @@ set tabstop=2 shiftwidth=2 expandtab
 set title
 set titlelen=1000
 set updatetime=100
-set wildmenu
 syntax on
 
 au FileType help setlocal signcolumn=no
