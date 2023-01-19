@@ -7,7 +7,6 @@ vim.opt.backup = false
 vim.opt.breakindent = true
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.expandtab = true
-vim.opt.fcs = { eob = nil }
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'syntax'
 vim.opt.hlsearch = false
