@@ -1,6 +1,8 @@
 return function()
-  vim.g.splitjoin_split_mapping = ''
-  vim.g.splitjoin_join_mapping = ''
-  vim.keymap.set({ 'n' }, '<Leader>k', ':SplitjoinJoin<cr>', { silent = true })
-  vim.keymap.set({ 'n' }, '<Leader>j', ':SplitjoinSplit<cr>', { silent = true })
+  local g = vim.g
+  local kms = vim.keymap.set
+  g.splitjoin_split_mapping = ''
+  g.splitjoin_join_mapping = ''
+  kms({ 'n' }, '<Leader>k', ':SplitjoinJoin<cr>', { silent = true })
+  kms({ 'n' }, '<Leader>j', ':SplitjoinSplit<cr>', { silent = true })
 end

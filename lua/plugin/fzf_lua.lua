@@ -1,11 +1,14 @@
 return function()
+  local exec = vim.g.exec
+  local kms = vim.keymap.set
+
   local fzflua = require('fzf-lua')
 
   local previewer
 
-  if vim.g.exec.bat then
+  if exec.bat then
     previewer = 'bat'
-  elseif vim.g.exec.cat then
+  elseif exec.cat then
     previewer = 'cat'
   else
     previewer = 'builtin'
@@ -73,7 +76,7 @@ return function()
     fzflua.files()
   end
 
-  vim.keymap.set({ 'n' }, '<tab>', vim.g.sys_reqr.git_plugins and show_files_with_git or fzflua.files, { silent = true })
-  vim.keymap.set({ 'n' }, '<s-tab>', fzflua.files, { silent = true })
-  vim.keymap.set({ 'n' }, '<leader>e', function() fzflua.grep({ search = '' }) end, { silent = true })
+  kms({ 'n' }, '<tab>', vim.g.sys_reqr.git_plugins and show_files_with_git or fzflua.files, { silent = true })
+  kms({ 'n' }, '<s-tab>', fzflua.files, { silent = true })
+  kms({ 'n' }, '<leader>e', function() fzflua.grep({ search = '' }) end, { silent = true })
 end

@@ -1,109 +1,116 @@
-if (vim.fn.has('win64') == 1) then vim.g.os = 'Windows'
-else vim.g.os = vim.fn.substitute(vim.fn.system('uname'), '\n', '', '') end
+local g = vim.g
+local o = vim.opt
+local ol = vim.opt_local
+local fn = vim.fn
+local cmd = vim.cmd
+local kms = vim.keymap.set
+local api = vim.api
+local env = vim.env
+local cag = api.nvim_create_augroup
+local cac = api.nvim_create_autocmd
 
-vim.g.loaded_netrwPlugin = 0
-vim.g.man_hard_wrap = true
-vim.g.mapleader = ' '
-vim.opt.backup = false
-vim.opt.breakindent = true
-vim.opt.clipboard = 'unnamedplus'
-vim.opt.expandtab = true
-vim.opt.foldlevel = 99
-vim.opt.foldmethod = 'syntax'
-vim.opt.hlsearch = false
-vim.opt.list = true
-vim.opt.listchars = { eol = '↲', tab = '» ' }
-vim.opt.mouse = 'a'
-vim.opt.number = true
-vim.opt.pumblend = 10
-vim.opt.relativenumber = true
-vim.opt.scrolljump = -100
-vim.opt.shiftwidth = 2
-vim.opt.showmode = false
-vim.opt.signcolumn = 'yes:2'
-vim.opt.swapfile = false
-vim.opt.tabstop = 2
-vim.opt.termguicolors = true
-vim.opt.title = true
-vim.opt.titlelen = 1000
-vim.opt.updatetime = 100
-vim.opt.winblend = 10
-vim.opt.writebackup = false
+if (fn.has('win64') == 1) then g.os = 'Windows'
+else g.os = fn.substitute(fn.system('uname'), '\n', '', '') end
 
-vim.keymap.set({ 'n', 'v' }, ';', ':')
-vim.keymap.set({ 'n', 'v' }, 'h', '<bs>')
-vim.keymap.set({ 'n', 'v' }, 'l', '<space>')
-vim.keymap.set({ 'n' }, '<leader>v', vim.cmd.split, { silent = true })
-vim.keymap.set({ 'n' }, '<leader>o', vim.cmd.vsplit, { silent = true })
-vim.keymap.set({ 't' }, '<C-w>', '<C-\\><C-n>')
+g.loaded_netrwPlugin = 0
+g.man_hard_wrap = true
+g.mapleader = ' '
+o.backup = false
+o.breakindent = true
+o.clipboard = 'unnamedplus'
+o.expandtab = true
+o.foldlevel = 99
+o.foldmethod = 'syntax'
+o.hlsearch = false
+o.list = true
+o.listchars = { eol = '↲', tab = '» ' }
+o.mouse = 'a'
+o.number = true
+o.pumblend = 10
+o.relativenumber = true
+o.scrolljump = -100
+o.shiftwidth = 2
+o.showmode = false
+o.signcolumn = 'yes:2'
+o.swapfile = false
+o.tabstop = 2
+o.termguicolors = true
+o.title = true
+o.titlelen = 1000
+o.updatetime = 100
+o.winblend = 10
+o.writebackup = false
 
-if vim.g.os == 'Windows' then
-  vim.env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. vim.env.PATH
+kms({ 'n', 'v' }, ';', ':')
+kms({ 'n', 'v' }, 'h', '<bs>')
+kms({ 'n', 'v' }, 'l', '<space>')
+kms({ 'n' }, '<leader>v', cmd.split, { silent = true })
+kms({ 'n' }, '<leader>o', cmd.vsplit, { silent = true })
+kms({ 't' }, '<C-w>', '<C-\\><C-n>')
+
+if g.os == 'Windows' then
+  env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. env.PATH
 else
-  vim.env.LANG = 'en_US.UTF-8'
-  vim.env.PATH = vim.fn.stdpath('config') .. '/bin:' .. vim.env.PATH
+  env.LANG = 'en_US.UTF-8'
+  env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
 end
 
-local au_option = vim.api.nvim_create_augroup('option', {})
+local au_option = cag('option', {})
 
-vim.api.nvim_create_autocmd(
+cac(
   { 'VimResized' },
   {
     group = au_option,
-    callback = function()
-      vim.cmd.wincmd('=')
-    end
+    callback = function() cmd.wincmd('=') end
   }
 )
-vim.api.nvim_create_autocmd(
+cac(
   { 'TermOpen' },
   {
     group = au_option,
     callback = function()
-      vim.opt_local.number = false
-      vim.opt_local.relativenumber = false
-      vim.opt_local.signcolumn = 'no'
+      ol.number = false
+      ol.relativenumber = false
+      ol.signcolumn = 'no'
     end
   }
 )
 
-vim.api.nvim_create_autocmd(
+cac(
   { 'TermOpen' },
   {
     group = au_option,
     pattern = { 'term://*' },
-    callback = function()
-      vim.cmd.startinsert()
-    end
+    callback = cmd.startinsert
   }
 )
 
-vim.api.nvim_create_autocmd(
+cac(
   { 'FileType' },
   {
     group = au_option,
     pattern = { 'help', 'man' },
     callback = function()
-      vim.opt_local.signcolumn = 'no'
+      ol.signcolumn = 'no'
     end
   }
 )
 
-vim.api.nvim_create_autocmd(
+cac(
   { 'FileType' },
   {
     group = au_option,
     pattern = { 'make' },
     callback = function()
-      vim.opt_local.expandtab = false
+      ol.expandtab = false
     end
   }
 )
 
-if vim.g.neoray == 1 then
-  vim.opt.guifont = 'CascadiaCodePL:h13'
+if g.neoray == 1 then
+  o.guifont = 'CascadiaCodePL:h13'
 
-  vim.cmd([[
+  cmd([[
     NeoraySet KeyZoomIn <C-ScrollWheelUp>
     NeoraySet KeyZoomOut <C-ScrollWheelDown>
     NeoraySet WindowSize 108x40

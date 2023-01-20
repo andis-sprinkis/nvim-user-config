@@ -1,43 +1,52 @@
-vim.g.exec = {
-  bash = vim.fn.executable('bash') == 1,
-  bat = vim.fn.executable('bat') == 1,
-  cat = vim.fn.executable('cat') == 1,
-  git = vim.fn.executable('git') == 1,
-  go = vim.fn.executable('go') == 1,
-  lf = vim.fn.executable('lf') == 1,
-  node = vim.fn.executable('node') == 1,
-  python3 = vim.fn.executable('python3') == 1,
-  sed = vim.fn.executable('sed') == 1,
-  sudo = vim.fn.executable('sudo') == 1,
-  tmux = vim.fn.executable('tmux') == 1,
-  zsh = vim.fn.executable('zsh') == 1,
+local g = vim.g
+local fn = vim.fn
+local cmd = vim.cmd
+local os = g.os
+local executable = fn.executable
+
+g.exec = {
+  bash = executable('bash') == 1,
+  bat = executable('bat') == 1,
+  cat = executable('cat') == 1,
+  git = executable('git') == 1,
+  go = executable('go') == 1,
+  lf = executable('lf') == 1,
+  node = executable('node') == 1,
+  python3 = executable('python3') == 1,
+  sed = executable('sed') == 1,
+  sudo = executable('sudo') == 1,
+  tmux = executable('tmux') == 1,
+  zsh = executable('zsh') == 1,
 }
 
-vim.g.sys_reqr = {
-  cmp_tmux = vim.g.exec.tmux,
-  cmp_zsh = vim.g.exec.zsh,
-  dap_plugins = vim.g.os ~= 'Windows',
-  fm_nvim = vim.g.exec.lf,
-  fzf = vim.g.os == 'Windows' or vim.g.os == 'Darwin',
-  fzf_lua = vim.g.os ~= 'Windows',
-  fzf_vim = vim.g.os == 'Windows' and vim.g.exec.bash,
-  git_plugins = vim.g.exec.git,
-  lsp_plugins = vim.g.exec.node,
-  markdown_preview = vim.g.exec.node,
-  nvim_spectre = vim.g.exec.sed,
-  suda_vim = vim.g.exec.sudo,
-  swenv = vim.g.exec.python3,
-  vim_doge = vim.g.exec.node,
-  vim_hexokinase = vim.g.exec.go,
+local exec = g.exec
+
+g.sys_reqr = {
+  cmp_tmux = exec.tmux,
+  cmp_zsh = exec.zsh,
+  dap_plugins = os ~= 'Windows',
+  fm_nvim = exec.lf,
+  fzf = os == 'Windows' or os == 'Darwin',
+  fzf_lua = os ~= 'Windows',
+  fzf_vim = os == 'Windows' and exec.bash,
+  git_plugins = exec.git,
+  lsp_plugins = exec.node,
+  markdown_preview = exec.node,
+  nvim_spectre = exec.sed,
+  suda_vim = exec.sudo,
+  swenv = exec.python3,
+  vim_doge = exec.node,
+  vim_hexokinase = exec.go,
 }
+
+local sys_reqr = g.sys_reqr
 
 local ensure_packer = function()
-  local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    vim.cmd [[packadd packer.nvim]]
+    cmd([[packadd packer.nvim]])
 
     return true
   end
@@ -47,7 +56,9 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-require('packer').startup(function(use)
+local packer = require('packer')
+
+packer.startup(function(use)
   use {
     {
       'lewis6991/impatient.nvim',
@@ -93,7 +104,7 @@ require('packer').startup(function(use)
       config = require('plugin.winshift_nvim'),
     },
     {
-      cond = { vim.g.sys_reqr['git_plugins'] },
+      cond = { sys_reqr['git_plugins'] },
       { 'tpope/vim-fugitive' },
       {
         'lewis6991/gitsigns.nvim',
@@ -116,7 +127,7 @@ require('packer').startup(function(use)
     },
     {
       "williamboman/mason.nvim",
-      cond = { vim.g.sys_reqr['lsp_plugins'] },
+      cond = { sys_reqr['lsp_plugins'] },
       config = require('plugin.mason_nvim'),
       requires = {
         { 'b0o/schemastore.nvim' },
@@ -128,54 +139,54 @@ require('packer').startup(function(use)
     },
     {
       'mfussenegger/nvim-dap',
-      cond = vim.g.sys_reqr['dap_plugins'],
+      cond = sys_reqr['dap_plugins'],
       config = require('plugin.nvim_dap')
     },
     {
       'junegunn/fzf',
-      cond = { vim.g.sys_reqr['fzf'] },
-      run = function() vim.fn['fzf#install']() end,
+      cond = { sys_reqr['fzf'] },
+      run = function() fn['fzf#install']() end,
     },
     {
       'ibhagwan/fzf-lua',
-      cond = { vim.g.sys_reqr['fzf_lua'] },
+      cond = { sys_reqr['fzf_lua'] },
       config = require('plugin.fzf_lua')
     },
     {
       'junegunn/fzf.vim',
-      cond = { vim.g.sys_reqr['fzf_vim'] },
+      cond = { sys_reqr['fzf_vim'] },
       config = require('plugin.fzf_vim')
     },
     {
       'is0n/fm-nvim',
-      cond = { vim.g.sys_reqr['fm_nvim'] },
+      cond = { sys_reqr['fm_nvim'] },
       config = require('plugin.fm_nvim')
     },
     {
       'nvim-pack/nvim-spectre',
-      cond = { vim.g.sys_reqr['nvim_spectre'] },
+      cond = { sys_reqr['nvim_spectre'] },
       config = require('plugin.nvim_spectre'),
     },
     {
       'lambdalisue/suda.vim',
-      cond = { vim.g.sys_reqr['suda_vim'] },
+      cond = { sys_reqr['suda_vim'] },
       config = require('plugin.suda'),
     },
     {
       'kkoomen/vim-doge',
-      run = function() vim.fn['doge#install']() end,
+      run = function() fn['doge#install']() end,
       setup = require('plugin.vim_doge_setup'),
-      cond = { vim.g.sys_reqr['vim_doge'] },
+      cond = { sys_reqr['vim_doge'] },
     },
     {
       'rrethy/vim-hexokinase',
       run = 'make hexokinase',
-      cond = { vim.g.sys_reqr['vim_hexokinase'] },
+      cond = { sys_reqr['vim_hexokinase'] },
     },
     {
       'iamcco/markdown-preview.nvim',
-      cond = { vim.g.sys_reqr['markdown_preview'] },
-      run = function() vim.fn['mkdp#util#install']() end,
+      cond = { sys_reqr['markdown_preview'] },
+      run = function() fn['mkdp#util#install']() end,
       ft = { 'markdown', 'vim-plug' },
     },
     {
@@ -203,10 +214,10 @@ require('packer').startup(function(use)
         { 'hrsh7th/cmp-cmdline' },
         { 'hrsh7th/cmp-emoji' },
         { 'tamago324/cmp-zsh',
-          cond = { vim.g.sys_reqr['cmp_zsh'] }
+          cond = { sys_reqr['cmp_zsh'] }
         },
         { 'andersevenrud/cmp-tmux',
-          cond = { vim.g.sys_reqr.cmp_tmux }
+          cond = { sys_reqr.cmp_tmux }
         },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-path' },
@@ -235,7 +246,7 @@ require('packer').startup(function(use)
     }
   }
 
-  if packer_bootstrap then require('packer').sync() end
+  if packer_bootstrap then packer.sync() end
 
   require('statusline')
 end)

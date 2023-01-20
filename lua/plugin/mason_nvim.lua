@@ -1,4 +1,10 @@
 return function()
+  local diagnostic = vim.diagnostic
+  local lsp = vim.lsp
+  local api = vim.api
+  local lspbuf = lsp.buf
+  local kms = vim.keymap.set
+
   local lsp_servers = {
     'awk_ls',
     'bashls',
@@ -16,44 +22,45 @@ return function()
   -- Mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
   local map_opts = { silent = true }
-  vim.keymap.set({ 'n' }, '<Leader>d', vim.diagnostic.open_float, map_opts)
-  vim.keymap.set({ 'n' }, '[d', vim.diagnostic.goto_prev, map_opts)
-  vim.keymap.set({ 'n' }, ']d', vim.diagnostic.goto_next, map_opts)
-  vim.keymap.set({ 'n' }, '<Leader>q', vim.diagnostic.setloclist, map_opts)
+  kms({ 'n' }, '<Leader>d', diagnostic.open_float, map_opts)
+  kms({ 'n' }, '[d', diagnostic.goto_prev, map_opts)
+  kms({ 'n' }, ']d', diagnostic.goto_next, map_opts)
+  kms({ 'n' }, '<Leader>q', diagnostic.setloclist, map_opts)
 
-  local function buf_format() vim.lsp.buf.format({ async = true }) end
+  local function buf_format() lspbuf.format({ async = true }) end
 
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
   local on_attach = function(client, bufnr)
     local buf_map_opts = { silent = true, buffer = bufnr }
+    local server_capabilities = client.server_capabilities
 
     require 'illuminate'.on_attach(client)
 
     -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.keymap.set({ 'n' }, 'gD', vim.lsp.buf.declaration, buf_map_opts)
-    vim.keymap.set({ 'n' }, 'gd', vim.lsp.buf.definition, buf_map_opts)
-    vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, buf_map_opts)
-    vim.keymap.set({ 'n' }, 'gi', vim.lsp.buf.implementation, buf_map_opts)
-    vim.keymap.set({ 'n' }, '<C-s>', vim.lsp.buf.signature_help, buf_map_opts)
-    -- vim.keymap.set({ 'n' }, '<Leader>wa', vim.lsp.buf.add_workLeader_folder, buf_map_opts)
-    -- vim.keymap.set({ 'n' }, '<Leader>wr', vim.lsp.buf.remove_workLeader_folder, buf_map_opts)
-    -- vim.keymap.set({ 'n' }, '<Leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workLeader_folders())) end, buf_map_opts)
-    vim.keymap.set({ 'n' }, '<Leader>D', vim.lsp.buf.type_definition, buf_map_opts)
-    -- vim.keymap.set({ 'n' }, '<Leader>rn', vim.lsp.buf.rename, buf_map_opts)
-    vim.keymap.set({ 'n' }, '<Leader>ca', vim.lsp.buf.code_action, buf_map_opts)
-    vim.keymap.set({ 'n' }, 'gr', vim.lsp.buf.references, buf_map_opts)
+    kms({ 'n' }, 'gD', lspbuf.declaration, buf_map_opts)
+    kms({ 'n' }, 'gd', lspbuf.definition, buf_map_opts)
+    kms({ 'n' }, 'K', lspbuf.hover, buf_map_opts)
+    kms({ 'n' }, 'gi', lspbuf.implementation, buf_map_opts)
+    kms({ 'n' }, '<C-s>', lspbuf.signature_help, buf_map_opts)
+    -- kms({ 'n' }, '<Leader>wa', lspbuf.add_workLeader_folder, buf_map_opts)
+    -- kms({ 'n' }, '<Leader>wr', lspbuf.remove_workLeader_folder, buf_map_opts)
+    -- kms({ 'n' }, '<Leader>wl', function() print(vim.inspect(lspbuf.list_workLeader_folders())) end, buf_map_opts)
+    kms({ 'n' }, '<Leader>D', lspbuf.type_definition, buf_map_opts)
+    -- vim.keymap.set({ 'n' }, '<Leader>rn', lspbuf.rename, buf_map_opts)
+    kms({ 'n' }, '<Leader>ca', lspbuf.code_action, buf_map_opts)
+    kms({ 'n' }, 'gr', lspbuf.references, buf_map_opts)
 
-    if client.server_capabilities.documentFormattingProvider then
-      vim.keymap.set({ 'n' }, '<Leader>f', buf_format, buf_map_opts)
+    if server_capabilities.documentFormattingProvider then
+      kms({ 'n' }, '<Leader>f', buf_format, buf_map_opts)
     end
 
-    if client.server_capabilities.documentRangeFormattingProvider then
-      vim.keymap.set({ 'x' }, '<Leader>f', buf_format, buf_map_opts)
+    if server_capabilities.documentRangeFormattingProvider then
+      kms({ 'x' }, '<Leader>f', buf_format, buf_map_opts)
     end
 
     vim.api.nvim_create_user_command(
@@ -73,15 +80,17 @@ return function()
   end
 
   local function remove_formatting_capabilities(client)
-    client.server_capabilities.documentFormattingProvider      = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-  end
+    local server_capabilities = client.server_capabilities
 
-  local lspconfig = require("lspconfig")
+    server_capabilities.documentFormattingProvider      = false
+    server_capabilities.documentRangeFormattingProvider = false
+  end
 
   require("mason").setup()
 
   require("mason-lspconfig").setup({ ensure_installed = lsp_servers })
+
+  local lspconfig = require("lspconfig")
 
   require("mason-lspconfig").setup_handlers({
     function(server_name)
@@ -136,13 +145,14 @@ return function()
     },
     on_attach = function(client, bufnr)
       local buf_map_opts = { silent = true, buffer = bufnr }
+      local server_capabilities = client.server_capabilities
 
-      if client.server_capabilities.documentFormattingProvider then
-        vim.keymap.set({ 'n' }, '<Leader>f', buf_format, buf_map_opts)
+      if server_capabilities.documentFormattingProvider then
+        kms({ 'n' }, '<Leader>f', buf_format, buf_map_opts)
       end
 
-      if client.server_capabilities.documentRangeFormattingProvider then
-        vim.keymap.set({ 'x' }, '<Leader>f', buf_format, buf_map_opts)
+      if server_capabilities.documentRangeFormattingProvider then
+        kms({ 'x' }, '<Leader>f', buf_format, buf_map_opts)
       end
     end,
   })

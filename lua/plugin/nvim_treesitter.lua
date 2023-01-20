@@ -21,7 +21,8 @@ return function()
     },
   }
 
-  vim.opt.foldmethod = 'expr'
-  vim.opt.foldenable = false
-  vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+  local o = vim.opt
+  o.foldmethod = 'expr'
+  o.foldenable = false
+  o.foldexpr = 'nvim_treesitter#foldexpr()'
 end

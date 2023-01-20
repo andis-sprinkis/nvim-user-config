@@ -1,9 +1,11 @@
 return function()
   local spectre = require('spectre')
+  local api = vim.api
+  local kms = vim.keymap.set
 
-  local au_spectre = vim.api.nvim_create_augroup('spectre', {})
+  local au_spectre = api.nvim_create_augroup('spectre', {})
 
-  vim.api.nvim_create_autocmd(
+  api.nvim_create_autocmd(
     { 'Filetype' },
     {
       group = au_spectre,
@@ -15,12 +17,12 @@ return function()
   local map_opts = { nowait = true, silent = true }
 
   -- search global
-  vim.keymap.set({ 'n' }, '<Leader>rr', spectre.open, map_opts)
+  kms({ 'n' }, '<Leader>rr', spectre.open, map_opts)
 
   -- search current word
-  vim.keymap.set({ 'n' }, '<Leader>rw', function() spectre.open_visual({ select_word = true }) end, map_opts)
-  vim.keymap.set({ 'v' }, '<Leader>rw', spectre.open_visual, map_opts)
+  kms({ 'n' }, '<Leader>rw', function() spectre.open_visual({ select_word = true }) end, map_opts)
+  kms({ 'v' }, '<Leader>rw', spectre.open_visual, map_opts)
 
   -- search in current file
-  vim.keymap.set({ 'n' }, '<Leader>rf', spectre.open_file_search, map_opts)
+  kms({ 'n' }, '<Leader>rf', spectre.open_file_search, map_opts)
 end

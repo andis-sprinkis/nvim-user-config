@@ -1,12 +1,26 @@
+local api = vim.api
+local b = vim.b
+local bo = vim.bo
+local diagnostic = vim.diagnostic
+local fn = vim.fn
+local g = vim.g
+local lsp = vim.lsp
+local o = vim.opt
+local wo = vim.wo
+local os = g.os
+local sys_reqr = g.sys_reqr
+local cac = api.nvim_create_autocmd
+local cag = api.nvim_create_augroup
+
 local M = {}
 
 function M.lsp_status()
-  if (not vim.g.sys_reqr.lsp_plugins) or vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then return '' end
+  if (not sys_reqr.lsp_plugins) or vim.tbl_isempty(lsp.buf_get_clients(0)) then return '' end
 
   local status = {}
 
   for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
-    local n = vim.diagnostic.get(0, { severity = ty })
+    local n = diagnostic.get(0, { severity = ty })
 
     if #n > 0 then table.insert(status, (' %s:%s'):format(ty:sub(1, 1), #n)) end
   end
@@ -17,34 +31,34 @@ function M.lsp_status()
 end
 
 function M.git_hunks()
-  if not vim.g.sys_reqr.git_plugins then return '' end
+  if not sys_reqr.git_plugins then return '' end
 
-  if vim.b.gitsigns_status then
-    return vim.b.gitsigns_status == '' and vim.b.gitsigns_head or vim.b.gitsigns_head .. ' ' .. vim.b.gitsigns_status
+  if b.gitsigns_status then
+    return b.gitsigns_status == '' and b.gitsigns_head or b.gitsigns_head .. ' ' .. b.gitsigns_status
   end
 
-  return vim.g.gitsigns_head and vim.g.gitsigns_head or ''
+  return g.gitsigns_head and g.gitsigns_head or ''
 end
 
 function M.py_swenv()
-  if (not vim.g.sys_reqr.swenv) then return '' end
+  if (not sys_reqr.swenv) then return '' end
 
   local venv = require('swenv.api').get_current_venv()
 
   return venv and "venv:" .. venv.name or ''
 end
 
-function M.ft() return vim.bo.filetype end
+function M.ft() return bo.filetype end
 
 function M.fenc_ffmat()
-  local e = vim.bo.fileencoding and vim.bo.fileencoding or vim.o.encoding
+  local e = bo.fileencoding and bo.fileencoding or o.encoding
 
   local r = {}
   if e ~= 'utf-8' then
     r[#r + 1] = e
   end
 
-  local f = vim.bo.fileformat
+  local f = bo.fileformat
   if f ~= 'unix' then r[#r + 1] = '[' .. f .. ']' end
 
   return table.concat(r, ' ')
@@ -52,13 +66,13 @@ end
 
 function M.bname()
   local ratio = 0.5
-  local width = math.floor(vim.api.nvim_win_get_width(0) * ratio)
-  local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':.')
+  local width = math.floor(api.nvim_win_get_width(0) * ratio)
+  local name = fn.fnamemodify(api.nvim_buf_get_name(0), ':.')
 
-  if (vim.g.sys_reqr.git_plugins and vim.startswith(name, 'fugitive')) then
+  if (sys_reqr.git_plugins and vim.startswith(name, 'fugitive')) then
     local _, commit, relpath
 
-    if (vim.g.os == 'Windows') then
+    if (os == 'Windows') then
       _, _, commit, relpath = name:find([[^fugitive:\\.*\%.git.*\(%x-)\(.*)]])
     else
       _, _, commit, relpath = name:find([[^fugitive://.*/%.git.*/(%x-)/(.*)]])
@@ -93,16 +107,16 @@ function M.statusline(active)
   }
 end
 
-local au_statusline = vim.api.nvim_create_augroup('statusline', {})
+local au_statusline = cag('statusline', {})
 
-vim.api.nvim_create_autocmd({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
+cac({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
   group = au_statusline,
-  callback = function() vim.wo.statusline = _G.statusline.statusline(true) end
+  callback = function() wo.statusline = _G.statusline.statusline(true) end
 })
 
-vim.api.nvim_create_autocmd({ 'WinLeave', 'FocusLost' }, {
+cac({ 'WinLeave', 'FocusLost' }, {
   group = au_statusline,
-  callback = function() vim.wo.statusline = _G.statusline.statusline(false) end
+  callback = function() wo.statusline = _G.statusline.statusline(false) end
 })
 
 _G.statusline = M

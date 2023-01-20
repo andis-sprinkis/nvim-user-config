@@ -1,10 +1,14 @@
 return function()
   local cmp = require("cmp")
+  local cmpm = cmp.mapping
+  local cmpc = cmp.config
+
   local luasnip = require("luasnip")
 
   local has_words_before = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    local api = vim.api
+    local line, col = unpack(api.nvim_win_get_cursor(0))
+    return col ~= 0 and api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
   local main_sources = {
@@ -27,12 +31,12 @@ return function()
       end,
     },
     mapping = {
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = false }),
-      ['<Tab>'] = cmp.mapping(function(fallback)
+      ['<C-b>'] = cmpm.scroll_docs(-4),
+      ['<C-f>'] = cmpm.scroll_docs(4),
+      ['<C-Space>'] = cmpm.complete(),
+      ['<C-e>'] = cmpm.abort(),
+      ['<CR>'] = cmpm.confirm({ select = false }),
+      ['<Tab>'] = cmpm(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
@@ -43,7 +47,7 @@ return function()
           fallback()
         end
       end, { "i", "s" }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
+      ["<S-Tab>"] = cmpm(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
@@ -53,7 +57,7 @@ return function()
         end
       end, { "i", "s" }),
     },
-    sources = cmp.config.sources(main_sources)
+    sources = cmpc.sources(main_sources)
   })
 
   -- Set configuration for specific filetype.
@@ -63,7 +67,7 @@ return function()
     { name = 'emoji' }
   }
 
-  cmp.setup.filetype('gitcommit', { sources = cmp.config.sources(gitcommit_sources) })
+  cmp.setup.filetype('gitcommit', { sources = cmpc.sources(gitcommit_sources) })
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   local cmdline_lookup_sources = {
@@ -72,8 +76,8 @@ return function()
   }
 
   cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources(cmdline_lookup_sources),
+    mapping = cmpm.preset.cmdline(),
+    sources = cmpc.sources(cmdline_lookup_sources),
   })
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
@@ -87,8 +91,8 @@ return function()
   }
 
   cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources(cmdline_cmd_sources),
+    mapping = cmpm.preset.cmdline(),
+    sources = cmpc.sources(cmdline_cmd_sources),
   })
 
   require("luasnip.loaders.from_vscode").load()
