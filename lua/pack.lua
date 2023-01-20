@@ -104,7 +104,7 @@ packer.startup(function(use)
       config = require('plugin.winshift_nvim'),
     },
     {
-      cond = { sys_reqr['git_plugins'] },
+      cond = { sys_reqr.git_plugins },
       { 'tpope/vim-fugitive' },
       {
         'lewis6991/gitsigns.nvim',
@@ -127,7 +127,7 @@ packer.startup(function(use)
     },
     {
       "williamboman/mason.nvim",
-      cond = { sys_reqr['lsp_plugins'] },
+      cond = { sys_reqr.lsp_plugins },
       config = require('plugin.mason_nvim'),
       requires = {
         { 'b0o/schemastore.nvim' },
@@ -144,48 +144,48 @@ packer.startup(function(use)
     },
     {
       'junegunn/fzf',
-      cond = { sys_reqr['fzf'] },
+      cond = { sys_reqr.fzf },
       run = function() fn['fzf#install']() end,
     },
     {
       'ibhagwan/fzf-lua',
-      cond = { sys_reqr['fzf_lua'] },
+      cond = { sys_reqr.fzf_lua },
       config = require('plugin.fzf_lua')
     },
     {
       'junegunn/fzf.vim',
-      cond = { sys_reqr['fzf_vim'] },
+      cond = { sys_reqr.fzf_vim },
       config = require('plugin.fzf_vim')
     },
     {
       'is0n/fm-nvim',
-      cond = { sys_reqr['fm_nvim'] },
+      cond = { sys_reqr.fm_nvim },
       config = require('plugin.fm_nvim')
     },
     {
       'nvim-pack/nvim-spectre',
-      cond = { sys_reqr['nvim_spectre'] },
+      cond = { sys_reqr.nvim_spectre },
       config = require('plugin.nvim_spectre'),
     },
     {
       'lambdalisue/suda.vim',
-      cond = { sys_reqr['suda_vim'] },
+      cond = { sys_reqr.suda_vim },
       config = require('plugin.suda'),
     },
     {
       'kkoomen/vim-doge',
       run = function() fn['doge#install']() end,
       setup = require('plugin.vim_doge_setup'),
-      cond = { sys_reqr['vim_doge'] },
+      cond = { sys_reqr.vim_doge },
     },
     {
       'rrethy/vim-hexokinase',
       run = 'make hexokinase',
-      cond = { sys_reqr['vim_hexokinase'] },
+      cond = { sys_reqr.vim_hexokinase },
     },
     {
       'iamcco/markdown-preview.nvim',
-      cond = { sys_reqr['markdown_preview'] },
+      cond = { sys_reqr.markdown_preview },
       run = function() fn['mkdp#util#install']() end,
       ft = { 'markdown', 'vim-plug' },
     },
@@ -214,7 +214,7 @@ packer.startup(function(use)
         { 'hrsh7th/cmp-cmdline' },
         { 'hrsh7th/cmp-emoji' },
         { 'tamago324/cmp-zsh',
-          cond = { sys_reqr['cmp_zsh'] }
+          cond = { sys_reqr.cmp_zsh }
         },
         { 'andersevenrud/cmp-tmux',
           cond = { sys_reqr.cmp_tmux }
