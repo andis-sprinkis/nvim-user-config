@@ -25,10 +25,10 @@ git checkout minimal-config
 ## Dependencies
 
 - System:
-  - `bash`
-  - `bat`
-  - `git`
-  - `go`
-  - `lf`
-  - `node`
-  - `sed`
+    - `bash`
+    - `bat`
+    - `git`
+    - `go`
+    - `lf`
+    - `node`
+    - `sed`
