@@ -44,9 +44,9 @@ o.writebackup = false
 kms({ 'n', 'v' }, ';', ':')
 kms({ 'n', 'v' }, 'h', '<bs>')
 kms({ 'n', 'v' }, 'l', '<space>')
-kms({ 'n' }, '<leader>v', cmd.split, { silent = true })
-kms({ 'n' }, '<leader>o', cmd.vsplit, { silent = true })
-kms({ 't' }, '<C-w>', '<C-\\><C-n>')
+kms('n', '<leader>v', cmd.split, { silent = true })
+kms('n', '<leader>o', cmd.vsplit, { silent = true })
+kms('t', '<C-w>', '<C-\\><C-n>')
 
 if g.os == 'Windows' then
   env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. env.PATH
@@ -81,7 +81,7 @@ cac(
   {
     group = au_option,
     pattern = { 'term://*' },
-    callback = cmd.startinsert
+    callback = function() cmd.startinsert() end
   }
 )
 

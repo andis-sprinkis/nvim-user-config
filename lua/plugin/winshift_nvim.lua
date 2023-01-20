@@ -4,5 +4,5 @@ return function()
     focused_hl_group = "Visual", -- The highlight group used for the moving window
   })
 
-  vim.keymap.set({ 'n' }, '<Leader>w', ':WinShift<cr>', { silent = true })
+  vim.keymap.set('n', '<Leader>w', ':WinShift<cr>', { silent = true })
 end
