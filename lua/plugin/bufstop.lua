@@ -1,8 +1,12 @@
 return function()
-  vim.g.BufstopSpeedKeys = { '<F1>', '<F2>', '<F3>', '<F4>', '<F5>', '<F6>' }
-  vim.g.BufstopLeader = ''
-  vim.g.BufstopAutoSpeedToggle = 1
+  local g = vim.g
+  local kms = vim.keymap.set
 
-  vim.keymap.set('n', '<leader><leader>', ':BufstopModeFast<cr>2', { silent = true, nowait = true })
-  vim.keymap.set('n', '<leader>b', ':BufstopFast<cr>', { silent = true, nowait = true })
+  g.BufstopSpeedKeys = { '<F1>', '<F2>', '<F3>', '<F4>', '<F5>', '<F6>' }
+  g.BufstopLeader = ''
+  g.BufstopAutoSpeedToggle = 1
+
+  local map_opts = { silent = true, nowait = true }
+  kms('n', '<leader><leader>', ':BufstopModeFast<cr>2', map_opts)
+  kms('n', '<leader>b', ':BufstopFast<cr>', map_opts)
 end

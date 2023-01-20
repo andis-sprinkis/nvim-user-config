@@ -14,9 +14,10 @@ return function()
     cmd('Files')
   end
 
-  kms('n', '<tab>', g.sys_reqr.git_plugins and show_files_with_git or ':Files<cr>', { silent = true })
-  kms('n', '<s-tab>', ':Files<cr>', { silent = true })
-  kms('n', '<leader>e', ':Rg<cr>', { silent = true })
+  local map_opts = { silent = true }
+  kms('n', '<tab>', g.sys_reqr.git_plugins and show_files_with_git or ':Files<cr>', map_opts)
+  kms('n', '<s-tab>', ':Files<cr>', map_opts)
+  kms('n', '<leader>e', ':Rg<cr>', map_opts)
 
   if fn.executable('bat') == 1 then
     env.BAT_THEME = 'Visual Studio Dark+'
