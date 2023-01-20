@@ -67,9 +67,7 @@ function M.bname()
     name = relpath .. '@' .. commit:sub(1, 7)
   end
 
-  if #name > width then
-    name = '...' .. name:sub(-width)
-  end
+  if #name > width then name = '...' .. name:sub(-width) end
 
   return name
 end
