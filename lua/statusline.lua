@@ -81,14 +81,14 @@ function M.statusline(active)
     highlight(1, active),
     pad(func('git_hunks')),
     pad(func('py_swenv')),
-    highlight(2, active),
     pad(func('lsp_status')),
+    highlight(2, active),
     '%=',
     pad(func('bname') .. '%m%r%h%q'),
     '%=',
+    highlight(1, active),
     pad(func('ft')),
     pad(func('fenc_ffmat')),
-    highlight(1, active),
     ' %3p%% %2l(%02c)/%-3L ',
   }
 end
