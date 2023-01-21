@@ -18,6 +18,7 @@ g.mapleader = ' '
 o.backup = false
 o.breakindent = true
 o.clipboard = 'unnamedplus'
+o.cursorline = true
 o.expandtab = true
 o.foldlevel = 99
 o.foldmethod = 'syntax'
