@@ -5,6 +5,7 @@ let g:netrw_liststyle= 1
 let mapleader="\<space>"
 set breakindent
 set clipboard=unnamedplus
+set cursorline
 set expandtab
 set foldlevel=99
 set foldmethod=syntax
