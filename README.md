@@ -28,7 +28,6 @@ git checkout minimal-config
     - `bash`
     - `bat`
     - `git`
-    - `go`
     - `lf`
     - `node`
     - `sed`

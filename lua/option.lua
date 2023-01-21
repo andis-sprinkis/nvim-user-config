@@ -21,7 +21,7 @@ o.clipboard = 'unnamedplus'
 o.cursorline = true
 o.expandtab = true
 o.foldlevel = 99
-o.foldmethod = 'syntax'
+o.foldmethod = 'indent'
 o.hlsearch = false
 o.list = true
 o.listchars = { eol = '↲', tab = '» ' }

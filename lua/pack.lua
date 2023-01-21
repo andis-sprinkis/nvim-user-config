@@ -74,6 +74,10 @@ local packages = {
   'tpope/vim-eunuch',
   'wbthomason/packer.nvim',
   {
+    'uga-rosa/ccc.nvim',
+    config = pack_btsp or require('plugin.ccc_nvim')
+  },
+  {
     'AckslD/swenv.nvim',
     config = pack_btsp or require('plugin.swenv_nvim'),
     requires = 'stevearc/dressing.nvim',
@@ -180,11 +184,11 @@ local packages = {
     setup = pack_btsp or require('plugin.vim_doge_setup'),
     cond = sys_reqr.vim_doge,
   },
-  {
-    'rrethy/vim-hexokinase',
-    run = 'make hexokinase',
-    cond = sys_reqr.vim_hexokinase,
-  },
+  -- {
+  --   'rrethy/vim-hexokinase',
+  --   run = 'make hexokinase',
+  --   cond = sys_reqr.vim_hexokinase,
+  -- },
   {
     'iamcco/markdown-preview.nvim',
     cond = sys_reqr.markdown_preview,
