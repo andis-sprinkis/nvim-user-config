@@ -35,8 +35,7 @@ g.sys_reqr = {
   nvim_spectre = exec.sed,
   suda_vim = exec.sudo,
   swenv = exec.python3,
-  vim_doge = exec.node,
-  vim_hexokinase = exec.go,
+  vim_doge = exec.node
 }
 
 local sys_reqr = g.sys_reqr
@@ -184,11 +183,6 @@ local packages = {
     setup = pack_btsp or require('plugin.vim_doge_setup'),
     cond = sys_reqr.vim_doge,
   },
-  -- {
-  --   'rrethy/vim-hexokinase',
-  --   run = 'make hexokinase',
-  --   cond = sys_reqr.vim_hexokinase,
-  -- },
   {
     'iamcco/markdown-preview.nvim',
     cond = sys_reqr.markdown_preview,
