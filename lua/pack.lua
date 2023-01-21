@@ -9,7 +9,6 @@ g.exec = {
   bat = executable('bat') == 1,
   cat = executable('cat') == 1,
   git = executable('git') == 1,
-  go = executable('go') == 1,
   lf = executable('lf') == 1,
   node = executable('node') == 1,
   python3 = executable('python3') == 1,
