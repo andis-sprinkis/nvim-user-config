@@ -65,6 +65,7 @@ cac(
     callback = function() cmd.wincmd('=') end
   }
 )
+
 cac(
   'TermOpen',
   {
