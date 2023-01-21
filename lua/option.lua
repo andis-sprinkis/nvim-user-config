@@ -59,14 +59,14 @@ end
 local au_option = cag('option', {})
 
 cac(
-  { 'VimResized' },
+  'VimResized',
   {
     group = au_option,
     callback = function() cmd.wincmd('=') end
   }
 )
 cac(
-  { 'TermOpen' },
+  'TermOpen',
   {
     group = au_option,
     callback = function()
@@ -78,7 +78,7 @@ cac(
 )
 
 cac(
-  { 'TermOpen' },
+  'TermOpen',
   {
     group = au_option,
     pattern = { 'term://*' },
@@ -87,7 +87,7 @@ cac(
 )
 
 cac(
-  { 'FileType' },
+  'FileType',
   {
     group = au_option,
     pattern = { 'help', 'man' },
@@ -98,7 +98,7 @@ cac(
 )
 
 cac(
-  { 'FileType' },
+  'FileType',
   {
     group = au_option,
     pattern = { 'make' },
