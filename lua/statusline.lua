@@ -83,8 +83,6 @@ function M.bname()
   return name
 end
 
-local function highlight(num, active) return (active and num ~= 1) and '%#StatusLine#' or '%#StatusLineNC#' end
-
 local function pad(x) return '%( ' .. x .. ' %)' end
 
 local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
@@ -108,7 +106,7 @@ local static_p2 = table.concat({
 function M.statusline(active)
   return table.concat({
     static_p1,
-    highlight(2, active),
+    active and '%#StatusLine#' or '%#StatusLineNC#',
     static_p2,
   })
 end
