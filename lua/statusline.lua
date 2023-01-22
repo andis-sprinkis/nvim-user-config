@@ -113,14 +113,16 @@ end
 
 local au_statusline = cag('statusline', {})
 
+local statusline = M.statusline
+
 cac({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
   group = au_statusline,
-  callback = function() wo.statusline = _G.statusline.statusline(true) end
+  callback = function() wo.statusline = statusline(true) end
 })
 
 cac({ 'WinLeave', 'FocusLost' }, {
   group = au_statusline,
-  callback = function() wo.statusline = _G.statusline.statusline(false) end
+  callback = function() wo.statusline = statusline(false) end
 })
 
 _G.statusline = M
