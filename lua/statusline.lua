@@ -52,11 +52,10 @@ function M.ft() return bo.filetype end
 
 function M.fenc_ffmat()
   local e = bo.fileencoding and bo.fileencoding or o.encoding
-
-  local r = {}
-  if e ~= 'utf-8' then r[#r + 1] = e end
-
   local f = bo.fileformat
+  local r = {}
+
+  if e ~= 'utf-8' then r[#r + 1] = e end
   if f ~= 'unix' then r[#r + 1] = '[' .. f .. ']' end
 
   return table.concat(r, ' ')
