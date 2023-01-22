@@ -21,11 +21,10 @@ return function()
 
   -- Mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  local map_opts = { silent = true }
-  kms('n', '<Leader>d', diagnostic.open_float, map_opts)
-  kms('n', '[d', diagnostic.goto_prev, map_opts)
-  kms('n', ']d', diagnostic.goto_next, map_opts)
-  kms('n', '<Leader>q', diagnostic.setloclist, map_opts)
+  kms('n', '<Leader>d', diagnostic.open_float)
+  kms('n', '[d', diagnostic.goto_prev)
+  kms('n', ']d', diagnostic.goto_next)
+  kms('n', '<Leader>q', diagnostic.setloclist)
 
   local function buf_format() lspbuf.format({ async = true }) end
 
@@ -34,7 +33,7 @@ return function()
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
   local on_attach = function(client, bufnr)
-    local buf_map_opts = { silent = true, buffer = bufnr }
+    local map_opts = { buffer = bufnr }
     local server_capabilities = client.server_capabilities
 
     require('illuminate').on_attach(client)
@@ -44,25 +43,25 @@ return function()
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    kms('n', 'gD', lspbuf.declaration, buf_map_opts)
-    kms('n', 'gd', lspbuf.definition, buf_map_opts)
-    kms('n', 'K', lspbuf.hover, buf_map_opts)
-    kms('n', 'gi', lspbuf.implementation, buf_map_opts)
-    kms('n', '<C-s>', lspbuf.signature_help, buf_map_opts)
-    -- kms('n', '<Leader>wa', lspbuf.add_workLeader_folder, buf_map_opts)
-    -- kms('n', '<Leader>wr', lspbuf.remove_workLeader_folder, buf_map_opts)
-    -- kms('n', '<Leader>wl', function() print(vim.inspect(lspbuf.list_workLeader_folders())) end, buf_map_opts)
-    kms('n', '<Leader>D', lspbuf.type_definition, buf_map_opts)
-    -- vim.keymap.set('n', '<Leader>rn', lspbuf.rename, buf_map_opts)
-    kms('n', '<Leader>ca', lspbuf.code_action, buf_map_opts)
-    kms('n', 'gr', lspbuf.references, buf_map_opts)
+    kms('n', 'gD', lspbuf.declaration, map_opts)
+    kms('n', 'gd', lspbuf.definition, map_opts)
+    kms('n', 'K', lspbuf.hover, map_opts)
+    kms('n', 'gi', lspbuf.implementation, map_opts)
+    kms('n', '<C-s>', lspbuf.signature_help, map_opts)
+    -- kms('n', '<Leader>wa', lspbuf.add_workLeader_folder, map_opts)
+    -- kms('n', '<Leader>wr', lspbuf.remove_workLeader_folder, map_opts)
+    -- kms('n', '<Leader>wl', function() print(vim.inspect(lspbuf.list_workLeader_folders())) end, map_opts)
+    kms('n', '<Leader>D', lspbuf.type_definition, map_opts)
+    -- vim.keymap.set('n', '<Leader>rn', lspbuf.rename, map_opts)
+    kms('n', '<Leader>ca', lspbuf.code_action, map_opts)
+    kms('n', 'gr', lspbuf.references, map_opts)
 
     if server_capabilities.documentFormattingProvider then
-      kms('n', '<Leader>f', buf_format, buf_map_opts)
+      kms('n', '<Leader>f', buf_format, map_opts)
     end
 
     if server_capabilities.documentRangeFormattingProvider then
-      kms('x', '<Leader>f', buf_format, buf_map_opts)
+      kms('x', '<Leader>f', buf_format, map_opts)
     end
   end
 
@@ -140,15 +139,15 @@ return function()
       null_ls.builtins.formatting.prettier,
     },
     on_attach = function(client, bufnr)
-      local buf_map_opts = { silent = true, buffer = bufnr }
+      local map_opts = { buffer = bufnr }
       local server_capabilities = client.server_capabilities
 
       if server_capabilities.documentFormattingProvider then
-        kms('n', '<Leader>f', buf_format, buf_map_opts)
+        kms('n', '<Leader>f', buf_format, map_opts)
       end
 
       if server_capabilities.documentRangeFormattingProvider then
-        kms('x', '<Leader>f', buf_format, buf_map_opts)
+        kms('x', '<Leader>f', buf_format, map_opts)
       end
     end,
   })

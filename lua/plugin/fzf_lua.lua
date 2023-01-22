@@ -76,8 +76,7 @@ return function()
     fzflua.files()
   end
 
-  local map_opts = { silent = true }
-  kms('n', '<tab>', vim.g.sys_reqr.git_plugins and show_files_with_git or fzflua.files, map_opts)
-  kms('n', '<s-tab>', fzflua.files, map_opts)
-  kms('n', '<leader>e', function() fzflua.grep({ search = '' }) end, map_opts)
+  kms('n', '<tab>', vim.g.sys_reqr.git_plugins and show_files_with_git or fzflua.files)
+  kms('n', '<s-tab>', fzflua.files)
+  kms('n', '<leader>e', function() fzflua.grep({ search = '' }) end)
 end
