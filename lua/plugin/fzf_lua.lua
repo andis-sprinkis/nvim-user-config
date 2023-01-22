@@ -37,7 +37,7 @@ return function()
       },
       bat = {
         cmd = 'bat',
-        args = '--style=plain,changes --color always',
+        args = '--style=plain,changes,numbers --color always',
         theme = 'Visual Studio Dark+'
       },
     },
@@ -53,13 +53,13 @@ return function()
       git_icons = false
     },
     winopts = {
-      height = 0.9375,
-      width = 0.9375,
+      fullscreen = true,
+      border = 'none',
       preview = {
         default = previewer,
         wrap = 'wrap',
-        layout = 'vertical',
-        vertical = 'up:60%',
+        layout = 'flex',
+        vertical = 'up:65%',
       },
       hl = {
         border = 'FloatBorder'
