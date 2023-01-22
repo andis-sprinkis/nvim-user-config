@@ -90,6 +90,7 @@ local function pad(x) return '%( ' .. x .. ' %)' end
 local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
 local static_p1 = table.concat({
+  '%#StatusLineNC#',
   pad(func('git_hunks')),
   pad(func('py_swenv')),
   pad(func('lsp_status')),
@@ -98,10 +99,7 @@ local static_p1 = table.concat({
 local static_p2 = table.concat({
   '%=',
   pad(func('bname') .. '%m%r%h%q'),
-  '%=',
-})
-
-local static_p3 = table.concat({
+  '%=%#StatusLineNC#',
   pad(func('ft')),
   pad(func('fenc_ffmat')),
   ' %3p%% %2l(%02c)/%-3L ',
@@ -109,12 +107,9 @@ local static_p3 = table.concat({
 
 function M.statusline(active)
   return table.concat({
-    highlight(1, active),
     static_p1,
     highlight(2, active),
     static_p2,
-    highlight(1, active),
-    static_p3
   })
 end
 
