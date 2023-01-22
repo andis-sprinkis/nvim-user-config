@@ -84,24 +84,38 @@ function M.bname()
 end
 
 local function highlight(num, active) return (active and num ~= 1) and '%#StatusLine#' or '%#StatusLineNC#' end
+
 local function pad(x) return '%( ' .. x .. ' %)' end
+
 local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
+local static_p1 = table.concat({
+  pad(func('git_hunks')),
+  pad(func('py_swenv')),
+  pad(func('lsp_status')),
+})
+
+local static_p2 = table.concat({
+  '%=',
+  pad(func('bname') .. '%m%r%h%q'),
+  '%=',
+})
+
+local static_p3 = table.concat({
+  pad(func('ft')),
+  pad(func('fenc_ffmat')),
+  ' %3p%% %2l(%02c)/%-3L ',
+})
+
 function M.statusline(active)
-  return table.concat {
+  return table.concat({
     highlight(1, active),
-    pad(func('git_hunks')),
-    pad(func('py_swenv')),
-    pad(func('lsp_status')),
+    static_p1,
     highlight(2, active),
-    '%=',
-    pad(func('bname') .. '%m%r%h%q'),
-    '%=',
+    static_p2,
     highlight(1, active),
-    pad(func('ft')),
-    pad(func('fenc_ffmat')),
-    ' %3p%% %2l(%02c)/%-3L ',
-  }
+    static_p3
+  })
 end
 
 local au_statusline = cag('statusline', {})
