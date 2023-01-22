@@ -74,6 +74,7 @@ local packages = {
   {
     'NvChad/nvim-colorizer.lua',
     config = pack_btsp or require('plugin.nvim_colorizer'),
+  },
   {
     'AckslD/swenv.nvim',
     config = pack_btsp or require('plugin.swenv_nvim'),
