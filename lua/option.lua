@@ -46,8 +46,8 @@ o.writebackup = false
 kms({ 'n', 'v' }, ';', ':')
 kms({ 'n', 'v' }, 'h', '<bs>')
 kms({ 'n', 'v' }, 'l', '<space>')
-kms('n', '<leader>v', cmd.split, { silent = true })
-kms('n', '<leader>o', cmd.vsplit, { silent = true })
+kms('n', '<leader>v', cmd.split)
+kms('n', '<leader>o', cmd.vsplit)
 kms('t', '<C-w>', '<C-\\><C-n>')
 
 if g.os == 'Windows' then
