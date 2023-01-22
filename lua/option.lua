@@ -24,7 +24,8 @@ o.foldlevel = 99
 o.foldmethod = 'indent'
 o.hlsearch = false
 o.list = true
-o.listchars = { eol = '↲', tab = '» ' }
+o.listchars:append 'eol:↲'
+o.listchars:append 'tab:» '
 o.mouse = 'a'
 o.number = true
 o.pumblend = 10
