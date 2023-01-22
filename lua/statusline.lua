@@ -22,7 +22,7 @@ function M.lsp_status()
   for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
     local n = diagnostic.get(0, { severity = ty })
 
-    if #n > 0 then table.insert(status, (' %s:%s'):format(ty:sub(1, 1), #n)) end
+    if #n > 0 then table.insert(status, ('%s:%s'):format(ty:sub(1, 1), #n)) end
   end
 
   local r = table.concat(status, ' ')
