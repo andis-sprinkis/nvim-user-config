@@ -72,9 +72,8 @@ local packages = {
   'tpope/vim-eunuch',
   'wbthomason/packer.nvim',
   {
-    'uga-rosa/ccc.nvim',
-    config = pack_btsp or require('plugin.ccc_nvim')
-  },
+    'NvChad/nvim-colorizer.lua',
+    config = pack_btsp or require('plugin.nvim_colorizer'),
   {
     'AckslD/swenv.nvim',
     config = pack_btsp or require('plugin.swenv_nvim'),
