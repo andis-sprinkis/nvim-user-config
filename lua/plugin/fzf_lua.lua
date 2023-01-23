@@ -60,6 +60,7 @@ return function()
         wrap = 'wrap',
         layout = 'vertial',
         vertical = 'up:65%',
+        border = 'noborder'
       },
       hl = {
         border = 'FloatBorder'
