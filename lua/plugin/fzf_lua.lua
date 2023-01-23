@@ -33,7 +33,7 @@ return function()
     previewers = {
       cat = {
         cmd = 'cat',
-        args = '',
+        args = '--number',
       },
       bat = {
         cmd = 'bat',
