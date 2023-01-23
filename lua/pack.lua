@@ -55,10 +55,7 @@ local pack_btsp = ensure_packer()
 local packer = require('packer')
 
 local packages = {
-  {
-    'lewis6991/impatient.nvim',
-    config = pack_btsp or function() require('impatient') end,
-  },
+  'lewis6991/impatient.nvim',
   'RRethy/vim-illuminate',
   'chaoren/vim-wordmotion',
   'dhruvasagar/vim-table-mode',
