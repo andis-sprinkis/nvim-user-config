@@ -8,7 +8,6 @@ g.exec = {
   bash = executable('bash') == 1,
   bat = executable('bat') == 1,
   cat = executable('cat') == 1,
-  git = executable('git') == 1,
   lf = executable('lf') == 1,
   node = executable('node') == 1,
   python3 = executable('python3') == 1,
@@ -28,7 +27,6 @@ g.sys_reqr = {
   fzf = os == 'Windows' or os == 'Darwin',
   fzf_lua = os ~= 'Windows',
   fzf_vim = os == 'Windows' and exec.bash,
-  git_plugins = exec.git,
   lsp_plugins = exec.node,
   markdown_preview = exec.node,
   nvim_spectre = exec.sed,
@@ -106,7 +104,6 @@ local packages = {
   },
   {
     'tpope/vim-fugitive',
-    cond = sys_reqr.git_plugins,
     {
       'lewis6991/gitsigns.nvim',
       config = pack_btsp or require('plugin.gitsigns_nvim'),

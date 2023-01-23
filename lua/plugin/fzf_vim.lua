@@ -15,7 +15,7 @@ return function()
   end
 
   local map_opts = { silent = true }
-  kms('n', '<tab>', g.sys_reqr.git_plugins and show_files_with_git or ':Files<cr>', map_opts)
+  kms('n', '<tab>', show_files_with_git, map_opts)
   kms('n', '<s-tab>', ':Files<cr>', map_opts)
   kms('n', '<leader>e', ':Rg<cr>', map_opts)
 

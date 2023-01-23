@@ -31,8 +31,6 @@ function M.lsp_status()
 end
 
 function M.git_hunks()
-  if not sys_reqr.git_plugins then return '' end
-
   if b.gitsigns_status then
     return b.gitsigns_status == '' and b.gitsigns_head or b.gitsigns_head .. ' ' .. b.gitsigns_status
   end
@@ -66,7 +64,7 @@ function M.bname()
   local width = math.floor(api.nvim_win_get_width(0) * ratio)
   local name = fn.fnamemodify(api.nvim_buf_get_name(0), ':.')
 
-  if (sys_reqr.git_plugins and vim.startswith(name, 'fugitive')) then
+  if vim.startswith(name, 'fugitive') then
     local _, commit, relpath
 
     if (os == 'Windows') then
