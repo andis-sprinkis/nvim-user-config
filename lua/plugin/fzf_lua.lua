@@ -58,7 +58,7 @@ return function()
       preview = {
         default = previewer,
         wrap = 'wrap',
-        layout = 'flex',
+        layout = 'vertial',
         vertical = 'up:65%',
       },
       hl = {
