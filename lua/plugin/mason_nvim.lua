@@ -15,7 +15,6 @@ return function()
     'eslint',
     'html',
     'jsonls',
-    'lemminx',
     'pylsp',
     'sumneko_lua',
     'tsserver',
