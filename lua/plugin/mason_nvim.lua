@@ -11,12 +11,15 @@ return function()
     'clangd',
     'cmake',
     'cssls',
+    'dockerls',
     'eslint',
     'html',
     'jsonls',
+    'lemminx',
     'pylsp',
     'sumneko_lua',
     'tsserver',
+    'yamlls',
   }
 
   -- Mappings.
