@@ -40,6 +40,9 @@ return function()
         args = '--style=plain,changes,numbers --color always',
         theme = 'Visual Studio Dark+'
       },
+      man = {
+        cmd = 'man %s | col -bx',
+      }
     },
     files = {
       git_icons = false
