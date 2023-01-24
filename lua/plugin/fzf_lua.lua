@@ -62,7 +62,7 @@ return function()
         default = previewer,
         wrap = 'wrap',
         layout = 'vertial',
-        vertical = 'up:65%',
+        vertical = 'up:60%',
         border = 'noborder'
       },
       hl = {
