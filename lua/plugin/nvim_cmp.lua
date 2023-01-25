@@ -93,6 +93,6 @@ return function()
     sources = cmpc.sources(cmdline_cmd_sources),
   })
 
-  require("luasnip.loaders.from_vscode").load()
+  require("luasnip.loaders.from_vscode").lazy_load()
   require("cmp_git").setup()
 end
