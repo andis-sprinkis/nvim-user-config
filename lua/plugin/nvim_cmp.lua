@@ -19,9 +19,7 @@ return function()
     { name = 'zsh' },
     { name = 'tmux' },
     { name = 'emoji' },
-    { name = 'npm', keyword_length = 4 },
-    { name = 'cmdline' },
-    { name = 'cmdline_history' },
+    { name = 'npm', keyword_length = 4 }
   }
 
   cmp.setup({
