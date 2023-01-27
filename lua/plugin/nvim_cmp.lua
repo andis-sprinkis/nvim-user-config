@@ -85,7 +85,7 @@ return function()
     { name = 'tmux' },
   }
 
-  cmp.setup.cmdline(':', '@', {
+  cmp.setup.cmdline({ ':', '@' }, {
     mapping = cmpm.preset.cmdline(),
     sources = cmpc.sources(cmd_sources),
   })
