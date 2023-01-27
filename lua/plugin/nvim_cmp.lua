@@ -58,7 +58,6 @@ return function()
     sources = cmpc.sources(main_sources)
   })
 
-  -- Set configuration for specific filetype.
   local gitcommit_sources = {
     { name = 'cmp_git' },
     { name = 'buffer' },
@@ -67,19 +66,17 @@ return function()
 
   cmp.setup.filetype('gitcommit', { sources = cmpc.sources(gitcommit_sources) })
 
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  local cmdline_lookup_sources = {
-    { name = 'buffer' },
+  local lookup_sources = {
     { name = 'cmdline_history' },
+    { name = 'buffer' },
   }
 
   cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmpm.preset.cmdline(),
-    sources = cmpc.sources(cmdline_lookup_sources),
+    sources = cmpc.sources(lookup_sources),
   })
 
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  local cmdline_cmd_sources = {
+  local cmd_sources = {
     { name = 'cmdline_history' },
     { name = 'cmdline' },
     { name = 'path' },
@@ -88,9 +85,9 @@ return function()
     { name = 'tmux' },
   }
 
-  cmp.setup.cmdline(':', {
+  cmp.setup.cmdline(':', '@', {
     mapping = cmpm.preset.cmdline(),
-    sources = cmpc.sources(cmdline_cmd_sources),
+    sources = cmpc.sources(cmd_sources),
   })
 
   require("luasnip.loaders.from_vscode").lazy_load()

@@ -240,7 +240,7 @@ local options = {
       source = "📄",
       start = "🚀",
       task = "📌",
-      lazy = "💤 ",
+      lazy = "💤",
     },
   },
 }
