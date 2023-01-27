@@ -80,8 +80,8 @@ return function()
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   local cmdline_cmd_sources = {
-    { name = 'cmdline' },
     { name = 'cmdline_history' },
+    { name = 'cmdline' },
     { name = 'path' },
     { name = 'buffer' },
     { name = 'zsh' },
