@@ -1,6 +1,5 @@
 local g = vim.g
 local fn = vim.fn
-local cmd = vim.cmd
 local os = g.os
 local executable = fn.executable
 
@@ -37,25 +36,15 @@ g.sys_reqr = {
 
 local sys_reqr = g.sys_reqr
 
-local ensure_packer = function()
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    cmd([[packadd packer.nvim]])
-
-    return true
-  end
-
-  return false
+if not vim.loop.fs_stat(lazypath) then
+  fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
 
-local pack_btsp = ensure_packer()
+vim.opt.rtp:prepend(lazypath)
 
-local packer = require('packer')
-
-local packages = {
-  'lewis6991/impatient.nvim',
+local plugins = {
   'RRethy/vim-illuminate',
   'chaoren/vim-wordmotion',
   'dhruvasagar/vim-table-mode',
@@ -68,66 +57,62 @@ local packages = {
   'wbthomason/packer.nvim',
   {
     'NvChad/nvim-colorizer.lua',
-    config = pack_btsp or require('plugin.nvim_colorizer'),
+    config = require('plugin.nvim_colorizer'),
   },
   {
     'AckslD/swenv.nvim',
-    config = pack_btsp or require('plugin.swenv_nvim'),
-    requires = 'stevearc/dressing.nvim',
+    config = require('plugin.swenv_nvim'),
+    dependencies = 'stevearc/dressing.nvim',
   },
   { 'tversteeg/registers.nvim',
-    config = pack_btsp or require('plugin.registers_nvim')
+    config = require('plugin.registers_nvim')
   },
   {
     'jghauser/follow-md-links.nvim',
-    requires = 'nvim-treesitter/nvim-treesitter'
+    dependencies = 'nvim-treesitter/nvim-treesitter'
   },
   {
     "luukvbaal/stabilize.nvim",
-    config = pack_btsp or require('plugin.stabilize_nvim')
+    config = require('plugin.stabilize_nvim')
   },
   {
     'mrjones2014/smart-splits.nvim',
-    config = pack_btsp or require('plugin.smart_splits_nvim'),
+    config = require('plugin.smart_splits_nvim'),
   },
   {
     'haringsrob/nvim_context_vt',
-    after = 'nvim-treesitter',
-    config = pack_btsp or require('plugin.nvim_context_vt_nvim'),
+    config = require('plugin.nvim_context_vt_nvim'),
   },
   {
     'sindrets/winshift.nvim',
-    config = pack_btsp or require('plugin.winshift_nvim'),
+    config = require('plugin.winshift_nvim'),
   },
   {
     'tpope/vim-fugitive',
     {
       'lewis6991/gitsigns.nvim',
-      config = pack_btsp or require('plugin.gitsigns_nvim'),
+      config = require('plugin.gitsigns_nvim'),
     },
   },
   {
     'nvim-treesitter/nvim-treesitter',
-    requires = {
+    dependencies = {
       'JoosepAlviste/nvim-ts-context-commentstring',
-      {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        after = 'nvim-treesitter',
-        config = pack_btsp or require('plugin.nvim_treesitter'),
-      }
+      'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    run = ':TSUpdate'
+    config = require('plugin.nvim_treesitter'),
+    build = ':TSUpdate'
   },
   {
     'm-demare/hlargs.nvim',
-    requires = { 'nvim-treesitter/nvim-treesitter' },
-    config = pack_btsp or require('plugin.hlargs_nvim'),
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = require('plugin.hlargs_nvim'),
   },
   {
     'williamboman/mason.nvim',
     cond = sys_reqr.lsp_plugins,
-    config = pack_btsp or require('plugin.mason_nvim'),
-    requires = {
+    config = require('plugin.mason_nvim'),
+    dependencies = {
       'b0o/schemastore.nvim',
       'jayp0521/mason-null-ls.nvim',
       'jose-elias-alvarez/null-ls.nvim',
@@ -138,66 +123,66 @@ local packages = {
   {
     'mfussenegger/nvim-dap',
     cond = sys_reqr.dap_plugins,
-    config = pack_btsp or require('plugin.nvim_dap')
+    config = require('plugin.nvim_dap')
   },
   {
     'junegunn/fzf',
     cond = sys_reqr.fzf,
-    run = function() fn['fzf#install']() end,
+    build = function() fn['fzf#install']() end,
   },
   {
     'ibhagwan/fzf-lua',
     cond = sys_reqr.fzf_lua,
-    config = pack_btsp or require('plugin.fzf_lua')
+    config = require('plugin.fzf_lua')
   },
   {
     'junegunn/fzf.vim',
     cond = sys_reqr.fzf_vim,
-    config = pack_btsp or require('plugin.fzf_vim')
+    config = require('plugin.fzf_vim')
   },
   {
     'is0n/fm-nvim',
     cond = sys_reqr.fm_nvim,
-    config = pack_btsp or require('plugin.fm_nvim')
+    config = require('plugin.fm_nvim')
   },
   {
     'nvim-pack/nvim-spectre',
     cond = sys_reqr.nvim_spectre,
-    config = pack_btsp or require('plugin.nvim_spectre'),
+    config = require('plugin.nvim_spectre'),
   },
   {
     'lambdalisue/suda.vim',
     cond = sys_reqr.suda_vim,
-    config = pack_btsp or require('plugin.suda'),
+    config = require('plugin.suda'),
   },
   {
     'kkoomen/vim-doge',
-    run = function() fn['doge#install']() end,
-    setup = pack_btsp or require('plugin.vim_doge_setup'),
+    build = function() fn['doge#install']() end,
+    init = require('plugin.vim_doge_setup'),
     cond = sys_reqr.vim_doge,
   },
   {
     'iamcco/markdown-preview.nvim',
     cond = sys_reqr.markdown_preview,
-    run = function() fn['mkdp#util#install']() end,
+    build = function() fn['mkdp#util#install']() end,
     ft = { 'markdown', 'vim-plug' },
   },
   {
     'AndrewRadev/splitjoin.vim',
-    config = pack_btsp or require('plugin.splitjoin')
+    config = require('plugin.splitjoin')
   },
   {
     'Mofiqul/vscode.nvim',
-    config = pack_btsp or require('plugin.colorscheme')
+    config = require('plugin.colorscheme')
   },
   {
     'NMAC427/guess-indent.nvim',
-    config = pack_btsp or require('plugin.guess_indent_nvim')
+    config = require('plugin.guess_indent_nvim')
   },
   {
     'hrsh7th/nvim-cmp',
-    config = pack_btsp or require('plugin.nvim_cmp'),
-    requires = {
+    config = require('plugin.nvim_cmp'),
+    dependencies = {
       'L3MON4D3/LuaSnip',
       'rafamadriz/friendly-snippets',
       'dmitmel/cmp-cmdline-history',
@@ -221,29 +206,45 @@ local packages = {
   },
   {
     'justinmk/vim-dirvish',
-    config = pack_btsp or require('plugin.dirvish')
+    config = require('plugin.dirvish')
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    config = pack_btsp or require('plugin.indent_blankline_nvim')
+    config = require('plugin.indent_blankline_nvim')
   },
   {
     'mihaifm/bufstop',
-    config = pack_btsp or require('plugin.bufstop')
+    config = require('plugin.bufstop')
   },
   {
     'numToStr/Comment.nvim',
-    config = pack_btsp or require('plugin.comment_nvim')
+    config = require('plugin.comment_nvim')
   },
   {
     "andrewferrier/debugprint.nvim",
-    config = pack_btsp or require('plugin.debugprint_nvim'),
+    config = require('plugin.debugprint_nvim'),
   }
 }
 
-local function startup(use)
-  use(packages)
-  if not pack_btsp then require('statusline') else packer.sync() end
-end
+local options = {
+  ui = {
+    icons = {
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🗝",
+      plugin = "🔌",
+      runtime = "💻",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+      lazy = "💤 ",
+    },
+  },
+}
 
-packer.startup(startup)
+require("lazy").setup(plugins, options)
+
+require('statusline')
