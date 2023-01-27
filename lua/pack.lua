@@ -89,9 +89,12 @@ local plugins = {
   },
   {
     'tpope/vim-fugitive',
-    {
-      'lewis6991/gitsigns.nvim',
-      config = require('plugin.gitsigns_nvim'),
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    config = require('plugin.gitsigns_nvim'),
+    dependencies = {
+      'tpope/vim-fugitive',
     },
   },
   {
