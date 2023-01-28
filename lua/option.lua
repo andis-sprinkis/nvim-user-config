@@ -94,6 +94,8 @@ cac(
     group = au_option,
     pattern = { 'help', 'man' },
     callback = function()
+      ol.number = true
+      ol.relativenumber = true
       ol.signcolumn = 'no'
     end
   }
