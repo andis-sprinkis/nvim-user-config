@@ -52,7 +52,6 @@ local plugins = {
   'stevearc/dressing.nvim',
   'tpope/vim-eunuch',
   'tpope/vim-fugitive',
-  'wbthomason/packer.nvim',
   {
     'RRethy/vim-illuminate',
     dependencies = {
@@ -170,9 +169,9 @@ local plugins = {
   },
   {
     'kkoomen/vim-doge',
+    cond = sys_reqr.vim_doge,
     build = function() fn['doge#install']() end,
     init = require('plugin.vim_doge_setup'),
-    cond = sys_reqr.vim_doge,
   },
   {
     'iamcco/markdown-preview.nvim',
