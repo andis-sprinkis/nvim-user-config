@@ -107,7 +107,6 @@ local plugins = {
   {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
-      'JoosepAlviste/nvim-ts-context-commentstring',
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     config = require('plugin.nvim_treesitter'),
@@ -233,7 +232,11 @@ local plugins = {
   },
   {
     'numToStr/Comment.nvim',
-    config = require('plugin.comment_nvim')
+    config = require('plugin.comment_nvim'),
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
   },
   {
     "andrewferrier/debugprint.nvim",
