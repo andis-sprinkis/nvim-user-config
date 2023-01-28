@@ -185,7 +185,8 @@ local plugins = {
   {
     'Mofiqul/vscode.nvim',
     config = require('plugin.colorscheme'),
-    priority = 900
+    lazy = false,
+    priority = 1000
   },
   {
     'NMAC427/guess-indent.nvim',
@@ -220,7 +221,7 @@ local plugins = {
   {
     'justinmk/vim-dirvish',
     config = require('plugin.dirvish'),
-    priority = 1000
+    priority = 900
   },
   {
     'lukas-reineke/indent-blankline.nvim',
