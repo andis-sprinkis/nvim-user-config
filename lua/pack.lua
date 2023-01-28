@@ -23,7 +23,6 @@ g.sys_reqr = {
   cmp_zsh = exec.zsh,
   dap_plugins = os ~= 'Windows',
   fm_nvim = exec.lf,
-  fzf = os == 'Windows' or os == 'Darwin',
   fzf_lua = os ~= 'Windows',
   fzf_vim = os == 'Windows' and exec.bash,
   lsp_plugins = exec.node,
@@ -47,14 +46,18 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   'RRethy/vim-illuminate',
   'chaoren/vim-wordmotion',
-  'dhruvasagar/vim-table-mode',
   'gpanders/editorconfig.nvim',
   'jghauser/mkdir.nvim',
   'markonm/traces.vim',
   'nvim-lua/plenary.nvim',
   'stevearc/dressing.nvim',
   'tpope/vim-eunuch',
+  'tpope/vim-fugitive',
   'wbthomason/packer.nvim',
+  {
+    'dhruvasagar/vim-table-mode',
+    ft = { 'markdown' },
+  },
   {
     'NvChad/nvim-colorizer.lua',
     config = require('plugin.nvim_colorizer'),
@@ -69,7 +72,8 @@ local plugins = {
   },
   {
     'jghauser/follow-md-links.nvim',
-    dependencies = 'nvim-treesitter/nvim-treesitter'
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    ft = { 'markdown', 'vim-plug' },
   },
   {
     "luukvbaal/stabilize.nvim",
@@ -82,13 +86,11 @@ local plugins = {
   {
     'haringsrob/nvim_context_vt',
     config = require('plugin.nvim_context_vt_nvim'),
+    dependencies = 'nvim-treesitter/nvim-treesitter',
   },
   {
     'sindrets/winshift.nvim',
     config = require('plugin.winshift_nvim'),
-  },
-  {
-    'tpope/vim-fugitive',
   },
   {
     'lewis6991/gitsigns.nvim',
@@ -121,17 +123,13 @@ local plugins = {
       'jose-elias-alvarez/null-ls.nvim',
       'neovim/nvim-lspconfig',
       'williamboman/mason-lspconfig.nvim',
+      'lewis6991/gitsigns.nvim',
     }
   },
   {
     'mfussenegger/nvim-dap',
     cond = sys_reqr.dap_plugins,
     config = require('plugin.nvim_dap')
-  },
-  {
-    'junegunn/fzf',
-    cond = sys_reqr.fzf,
-    build = function() fn['fzf#install']() end,
   },
   {
     'ibhagwan/fzf-lua',
@@ -141,7 +139,13 @@ local plugins = {
   {
     'junegunn/fzf.vim',
     cond = sys_reqr.fzf_vim,
-    config = require('plugin.fzf_vim')
+    config = require('plugin.fzf_vim'),
+    dependencies = {
+      {
+        'junegunn/fzf',
+        build = './install --bin'
+      }
+    }
   },
   {
     'is0n/fm-nvim',
