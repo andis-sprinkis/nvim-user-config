@@ -14,15 +14,16 @@ local cag = api.nvim_create_augroup
 
 local M = {}
 
+local lsp_severity = { { 'Warn', 'W' }, { 'Error', 'E' }, { 'Info', 'I' }, { 'Hint', 'H' } }
+
 function M.lsp_status()
   if (not sys_reqr.lsp_plugins) or vim.tbl_isempty(lsp.buf_get_clients(0)) then return '' end
 
   local status = {}
 
-  for _, ty in ipairs { 'Warn', 'Error', 'Info', 'Hint' } do
-    local n = diagnostic.get(0, { severity = ty })
-
-    if #n > 0 then table.insert(status, ('%s:%s'):format(ty:sub(1, 1), #n)) end
+  for _, ty in ipairs(lsp_severity) do
+    local n = diagnostic.get(0, { severity = ty[1] })
+    if #n > 0 then table.insert(status, ('%s:%s'):format(ty[2], #n)) end
   end
 
   local r = table.concat(status, ' ')
@@ -61,6 +62,8 @@ function M.fenc_ffmat()
   return table.concat(r, ' ')
 end
 
+local fugitive_bname_pattern = os == 'Windows' and [[^fugitive:\\.*\%.git.*\(%x-)\(.*)]] or [[^fugitive://.*/%.git.*/(%x-)/(.*)]]
+
 function M.bname()
   local ratio = 0.5
   local width = math.floor(api.nvim_win_get_width(0) * ratio)
@@ -68,13 +71,7 @@ function M.bname()
 
   if vim.startswith(name, 'fugitive') then
     local _, commit, relpath
-
-    if (os == 'Windows') then
-      _, _, commit, relpath = name:find([[^fugitive:\\.*\%.git.*\(%x-)\(.*)]])
-    else
-      _, _, commit, relpath = name:find([[^fugitive://.*/%.git.*/(%x-)/(.*)]])
-    end
-
+    _, _, commit, relpath = name:find(fugitive_bname_pattern)
     name = relpath .. '@' .. commit:sub(1, 7)
   end
 
