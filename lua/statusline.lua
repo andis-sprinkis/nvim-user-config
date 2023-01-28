@@ -38,10 +38,12 @@ function M.git_hunks()
   return g.gitsigns_head and g.gitsigns_head or ''
 end
 
-function M.py_swenv()
-  if (not sys_reqr.swenv) then return '' end
+local swenv
+if sys_reqr.swenv then swenv = require('swenv.api') end
 
-  local venv = require('swenv.api').get_current_venv()
+function M.py_swenv()
+  if (not swenv) then return '' end
+  local venv = swenv.get_current_venv()
 
   return venv and "venv:" .. venv.name or ''
 end
