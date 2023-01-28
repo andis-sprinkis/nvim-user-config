@@ -44,7 +44,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  'RRethy/vim-illuminate',
   'chaoren/vim-wordmotion',
   'gpanders/editorconfig.nvim',
   'jghauser/mkdir.nvim',
@@ -55,8 +54,15 @@ local plugins = {
   'tpope/vim-fugitive',
   'wbthomason/packer.nvim',
   {
+    'RRethy/vim-illuminate',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'williamboman/mason.nvim',
+    }
+  },
+  {
     'dhruvasagar/vim-table-mode',
-    ft = { 'markdown' },
+    ft = { 'markdown', 'markdown.mdx' },
   },
   {
     'NvChad/nvim-colorizer.lua',
@@ -73,7 +79,7 @@ local plugins = {
   {
     'jghauser/follow-md-links.nvim',
     dependencies = 'nvim-treesitter/nvim-treesitter',
-    ft = { 'markdown', 'vim-plug' },
+    ft = { 'markdown', 'markdown.mdx', 'vim-plug' },
   },
   {
     "luukvbaal/stabilize.nvim",
@@ -172,7 +178,7 @@ local plugins = {
     'iamcco/markdown-preview.nvim',
     cond = sys_reqr.markdown_preview,
     build = function() fn['mkdp#util#install']() end,
-    ft = { 'markdown', 'vim-plug' },
+    ft = { 'markdown', 'markdown.mdx' },
   },
   {
     'AndrewRadev/splitjoin.vim',
