@@ -27,6 +27,7 @@ git checkout minimal-config
 - System:
     - `bash`
     - `bat`
+    - `fzf`
     - `lf`
     - `node`
     - `sed`
