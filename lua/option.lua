@@ -96,7 +96,6 @@ cac(
     callback = function()
       ol.number = true
       ol.relativenumber = true
-      ol.signcolumn = 'no'
     end
   }
 )
