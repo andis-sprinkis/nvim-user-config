@@ -8,7 +8,6 @@ return function ()
         height = 0.9375,
         width = 0.9375,
         y = 0.25,
-        border_hl = 'FloatBorder',
       }
     }
   }
