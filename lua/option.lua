@@ -9,9 +9,7 @@ local env = vim.env
 local cag = api.nvim_create_augroup
 local cac = api.nvim_create_autocmd
 
-if (fn.has('win64') == 1) then g.os = 'Windows'
-else g.os = fn.substitute(fn.system('uname'), '\n', '', '') end
-
+g.os = vim.loop.os_uname().sysname
 g.loaded_netrwPlugin = 0
 g.man_hard_wrap = true
 g.mapleader = ' '
@@ -50,7 +48,7 @@ kms('n', '<leader>v', cmd.split)
 kms('n', '<leader>o', cmd.vsplit)
 kms('t', '<C-w>', '<C-\\><C-n>')
 
-if g.os == 'Windows' then
+if g.os == 'Windows_NT' then
   env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. env.PATH
 else
   env.LANG = 'en_US.UTF-8'

@@ -62,7 +62,7 @@ function M.fenc_ffmat()
   return table.concat(r, ' ')
 end
 
-local fugitive_bname_pattern = os == 'Windows' and [[^fugitive:\\.*\%.git.*\(%x-)\(.*)]] or
+local fugitive_bname_pattern = os == 'Windows_NT' and [[^fugitive:\\.*\%.git.*\(%x-)\(.*)]] or
     [[^fugitive://.*/%.git.*/(%x-)/(.*)]]
 
 function M.bname()

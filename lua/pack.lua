@@ -21,10 +21,10 @@ local exec = g.exec
 g.sys_reqr = {
   cmp_tmux = exec.tmux,
   cmp_zsh = exec.zsh,
-  dap_plugins = os ~= 'Windows',
+  dap_plugins = os ~= 'Windows_NT',
   fm_nvim = exec.lf,
-  fzf_lua = os ~= 'Windows',
-  fzf_vim = os == 'Windows' and exec.bash,
+  fzf_lua = os ~= 'Windows_NT',
+  fzf_vim = os == 'Windows_NT' and exec.bash,
   lsp_plugins = exec.node,
   markdown_preview = exec.node,
   nvim_spectre = exec.sed,
