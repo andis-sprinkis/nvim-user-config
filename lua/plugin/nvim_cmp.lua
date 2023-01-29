@@ -46,13 +46,15 @@ return function()
     },
     sources = cmpc.sources(
       {
-        { name = 'nvim_lsp' },
+        { name = 'nvim_lua' },
         { name = 'luasnip' },
-        { name = 'buffer' },
+        { name = 'nvim_lsp' },
         { name = 'path' },
-        { name = 'zsh' },
+        { name = 'buffer' },
         { name = 'tmux' },
+        { name = 'zsh' },
         { name = 'emoji' },
+        { name = 'color_names'},
         { name = 'npm', keyword_length = 4 },
       }
     )

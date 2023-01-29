@@ -198,17 +198,22 @@ require("lazy").setup(
       'hrsh7th/nvim-cmp',
       config = require('plugin.nvim_cmp'),
       dependencies = {
-        'L3MON4D3/LuaSnip',
-        'rafamadriz/friendly-snippets',
-        'dmitmel/cmp-cmdline-history',
-        'saadparwaiz1/cmp_luasnip',
         'David-Kunz/cmp-npm',
-        'petertriho/cmp-git',
+        'L3MON4D3/LuaSnip',
+        'dmitmel/cmp-cmdline-history',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-emoji',
         'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-path',
+        'petertriho/cmp-git',
+        'rafamadriz/friendly-snippets',
+        'saadparwaiz1/cmp_luasnip',
+        {
+          'nat-418/cmp-color-names.nvim',
+          config = require('plugin.cmp_color_names_nvim')
+        },
         {
           'tamago324/cmp-zsh',
           cond = sys_reqr.cmp_zsh
