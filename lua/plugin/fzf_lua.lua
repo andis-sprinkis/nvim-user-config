@@ -37,7 +37,7 @@ return function()
       },
       bat = {
         cmd = 'bat',
-        args = '--style=plain,changes,numbers --color always',
+        args = '--style=plain,numbers,header-filename,changes --color always',
         theme = 'Visual Studio Dark+'
       },
       man = {
