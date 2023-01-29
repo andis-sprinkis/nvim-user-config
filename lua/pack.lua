@@ -267,6 +267,19 @@ require("lazy").setup(
         lazy = "💤 ",
       },
     },
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          "netrwPlugin",
+          "rplugin",
+          "spellfile",
+          "tarPlugin",
+          "tohtml",
+          "tutor",
+          "zipPlugin",
+        },
+      },
+    }
   }
 )
 
