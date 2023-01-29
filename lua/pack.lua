@@ -273,6 +273,7 @@ require("lazy").setup(
     performance = {
       rtp = {
         disabled_plugins = {
+          "gzip",
           "netrwPlugin",
           "rplugin",
           "spellfile",
