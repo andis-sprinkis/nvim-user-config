@@ -131,16 +131,19 @@ require("lazy").setup(
     {
       'mfussenegger/nvim-dap',
       cond = sys_reqr.dap_plugins,
+      enable = sys_reqr.dap_plugins,
       config = require('plugin.nvim_dap')
     },
     {
       'ibhagwan/fzf-lua',
       cond = sys_reqr.fzf_lua,
+      enable = sys_reqr.fzf_lua,
       config = require('plugin.fzf_lua')
     },
     {
       'junegunn/fzf.vim',
       cond = sys_reqr.fzf_vim,
+      enabled = sys_reqr.fzf_vim,
       config = require('plugin.fzf_vim'),
       dependencies = {
         {
