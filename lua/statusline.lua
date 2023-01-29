@@ -62,7 +62,8 @@ function M.fenc_ffmat()
   return table.concat(r, ' ')
 end
 
-local fugitive_bname_pattern = os == 'Windows' and [[^fugitive:\\.*\%.git.*\(%x-)\(.*)]] or [[^fugitive://.*/%.git.*/(%x-)/(.*)]]
+local fugitive_bname_pattern = os == 'Windows' and [[^fugitive:\\.*\%.git.*\(%x-)\(.*)]] or
+    [[^fugitive://.*/%.git.*/(%x-)/(.*)]]
 
 function M.bname()
   local width = math.floor(api.nvim_win_get_width(0) * 0.5)
