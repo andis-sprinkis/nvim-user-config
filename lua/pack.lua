@@ -75,7 +75,7 @@ local plugins = {
   {
     'jghauser/follow-md-links.nvim',
     dependencies = 'nvim-treesitter/nvim-treesitter',
-    ft = { 'markdown', 'markdown.mdx', 'vim-plug' },
+    ft = { 'markdown', 'markdown.mdx' },
   },
   {
     "luukvbaal/stabilize.nvim",
