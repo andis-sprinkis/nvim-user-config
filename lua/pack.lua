@@ -69,7 +69,8 @@ require("lazy").setup(
       config = require('plugin.swenv_nvim'),
       dependencies = 'stevearc/dressing.nvim',
     },
-    { 'tversteeg/registers.nvim',
+    {
+      'tversteeg/registers.nvim',
       config = require('plugin.registers_nvim')
     },
     {
