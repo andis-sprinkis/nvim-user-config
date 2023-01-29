@@ -65,8 +65,7 @@ end
 local fugitive_bname_pattern = os == 'Windows' and [[^fugitive:\\.*\%.git.*\(%x-)\(.*)]] or [[^fugitive://.*/%.git.*/(%x-)/(.*)]]
 
 function M.bname()
-  local ratio = 0.5
-  local width = math.floor(api.nvim_win_get_width(0) * ratio)
+  local width = math.floor(api.nvim_win_get_width(0) * 0.5)
   local name = fn.fnamemodify(api.nvim_buf_get_name(0), ':.')
 
   if vim.startswith(name, 'fugitive') then
