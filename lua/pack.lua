@@ -43,227 +43,226 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
-  'gpanders/editorconfig.nvim',
-  'jghauser/mkdir.nvim',
-  'nvim-lua/plenary.nvim',
-  'stevearc/dressing.nvim',
-  'tpope/vim-fugitive',
+require("lazy").setup(
   {
-    'RRethy/vim-illuminate',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'williamboman/mason.nvim',
-    }
-  },
-  {
-    'dhruvasagar/vim-table-mode',
-    ft = { 'markdown', 'markdown.mdx' },
-  },
-  {
-    'NvChad/nvim-colorizer.lua',
-    config = require('plugin.nvim_colorizer'),
-  },
-  {
-    'AckslD/swenv.nvim',
-    config = require('plugin.swenv_nvim'),
-    dependencies = 'stevearc/dressing.nvim',
-  },
-  { 'tversteeg/registers.nvim',
-    config = require('plugin.registers_nvim')
-  },
-  {
-    'jghauser/follow-md-links.nvim',
-    dependencies = 'nvim-treesitter/nvim-treesitter',
-    ft = { 'markdown', 'markdown.mdx' },
-  },
-  {
-    "luukvbaal/stabilize.nvim",
-    config = require('plugin.stabilize_nvim')
-  },
-  {
-    'mrjones2014/smart-splits.nvim',
-    config = require('plugin.smart_splits_nvim'),
-  },
-  {
-    'haringsrob/nvim_context_vt',
-    config = require('plugin.nvim_context_vt_nvim'),
-    dependencies = 'nvim-treesitter/nvim-treesitter',
-  },
-  {
-    'sindrets/winshift.nvim',
-    config = require('plugin.winshift_nvim'),
-  },
-  {
-    'lewis6991/gitsigns.nvim',
-    config = require('plugin.gitsigns_nvim'),
-    dependencies = {
-      'tpope/vim-fugitive',
-    },
-  },
-  {
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    config = require('plugin.nvim_treesitter'),
-    build = ':TSUpdate'
-  },
-  {
-    'm-demare/hlargs.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = require('plugin.hlargs_nvim'),
-  },
-  {
-    'williamboman/mason.nvim',
-    cond = sys_reqr.lsp_plugins,
-    config = require('plugin.mason_nvim'),
-    dependencies = {
-      'b0o/schemastore.nvim',
-      'jayp0521/mason-null-ls.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
-      'neovim/nvim-lspconfig',
-      'williamboman/mason-lspconfig.nvim',
-      'lewis6991/gitsigns.nvim',
-    }
-  },
-  {
-    'mfussenegger/nvim-dap',
-    cond = sys_reqr.dap_plugins,
-    config = require('plugin.nvim_dap')
-  },
-  {
-    'ibhagwan/fzf-lua',
-    cond = sys_reqr.fzf_lua,
-    config = require('plugin.fzf_lua')
-  },
-  {
-    'junegunn/fzf.vim',
-    cond = sys_reqr.fzf_vim,
-    config = require('plugin.fzf_vim'),
-    dependencies = {
-      {
-        'junegunn/fzf',
-        build = './install --bin'
+    'gpanders/editorconfig.nvim',
+    'jghauser/mkdir.nvim', 'nvim-lua/plenary.nvim',
+    'stevearc/dressing.nvim',
+    'tpope/vim-fugitive',
+    {
+      'RRethy/vim-illuminate',
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+        'williamboman/mason.nvim',
       }
-    }
-  },
-  {
-    'is0n/fm-nvim',
-    cond = sys_reqr.fm_nvim,
-    config = require('plugin.fm_nvim')
-  },
-  {
-    'nvim-pack/nvim-spectre',
-    cond = sys_reqr.nvim_spectre,
-    config = require('plugin.nvim_spectre'),
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    }
-  },
-  {
-    'lambdalisue/suda.vim',
-    cond = sys_reqr.suda_vim,
-    config = require('plugin.suda'),
-  },
-  {
-    'kkoomen/vim-doge',
-    cond = sys_reqr.vim_doge,
-    build = function() fn['doge#install']() end,
-    init = require('plugin.vim_doge_setup'),
-  },
-  {
-    'iamcco/markdown-preview.nvim',
-    cond = sys_reqr.markdown_preview,
-    build = function() fn['mkdp#util#install']() end,
-    ft = { 'markdown', 'markdown.mdx' },
-  },
-  {
-    'AndrewRadev/splitjoin.vim',
-    config = require('plugin.splitjoin_vim')
-  },
-  {
-    'Mofiqul/vscode.nvim',
-    config = require('plugin.colorscheme'),
-    lazy = false,
-    priority = 1000
-  },
-  {
-    'NMAC427/guess-indent.nvim',
-    config = require('plugin.guess_indent_nvim'),
-    priority = 700
-  },
-  {
-    'hrsh7th/nvim-cmp',
-    config = require('plugin.nvim_cmp'),
-    dependencies = {
-      'L3MON4D3/LuaSnip',
-      'rafamadriz/friendly-snippets',
-      'dmitmel/cmp-cmdline-history',
-      'saadparwaiz1/cmp_luasnip',
-      'David-Kunz/cmp-npm',
-      'petertriho/cmp-git',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/cmp-emoji',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      {
-        'tamago324/cmp-zsh',
-        cond = sys_reqr.cmp_zsh
+    },
+    {
+      'dhruvasagar/vim-table-mode',
+      ft = { 'markdown', 'markdown.mdx' },
+    },
+    {
+      'NvChad/nvim-colorizer.lua',
+      config = require('plugin.nvim_colorizer'),
+    },
+    {
+      'AckslD/swenv.nvim',
+      config = require('plugin.swenv_nvim'),
+      dependencies = 'stevearc/dressing.nvim',
+    },
+    { 'tversteeg/registers.nvim',
+      config = require('plugin.registers_nvim')
+    },
+    {
+      'jghauser/follow-md-links.nvim',
+      dependencies = 'nvim-treesitter/nvim-treesitter',
+      ft = { 'markdown', 'markdown.mdx' },
+    },
+    {
+      "luukvbaal/stabilize.nvim",
+      config = require('plugin.stabilize_nvim')
+    },
+    {
+      'mrjones2014/smart-splits.nvim',
+      config = require('plugin.smart_splits_nvim'),
+    },
+    {
+      'haringsrob/nvim_context_vt',
+      config = require('plugin.nvim_context_vt_nvim'),
+      dependencies = 'nvim-treesitter/nvim-treesitter',
+    },
+    {
+      'sindrets/winshift.nvim',
+      config = require('plugin.winshift_nvim'),
+    },
+    {
+      'lewis6991/gitsigns.nvim',
+      config = require('plugin.gitsigns_nvim'),
+      dependencies = {
+        'tpope/vim-fugitive',
       },
-      {
-        'andersevenrud/cmp-tmux',
-        cond = sys_reqr.cmp_tmux
-      },
-    }
-  },
-  {
-    'justinmk/vim-dirvish',
-    config = require('plugin.dirvish'),
-    priority = 900
-  },
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    config = require('plugin.indent_blankline_nvim')
-  },
-  {
-    'mihaifm/bufstop',
-    config = require('plugin.bufstop')
-  },
-  {
-    'numToStr/Comment.nvim',
-    config = require('plugin.comment_nvim'),
-    dependencies = {
+    },
+    {
       'nvim-treesitter/nvim-treesitter',
-      'JoosepAlviste/nvim-ts-context-commentstring',
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+      },
+      config = require('plugin.nvim_treesitter'),
+      build = ':TSUpdate'
     },
+    {
+      'm-demare/hlargs.nvim',
+      dependencies = { 'nvim-treesitter/nvim-treesitter' },
+      config = require('plugin.hlargs_nvim'),
+    },
+    {
+      'williamboman/mason.nvim',
+      cond = sys_reqr.lsp_plugins,
+      config = require('plugin.mason_nvim'),
+      dependencies = {
+        'b0o/schemastore.nvim',
+        'jayp0521/mason-null-ls.nvim',
+        'jose-elias-alvarez/null-ls.nvim',
+        'neovim/nvim-lspconfig',
+        'williamboman/mason-lspconfig.nvim',
+        'lewis6991/gitsigns.nvim',
+      }
+    },
+    {
+      'mfussenegger/nvim-dap',
+      cond = sys_reqr.dap_plugins,
+      config = require('plugin.nvim_dap')
+    },
+    {
+      'ibhagwan/fzf-lua',
+      cond = sys_reqr.fzf_lua,
+      config = require('plugin.fzf_lua')
+    },
+    {
+      'junegunn/fzf.vim',
+      cond = sys_reqr.fzf_vim,
+      config = require('plugin.fzf_vim'),
+      dependencies = {
+        {
+          'junegunn/fzf',
+          build = './install --bin'
+        }
+      }
+    },
+    {
+      'is0n/fm-nvim',
+      cond = sys_reqr.fm_nvim,
+      config = require('plugin.fm_nvim')
+    },
+    {
+      'nvim-pack/nvim-spectre',
+      cond = sys_reqr.nvim_spectre,
+      config = require('plugin.nvim_spectre'),
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+      }
+    },
+    {
+      'lambdalisue/suda.vim',
+      cond = sys_reqr.suda_vim,
+      config = require('plugin.suda'),
+    },
+    {
+      'kkoomen/vim-doge',
+      cond = sys_reqr.vim_doge,
+      build = function() fn['doge#install']() end,
+      init = require('plugin.vim_doge_setup'),
+    },
+    {
+      'iamcco/markdown-preview.nvim',
+      cond = sys_reqr.markdown_preview,
+      build = function() fn['mkdp#util#install']() end,
+      ft = { 'markdown', 'markdown.mdx' },
+    },
+    {
+      'AndrewRadev/splitjoin.vim',
+      config = require('plugin.splitjoin_vim')
+    },
+    {
+      'Mofiqul/vscode.nvim',
+      config = require('plugin.colorscheme'),
+      lazy = false,
+      priority = 1000
+    },
+    {
+      'NMAC427/guess-indent.nvim',
+      config = require('plugin.guess_indent_nvim'),
+      priority = 700
+    },
+    {
+      'hrsh7th/nvim-cmp',
+      config = require('plugin.nvim_cmp'),
+      dependencies = {
+        'L3MON4D3/LuaSnip',
+        'rafamadriz/friendly-snippets',
+        'dmitmel/cmp-cmdline-history',
+        'saadparwaiz1/cmp_luasnip',
+        'David-Kunz/cmp-npm',
+        'petertriho/cmp-git',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-cmdline',
+        'hrsh7th/cmp-emoji',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-path',
+        {
+          'tamago324/cmp-zsh',
+          cond = sys_reqr.cmp_zsh
+        },
+        {
+          'andersevenrud/cmp-tmux',
+          cond = sys_reqr.cmp_tmux
+        },
+      }
+    },
+    {
+      'justinmk/vim-dirvish',
+      config = require('plugin.dirvish'),
+      priority = 900
+    },
+    {
+      'lukas-reineke/indent-blankline.nvim',
+      config = require('plugin.indent_blankline_nvim')
+    },
+    {
+      'mihaifm/bufstop',
+      config = require('plugin.bufstop')
+    },
+    {
+      'numToStr/Comment.nvim',
+      config = require('plugin.comment_nvim'),
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+        'JoosepAlviste/nvim-ts-context-commentstring',
+      },
+    },
+    {
+      "andrewferrier/debugprint.nvim",
+      config = require('plugin.debugprint_nvim'),
+    }
   },
   {
-    "andrewferrier/debugprint.nvim",
-    config = require('plugin.debugprint_nvim'),
-  }
-}
-
-local options = {
-  ui = {
-    icons = {
-      cmd = "[cmd]",
-      config = "[config]",
-      event = "[event]",
-      ft = "[ft]",
-      init = "[init]",
-      keys = "[keys]",
-      plugin = "[plugin]",
-      runtime = "[runtime]",
-      source = "[source]",
-      start = "[start]",
-      task = "[task]",
-      lazy = "💤 ",
+    ui = {
+      icons = {
+        cmd = "[cmd]",
+        config = "[config]",
+        event = "[event]",
+        ft = "[ft]",
+        init = "[init]",
+        keys = "[keys]",
+        plugin = "[plugin]",
+        runtime = "[runtime]",
+        source = "[source]",
+        start = "[start]",
+        task = "[task]",
+        lazy = "💤 ",
+      },
     },
-  },
-}
+  }
 
-require("lazy").setup(plugins, options)
+)
 
 require('statusline')
