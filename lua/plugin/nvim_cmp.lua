@@ -64,8 +64,8 @@ return function()
     mapping = cmpm.preset.cmdline(),
     sources = cmpc.sources(
       {
-        { name = 'cmdline_history' },
         { name = 'buffer' },
+        { name = 'cmdline_history' },
       }
     ),
   })
@@ -78,12 +78,8 @@ return function()
         { name = 'cmdline' },
         { name = 'path' },
         { name = 'buffer' },
-      },
-      {
         { name = 'zsh' },
         { name = 'tmux' },
-      },
-      {
         { name = 'emoji' },
       }
     ),
