@@ -44,13 +44,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  'chaoren/vim-wordmotion',
   'gpanders/editorconfig.nvim',
   'jghauser/mkdir.nvim',
-  'markonm/traces.vim',
   'nvim-lua/plenary.nvim',
   'stevearc/dressing.nvim',
-  'tpope/vim-eunuch',
   'tpope/vim-fugitive',
   {
     'RRethy/vim-illuminate',
@@ -160,6 +157,9 @@ local plugins = {
     'nvim-pack/nvim-spectre',
     cond = sys_reqr.nvim_spectre,
     config = require('plugin.nvim_spectre'),
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    }
   },
   {
     'lambdalisue/suda.vim',
@@ -180,7 +180,7 @@ local plugins = {
   },
   {
     'AndrewRadev/splitjoin.vim',
-    config = require('plugin.splitjoin')
+    config = require('plugin.splitjoin_vim')
   },
   {
     'Mofiqul/vscode.nvim',
