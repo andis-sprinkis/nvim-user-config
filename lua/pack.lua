@@ -49,6 +49,7 @@ require("lazy").setup(
     'jghauser/mkdir.nvim', 'nvim-lua/plenary.nvim',
     'stevearc/dressing.nvim',
     'tpope/vim-fugitive',
+    'chaoren/vim-wordmotion',
     {
       'RRethy/vim-illuminate',
       dependencies = {
