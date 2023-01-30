@@ -4,16 +4,6 @@ return function()
 
   local fzflua = require('fzf-lua')
 
-  local previewer
-
-  if exec.bat then
-    previewer = 'bat'
-  elseif exec.cat then
-    previewer = 'cat'
-  else
-    previewer = 'builtin'
-  end
-
   fzflua.setup({
     fzf_colors = {
       ['fg'] = { 'fg', 'CursorLine' },
@@ -59,7 +49,7 @@ return function()
       fullscreen = true,
       border = 'none',
       preview = {
-        default = previewer,
+        default = (exec.bat and 'bat') or (exec.cat and 'cat') or 'builtin',
         wrap = 'wrap',
         layout = 'vertial',
         vertical = 'up:60%',

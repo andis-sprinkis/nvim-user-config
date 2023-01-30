@@ -1,7 +1,6 @@
 return function ()
   require('fm-nvim').setup {
     ui = {
-      default = "float",
       float = {
         border = "rounded",
         blend = 10,
