@@ -67,11 +67,11 @@ return function()
     end
   end
 
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
   local function make_config()
     return {
-      capabilities = capabilities,
+      capabilities = cmp_nvim_lsp.default_capabilities(),
       on_attach = on_attach,
     }
   end
@@ -91,8 +91,7 @@ return function()
 
   require("mason-lspconfig").setup_handlers({
     function(server_name)
-      local config = make_config()
-      lspconfig[server_name].setup(config)
+      lspconfig[server_name].setup(make_config())
     end,
     ["sumneko_lua"] = function()
       local config = make_config()
