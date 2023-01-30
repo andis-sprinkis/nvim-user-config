@@ -45,11 +45,13 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(
   {
-    'gpanders/editorconfig.nvim',
-    'jghauser/mkdir.nvim', 'nvim-lua/plenary.nvim',
-    'stevearc/dressing.nvim',
-    'tpope/vim-fugitive',
     'chaoren/vim-wordmotion',
+    'gpanders/editorconfig.nvim',
+    'jghauser/mkdir.nvim',
+    'nvim-lua/plenary.nvim',
+    'stevearc/dressing.nvim',
+    'tpope/vim-eunuch',
+    'tpope/vim-fugitive',
     {
       'RRethy/vim-illuminate',
       dependencies = {
