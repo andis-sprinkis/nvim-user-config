@@ -8,7 +8,7 @@ set clipboard=unnamedplus
 set cursorline
 set expandtab
 set foldlevel=99
-set foldmethod=syntax
+set foldmethod=indent
 set list
 set listchars=space:·,trail:·,eol:↲,tab:»\ 
 set mouse=a
@@ -23,6 +23,8 @@ set relativenumber
 set scrolljump=-100
 set shiftwidth=2
 set shortmess+=c
+set splitbelow
+set splitright
 set tabstop=2
 set termguicolors
 set title
@@ -31,8 +33,9 @@ set updatetime=100
 set winblend=10
 syntax on
 
-au FileType help setlocal signcolumn=no
-au FileType man setlocal signcolumn=no
+au FileType help setlocal number relativenumber
+au FileType man setlocal number relativenumber
+au FileType make setlocal noexpandtab
 
 au TermOpen * setlocal nonumber norelativenumber signcolumn=no
 au TermOpen term://* startinsert
