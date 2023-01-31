@@ -9,7 +9,8 @@ return function()
     blankline_char = '▏',
     context_char = '▏',
     filetype_exclude = {
-      'spectre_panel',
+      'help',
+      'spectre_panel'
     },
   })
 end
