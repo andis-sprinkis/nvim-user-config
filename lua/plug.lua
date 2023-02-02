@@ -53,6 +53,10 @@ require("lazy").setup(
     'tpope/vim-eunuch',
     'tpope/vim-fugitive',
     {
+      'jvirtanen/vim-octave',
+      ft = { 'octave' }
+    },
+    {
       'RRethy/vim-illuminate',
       dependencies = {
         'nvim-treesitter/nvim-treesitter',
