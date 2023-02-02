@@ -183,7 +183,7 @@ require("lazy").setup(
       'iamcco/markdown-preview.nvim',
       cond = sys_reqr.markdown_preview,
       build = function() fn['mkdp#util#install']() end,
-      ft = { 'markdown', 'markdown.mdx' },
+      ft = { 'markdown', 'markdown.mdx', 'lazy' },
     },
     {
       'AndrewRadev/splitjoin.vim',
