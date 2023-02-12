@@ -220,6 +220,7 @@ require("lazy").setup(
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-path',
+        'kdheepak/cmp-latex-symbols',
         'petertriho/cmp-git',
         'rafamadriz/friendly-snippets',
         'saadparwaiz1/cmp_luasnip',

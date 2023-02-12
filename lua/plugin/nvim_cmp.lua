@@ -48,6 +48,7 @@ return function()
       {
         { name = 'nvim_lua' },
         { name = 'luasnip' },
+        { name = 'latex_symbols' },
         { name = 'nvim_lsp' },
         { name = 'path' },
         { name = 'buffer' },
