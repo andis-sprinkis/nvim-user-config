@@ -51,10 +51,7 @@ require("lazy").setup(
     'nvim-lua/plenary.nvim',
     'stevearc/dressing.nvim',
     'tpope/vim-fugitive',
-    {
-      'chrisgrieser/nvim-genghis',
-      dependencies = 'stevearc/dressing.nvim',
-    },
+    'tpope/vim-eunuch',
     {
       'jvirtanen/vim-octave',
       ft = { 'octave' }
@@ -218,6 +215,7 @@ require("lazy").setup(
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-emoji',
         'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-path',
         'kdheepak/cmp-latex-symbols',

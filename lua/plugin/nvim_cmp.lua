@@ -50,6 +50,7 @@ return function()
         { name = 'luasnip' },
         { name = 'latex_symbols' },
         { name = 'nvim_lsp' },
+        { name = 'nvim_lua' },
         { name = 'path' },
         { name = 'buffer' },
         { name = 'tmux' },

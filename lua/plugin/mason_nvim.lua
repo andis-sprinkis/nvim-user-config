@@ -15,8 +15,8 @@ return function()
     'eslint',
     'html',
     'jsonls',
+    'lua_ls',
     'pylsp',
-    'sumneko_lua',
     'tsserver',
     'yamlls',
   }
@@ -93,7 +93,7 @@ return function()
     function(server_name)
       lspconfig[server_name].setup(make_config())
     end,
-    ["sumneko_lua"] = function()
+    ["lua_ls"] = function()
       local config = make_config()
 
       config.settings = {
@@ -107,7 +107,7 @@ return function()
         }
       }
 
-      lspconfig.sumneko_lua.setup(config)
+      lspconfig.lua_ls.setup(config)
     end,
     ["jsonls"] = function()
       local config = make_config()
