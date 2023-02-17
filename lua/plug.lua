@@ -128,7 +128,7 @@ require("lazy").setup(
     {
       'williamboman/mason.nvim',
       cond = sys_reqr.lsp_plugins,
-      enable = sys_reqr.lsp_plugins,
+      enabled = sys_reqr.lsp_plugins,
       config = require('plugin.mason_nvim'),
       dependencies = {
         'b0o/schemastore.nvim',
@@ -142,13 +142,13 @@ require("lazy").setup(
     {
       'mfussenegger/nvim-dap',
       cond = sys_reqr.dap_plugins,
-      enable = sys_reqr.dap_plugins,
+      enabled = sys_reqr.dap_plugins,
       config = require('plugin.nvim_dap')
     },
     {
       'ibhagwan/fzf-lua',
       cond = sys_reqr.fzf_lua,
-      enable = sys_reqr.fzf_lua,
+      enabled = sys_reqr.fzf_lua,
       config = require('plugin.fzf_lua')
     },
     {
@@ -166,13 +166,13 @@ require("lazy").setup(
     {
       'is0n/fm-nvim',
       cond = sys_reqr.fm_nvim,
-      enable = sys_reqr.fm_nvim,
+      enabled = sys_reqr.fm_nvim,
       config = require('plugin.fm_nvim')
     },
     {
       'nvim-pack/nvim-spectre',
       cond = sys_reqr.nvim_spectre,
-      enable = sys_reqr.nvim_spectre,
+      enabled = sys_reqr.nvim_spectre,
       config = require('plugin.nvim_spectre'),
       dependencies = {
         'nvim-lua/plenary.nvim',
@@ -181,20 +181,20 @@ require("lazy").setup(
     {
       'lambdalisue/suda.vim',
       cond = sys_reqr.suda_vim,
-      enable = sys_reqr.suda_vim,
+      enabled = sys_reqr.suda_vim,
       config = require('plugin.suda'),
     },
     {
       'kkoomen/vim-doge',
       cond = sys_reqr.vim_doge,
-      enable = sys_reqr.vim_doge,
+      enabled = sys_reqr.vim_doge,
       build = function() fn['doge#install']() end,
       init = require('plugin.vim_doge_setup'),
     },
     {
       'iamcco/markdown-preview.nvim',
       cond = sys_reqr.markdown_preview,
-      enable = sys_reqr.markdown_preview,
+      enabled = sys_reqr.markdown_preview,
       build = function() fn['mkdp#util#install']() end,
       ft = { 'markdown', 'markdown.mdx', 'lazy' },
     },
@@ -231,7 +231,7 @@ require("lazy").setup(
         {
           'lukas-reineke/cmp-rg',
           cond = sys_reqr.cmp_rg,
-          enable = sys_reqr.cmp_rg,
+          enabled = sys_reqr.cmp_rg,
         },
         'petertriho/cmp-git',
         'rafamadriz/friendly-snippets',
@@ -243,12 +243,12 @@ require("lazy").setup(
         {
           'tamago324/cmp-zsh',
           cond = sys_reqr.cmp_zsh,
-          enable = sys_reqr.cmp_zsh
+          enabled = sys_reqr.cmp_zsh
         },
         {
           'andersevenrud/cmp-tmux',
           cond = sys_reqr.cmp_tmux,
-          enable = sys_reqr.cmp_tmux
+          enabled = sys_reqr.cmp_tmux
         },
       }
     },
