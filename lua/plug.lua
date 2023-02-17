@@ -7,9 +7,11 @@ g.exec = {
   bash = executable('bash') == 1,
   bat = executable('bat') == 1,
   cat = executable('cat') == 1,
+  fzf = executable('fzf') == 1,
   lf = executable('lf') == 1,
   node = executable('node') == 1,
   python3 = executable('python3') == 1,
+  rg = executable('rg') == 1,
   sed = executable('sed') == 1,
   sudo = executable('sudo') == 1,
   tmux = executable('tmux') == 1,
@@ -21,9 +23,10 @@ local exec = g.exec
 g.sys_reqr = {
   cmp_tmux = exec.tmux,
   cmp_zsh = exec.zsh,
+  cmp_rg = exec.rg,
   dap_plugins = os ~= 'Windows_NT',
   fm_nvim = exec.lf,
-  fzf_lua = os ~= 'Windows_NT',
+  fzf_lua = os ~= 'Windows_NT' and exec.fzf,
   fzf_vim = os == 'Windows_NT' and exec.bash,
   lsp_plugins = exec.node,
   markdown_preview = exec.node,
@@ -125,6 +128,7 @@ require("lazy").setup(
     {
       'williamboman/mason.nvim',
       cond = sys_reqr.lsp_plugins,
+      enable = sys_reqr.lsp_plugins,
       config = require('plugin.mason_nvim'),
       dependencies = {
         'b0o/schemastore.nvim',
@@ -162,11 +166,13 @@ require("lazy").setup(
     {
       'is0n/fm-nvim',
       cond = sys_reqr.fm_nvim,
+      enable = sys_reqr.fm_nvim,
       config = require('plugin.fm_nvim')
     },
     {
       'nvim-pack/nvim-spectre',
       cond = sys_reqr.nvim_spectre,
+      enable = sys_reqr.nvim_spectre,
       config = require('plugin.nvim_spectre'),
       dependencies = {
         'nvim-lua/plenary.nvim',
@@ -175,17 +181,20 @@ require("lazy").setup(
     {
       'lambdalisue/suda.vim',
       cond = sys_reqr.suda_vim,
+      enable = sys_reqr.suda_vim,
       config = require('plugin.suda'),
     },
     {
       'kkoomen/vim-doge',
       cond = sys_reqr.vim_doge,
+      enable = sys_reqr.vim_doge,
       build = function() fn['doge#install']() end,
       init = require('plugin.vim_doge_setup'),
     },
     {
       'iamcco/markdown-preview.nvim',
       cond = sys_reqr.markdown_preview,
+      enable = sys_reqr.markdown_preview,
       build = function() fn['mkdp#util#install']() end,
       ft = { 'markdown', 'markdown.mdx', 'lazy' },
     },
@@ -219,7 +228,11 @@ require("lazy").setup(
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-path',
         'kdheepak/cmp-latex-symbols',
-        'lukas-reineke/cmp-rg',
+        {
+          'lukas-reineke/cmp-rg',
+          cond = sys_reqr.cmp_rg,
+          enable = sys_reqr.cmp_rg,
+        },
         'petertriho/cmp-git',
         'rafamadriz/friendly-snippets',
         'saadparwaiz1/cmp_luasnip',
@@ -229,11 +242,13 @@ require("lazy").setup(
         },
         {
           'tamago324/cmp-zsh',
-          cond = sys_reqr.cmp_zsh
+          cond = sys_reqr.cmp_zsh,
+          enable = sys_reqr.cmp_zsh
         },
         {
           'andersevenrud/cmp-tmux',
-          cond = sys_reqr.cmp_tmux
+          cond = sys_reqr.cmp_tmux,
+          enable = sys_reqr.cmp_tmux
         },
       }
     },
