@@ -11,6 +11,12 @@ return function()
     return col ~= 0 and api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
+  local source_cmp_rg = {
+    name = 'rg',
+    keyword_length = 3,
+    debounce = 250,
+  }
+
   cmp.setup({
     snippet = {
       expand = function(args)
@@ -55,7 +61,7 @@ return function()
         { name = 'buffer' },
         { name = 'tmux' },
         { name = 'zsh' },
-        { name = 'rg' },
+        source_cmp_rg,
         { name = 'emoji' },
         { name = 'color_names'},
         { name = 'npm', keyword_length = 4 },
@@ -82,7 +88,7 @@ return function()
         { name = 'path' },
         { name = 'buffer' },
         { name = 'nvim_lsp' },
-        { name = 'rg' },
+        source_cmp_rg,
         { name = 'zsh' },
         { name = 'tmux' },
         { name = 'emoji' },
@@ -96,7 +102,7 @@ return function()
         { name = 'cmp_git' },
         { name = 'buffer' },
         { name = 'nvim_lsp' },
-        { name = 'rg' },
+        source_cmp_rg,
         { name = 'path' },
         { name = 'zsh' },
         { name = 'tmux' },
