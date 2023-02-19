@@ -199,8 +199,9 @@ require("lazy").setup(
       ft = { 'markdown', 'markdown.mdx', 'lazy' },
     },
     {
-      'AndrewRadev/splitjoin.vim',
-      config = require('plugin.splitjoin_vim')
+      'Wansmer/treesj',
+      requires = { 'nvim-treesitter' },
+      config = require('plugin.treesj'),
     },
     {
       'Mofiqul/vscode.nvim',
