@@ -42,13 +42,26 @@ au TermOpen term://* startinsert
 
 au VimResized * wincmd =
 
+nnoremap ; :
+vnoremap ; :
+
 nnoremap h <bs>
 nnoremap l <space>
 vnoremap h <bs>
 vnoremap l <space>
 
-nnoremap ; :
-vnoremap ; :
+nnoremap <expr> j     line(".") == line('$') ? 'gg' : 'j'
+vnoremap <expr> j     line(".") == line('$') ? 'gg' : 'j'
+nnoremap <expr> <C-d> line(".") == line('$') ? 'gg' : '<C-d>'
+vnoremap <expr> <C-d> line(".") == line('$') ? 'gg' : '<C-d>'
+nnoremap <expr> <C-f> line(".") == line('$') ? 'gg' : '<C-f>'
+vnoremap <expr> <C-f> line(".") == line('$') ? 'gg' : '<C-f>'
+nnoremap <expr> k     line(".") == 1 ? 'G' : 'k'
+vnoremap <expr> k     line(".") == 1 ? 'G' : 'k'
+nnoremap <expr> <C-u> line(".") == 1 ? 'G' : '<C-u>'
+vnoremap <expr> <C-u> line(".") == 1 ? 'G' : '<C-u>'
+nnoremap <expr> <C-b> line(".") == 1 ? 'G' : '<C-b>'
+vnoremap <expr> <C-b> line(".") == 1 ? 'G' : '<C-b>'
 
 nnoremap <silent><C-A-j> :resize +2<cr>
 nnoremap <silent><C-A-k> :resize -2<cr>
