@@ -53,7 +53,6 @@ require("lazy").setup(
       event = 'VeryLazy'
     },
     'gpanders/editorconfig.nvim',
-    'nvim-lua/plenary.nvim',
     'stevearc/dressing.nvim',
     'tpope/vim-fugitive',
     {
