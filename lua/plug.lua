@@ -48,7 +48,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(
   {
-    'chaoren/vim-wordmotion',
+    {
+      'chaoren/vim-wordmotion',
+      event = 'VeryLazy'
+    },
     'gpanders/editorconfig.nvim',
     'nvim-lua/plenary.nvim',
     'stevearc/dressing.nvim',
@@ -287,8 +290,7 @@ require("lazy").setup(
       dependencies = {
         'nvim-treesitter/nvim-treesitter',
         'JoosepAlviste/nvim-ts-context-commentstring',
-      },
-      event = 'VeryLazy'
+      }
     },
     {
       "andrewferrier/debugprint.nvim",
