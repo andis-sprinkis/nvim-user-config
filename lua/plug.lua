@@ -50,11 +50,17 @@ require("lazy").setup(
   {
     'chaoren/vim-wordmotion',
     'gpanders/editorconfig.nvim',
-    'jghauser/mkdir.nvim',
     'nvim-lua/plenary.nvim',
     'stevearc/dressing.nvim',
     'tpope/vim-fugitive',
-    'tpope/vim-eunuch',
+    {
+      'jghauser/mkdir.nvim',
+      event = 'VeryLazy'
+    },
+    {
+      'tpope/vim-eunuch',
+      event = 'VeryLazy'
+    },
     {
       'jvirtanen/vim-octave',
       ft = { 'octave' }
@@ -81,7 +87,8 @@ require("lazy").setup(
     },
     {
       'tversteeg/registers.nvim',
-      config = require('plugin.registers_nvim')
+      config = require('plugin.registers_nvim'),
+      event = 'VeryLazy'
     },
     {
       'jghauser/follow-md-links.nvim',
@@ -90,7 +97,8 @@ require("lazy").setup(
     },
     {
       "luukvbaal/stabilize.nvim",
-      config = require('plugin.stabilize_nvim')
+      config = require('plugin.stabilize_nvim'),
+      event = 'VeryLazy'
     },
     {
       'mrjones2014/smart-splits.nvim',
@@ -104,6 +112,7 @@ require("lazy").setup(
     {
       'sindrets/winshift.nvim',
       config = require('plugin.winshift_nvim'),
+      event = 'VeryLazy'
     },
     {
       'lewis6991/gitsigns.nvim',
@@ -149,7 +158,8 @@ require("lazy").setup(
       'ibhagwan/fzf-lua',
       cond = sys_reqr.fzf_lua,
       enabled = sys_reqr.fzf_lua,
-      config = require('plugin.fzf_lua')
+      config = require('plugin.fzf_lua'),
+      event = 'VeryLazy'
     },
     {
       'junegunn/fzf.vim',
@@ -161,13 +171,15 @@ require("lazy").setup(
           'junegunn/fzf',
           build = './install --bin'
         }
-      }
+      },
+      event = 'VeryLazy'
     },
     {
       'is0n/fm-nvim',
       cond = sys_reqr.fm_nvim,
       enabled = sys_reqr.fm_nvim,
-      config = require('plugin.fm_nvim')
+      config = require('plugin.fm_nvim'),
+      event = 'VeryLazy'
     },
     {
       'nvim-pack/nvim-spectre',
@@ -176,13 +188,15 @@ require("lazy").setup(
       config = require('plugin.nvim_spectre'),
       dependencies = {
         'nvim-lua/plenary.nvim',
-      }
+      },
+      event = 'VeryLazy'
     },
     {
       'lambdalisue/suda.vim',
       cond = sys_reqr.suda_vim,
       enabled = sys_reqr.suda_vim,
       config = require('plugin.suda'),
+      event = 'VeryLazy'
     },
     {
       'kkoomen/vim-doge',
@@ -190,6 +204,7 @@ require("lazy").setup(
       enabled = sys_reqr.vim_doge,
       build = function() fn['doge#install']() end,
       init = require('plugin.vim_doge_setup'),
+      event = 'VeryLazy'
     },
     {
       'iamcco/markdown-preview.nvim',
@@ -273,10 +288,12 @@ require("lazy").setup(
         'nvim-treesitter/nvim-treesitter',
         'JoosepAlviste/nvim-ts-context-commentstring',
       },
+      event = 'VeryLazy'
     },
     {
       "andrewferrier/debugprint.nvim",
       config = require('plugin.debugprint_nvim'),
+      event = 'VeryLazy'
     }
   },
   {

@@ -51,11 +51,11 @@ kms('n', '<leader>o', cmd.vsplit)
 kms('t', '<C-w>', '<C-\\><C-n>')
 
 for _, expr in ipairs({ 'j', '<C-d>', '<C-f>' }) do
-  kms({ 'n', 'v' }, expr, function() return vim.fn.line(".") == vim.fn.line('$') and 'gg' or expr end, { expr = true })
+  kms({ 'n', 'v' }, expr, function() return fn.line(".") == vim.fn.line('$') and 'gg' or expr end, { expr = true })
 end
 
 for _, expr in ipairs({ 'k', '<C-u>', '<C-b>'}) do
-  kms({ 'n', 'v' }, expr, function() return vim.fn.line(".") == 1 and 'G' or expr end, { expr = true })
+  kms({ 'n', 'v' }, expr, function() return fn.line(".") == 1 and 'G' or expr end, { expr = true })
 end
 
 if g.os == 'Windows_NT' then
