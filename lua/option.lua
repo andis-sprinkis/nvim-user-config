@@ -50,21 +50,13 @@ kms('n', '<leader>v', cmd.split)
 kms('n', '<leader>o', cmd.vsplit)
 kms('t', '<C-w>', '<C-\\><C-n>')
 
-vim.cmd [[
-nnoremap <expr> j     line(".") == line('$') ? 'gg' : 'j'
-vnoremap <expr> j     line(".") == line('$') ? 'gg' : 'j'
-nnoremap <expr> <C-d> line(".") == line('$') ? 'gg' : '<C-d>'
-vnoremap <expr> <C-d> line(".") == line('$') ? 'gg' : '<C-d>'
-nnoremap <expr> <C-f> line(".") == line('$') ? 'gg' : '<C-f>'
-vnoremap <expr> <C-f> line(".") == line('$') ? 'gg' : '<C-f>'
+for _, expr in ipairs({ 'j', '<C-d>', '<C-f>' }) do
+  kms({ 'n', 'v' }, expr, function() return vim.fn.line(".") == vim.fn.line('$') and 'gg' or expr end, { expr = true })
+end
 
-nnoremap <expr> k     line(".") == 1 ? 'G' : 'k'
-vnoremap <expr> k     line(".") == 1 ? 'G' : 'k'
-nnoremap <expr> <C-u> line(".") == 1 ? 'G' : '<C-u>'
-vnoremap <expr> <C-u> line(".") == 1 ? 'G' : '<C-u>'
-nnoremap <expr> <C-b> line(".") == 1 ? 'G' : '<C-b>'
-vnoremap <expr> <C-b> line(".") == 1 ? 'G' : '<C-b>'
-]]
+for _, expr in ipairs({ 'k', '<C-u>', '<C-b>'}) do
+  kms({ 'n', 'v' }, expr, function() return vim.fn.line(".") == 1 and 'G' or expr end, { expr = true })
+end
 
 if g.os == 'Windows_NT' then
   env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. env.PATH
