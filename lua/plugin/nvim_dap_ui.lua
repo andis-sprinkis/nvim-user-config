@@ -1,4 +1,7 @@
 return function()
+  local api = vim.api
+  local cag = api.nvim_create_augroup
+  local cac = api.nvim_create_autocmd
   local dap, dapui = require("dap"), require("dapui")
 
   dapui.setup({
@@ -6,15 +9,15 @@ return function()
       element = "repl",
       enabled = true,
       icons = {
-        disconnect = "DC",
-        pause      = "PA",
-        play       = "PL",
-        run_last   = "RL",
-        step_back  = "BK",
-        step_into  = "IN",
-        step_out   = "OU",
-        step_over  = "OV",
-        terminate  = "TT"
+        disconnect = "DCN",
+        pause      = "PAU",
+        play       = "PLA",
+        run_last   = "RLT",
+        step_back  = "SBK",
+        step_into  = "SIN",
+        step_out   = "SOU",
+        step_over  = "SOV",
+        terminate  = "TMT"
       }
     },
     element_mappings = {},
@@ -33,21 +36,21 @@ return function()
     },
     layouts = { {
       elements = {
-        { id = "scopes",      size = 0.333 },
-        { id = "breakpoints", size = 0.333 },
-        { id = "stacks",      size = 0.333 },
-        { id = "watches",     size = 0.333 },
+        { id = "repl",        size = 0.25 },
+        { id = "breakpoints", size = 0.25 },
+        { id = "stacks",      size = 0.25 },
+        { id = "watches",     size = 0.25 },
       },
       position = "right",
-      size = 40
+      size = 0.3333333333
     },
       {
         elements = {
-          { id = "repl",    size = 0.5 },
           { id = "console", size = 0.5 },
+          { id = "scopes",  size = 0.5 },
         },
         position = "top",
-        size = 10
+        size = 0.36
       }
     },
     mappings = {
@@ -73,4 +76,47 @@ return function()
   -- dap.listeners.before.event_exited["dapui_config"] = function()
   --   dapui.close()
   -- end
+
+  local dapui_panel_buf = {
+        ['dap-repl'] = true,
+        ['dap-terminal'] = true,
+    dapui_breakpoints = true,
+    dapui_console = true,
+    dapui_scopes = true,
+    dapui_stacks = true,
+    dapui_watches = true,
+  }
+
+  local au_dapui_cfg = cag('dapui_cfg', {})
+
+  cac(
+    'FileType',
+    {
+      group = au_dapui_cfg,
+      pattern = {
+        'dap-repl',
+        'dap-terminal',
+        'dapui_breakpoints',
+        'dapui_console',
+        'dapui_scopes',
+        'dapui_stacks',
+        'dapui_watches',
+      },
+      callback = function()
+        vim.opt_local.cursorline = false
+      end
+    }
+  )
+
+  cac(
+    'QuitPre',
+    {
+      group = au_dapui_cfg,
+      callback = function()
+        if (dapui_panel_buf[vim.bo.filetype]) then
+          dapui.close()
+        end
+      end
+    }
+  )
 end
