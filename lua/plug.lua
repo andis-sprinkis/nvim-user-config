@@ -24,7 +24,6 @@ g.sys_reqr = {
   cmp_tmux = exec.tmux,
   cmp_zsh = exec.zsh,
   cmp_rg = exec.rg,
-  dap_plugins = os ~= 'Windows_NT',
   fm_nvim = exec.lf,
   fzf_lua = os ~= 'Windows_NT' and exec.fzf,
   fzf_vim = os == 'Windows_NT' and exec.bash,
@@ -66,13 +65,6 @@ require("lazy").setup(
     {
       'jvirtanen/vim-octave',
       ft = { 'octave' }
-    },
-    {
-      'RRethy/vim-illuminate',
-      dependencies = {
-        'nvim-treesitter/nvim-treesitter',
-        'williamboman/mason.nvim',
-      }
     },
     {
       'dhruvasagar/vim-table-mode',
@@ -143,18 +135,20 @@ require("lazy").setup(
       config = require('plugin.mason_nvim'),
       dependencies = {
         'b0o/schemastore.nvim',
+        'jay-babu/mason-nvim-dap.nvim',
         'jayp0521/mason-null-ls.nvim',
         'jose-elias-alvarez/null-ls.nvim',
+        'lewis6991/gitsigns.nvim',
+        'mfussenegger/nvim-dap',
         'neovim/nvim-lspconfig',
         'williamboman/mason-lspconfig.nvim',
-        'lewis6991/gitsigns.nvim',
+        {
+          'RRethy/vim-illuminate',
+          dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+          }
+        },
       }
-    },
-    {
-      'mfussenegger/nvim-dap',
-      cond = sys_reqr.dap_plugins,
-      enabled = sys_reqr.dap_plugins,
-      config = require('plugin.nvim_dap')
     },
     {
       'ibhagwan/fzf-lua',
@@ -213,7 +207,7 @@ require("lazy").setup(
       cond = sys_reqr.markdown_preview,
       enabled = sys_reqr.markdown_preview,
       build = function() fn['mkdp#util#install']() end,
-      ft = { 'markdown', 'markdown.mdx', 'lazy' },
+      ft = { 'markdown', 'markdown.mdx' },
     },
     {
       'Wansmer/treesj',
