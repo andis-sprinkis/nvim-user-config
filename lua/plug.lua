@@ -139,9 +139,24 @@ require("lazy").setup(
         'jayp0521/mason-null-ls.nvim',
         'jose-elias-alvarez/null-ls.nvim',
         'lewis6991/gitsigns.nvim',
-        'mfussenegger/nvim-dap',
         'neovim/nvim-lspconfig',
         'williamboman/mason-lspconfig.nvim',
+        'mfussenegger/nvim-dap',
+        {
+          'theHamsta/nvim-dap-virtual-text',
+          config = require('plugin.nvim_dap_virtual_text'),
+          dependencies = {
+            'mfussenegger/nvim-dap',
+            'nvim-treesitter/nvim-treesitter',
+          },
+        },
+        {
+          'rcarriga/nvim-dap-ui',
+          config = require('plugin.nvim_dap_ui'),
+          dependencies = {
+            'mfussenegger/nvim-dap',
+          },
+        },
         {
           'RRethy/vim-illuminate',
           dependencies = {

@@ -9,6 +9,7 @@ return function()
     'awk_ls',
     'bashls',
     'clangd',
+    -- 'ccls',
     'cmake',
     'cssls',
     'dockerls',
@@ -132,6 +133,11 @@ return function()
 
       lspconfig.tsserver.setup(config)
     end,
+    ["clangd"] = function ()
+      local config = make_config()
+      config.capabilities.offsetEncoding =  { "utf-16" }
+      lspconfig.clangd.setup(config)
+    end
   })
 
   local null_ls = require('null-ls')
