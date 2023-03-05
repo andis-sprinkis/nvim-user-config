@@ -2,6 +2,7 @@ return function()
   local api = vim.api
   local cag = api.nvim_create_augroup
   local cac = api.nvim_create_autocmd
+  local cuc = api.nvim_create_user_command
   local dap, dapui = require("dap"), require("dapui")
 
   dapui.setup({
@@ -119,4 +120,8 @@ return function()
       end
     }
   )
+
+  cuc('DapUIClose', dapui.close, {})
+  cuc('DapUIOpen', function() dapui.open({ reset = true }) end, {})
+  cuc('DapUIToggle', function() dapui.toggle({ reset = true }) end, {})
 end
