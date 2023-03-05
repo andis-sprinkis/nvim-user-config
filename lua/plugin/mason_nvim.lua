@@ -9,7 +9,6 @@ return function()
     'awk_ls',
     'bashls',
     'clangd',
-    -- 'ccls',
     'cmake',
     'cssls',
     'dockerls',
@@ -79,7 +78,7 @@ return function()
   end
 
   local function remove_formatting_capabilities(client)
-    local server_capabilities = client.server_capabilities
+    local server_capabilities                           = client.server_capabilities
 
     server_capabilities.documentFormattingProvider      = false
     server_capabilities.documentRangeFormattingProvider = false
@@ -95,7 +94,7 @@ return function()
     function(server_name)
       lspconfig[server_name].setup(make_config())
     end,
-    ["lua_ls"] = function()
+        ["lua_ls"] = function()
       local config = make_config()
 
       config.settings = {
@@ -111,7 +110,7 @@ return function()
 
       lspconfig.lua_ls.setup(config)
     end,
-    ["jsonls"] = function()
+        ["jsonls"] = function()
       local config = make_config()
 
       config.settings = {
@@ -123,7 +122,7 @@ return function()
 
       lspconfig.jsonls.setup(config)
     end,
-    ["tsserver"] = function()
+        ["tsserver"] = function()
       local config = make_config()
 
       config.on_attach = function(client, bufnr)
@@ -133,9 +132,9 @@ return function()
 
       lspconfig.tsserver.setup(config)
     end,
-    ["clangd"] = function ()
+        ["clangd"] = function()
       local config = make_config()
-      config.capabilities.offsetEncoding =  { "utf-16" }
+      config.capabilities.offsetEncoding = { "utf-16" }
       lspconfig.clangd.setup(config)
     end
   })
@@ -166,6 +165,10 @@ return function()
   local mason_nvim_dap = require('mason-nvim-dap')
   mason_nvim_dap.setup({
     automatic_setup = true,
+    ensure_installed = {
+      'codelldb',
+      -- 'python',
+    }
   })
-  mason_nvim_dap.setup_handlers({})
+  mason_nvim_dap.setup_handlers()
 end
