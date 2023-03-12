@@ -1,5 +1,7 @@
 return function()
-  require('vscode').setup({
+  local colorscheme_vscode = require('vscode')
+  colorscheme_vscode.setup({
     italic_comments = true,
   })
+  colorscheme_vscode.load()
 end
