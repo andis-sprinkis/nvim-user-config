@@ -2,11 +2,11 @@ return function()
   local cmp = require("cmp")
   local cmpm = cmp.mapping
   local cmpc = cmp.config
+  local api = vim.api
 
   local luasnip = require("luasnip")
 
   local has_words_before = function()
-    local api = vim.api
     local line, col = unpack(api.nvim_win_get_cursor(0))
     return col ~= 0 and api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
@@ -18,18 +18,21 @@ return function()
   }
 
   cmp.setup({
+    enabled = function()
+      return api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+    end,
     snippet = {
       expand = function(args)
         require('luasnip').lsp_expand(args.body)
       end,
     },
     mapping = {
-      ['<C-b>'] = cmpm.scroll_docs(-4),
-      ['<C-f>'] = cmpm.scroll_docs(4),
-      ['<C-Space>'] = cmpm.complete(),
-      ['<C-e>'] = cmpm.abort(),
-      ['<CR>'] = cmpm.confirm({ select = false }),
-      ['<Tab>'] = cmpm(function(fallback)
+          ['<C-b>'] = cmpm.scroll_docs(-4),
+          ['<C-f>'] = cmpm.scroll_docs(4),
+          ['<C-Space>'] = cmpm.complete(),
+          ['<C-e>'] = cmpm.abort(),
+          ['<CR>'] = cmpm.confirm({ select = false }),
+          ['<Tab>'] = cmpm(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
@@ -40,7 +43,7 @@ return function()
           fallback()
         end
       end, { "i", "s" }),
-      ["<S-Tab>"] = cmpm(function(fallback)
+          ["<S-Tab>"] = cmpm(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
@@ -63,8 +66,8 @@ return function()
         { name = 'zsh' },
         source_cmp_rg,
         { name = 'emoji' },
-        { name = 'color_names'},
-        { name = 'npm', keyword_length = 4 },
+        { name = 'color_names' },
+        { name = 'npm',        keyword_length = 4 },
       }
     )
   })
@@ -107,6 +110,17 @@ return function()
         { name = 'zsh' },
         { name = 'tmux' },
         { name = 'emoji' },
+      }
+    ),
+  })
+
+  cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+    sources = cmpc.sources(
+      {
+        { name = "dap" },
+        { name = 'path' },
+        { name = 'zsh' },
+        { name = 'tmux' },
       }
     ),
   })

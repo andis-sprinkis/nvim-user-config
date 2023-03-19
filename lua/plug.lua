@@ -32,7 +32,7 @@ g.sys_reqr = {
   nvim_spectre = exec.sed,
   suda_vim = exec.sudo,
   swenv = exec.python3,
-  vim_doge = exec.node
+  vim_doge = exec.node,
 }
 
 local sys_reqr = g.sys_reqr
@@ -255,6 +255,12 @@ require("lazy").setup(
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-path',
         'kdheepak/cmp-latex-symbols',
+        {
+          'rcarriga/cmp-dap',
+          dependencies = {
+            'mfussenegger/nvim-dap',
+          }
+        },
         {
           'lukas-reineke/cmp-rg',
           cond = sys_reqr.cmp_rg,
