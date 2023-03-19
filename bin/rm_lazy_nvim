@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-rm -rf ~/.local/share/nvim/lazy # data 
-rm -rf ~/.local/state/nvim/lazy # state
-rm ~/.config/nvim/lazy-lock.json # lockfile
