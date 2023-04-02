@@ -77,7 +77,7 @@ require("lazy").setup(
     {
       'AckslD/swenv.nvim',
       config = require('plugin.swenv_nvim'),
-      dependencies = 'stevearc/dressing.nvim',
+      dependencies = { 'stevearc/dressing.nvim' },
     },
     {
       'tversteeg/registers.nvim',
@@ -86,7 +86,7 @@ require("lazy").setup(
     },
     {
       'jghauser/follow-md-links.nvim',
-      dependencies = 'nvim-treesitter/nvim-treesitter',
+      dependencies = { 'nvim-treesitter/nvim-treesitter' },
       ft = { 'markdown', 'markdown.mdx' },
     },
     {
@@ -101,7 +101,7 @@ require("lazy").setup(
     {
       'haringsrob/nvim_context_vt',
       config = require('plugin.nvim_context_vt_nvim'),
-      dependencies = 'nvim-treesitter/nvim-treesitter',
+      dependencies = { 'nvim-treesitter/nvim-treesitter' },
     },
     {
       'sindrets/winshift.nvim',
@@ -117,9 +117,7 @@ require("lazy").setup(
     },
     {
       'nvim-treesitter/nvim-treesitter',
-      dependencies = {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-      },
+      dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
       config = require('plugin.nvim_treesitter'),
       build = ':TSUpdate'
     },
@@ -127,10 +125,6 @@ require("lazy").setup(
       'm-demare/hlargs.nvim',
       dependencies = { 'nvim-treesitter/nvim-treesitter' },
       config = require('plugin.hlargs_nvim'),
-    },
-    {
-      'HiPhish/nvim-ts-rainbow2',
-      dependencies = { 'nvim-treesitter/nvim-treesitter' },
     },
     {
       'williamboman/mason.nvim',
@@ -163,9 +157,7 @@ require("lazy").setup(
         },
         {
           'RRethy/vim-illuminate',
-          dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-          }
+          dependencies = { 'nvim-treesitter/nvim-treesitter' },
         },
       }
     },
@@ -201,9 +193,7 @@ require("lazy").setup(
       cond = sys_reqr.nvim_spectre,
       enabled = sys_reqr.nvim_spectre,
       config = require('plugin.nvim_spectre'),
-      dependencies = {
-        'nvim-lua/plenary.nvim',
-      },
+      dependencies = { 'nvim-lua/plenary.nvim' },
       event = 'VeryLazy'
     },
     {
@@ -230,7 +220,7 @@ require("lazy").setup(
     },
     {
       'Wansmer/treesj',
-      requires = { 'nvim-treesitter' },
+      dependencies = { 'nvim-treesitter/nvim-treesitter' },
       config = require('plugin.treesj'),
     },
     {

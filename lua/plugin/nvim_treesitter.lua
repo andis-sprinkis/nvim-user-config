@@ -12,7 +12,7 @@ return function()
       enable_autocmd = false,
     },
     rainbow = {
-      enable = false,
+      enable = true,
     }
   }
 
