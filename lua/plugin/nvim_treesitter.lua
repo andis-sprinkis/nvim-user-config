@@ -5,12 +5,15 @@ return function()
       enable = true,
     },
     indent = {
-      enable = true
+      enable = true,
     },
     context_commentstring = {
       enable = true,
       enable_autocmd = false,
     },
+    rainbow = {
+      enable = false,
+    }
   }
 
   local o = vim.opt

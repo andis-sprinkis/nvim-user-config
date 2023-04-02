@@ -129,6 +129,10 @@ require("lazy").setup(
       config = require('plugin.hlargs_nvim'),
     },
     {
+      'HiPhish/nvim-ts-rainbow2',
+      dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    },
+    {
       'williamboman/mason.nvim',
       cond = sys_reqr.lsp_plugins,
       enabled = sys_reqr.lsp_plugins,
