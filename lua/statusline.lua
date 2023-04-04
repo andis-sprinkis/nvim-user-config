@@ -9,8 +9,8 @@ local o = vim.opt
 local wo = vim.wo
 local os = g.os
 local sys_reqr = g.sys_reqr
-local cac = api.nvim_create_autocmd
-local cag = api.nvim_create_augroup
+local ac = api.nvim_create_autocmd
+local ag = api.nvim_create_augroup
 
 local M = {}
 
@@ -129,17 +129,17 @@ function M.statusline(active)
   })
 end
 
-local au_statusline = cag('statusline', {})
+local ag_statusline = ag('statusline', {})
 
 local statusline = M.statusline
 
-cac({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
-  group = au_statusline,
+ac({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
+  group = ag_statusline,
   callback = function() wo.statusline = statusline(true) end
 })
 
-cac({ 'WinLeave', 'FocusLost' }, {
-  group = au_statusline,
+ac({ 'WinLeave', 'FocusLost' }, {
+  group = ag_statusline,
   callback = function() wo.statusline = statusline(false) end
 })
 

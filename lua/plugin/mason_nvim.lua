@@ -3,7 +3,7 @@ return function()
   local lsp = vim.lsp
   local api = vim.api
   local lspbuf = lsp.buf
-  local kms = vim.keymap.set
+  local km = vim.keymap.set
 
   local lsp_servers = {
     'awk_ls',
@@ -24,10 +24,10 @@ return function()
 
   -- Mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  kms('n', '<Leader>d', diagnostic.open_float)
-  kms('n', '[d', diagnostic.goto_prev)
-  kms('n', ']d', diagnostic.goto_next)
-  kms('n', '<Leader>q', diagnostic.setloclist)
+  km('n', '<Leader>d', diagnostic.open_float)
+  km('n', '[d', diagnostic.goto_prev)
+  km('n', ']d', diagnostic.goto_next)
+  km('n', '<Leader>q', diagnostic.setloclist)
 
   local function buf_format() lspbuf.format({ async = true }) end
 
@@ -46,25 +46,25 @@ return function()
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    kms('n', 'gD', lspbuf.declaration, map_opts)
-    kms('n', 'gd', lspbuf.definition, map_opts)
-    kms('n', 'K', lspbuf.hover, map_opts)
-    kms('n', 'gi', lspbuf.implementation, map_opts)
-    kms('n', '<C-s>', lspbuf.signature_help, map_opts)
-    -- kms('n', '<Leader>wa', lspbuf.add_workLeader_folder, map_opts)
-    -- kms('n', '<Leader>wr', lspbuf.remove_workLeader_folder, map_opts)
-    -- kms('n', '<Leader>wl', function() print(vim.inspect(lspbuf.list_workLeader_folders())) end, map_opts)
-    kms('n', '<Leader>D', lspbuf.type_definition, map_opts)
+    km('n', 'gD', lspbuf.declaration, map_opts)
+    km('n', 'gd', lspbuf.definition, map_opts)
+    km('n', 'K', lspbuf.hover, map_opts)
+    km('n', 'gi', lspbuf.implementation, map_opts)
+    km('n', '<C-s>', lspbuf.signature_help, map_opts)
+    -- km('n', '<Leader>wa', lspbuf.add_workLeader_folder, map_opts)
+    -- km('n', '<Leader>wr', lspbuf.remove_workLeader_folder, map_opts)
+    -- km('n', '<Leader>wl', function() print(vim.inspect(lspbuf.list_workLeader_folders())) end, map_opts)
+    km('n', '<Leader>D', lspbuf.type_definition, map_opts)
     -- vim.keymap.set('n', '<Leader>rn', lspbuf.rename, map_opts)
-    kms('n', '<Leader>ca', lspbuf.code_action, map_opts)
-    kms('n', 'gr', lspbuf.references, map_opts)
+    km('n', '<Leader>ca', lspbuf.code_action, map_opts)
+    km('n', 'gr', lspbuf.references, map_opts)
 
     if server_capabilities.documentFormattingProvider then
-      kms('n', '<Leader>f', buf_format, map_opts)
+      km('n', '<Leader>f', buf_format, map_opts)
     end
 
     if server_capabilities.documentRangeFormattingProvider then
-      kms('x', '<Leader>f', buf_format, map_opts)
+      km('x', '<Leader>f', buf_format, map_opts)
     end
   end
 
@@ -151,11 +151,11 @@ return function()
       local server_capabilities = client.server_capabilities
 
       if server_capabilities.documentFormattingProvider then
-        kms('n', '<Leader>f', buf_format, map_opts)
+        km('n', '<Leader>f', buf_format, map_opts)
       end
 
       if server_capabilities.documentRangeFormattingProvider then
-        kms('x', '<Leader>f', buf_format, map_opts)
+        km('x', '<Leader>f', buf_format, map_opts)
       end
     end,
   })

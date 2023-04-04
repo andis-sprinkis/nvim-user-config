@@ -1,6 +1,6 @@
 return function()
   local exec = vim.g.exec
-  local kms = vim.keymap.set
+  local km = vim.keymap.set
 
   local fzflua = require('fzf-lua')
 
@@ -70,7 +70,7 @@ return function()
     fzflua.files()
   end
 
-  kms('n', '<tab>', show_files_with_git)
-  kms('n', '<s-tab>', fzflua.files)
-  kms('n', '<leader>e', function() fzflua.grep({ search = '' }) end)
+  km('n', '<tab>', show_files_with_git)
+  km('n', '<s-tab>', fzflua.files)
+  km('n', '<leader>e', function() fzflua.grep({ search = '' }) end)
 end

@@ -1,7 +1,7 @@
 return function()
   local api = vim.api
-  local cag = api.nvim_create_augroup
-  local cac = api.nvim_create_autocmd
+  local ag = api.nvim_create_augroup
+  local ac = api.nvim_create_autocmd
   local cuc = api.nvim_create_user_command
   local dap, dapui = require("dap"), require("dapui")
 
@@ -88,12 +88,12 @@ return function()
     dapui_watches = true,
   }
 
-  local au_dapui_cfg = cag('dapui_cfg', {})
+  local ag_dapui_cfg = ag('dapui_cfg', {})
 
-  cac(
+  ac(
     'FileType',
     {
-      group = au_dapui_cfg,
+      group = ag_dapui_cfg,
       pattern = {
         'dap-repl',
         'dap-terminal',
@@ -109,10 +109,10 @@ return function()
     }
   )
 
-  cac(
+  ac(
     'QuitPre',
     {
-      group = au_dapui_cfg,
+      group = ag_dapui_cfg,
       callback = function()
         if (dapui_panel_buf[vim.bo.filetype]) then
           dapui.close()

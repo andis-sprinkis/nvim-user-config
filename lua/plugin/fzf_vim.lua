@@ -1,5 +1,5 @@
 return function()
-  local kms = vim.keymap.set
+  local km = vim.keymap.set
   local env = vim.env
   local g = vim.g
   local fn = vim.fn
@@ -15,9 +15,9 @@ return function()
   end
 
   local map_opts = { silent = true }
-  kms('n', '<tab>', show_files_with_git, map_opts)
-  kms('n', '<s-tab>', ':Files<cr>', map_opts)
-  kms('n', '<leader>e', ':Rg<cr>', map_opts)
+  km('n', '<tab>', show_files_with_git, map_opts)
+  km('n', '<s-tab>', ':Files<cr>', map_opts)
+  km('n', '<leader>e', ':Rg<cr>', map_opts)
 
   if fn.executable('bat') == 1 then
     env.BAT_THEME = 'Visual Studio Dark+'

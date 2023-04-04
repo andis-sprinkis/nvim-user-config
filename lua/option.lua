@@ -3,11 +3,11 @@ local o = vim.opt
 local ol = vim.opt_local
 local fn = vim.fn
 local cmd = vim.cmd
-local kms = vim.keymap.set
+local km = vim.keymap.set
 local api = vim.api
 local env = vim.env
-local cag = api.nvim_create_augroup
-local cac = api.nvim_create_autocmd
+local ag = api.nvim_create_augroup
+local ac = api.nvim_create_autocmd
 
 g.os = vim.loop.os_uname().sysname
 g.loaded_netrwPlugin = 0
@@ -43,12 +43,12 @@ o.updatetime = 100
 o.winblend = 10
 o.writebackup = false
 
-kms({ 'n', 'v' }, ';', ':')
-kms({ 'n', 'v' }, 'h', '<bs>')
-kms({ 'n', 'v' }, 'l', '<space>')
-kms('n', '<leader>v', cmd.split)
-kms('n', '<leader>o', cmd.vsplit)
-kms('t', '<C-w>', '<C-\\><C-n>')
+km({ 'n', 'v' }, ';', ':')
+km({ 'n', 'v' }, 'h', '<bs>')
+km({ 'n', 'v' }, 'l', '<space>')
+km('n', '<leader>v', cmd.split)
+km('n', '<leader>o', cmd.vsplit)
+km('t', '<C-w>', '<C-\\><C-n>')
 
 if g.os == 'Windows_NT' then
   env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. env.PATH
@@ -57,20 +57,20 @@ else
   env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
 end
 
-local au_option = cag('option', {})
+local ag_option = ag('option', {})
 
-cac(
+ac(
   'VimResized',
   {
-    group = au_option,
+    group = ag_option,
     callback = function() cmd.wincmd('=') end
   }
 )
 
-cac(
+ac(
   'TermOpen',
   {
-    group = au_option,
+    group = ag_option,
     callback = function()
       ol.number = false
       ol.relativenumber = false
@@ -79,19 +79,19 @@ cac(
   }
 )
 
-cac(
+ac(
   'TermOpen',
   {
-    group = au_option,
+    group = ag_option,
     pattern = { 'term://*' },
     callback = function() cmd.startinsert() end
   }
 )
 
-cac(
+ac(
   'FileType',
   {
-    group = au_option,
+    group = ag_option,
     pattern = { 'help', 'man' },
     callback = function()
       ol.number = true
@@ -100,10 +100,10 @@ cac(
   }
 )
 
-cac(
+ac(
   'FileType',
   {
-    group = au_option,
+    group = ag_option,
     pattern = { 'make' },
     callback = function()
       ol.expandtab = false

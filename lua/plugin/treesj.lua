@@ -1,5 +1,5 @@
 return function()
-  local kms = vim.keymap.set
+  local km = vim.keymap.set
 
   require('treesj').setup({
     use_default_keymaps = true,
@@ -7,6 +7,6 @@ return function()
   })
 
   local map_opts = { silent = true }
-  kms('n', '<Leader>k', ':TSJJoin<cr>', map_opts)
-  kms('n', '<Leader>j', ':TSJSplit<cr>', map_opts)
+  km('n', '<Leader>k', ':TSJJoin<cr>', map_opts)
+  km('n', '<Leader>j', ':TSJSplit<cr>', map_opts)
 end
