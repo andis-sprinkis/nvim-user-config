@@ -71,6 +71,11 @@ require("lazy").setup(
       ft = { 'markdown', 'markdown.mdx' },
     },
     {
+      'chrisgrieser/nvim-early-retirement',
+      config = true,
+      event = 'VeryLazy'
+    },
+    {
       'NvChad/nvim-colorizer.lua',
       config = require('plugin.nvim_colorizer'),
     },
