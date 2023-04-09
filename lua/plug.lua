@@ -71,6 +71,11 @@ require("lazy").setup(
       ft = { 'markdown', 'markdown.mdx' },
     },
     {
+      'yorickpeterse/nvim-pqf',
+      event = 'VeryLazy',
+      config = require('plugin.nvim_pqf'),
+    },
+    {
       'chrisgrieser/nvim-early-retirement',
       config = true,
       event = 'VeryLazy'
