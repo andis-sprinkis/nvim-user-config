@@ -160,15 +160,15 @@ return function()
     end,
   })
 
-  require('mason-null-ls').setup()
+  require('mason-null-ls').setup({
+    ensure_installed = { "prettier" }
+  })
 
-  local mason_nvim_dap = require('mason-nvim-dap')
-  mason_nvim_dap.setup({
+  require('mason-nvim-dap').setup({
     automatic_setup = true,
     ensure_installed = {
       'codelldb',
       -- 'python',
     }
   })
-  mason_nvim_dap.setup_handlers()
 end
