@@ -33,6 +33,7 @@ o.shiftwidth = 2
 o.showmode = false
 o.signcolumn = 'yes:2'
 o.splitbelow = true
+o.splitkeep = 'screen'
 o.splitright = true
 o.swapfile = false
 o.tabstop = 2
