@@ -100,11 +100,6 @@ require("lazy").setup(
       ft = { 'markdown', 'markdown.mdx' },
     },
     {
-      "luukvbaal/stabilize.nvim",
-      config = require('plugin.stabilize_nvim'),
-      event = 'VeryLazy'
-    },
-    {
       'mrjones2014/smart-splits.nvim',
       config = require('plugin.smart_splits_nvim'),
     },
