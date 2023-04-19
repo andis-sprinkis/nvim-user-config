@@ -24,6 +24,7 @@ set scrolljump=-100
 set shiftwidth=2
 set shortmess+=c
 set splitbelow
+set splitkeep=screen
 set splitright
 set tabstop=2
 set termguicolors
