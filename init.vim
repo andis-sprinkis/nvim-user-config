@@ -1,6 +1,7 @@
 colorscheme lunaperche
 let $LANG = 'en_US.UTF-8'
 let g:man_hard_wrap = 1
+let g:netrw_banner = 0
 let g:netrw_liststyle= 1
 let mapleader="\<space>"
 set breakindent
