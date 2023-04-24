@@ -122,7 +122,6 @@ require("lazy").setup(
     },
     {
       'nvim-treesitter/nvim-treesitter',
-      dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
       config = require('plugin.nvim_treesitter'),
       build = ':TSUpdate'
     },
