@@ -14,7 +14,7 @@ Via CMD/PS on Windows:
 git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvim
 ```
 
-### Minimal config option
+### Minimal configuration option
 
 Alternative minimal configuration without plugins or external dependencies:
 
@@ -22,12 +22,11 @@ Alternative minimal configuration without plugins or external dependencies:
 git checkout minimal-config
 ```
 
-## Dependencies
+## System dependencies
 
-- System:
-    - `bash`
-    - `bat`
-    - `fzf`
-    - `lf`
-    - `node`
-    - `sed`
+- `bash`
+- `bat`
+- `fzf`
+- `lf`
+- `node`
+- `sed`
