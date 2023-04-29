@@ -88,7 +88,10 @@ require("lazy").setup(
     {
       'AckslD/swenv.nvim',
       config = require('plugin.swenv_nvim'),
-      dependencies = { 'stevearc/dressing.nvim' },
+      dependencies = {
+        'stevearc/dressing.nvim',
+        'williamboman/mason.nvim',
+      },
     },
     {
       'tversteeg/registers.nvim',
