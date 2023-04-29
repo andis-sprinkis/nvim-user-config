@@ -7,7 +7,7 @@ return function()
     -- By default just lists the entries in `venvs_path`.
     get_venvs = function(venvs_path) return swenv_api.get_venvs(venvs_path) end,
     -- Path passed to `get_venvs`.
-    venvs_path = vim.fn.expand('~/.virtualenvs'),
+    venvs_path = vim.fn.expand('~/.local/share/virtualenv'),
     -- Something to do after setting an environment
     post_set_venv = nil,
   })
