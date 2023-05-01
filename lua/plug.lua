@@ -52,7 +52,6 @@ require("lazy").setup(
       'chaoren/vim-wordmotion',
       event = 'VeryLazy'
     },
-    'gpanders/editorconfig.nvim',
     'stevearc/dressing.nvim',
     'tpope/vim-fugitive',
     {
