@@ -76,16 +76,8 @@ ac(
       ol.number = false
       ol.relativenumber = false
       ol.signcolumn = 'no'
+      cmd.startinsert()
     end
-  }
-)
-
-ac(
-  'TermOpen',
-  {
-    group = ag_option,
-    pattern = { 'term://*' },
-    callback = function() cmd.startinsert() end
   }
 )
 
@@ -111,6 +103,12 @@ ac(
     end
   }
 )
+
+ac('TextYankPost', {
+  pattern = '*',
+  group = ag_option,
+  callback = function() vim.highlight.on_yank { timeout = 170 } end,
+})
 
 if g.neoray == 1 then
   o.guifont = 'CascadiaCodePL:h13'
