@@ -54,7 +54,7 @@ km('t', '<C-w>', '<C-\\><C-n>')
 if g.os == 'Windows_NT' then
   env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. env.PATH
 else
-  env.LANG = 'en_US.UTF-8'
+  if not env.LANG then env.LANG = 'en_US.UTF-8' end
   env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
 end
 
