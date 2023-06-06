@@ -17,6 +17,7 @@ return function()
     'jsonls',
     'lua_ls',
     'pylsp',
+    'stylelint_lsp',
     'texlab',
     'tsserver',
     'yamlls',
