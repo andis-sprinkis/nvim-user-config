@@ -36,6 +36,7 @@ set winblend=10
 syntax on
 
 au FileType help setlocal number relativenumber
+au FileType vimdoc setlocal number relativenumber
 au FileType man setlocal number relativenumber
 au FileType make setlocal noexpandtab
 
