@@ -85,7 +85,7 @@ ac(
   'FileType',
   {
     group = ag_option,
-    pattern = { 'help', 'man' },
+    pattern = { 'man', 'vimdoc' },
     callback = function()
       ol.number = true
       ol.relativenumber = true
