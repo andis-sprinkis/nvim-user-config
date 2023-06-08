@@ -2,6 +2,10 @@ return function()
   local km = vim.keymap.set
   local smart_splits = require('smart-splits')
 
+  smart_splits.setup({
+    multiplexer_integration = false,
+  })
+
   -- resizing splits
   km('n', '<C-A-h>', smart_splits.resize_left)
   km('n', '<C-A-j>', smart_splits.resize_down)
