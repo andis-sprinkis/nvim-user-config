@@ -114,7 +114,8 @@ ac(
     callback = function()
       vim.highlight.on_yank({ timeout = 170 })
     end,
-  })
+  }
+)
 
 if g.neoray == 1 then
   o.guifont = 'CascadiaCodePL:h13'
