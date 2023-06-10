@@ -64,7 +64,9 @@ ac(
   'VimResized',
   {
     group = ag_option,
-    callback = function() cmd.wincmd('=') end
+    callback = function()
+      cmd.wincmd('=')
+    end
   }
 )
 
@@ -97,18 +99,22 @@ ac(
   'FileType',
   {
     group = ag_option,
-    pattern = { 'make' },
+    pattern = 'make',
     callback = function()
       ol.expandtab = false
     end
   }
 )
 
-ac('TextYankPost', {
-  pattern = '*',
-  group = ag_option,
-  callback = function() vim.highlight.on_yank { timeout = 170 } end,
-})
+ac(
+  'TextYankPost',
+  {
+    group = ag_option,
+    pattern = '*',
+    callback = function()
+      vim.highlight.on_yank({ timeout = 170 })
+    end,
+  })
 
 if g.neoray == 1 then
   o.guifont = 'CascadiaCodePL:h13'

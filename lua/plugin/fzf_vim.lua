@@ -22,7 +22,8 @@ return function()
   if fn.executable('bat') == 1 then
     env.BAT_THEME = 'Visual Studio Dark+'
     env.BAT_STYLE = 'plain,numbers,header-filename,changes'
-    env.FZF_DEFAULT_OPTS = '--tabstop=2 --cycle --color=dark --layout=reverse-list --preview \'bat --color=always --line-range=:300 {}\' --preview-window=up,62%,wrap'
+    env.FZF_DEFAULT_OPTS =
+    '--tabstop=2 --cycle --color=dark --layout=reverse-list --preview \'bat --color=always --line-range=:300 {}\' --preview-window=up,62%,wrap'
   else
     env.FZF_DEFAULT_OPTS = '--tabstop=2 --cycle --color=dark --layout=reverse-list --preview-window=up,62%,wrap'
   end

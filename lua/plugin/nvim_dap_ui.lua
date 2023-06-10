@@ -79,8 +79,8 @@ return function()
   -- end
 
   local dapui_panel_buf = {
-        ['dap-repl'] = true,
-        ['dap-terminal'] = true,
+    ['dap-repl'] = true,
+    ['dap-terminal'] = true,
     dapui_breakpoints = true,
     dapui_console = true,
     dapui_scopes = true,

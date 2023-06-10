@@ -95,7 +95,7 @@ return function()
     function(server_name)
       lspconfig[server_name].setup(make_config())
     end,
-        ["lua_ls"] = function()
+    ["lua_ls"] = function()
       local config = make_config()
 
       config.settings = {
@@ -111,7 +111,7 @@ return function()
 
       lspconfig.lua_ls.setup(config)
     end,
-        ["jsonls"] = function()
+    ["jsonls"] = function()
       local config = make_config()
 
       config.settings = {
@@ -123,7 +123,7 @@ return function()
 
       lspconfig.jsonls.setup(config)
     end,
-        ["tsserver"] = function()
+    ["tsserver"] = function()
       local config = make_config()
 
       config.on_attach = function(client, bufnr)
@@ -133,7 +133,7 @@ return function()
 
       lspconfig.tsserver.setup(config)
     end,
-        ["clangd"] = function()
+    ["clangd"] = function()
       local config = make_config()
       config.capabilities.offsetEncoding = { "utf-16" }
       lspconfig.clangd.setup(config)
@@ -162,7 +162,7 @@ return function()
   })
 
   require('mason-null-ls').setup({
-    ensure_installed = { "prettier" }
+    ensure_installed = { 'prettier' }
   })
 
   require('mason-nvim-dap').setup({

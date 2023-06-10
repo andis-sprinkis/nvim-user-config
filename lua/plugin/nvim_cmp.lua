@@ -27,12 +27,12 @@ return function()
       end,
     },
     mapping = {
-          ['<C-b>'] = cmpm.scroll_docs(-4),
-          ['<C-f>'] = cmpm.scroll_docs(4),
-          ['<C-Space>'] = cmpm.complete(),
-          ['<C-e>'] = cmpm.abort(),
-          ['<CR>'] = cmpm.confirm({ select = false }),
-          ['<Tab>'] = cmpm(function(fallback)
+      ['<C-b>'] = cmpm.scroll_docs(-4),
+      ['<C-f>'] = cmpm.scroll_docs(4),
+      ['<C-Space>'] = cmpm.complete(),
+      ['<C-e>'] = cmpm.abort(),
+      ['<CR>'] = cmpm.confirm({ select = false }),
+      ['<Tab>'] = cmpm(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
@@ -43,7 +43,7 @@ return function()
           fallback()
         end
       end, { "i", "s" }),
-          ["<S-Tab>"] = cmpm(function(fallback)
+      ['<S-Tab>'] = cmpm(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
@@ -72,15 +72,18 @@ return function()
     )
   })
 
-  cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmpm.preset.cmdline(),
-    sources = cmpc.sources(
-      {
-        { name = 'buffer' },
-        { name = 'cmdline_history' },
-      }
-    ),
-  })
+  cmp.setup.cmdline(
+    { '/', '?' },
+    {
+      mapping = cmpm.preset.cmdline(),
+      sources = cmpc.sources(
+        {
+          { name = 'buffer' },
+          { name = 'cmdline_history' },
+        }
+      ),
+    }
+  )
 
   cmp.setup.cmdline({ ':', '@' }, {
     mapping = cmpm.preset.cmdline(),
@@ -114,16 +117,17 @@ return function()
     ),
   })
 
-  cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-    sources = cmpc.sources(
-      {
+  cmp.setup.filetype(
+    { "dap-repl", "dapui_watches", "dapui_hover" },
+    {
+      sources = cmpc.sources({
         { name = "dap" },
         { name = 'path' },
         { name = 'zsh' },
         { name = 'tmux' },
-      }
-    ),
-  })
+      }),
+    }
+  )
 
   require("luasnip.loaders.from_vscode").lazy_load()
   require("cmp_git").setup()
