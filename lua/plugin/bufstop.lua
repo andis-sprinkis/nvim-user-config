@@ -8,5 +8,5 @@ return function()
 
   local map_opts = { silent = true, nowait = true }
   km('n', '<leader><leader>', ':BufstopModeFast<cr>2', map_opts)
-  km('n', '<leader>b', ':BufstopFast<cr>', map_opts)
+  km('n', '<leader>b', function() vim.cmd('BufstopFast') end, map_opts)
 end

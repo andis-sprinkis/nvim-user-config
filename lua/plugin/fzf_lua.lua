@@ -74,4 +74,5 @@ return function()
   km('n', '<s-tab>', fzflua.files)
   km('n', '<leader>e', function() fzflua.grep({ search = '' }) end)
   km('n', '<leader>z', fzflua.builtin)
+  km('n', '<leader>h', fzflua.help_tags)
 end
