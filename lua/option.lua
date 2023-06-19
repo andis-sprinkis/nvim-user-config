@@ -50,6 +50,14 @@ km({ 'n', 'v' }, 'l', '<space>')
 km('n', '<leader>v', cmd.split)
 km('n', '<leader>o', cmd.vsplit)
 km('t', '<C-w>', '<C-\\><C-n>')
+km('n', '<C-A-j>', function() cmd.resize('+2') end)
+km('n', '<C-A-k>', function() cmd.resize('-2') end)
+km('n', '<C-A-l>', function() cmd('vertical resize +4') end)
+km('n', '<C-A-h>', function() cmd('vertical resize -4') end)
+km('n', '<C-j>', '<C-W><C-J>')
+km('n', '<C-k>', '<C-W><C-K>')
+km('n', '<C-l>', '<C-W><C-L>')
+km('n', '<C-h>', '<C-W><C-H>')
 
 if g.os == 'Windows_NT' then
   env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. env.PATH

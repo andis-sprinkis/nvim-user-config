@@ -7,7 +7,7 @@ return function()
     -- By default just lists the entries in `venvs_path`.
     get_venvs = function(venvs_path) return require('swenv.api').get_venvs(venvs_path) end,
     -- Something to do after setting an environment
-    post_set_venv = nil,
+    post_set_venv = function() vim.cmd.LspRestart() end
   })
 
   vim.api.nvim_create_user_command(
