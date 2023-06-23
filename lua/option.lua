@@ -45,6 +45,7 @@ o.winblend = 10
 o.writebackup = false
 
 km({ 'n', 'v' }, ';', ':')
+km({ 'n', 'v' }, ':', ';')
 km({ 'n', 'v' }, 'h', '<bs>')
 km({ 'n', 'v' }, 'l', '<space>')
 km('n', '<leader>v', cmd.split)
