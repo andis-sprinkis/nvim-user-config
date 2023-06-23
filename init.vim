@@ -45,9 +45,6 @@ au TermOpen term://* startinsert
 
 au VimResized * wincmd =
 
-nnoremap ; :
-vnoremap ; :
-
 nnoremap h <bs>
 nnoremap l <space>
 vnoremap h <bs>
