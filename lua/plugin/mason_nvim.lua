@@ -23,6 +23,15 @@ return function()
     'yamlls',
   }
 
+  local dap_providers = {
+    'codelldb',
+    -- 'python',
+  }
+
+  local linters_formatters = {
+    'prettier'
+  }
+
   -- Mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
   km('n', '<Leader>d', diagnostic.open_float)
@@ -161,15 +170,10 @@ return function()
     end,
   })
 
-  require('mason-null-ls').setup({
-    ensure_installed = { 'prettier' }
-  })
+  require('mason-null-ls').setup({ ensure_installed = linters_formatters })
 
   require('mason-nvim-dap').setup({
     automatic_setup = true,
-    ensure_installed = {
-      'codelldb',
-      -- 'python',
-    }
+    ensure_installed = dap_providers
   })
 end
