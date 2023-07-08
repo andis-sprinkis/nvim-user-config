@@ -345,5 +345,3 @@ require("lazy").setup(
     }
   }
 )
-
-require('statusline')
