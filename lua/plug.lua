@@ -3,6 +3,15 @@ local fn = vim.fn
 local os = g.os
 local executable = fn.executable
 
+local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+if not vim.loop.fs_stat(lazypath) then
+  if fn.confirm("Download and initialize the configured plugins?", "&Yes\n&No", 2) == 2 then return end
+  fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
 g.exec = {
   bash = executable('bash') == 1,
   bat = executable('bat') == 1,
@@ -36,15 +45,6 @@ g.sys_reqr = {
 }
 
 local sys_reqr = g.sys_reqr
-
-local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
-
-if not vim.loop.fs_stat(lazypath) then
-  if fn.confirm("Download and initialize the configured plugins?", "&Yes\n&No", 2) == 2 then return end
-  fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
-end
-
-vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(
   {
