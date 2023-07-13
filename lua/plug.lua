@@ -109,7 +109,6 @@ require("lazy").setup(
     {
       'haringsrob/nvim_context_vt',
       config = require('plugin.nvim_context_vt_nvim'),
-      dependencies = { 'nvim-treesitter/nvim-treesitter' },
     },
     {
       'sindrets/winshift.nvim',
