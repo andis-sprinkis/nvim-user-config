@@ -67,6 +67,10 @@ require("lazy").setup(
       ft = { 'octave' }
     },
     {
+      'HiPhish/rainbow-delimiters.nvim',
+      event = 'VeryLazy'
+    },
+    {
       'dhruvasagar/vim-table-mode',
       ft = { 'markdown', 'markdown.mdx' },
     },
