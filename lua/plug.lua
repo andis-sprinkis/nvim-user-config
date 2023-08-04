@@ -95,6 +95,7 @@ require("lazy").setup(
         'stevearc/dressing.nvim',
         'williamboman/mason.nvim',
       },
+      event = 'VeryLazy'
     },
     {
       'tversteeg/registers.nvim',
