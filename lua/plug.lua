@@ -100,7 +100,11 @@ require("lazy").setup(
     {
       'tversteeg/registers.nvim',
       config = true,
-      keys = '"'
+      cmd = 'Registers',
+      keys = {
+        { "\"",    mode = { "n", "v" } },
+        { "<C-R>", mode = "i" }
+      },
     },
     {
       'jghauser/follow-md-links.nvim',
@@ -115,6 +119,7 @@ require("lazy").setup(
     {
       'haringsrob/nvim_context_vt',
       config = require('plugin.nvim_context_vt_nvim'),
+      event = 'VeryLazy'
     },
     {
       'sindrets/winshift.nvim',
