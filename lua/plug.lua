@@ -126,6 +126,7 @@ require("lazy").setup(
       dependencies = {
         'tpope/vim-fugitive',
       },
+      event = 'VeryLazy'
     },
     {
       'nvim-treesitter/nvim-treesitter',
@@ -136,6 +137,7 @@ require("lazy").setup(
       'm-demare/hlargs.nvim',
       dependencies = { 'nvim-treesitter/nvim-treesitter' },
       config = require('plugin.hlargs_nvim'),
+      event = 'VeryLazy'
     },
     {
       'williamboman/mason.nvim',
@@ -197,7 +199,7 @@ require("lazy").setup(
       cond = sys_reqr.fm_nvim,
       enabled = sys_reqr.fm_nvim,
       config = require('plugin.fm_nvim'),
-      event = 'VeryLazy'
+      cmd = 'Lf'
     },
     {
       'nvim-pack/nvim-spectre',
@@ -228,6 +230,7 @@ require("lazy").setup(
       enabled = sys_reqr.markdown_preview,
       build = function() fn['mkdp#util#install']() end,
       ft = { 'markdown', 'markdown.mdx' },
+      cmd = { 'MarkdownPreview', 'MarkdownPreviewToggle' }
     },
     {
       'Wansmer/treesj',
@@ -244,7 +247,8 @@ require("lazy").setup(
     {
       'NMAC427/guess-indent.nvim',
       config = require('plugin.guess_indent_nvim'),
-      priority = 700
+      lazy = false,
+      priority = 900
     },
     {
       'hrsh7th/nvim-cmp',
@@ -294,11 +298,15 @@ require("lazy").setup(
     {
       'justinmk/vim-dirvish',
       config = require('plugin.dirvish'),
+      lazy = false,
       priority = 900
     },
     {
       'lukas-reineke/indent-blankline.nvim',
-      config = require('plugin.indent_blankline_nvim')
+      config = require('plugin.indent_blankline_nvim'),
+      dependencies = {
+        'NMAC427/guess-indent.nvim',
+      }
     },
     {
       'mihaifm/bufstop',
