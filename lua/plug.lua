@@ -55,6 +55,11 @@ require("lazy").setup(
     'stevearc/dressing.nvim',
     'tpope/vim-fugitive',
     {
+      'monkoose/matchparen.nvim',
+      config = true,
+      event = 'VeryLazy'
+    },
+    {
       'jghauser/mkdir.nvim',
       event = 'VeryLazy'
     },
@@ -357,6 +362,7 @@ require("lazy").setup(
       rtp = {
         disabled_plugins = {
           "gzip",
+          "matchparen",
           "netrwPlugin",
           "rplugin",
           "spellfile",
