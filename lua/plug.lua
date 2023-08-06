@@ -302,7 +302,8 @@ require("lazy").setup(
     },
     {
       'mihaifm/bufstop',
-      init = require('plugin.bufstop')
+      init = require('plugin.bufstop'),
+      event = 'VeryLazy'
     },
     {
       'numToStr/Comment.nvim',
