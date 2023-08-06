@@ -233,6 +233,7 @@ require("lazy").setup(
       'Wansmer/treesj',
       dependencies = { 'nvim-treesitter/nvim-treesitter' },
       config = require('plugin.treesj'),
+      event = 'VeryLazy'
     },
     {
       'Mofiqul/vscode.nvim',
@@ -248,7 +249,6 @@ require("lazy").setup(
     {
       'hrsh7th/nvim-cmp',
       config = require('plugin.nvim_cmp'),
-      event = "InsertEnter",
       dependencies = {
         'David-Kunz/cmp-npm',
         'L3MON4D3/LuaSnip',
@@ -288,7 +288,8 @@ require("lazy").setup(
           cond = sys_reqr.cmp_tmux,
           enabled = sys_reqr.cmp_tmux
         },
-      }
+      },
+      event = "InsertEnter",
     },
     {
       'justinmk/vim-dirvish',
