@@ -76,8 +76,8 @@ require("lazy").setup(
     },
     {
       'yorickpeterse/nvim-pqf',
+      config = true,
       event = 'VeryLazy',
-      config = require('plugin.nvim_pqf'),
     },
     {
       'chrisgrieser/nvim-early-retirement',
@@ -99,8 +99,8 @@ require("lazy").setup(
     },
     {
       'tversteeg/registers.nvim',
-      config = require('plugin.registers_nvim'),
-      event = 'VeryLazy'
+      config = true,
+      keys = '"'
     },
     {
       'jghauser/follow-md-links.nvim',
@@ -110,6 +110,7 @@ require("lazy").setup(
     {
       'mrjones2014/smart-splits.nvim',
       config = require('plugin.smart_splits_nvim'),
+      event = 'VeryLazy'
     },
     {
       'haringsrob/nvim_context_vt',
@@ -122,7 +123,7 @@ require("lazy").setup(
     },
     {
       'lewis6991/gitsigns.nvim',
-      config = require('plugin.gitsigns_nvim'),
+      config = true,
       dependencies = {
         'tpope/vim-fugitive',
       },
@@ -136,7 +137,7 @@ require("lazy").setup(
     {
       'm-demare/hlargs.nvim',
       dependencies = { 'nvim-treesitter/nvim-treesitter' },
-      config = require('plugin.hlargs_nvim'),
+      config = true,
       event = 'VeryLazy'
     },
     {
@@ -246,7 +247,7 @@ require("lazy").setup(
     },
     {
       'NMAC427/guess-indent.nvim',
-      config = require('plugin.guess_indent_nvim'),
+      config = true,
       lazy = false,
       priority = 900
     },
@@ -280,7 +281,7 @@ require("lazy").setup(
         'saadparwaiz1/cmp_luasnip',
         {
           'nat-418/cmp-color-names.nvim',
-          config = require('plugin.cmp_color_names_nvim')
+          config = true
         },
         {
           'tamago324/cmp-zsh',
@@ -319,11 +320,12 @@ require("lazy").setup(
       dependencies = {
         'nvim-treesitter/nvim-treesitter',
         'JoosepAlviste/nvim-ts-context-commentstring',
-      }
+      },
+      event = 'VeryLazy'
     },
     {
       "andrewferrier/debugprint.nvim",
-      config = require('plugin.debugprint_nvim'),
+      config = true,
       event = 'VeryLazy'
     }
   },
