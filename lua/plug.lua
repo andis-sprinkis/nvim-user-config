@@ -82,7 +82,7 @@ require("lazy").setup(
     {
       'chrisgrieser/nvim-early-retirement',
       config = true,
-      event = 'VeryLazy'
+      event = 'BufHidden'
     },
     {
       'NvChad/nvim-colorizer.lua',
@@ -119,6 +119,7 @@ require("lazy").setup(
     {
       'haringsrob/nvim_context_vt',
       config = require('plugin.nvim_context_vt_nvim'),
+      dependencies = { 'nvim-treesitter/nvim-treesitter' },
       event = 'VeryLazy'
     },
     {
