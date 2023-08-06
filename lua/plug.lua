@@ -289,7 +289,7 @@ require("lazy").setup(
           enabled = sys_reqr.cmp_tmux
         },
       },
-      event = "InsertEnter",
+      event = { "InsertEnter", "CmdlineEnter" },
     },
     {
       'justinmk/vim-dirvish',
