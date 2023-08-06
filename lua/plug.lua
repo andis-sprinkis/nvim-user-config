@@ -248,6 +248,7 @@ require("lazy").setup(
     {
       'hrsh7th/nvim-cmp',
       config = require('plugin.nvim_cmp'),
+      event = "InsertEnter",
       dependencies = {
         'David-Kunz/cmp-npm',
         'L3MON4D3/LuaSnip',
