@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 pkill -9 "nvim"
 rm -rf "${XDG_DATA_HOME:-$HOME/.local/share}/nvim"
