@@ -30,6 +30,7 @@ o.pumblend = 10
 o.relativenumber = true
 o.scrolljump = -100
 o.shiftwidth = 2
+o.shm:append({ I = true })
 o.showmode = false
 o.signcolumn = 'yes:2'
 o.splitbelow = true
