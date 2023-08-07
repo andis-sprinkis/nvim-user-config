@@ -72,11 +72,6 @@ require("lazy").setup(
       ft = { 'octave' }
     },
     {
-      'HiPhish/rainbow-delimiters.nvim',
-      dependencies = { 'nvim-treesitter/nvim-treesitter' },
-      event = 'VeryLazy'
-    },
-    {
       'dhruvasagar/vim-table-mode',
       ft = { 'markdown', 'markdown.mdx' },
     },
