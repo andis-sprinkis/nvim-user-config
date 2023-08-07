@@ -227,7 +227,7 @@ require("lazy").setup(
       cond = sys_reqr.suda_vim,
       enabled = sys_reqr.suda_vim,
       config = require('plugin.suda'),
-      event = 'VeryLazy'
+      cmd = { 'SudaRead', 'SudaWrite' }
     },
     {
       'kkoomen/vim-doge',
