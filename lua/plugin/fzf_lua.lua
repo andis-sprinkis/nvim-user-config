@@ -83,6 +83,9 @@ local M = {
     km('n', '<leader>z', fzflua.builtin)
     km('n', '<leader>h', fzflua.help_tags)
   end,
+  dependencies = {
+    'stevearc/dressing.nvim',
+  },
   event = 'VeryLazy'
 }
 

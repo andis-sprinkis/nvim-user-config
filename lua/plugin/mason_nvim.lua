@@ -193,12 +193,9 @@ local M = {
     'neovim/nvim-lspconfig',
     'williamboman/mason-lspconfig.nvim',
     'mfussenegger/nvim-dap',
-    require('plugin.nvim_dap_virtual_text'),
-    require('plugin.nvim_dap_ui'),
-    {
-      'RRethy/vim-illuminate',
-      dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    },
+    'theHamsta/nvim-dap-virtual-text',
+    'rcarriga/nvim-dap-ui',
+    'RRethy/vim-illuminate',
   }
 }
 
