@@ -1,28 +1,40 @@
-return function()
-  local spectre = require('spectre')
-  local api = vim.api
-  local km = vim.keymap.set
+local g = vim.g
+local sys_reqr = g.sys_reqr
 
-  local au_spectre = api.nvim_create_augroup('spectre', {})
+local M = {
+  'nvim-pack/nvim-spectre',
+  cond = sys_reqr.nvim_spectre,
+  enabled = sys_reqr.nvim_spectre,
+  config = function()
+    local spectre = require('spectre')
+    local api = vim.api
+    local km = vim.keymap.set
 
-  api.nvim_create_autocmd(
-    { 'Filetype' },
-    {
-      group = au_spectre,
-      pattern = 'spectre_panel',
-      callback = function() vim.opt_local.signcolumn = 'no' end
-    }
-  )
+    local au_spectre = api.nvim_create_augroup('spectre', {})
 
-  local map_opts = { nowait = true, silent = true }
+    api.nvim_create_autocmd(
+      { 'Filetype' },
+      {
+        group = au_spectre,
+        pattern = 'spectre_panel',
+        callback = function() vim.opt_local.signcolumn = 'no' end
+      }
+    )
 
-  -- search global
-  km('n', '<Leader>rr', spectre.open, map_opts)
+    local map_opts = { nowait = true, silent = true }
 
-  -- search current word
-  km('n', '<Leader>rw', function() spectre.open_visual({ select_word = true }) end, map_opts)
-  km('v', '<Leader>rw', spectre.open_visual, map_opts)
+    -- search global
+    km('n', '<Leader>rr', spectre.open, map_opts)
 
-  -- search in current file
-  km('n', '<Leader>rf', spectre.open_file_search, map_opts)
-end
+    -- search current word
+    km('n', '<Leader>rw', function() spectre.open_visual({ select_word = true }) end, map_opts)
+    km('v', '<Leader>rw', spectre.open_visual, map_opts)
+
+    -- search in current file
+    km('n', '<Leader>rf', spectre.open_file_search, map_opts)
+  end,
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  event = 'VeryLazy'
+}
+
+return M

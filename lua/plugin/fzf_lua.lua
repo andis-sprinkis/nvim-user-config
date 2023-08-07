@@ -1,78 +1,89 @@
-return function()
-  local exec = vim.g.exec
-  local km = vim.keymap.set
+local g = vim.g
+local sys_reqr = g.sys_reqr
 
-  local fzflua = require('fzf-lua')
+local M = {
+  'ibhagwan/fzf-lua',
+  cond = sys_reqr.fzf_lua,
+  enabled = sys_reqr.fzf_lua,
+  config = function()
+    local exec = g.exec
+    local km = vim.keymap.set
 
-  fzflua.setup({
-    fzf_colors = {
-      ['fg'] = { 'fg', 'CursorLine' },
-      ['bg'] = { 'bg', 'Normal' },
-      ['hl'] = { 'fg', 'Comment' },
-      ['fg+'] = { 'fg', 'Normal' },
-      ['bg+'] = { 'bg', 'CursorLine' },
-      ['hl+'] = { 'fg', 'Statement' },
-      ['info'] = { 'fg', 'PreProc' },
-      ['prompt'] = { 'fg', 'Conditional' },
-      ['pointer'] = { 'fg', 'Exception' },
-      ['marker'] = { 'fg', 'Keyword' },
-      ['spinner'] = { 'fg', 'Label' },
-      ['header'] = { 'fg', 'Comment' },
-      ['gutter'] = { 'bg', 'Normal' },
-    },
-    previewers = {
-      cat = {
-        cmd = 'cat',
-        args = '--number',
+    local fzflua = require('fzf-lua')
+
+    fzflua.setup({
+      fzf_colors = {
+        ['fg'] = { 'fg', 'CursorLine' },
+        ['bg'] = { 'bg', 'Normal' },
+        ['hl'] = { 'fg', 'Comment' },
+        ['fg+'] = { 'fg', 'Normal' },
+        ['bg+'] = { 'bg', 'CursorLine' },
+        ['hl+'] = { 'fg', 'Statement' },
+        ['info'] = { 'fg', 'PreProc' },
+        ['prompt'] = { 'fg', 'Conditional' },
+        ['pointer'] = { 'fg', 'Exception' },
+        ['marker'] = { 'fg', 'Keyword' },
+        ['spinner'] = { 'fg', 'Label' },
+        ['header'] = { 'fg', 'Comment' },
+        ['gutter'] = { 'bg', 'Normal' },
       },
-      bat = {
-        cmd = 'bat',
-        args = '--style=plain,numbers,header-filename,changes --color=always',
-        theme = 'Visual Studio Dark+'
+      previewers = {
+        cat = {
+          cmd = 'cat',
+          args = '--number',
+        },
+        bat = {
+          cmd = 'bat',
+          args = '--style=plain,numbers,header-filename,changes --color=always',
+          theme = 'Visual Studio Dark+'
+        },
+        man = {
+          cmd = 'man %s | col -bx',
+        }
       },
-      man = {
-        cmd = 'man %s | col -bx',
-      }
-    },
-    files = {
-      git_icons = false
-    },
-    git = {
       files = {
         git_icons = false
       },
-    },
-    grep = {
-      git_icons = false
-    },
-    winopts = {
-      fullscreen = true,
-      border = 'none',
-      preview = {
-        default = (exec.bat and 'bat') or (exec.cat and 'cat') or 'builtin',
-        wrap = 'wrap',
-        layout = 'vertial',
-        vertical = 'up:60%',
-        border = 'noborder'
+      git = {
+        files = {
+          git_icons = false
+        },
       },
-      hl = {
-        border = 'FloatBorder'
+      grep = {
+        git_icons = false
+      },
+      winopts = {
+        fullscreen = true,
+        border = 'none',
+        preview = {
+          default = (exec.bat and 'bat') or (exec.cat and 'cat') or 'builtin',
+          wrap = 'wrap',
+          layout = 'vertial',
+          vertical = 'up:60%',
+          border = 'noborder'
+        },
+        hl = {
+          border = 'FloatBorder'
+        }
       }
-    }
-  })
+    })
 
-  local function show_files_with_git()
-    if vim.fn.system('git rev-parse --git-dir') == '.git\n' then
-      fzflua.git_files()
-      return
+    local function show_files_with_git()
+      if vim.fn.system('git rev-parse --git-dir') == '.git\n' then
+        fzflua.git_files()
+        return
+      end
+
+      fzflua.files()
     end
 
-    fzflua.files()
-  end
+    km('n', '<tab>', show_files_with_git)
+    km('n', '<s-tab>', fzflua.files)
+    km('n', '<leader>e', function() fzflua.grep({ search = '' }) end)
+    km('n', '<leader>z', fzflua.builtin)
+    km('n', '<leader>h', fzflua.help_tags)
+  end,
+  event = 'VeryLazy'
+}
 
-  km('n', '<tab>', show_files_with_git)
-  km('n', '<s-tab>', fzflua.files)
-  km('n', '<leader>e', function() fzflua.grep({ search = '' }) end)
-  km('n', '<leader>z', fzflua.builtin)
-  km('n', '<leader>h', fzflua.help_tags)
-end
+return M
