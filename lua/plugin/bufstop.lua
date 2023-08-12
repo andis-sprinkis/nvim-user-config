@@ -1,6 +1,6 @@
 local M = {
   'mihaifm/bufstop',
-  config = function()
+  init = function()
     local g = vim.g
     local km = vim.keymap.set
 
