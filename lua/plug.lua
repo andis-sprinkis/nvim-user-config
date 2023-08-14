@@ -46,13 +46,12 @@ g.sys_reqr = {
 
 require("lazy").setup(
   {
-    'stevearc/dressing.nvim',
-    'tpope/vim-fugitive',
     require('plugin.bufstop'),
     require('plugin.colorscheme'),
     require('plugin.comment_nvim'),
     require('plugin.debugprint_nvim'),
     require('plugin.dirvish'),
+    require('plugin.dressing_nvim'),
     require('plugin.fm_nvim'),
     require('plugin.follow_md_links_nvim'),
     require('plugin.fzf_lua'),
@@ -81,6 +80,7 @@ require("lazy").setup(
     require('plugin.treesj'),
     require('plugin.vim_doge'),
     require('plugin.vim_eunuch'),
+    require('plugin.vim_fugitive'),
     require('plugin.vim_illuminate'),
     require('plugin.vim_octave'),
     require('plugin.vim_table_mode'),
