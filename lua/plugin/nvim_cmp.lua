@@ -71,8 +71,15 @@ local M = {
           { name = 'zsh' },
           source_cmp_rg,
           { name = 'emoji' },
+          {
+            name = "dictionary",
+            keyword_length = 2,
+          },
           { name = 'color_names' },
-          { name = 'npm',        keyword_length = 4 },
+          {
+            name = 'npm',
+            keyword_length = 4,
+          },
         }
       )
     })
@@ -103,6 +110,10 @@ local M = {
           { name = 'zsh' },
           { name = 'tmux' },
           { name = 'emoji' },
+          {
+            name = "dictionary",
+            keyword_length = 2,
+          },
         }
       ),
     })
@@ -118,6 +129,10 @@ local M = {
           { name = 'zsh' },
           { name = 'tmux' },
           { name = 'emoji' },
+          {
+            name = "dictionary",
+            keyword_length = 2,
+          },
         }
       ),
     })
@@ -148,6 +163,10 @@ local M = {
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-path',
     'kdheepak/cmp-latex-symbols',
+    'petertriho/cmp-git',
+    'rafamadriz/friendly-snippets',
+    'saadparwaiz1/cmp_luasnip',
+    'uga-rosa/cmp-dictionary',
     {
       'rcarriga/cmp-dap',
       dependencies = {
@@ -159,9 +178,6 @@ local M = {
       cond = sys_reqr.cmp_rg,
       enabled = sys_reqr.cmp_rg,
     },
-    'petertriho/cmp-git',
-    'rafamadriz/friendly-snippets',
-    'saadparwaiz1/cmp_luasnip',
     {
       'nat-418/cmp-color-names.nvim',
       config = true
