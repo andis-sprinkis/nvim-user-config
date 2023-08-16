@@ -70,11 +70,11 @@ local M = {
           { name = 'tmux' },
           { name = 'zsh' },
           source_cmp_rg,
-          { name = 'emoji' },
           {
             name = "dictionary",
             keyword_length = 2,
           },
+          { name = 'emoji' },
           { name = 'color_names' },
           {
             name = 'npm',
@@ -128,11 +128,11 @@ local M = {
           { name = 'path' },
           { name = 'zsh' },
           { name = 'tmux' },
-          { name = 'emoji' },
           {
             name = "dictionary",
             keyword_length = 2,
           },
+          { name = 'emoji' },
         }
       ),
     })
@@ -166,7 +166,30 @@ local M = {
     'petertriho/cmp-git',
     'rafamadriz/friendly-snippets',
     'saadparwaiz1/cmp_luasnip',
-    'uga-rosa/cmp-dictionary',
+    {
+      'uga-rosa/cmp-dictionary',
+      -- config = function()
+      --   local dict = require("cmp_dictionary")
+      --
+      --   dict.setup({
+      --     exact = 2,
+      --     first_case_insensitive = false,
+      --     document = false,
+      --     document_command = "wn %s -over",
+      --     async = true,
+      --     sqlite = false,
+      --     max_items = 1000,
+      --     capacity = 5,
+      --     debug = false,
+      --   })
+      --
+      --   dict.switcher({
+      --     filepath = {
+      --       ["*"] = { "~/.local/share/dict/aspell_lv.dict" }
+      --     },
+      --   })
+      -- end
+    },
     {
       'rcarriga/cmp-dap',
       dependencies = {
