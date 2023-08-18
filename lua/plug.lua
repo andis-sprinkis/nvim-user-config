@@ -22,6 +22,7 @@ g.exec = {
   python3 = executable('python3') == 1,
   rg = executable('rg') == 1,
   sed = executable('sed') == 1,
+  sqlite = executable('sqlite') == 1,
   sudo = executable('sudo') == 1,
   tmux = executable('tmux') == 1,
   zsh = executable('zsh') == 1,
