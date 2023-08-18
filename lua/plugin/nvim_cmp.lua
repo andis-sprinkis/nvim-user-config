@@ -19,12 +19,12 @@ local M = {
     local source_cmp_rg = {
       name = 'rg',
       keyword_length = 3,
-      debounce = 250,
+      debounce = 200,
     }
 
     local source_cmp_dictionary = {
       name = "dictionary",
-      keyword_length = 2,
+      keyword_length = 3,
     }
 
     cmp.setup({
