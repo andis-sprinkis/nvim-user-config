@@ -22,6 +22,11 @@ local M = {
       debounce = 250,
     }
 
+    local source_cmp_dictionary = {
+      name = "dictionary",
+      keyword_length = 2,
+    }
+
     cmp.setup({
       enabled = function()
         return api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
@@ -69,10 +74,7 @@ local M = {
           { name = 'tmux' },
           { name = 'zsh' },
           source_cmp_rg,
-          {
-            name = "dictionary",
-            keyword_length = 2,
-          },
+          source_cmp_dictionary,
           { name = 'emoji' },
           { name = 'color_names' },
           {
@@ -108,10 +110,7 @@ local M = {
           source_cmp_rg,
           { name = 'zsh' },
           { name = 'tmux' },
-          {
-            name = "dictionary",
-            keyword_length = 2,
-          },
+          source_cmp_dictionary,
           { name = 'emoji' },
         }
       ),
@@ -127,10 +126,7 @@ local M = {
           { name = 'path' },
           { name = 'zsh' },
           { name = 'tmux' },
-          {
-            name = "dictionary",
-            keyword_length = 2,
-          },
+          source_cmp_dictionary,
           { name = 'emoji' },
         }
       ),
