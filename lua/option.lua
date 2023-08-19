@@ -107,6 +107,18 @@ ac(
   'FileType',
   {
     group = ag_option,
+    pattern = { 'markdown', 'markdown.mdx' },
+    callback = function()
+      ol.shiftwidth = 4
+      ol.tabstop = 4
+    end
+  }
+)
+
+ac(
+  'FileType',
+  {
+    group = ag_option,
     pattern = 'make',
     callback = function()
       ol.expandtab = false
