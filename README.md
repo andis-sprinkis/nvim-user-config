@@ -4,7 +4,7 @@
 
 Via \*nix shell:
 
-```bash
+```sh
 git clone https://github.com/andis-sprinkis/nvim-user-config $HOME/.config/nvim
 ```
 
@@ -18,7 +18,7 @@ git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvi
 
 An alternative configuration – without plugins or external dependencies:
 
-```bash
+```sh
 git checkout minimal-config
 ```
 
