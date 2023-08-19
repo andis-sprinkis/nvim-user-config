@@ -24,10 +24,10 @@ git checkout minimal-config
 
 ## System dependencies
 
-- `bash`
-- `bat`
-- `fzf`
-- `lf`
-- `node`
-- `sed`
-- `sqlite`
+-   `bash`
+-   `bat`
+-   `fzf`
+-   `lf`
+-   `node`
+-   `sed`
+-   `sqlite`
