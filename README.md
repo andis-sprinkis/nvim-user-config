@@ -30,3 +30,4 @@ git checkout minimal-config
 - `lf`
 - `node`
 - `sed`
+- `sqlite`
