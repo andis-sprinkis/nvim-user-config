@@ -8,7 +8,6 @@ local M = {
       first_case_insensitive = true,
       document = false,
       document_command = "wn %s -over",
-      sqlite = vim.g.exec.sqlite,
       max_items = 3000,
       capacity = 5,
       debug = false,
