@@ -21,10 +21,7 @@ local M = {
         }
       },
     })
-  end,
-  dependencies = {
-    "kkharji/sqlite.lua"
-  }
+  end
 }
 
 return M
