@@ -6,7 +6,7 @@ local M = {
 
     context_vt.setup({
       custom_parser = function(node)
-        return ' In "' .. context_vt_utils.get_node_text(node)[1] .. '"'
+        return ' In “' .. context_vt_utils.get_node_text(node)[1] .. '”'
       end,
       highlight = 'Whitespace',
       disable_virtual_lines = true,
