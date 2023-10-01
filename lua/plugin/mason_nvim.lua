@@ -188,7 +188,7 @@ local M = {
     'b0o/schemastore.nvim',
     'jay-babu/mason-nvim-dap.nvim',
     'jayp0521/mason-null-ls.nvim',
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     'lewis6991/gitsigns.nvim',
     'neovim/nvim-lspconfig',
     'williamboman/mason-lspconfig.nvim',
