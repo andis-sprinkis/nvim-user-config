@@ -8,7 +8,7 @@ local M = {
       },
       scope = {
         char = { '▏' },
-        highlight = { "Operator" },
+        highlight = { "Function", "Label" },
       },
       exclude = {
         filetypes = {
