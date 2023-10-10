@@ -26,9 +26,7 @@ function M.lsp_status()
     if #n > 0 then table.insert(status, ty[2] .. ':' .. #n) end
   end
 
-  local r = table.concat(status, ' ')
-
-  return r == '' and 'LSP' or r
+  return table.concat(status, ' ')
 end
 
 function M.git_hunks()
