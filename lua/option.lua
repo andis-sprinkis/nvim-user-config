@@ -32,6 +32,7 @@ o.scrolljump = -100
 o.shiftwidth = 2
 o.shm:append 'I'
 o.showmode = false
+o.sidescrolloff = 20
 o.signcolumn = 'yes:2'
 o.splitbelow = true
 o.splitkeep = 'screen'
