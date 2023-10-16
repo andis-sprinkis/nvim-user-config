@@ -194,7 +194,6 @@ local M = {
     'williamboman/mason-lspconfig.nvim',
     'mfussenegger/nvim-dap',
     'theHamsta/nvim-dap-virtual-text',
-    'rcarriga/nvim-dap-ui',
     'RRethy/vim-illuminate',
   }
 }

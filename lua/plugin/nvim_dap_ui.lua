@@ -127,6 +127,7 @@ local M = {
     cuc('DapUIOpen', function() dapui.open({ reset = true }) end, {})
     cuc('DapUIToggle', function() dapui.toggle({ reset = true }) end, {})
   end,
+  cmd = { 'DapUIOpen', 'DapUIToggle' },
   dependencies = {
     'mfussenegger/nvim-dap',
   },
