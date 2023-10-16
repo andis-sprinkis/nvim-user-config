@@ -72,7 +72,9 @@ ac(
   'VimEnter',
   {
     group = ag_option,
-    callback = function() cmd([[cd %:p:h]]) end
+    callback = function()
+      cmd.cd('%:p:h')
+    end
   }
 )
 
