@@ -69,6 +69,14 @@ end
 local ag_option = ag('option', {})
 
 ac(
+  'VimEnter',
+  {
+    group = ag_option,
+    callback = function() cmd([[cd %:p:h]]) end
+  }
+)
+
+ac(
   'VimResized',
   {
     group = ag_option,

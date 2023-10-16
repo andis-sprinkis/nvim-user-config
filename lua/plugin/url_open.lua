@@ -5,7 +5,7 @@ local M = {
     require("url-open").setup({
       deep_pattern = true
     })
-    vim.keymap.set("n", "<cr>", "<esc>:URLOpenUnderCursor<cr>")
+    vim.keymap.set("n", "<Leader>l", "<esc>:URLOpenUnderCursor<cr>")
   end,
 }
 
