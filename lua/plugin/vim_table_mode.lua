@@ -1,6 +1,6 @@
 local M = {
   'dhruvasagar/vim-table-mode',
-  ft = { 'markdown', 'markdown.mdx' },
+  cmd = { 'TableModeEnable', 'TableModeToggle' }
 }
 
 return M
