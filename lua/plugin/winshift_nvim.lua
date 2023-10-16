@@ -8,7 +8,8 @@ local M = {
 
     vim.keymap.set('n', '<Leader>w', ':WinShift<cr>', { silent = true })
   end,
-  keys = { '<Leader>w' }
+  keys = { '<Leader>w' },
+  cmd = { 'WinShift' }
 }
 
 return M
