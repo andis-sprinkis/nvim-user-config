@@ -53,7 +53,7 @@ require("lazy").setup(
     require('plugin.dirvish'),
     require('plugin.dressing_nvim'),
     require('plugin.fm_nvim'),
-    require('plugin.follow_md_links_nvim'),
+    require('plugin.url_open'),
     require('plugin.fzf_lua'),
     require('plugin.fzf_vim'),
     require('plugin.gitsigns_nvim'),
