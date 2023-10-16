@@ -59,6 +59,15 @@ km('n', '<C-k>', '<C-W><C-K>')
 km('n', '<C-l>', '<C-W><C-L>')
 km('n', '<C-h>', '<C-W><C-H>')
 
+km(
+  'n',
+  '<leader>a',
+  function()
+    vim.wo.wrap = not vim.wo.wrap
+    vim.notify('Line wrap ' .. (vim.wo.wrap and 'on' or 'off'))
+  end
+)
+
 if g.os == 'Windows_NT' then
   env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. env.PATH
 else
