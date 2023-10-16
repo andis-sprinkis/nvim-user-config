@@ -19,7 +19,16 @@ local M = {
     km('n', '<C-k>', smart_splits.move_cursor_up)
     km('n', '<C-l>', smart_splits.move_cursor_right)
   end,
-  event = 'VeryLazy'
+  keys = {
+    { '<C-A-h>', mode = 'n' },
+    { '<C-A-j>', mode = 'n' },
+    { '<C-A-k>', mode = 'n' },
+    { '<C-A-l>', mode = 'n' },
+    { '<C-h>',   mode = 'n' },
+    { '<C-j>',   mode = 'n' },
+    { '<C-k>',   mode = 'n' },
+    { '<C-l>',   mode = 'n' },
+  }
 }
 
 return M
