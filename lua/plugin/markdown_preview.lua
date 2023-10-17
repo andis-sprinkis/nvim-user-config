@@ -8,7 +8,6 @@ local M = {
   enabled = sys_reqr.markdown_preview,
   build = function() fn['mkdp#util#install']() end,
   ft = { 'markdown', 'markdown.mdx' },
-  cmd = { 'MarkdownPreview', 'MarkdownPreviewToggle' }
 }
 
 return M
