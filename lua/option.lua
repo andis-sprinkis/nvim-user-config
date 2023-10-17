@@ -83,7 +83,7 @@ ac(
   {
     group = ag_option,
     callback = function()
-      cmd.cd('%:p:h')
+      pcall(function() cmd.cd('%:p:h') end)
     end
   }
 )
