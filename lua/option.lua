@@ -24,6 +24,8 @@ o.hlsearch = false
 o.list = true
 o.listchars:append 'eol:↲'
 o.listchars:append 'tab:» '
+o.listchars:append 'extends:>'
+o.listchars:append 'precedes:<'
 o.mouse = 'a'
 o.number = true
 o.pumblend = 10
