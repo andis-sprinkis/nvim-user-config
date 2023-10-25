@@ -67,7 +67,7 @@ km(
   '<leader>a',
   function()
     vim.wo.wrap = not vim.wo.wrap
-    vim.notify('Line wrap is now ' .. (vim.wo.wrap and 'on' or 'off') .. '.')
+    vim.notify((vim.wo.wrap and 'Enabled' or 'Disabled') .. ' the window line wrap.')
   end
 )
 
