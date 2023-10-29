@@ -11,6 +11,8 @@ local ac = api.nvim_create_autocmd
 cmd.colorscheme('lunaperche')
 g.man_hard_wrap = true
 g.mapleader = ' '
+g.netrw_banner = false
+g.netrw_liststyle= true
 o.backup = false
 o.breakindent = true
 o.clipboard = 'unnamedplus'
@@ -20,12 +22,12 @@ o.foldlevel = 99
 o.foldmethod = 'indent'
 o.hlsearch = false
 o.list = true
-o.listchars:append 'trail:·'
-o.listchars:append 'space:·'
 o.listchars:append 'eol:↲'
-o.listchars:append 'tab:» '
 o.listchars:append 'extends:>'
 o.listchars:append 'precedes:<'
+o.listchars:append 'space:·'
+o.listchars:append 'tab:» '
+o.listchars:append 'trail:·'
 o.mouse = 'a'
 o.number = true
 o.pumblend = 10
