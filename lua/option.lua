@@ -61,7 +61,6 @@ km('n', '<C-j>', '<C-W><C-J>')
 km('n', '<C-k>', '<C-W><C-K>')
 km('n', '<C-l>', '<C-W><C-L>')
 km('n', '<C-h>', '<C-W><C-H>')
-km('n', '<leader>q', vim.cmd.quit)
 
 km(
   'n',
