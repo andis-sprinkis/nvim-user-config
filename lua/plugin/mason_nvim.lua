@@ -56,8 +56,6 @@ local M = {
       local map_opts = { buffer = bufnr }
       local server_capabilities = client.server_capabilities
 
-      require('illuminate').on_attach(client)
-
       -- Enable completion triggered by <c-x><c-o>
       api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
