@@ -1,15 +1,17 @@
+local b = vim.b
 local g = vim.g
 local o = vim.opt
 local ol = vim.opt_local
 local fn = vim.fn
 local cmd = vim.cmd
+local loop = vim.loop
 local km = vim.keymap.set
 local api = vim.api
 local env = vim.env
 local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
 
-g.os = vim.loop.os_uname().sysname
+g.os = loop.os_uname().sysname
 g.loaded_netrwPlugin = 0
 g.man_hard_wrap = true
 g.mapleader = ' '
@@ -144,6 +146,30 @@ ac(
     callback = function()
       vim.highlight.on_yank({ timeout = 170 })
     end,
+  }
+)
+
+g.large_file_callbacks = {
+  function ()
+    ol.foldmethod = "manual"
+  end
+}
+
+ac(
+  'BufReadPre',
+  {
+    callback = function()
+      local ok, stats = pcall(loop.fs_stat, api.nvim_buf_get_name(api.nvim_get_current_buf()))
+
+      if ok and stats and (stats.size > 1000000) then
+        b.large_file_buf = true
+        for i in pairs(g.large_file_callbacks) do g.large_file_callbacks[i]() end
+        return
+      end
+
+      vim.b.large_file_buf = false
+    end,
+    group = ag_option,
   }
 )
 
