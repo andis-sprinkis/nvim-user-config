@@ -149,11 +149,7 @@ ac(
   }
 )
 
-g.large_file_callbacks = {
-  function ()
-    ol.foldmethod = "manual"
-  end
-}
+g.large_file_callbacks = {}
 
 ac(
   'BufReadPre',
@@ -164,8 +160,13 @@ ac(
       local max_size = 1000000
       if ok and stats and (stats.size > max_size) then
         b.large_file_buf = true
+
+        ol.foldmethod = "manual"
+
         for i in pairs(g.large_file_callbacks) do g.large_file_callbacks[i]() end
-        vim.notify('File is larger than ' .. max_size .. ' bytes. Some buffer options and plugins are disabled.')
+
+        vim.notify('The file is larger than ' .. max_size .. ' bytes. Some of the buffer options and plugins are disabled.')
+
         return
       end
 
