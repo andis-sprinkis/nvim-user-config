@@ -1,6 +1,5 @@
 local M = {
   'Wansmer/treesj',
-  dependencies = { 'nvim-treesitter/nvim-treesitter' },
   config = function()
     local km = vim.keymap.set
     local treesj = require('treesj')
