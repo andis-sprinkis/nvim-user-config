@@ -161,9 +161,11 @@ ac(
     callback = function()
       local ok, stats = pcall(loop.fs_stat, api.nvim_buf_get_name(api.nvim_get_current_buf()))
 
-      if ok and stats and (stats.size > 1000000) then
+      local max_size = 1000000
+      if ok and stats and (stats.size > max_size) then
         b.large_file_buf = true
         for i in pairs(g.large_file_callbacks) do g.large_file_callbacks[i]() end
+        print('File is larger than ' .. max_size .. ' bytes. Some buffer options and plugins are disabled.')
         return
       end
 
