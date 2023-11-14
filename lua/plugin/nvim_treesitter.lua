@@ -9,7 +9,18 @@ local M = {
       ensure_installed = "all",
       highlight = {
         enable = true,
-        disable = disable,
+        disable = function (lang, buf)
+          -- https://github.com/nvim-treesitter/nvim-treesitter/issues/5603
+          local langs_disable = { "c", "cpp" }
+
+          for i in ipairs(langs_disable) do
+            if (langs_disable[i] == lang) then
+              return true
+            end
+          end
+
+          return disable(lang, buf)
+        end,
       },
       indent = {
         enable = true,

@@ -15,8 +15,8 @@ local M = {
     local lsp_servers = {
       'awk_ls',
       'bashls',
-      'clangd',
-      'cmake',
+      -- 'clangd',
+      -- 'cmake',
       'cssls',
       'dockerls',
       'eslint',
@@ -31,7 +31,7 @@ local M = {
     }
 
     local dap_providers = {
-      'codelldb',
+      -- 'codelldb',
       -- 'python',
     }
 
