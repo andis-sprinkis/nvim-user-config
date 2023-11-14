@@ -165,7 +165,7 @@ ac(
       if ok and stats and (stats.size > max_size) then
         b.large_file_buf = true
         for i in pairs(g.large_file_callbacks) do g.large_file_callbacks[i]() end
-        print('File is larger than ' .. max_size .. ' bytes. Some buffer options and plugins are disabled.')
+        vim.notify('File is larger than ' .. max_size .. ' bytes. Some buffer options and plugins are disabled.')
         return
       end
 
