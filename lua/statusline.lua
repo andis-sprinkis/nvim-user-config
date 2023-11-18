@@ -14,37 +14,45 @@ local ag = api.nvim_create_augroup
 
 local M = {}
 
-local lsp_severity = { { 'Warn', 'W' }, { 'Error', 'E' }, { 'Info', 'I' }, { 'Hint', 'H' } }
+if (sys_reqr.lsp_plugins) then
+  local lsp_severity = { { 'Warn', 'W' }, { 'Error', 'E' }, { 'Info', 'I' }, { 'Hint', 'H' } }
 
-function M.lsp_status()
-  if (not sys_reqr.lsp_plugins) or vim.tbl_isempty(lsp.buf_get_clients(0)) then return '' end
+  function M.lsp_status()
+    if vim.tbl_isempty(lsp.buf_get_clients(0)) then return '' end
 
-  local status = {}
+    local status = {}
 
-  for _, ty in ipairs(lsp_severity) do
-    local n = diagnostic.get(0, { severity = ty[1] })
-    if #n > 0 then table.insert(status, ty[2] .. ':' .. #n) end
+    for _, ty in ipairs(lsp_severity) do
+      local n = diagnostic.get(0, { severity = ty[1] })
+      if #n > 0 then table.insert(status, ty[2] .. ':' .. #n) end
+    end
+
+    return table.concat(status, ' ')
   end
-
-  return table.concat(status, ' ')
 end
 
-function M.git_hunks()
-  if b.gitsigns_status then
-    return b.gitsigns_status == '' and b.gitsigns_head or b.gitsigns_head .. ' ' .. b.gitsigns_status
-  end
+local status_gitsigns, gitsigns = pcall(require, "gitsigns")
 
-  return g.gitsigns_head and g.gitsigns_head or ''
+if (status_gitsigns) then
+  function M.git_hunks()
+    if b.gitsigns_status then
+      return b.gitsigns_status == '' and b.gitsigns_head or b.gitsigns_head .. ' ' .. b.gitsigns_status
+    end
+
+    return g.gitsigns_head and g.gitsigns_head or ''
+  end
 end
 
-local swenv
-if sys_reqr.swenv then swenv = require('swenv.api') end
+if sys_reqr.swenv then
+  local status_swenv, swenv_api = pcall(require, "swenv.api")
 
-function M.py_swenv()
-  if (not swenv) then return '' end
-  local venv = swenv.get_current_venv()
+  if (status_swenv) then
+    function M.py_swenv()
+      local venv = swenv_api.get_current_venv()
 
-  return venv and "venv:" .. venv.name or ''
+      return venv and "venv:" .. venv.name or ''
+    end
+  end
 end
 
 function M.ft() return bo.filetype end
@@ -98,9 +106,9 @@ local static_dap_panel = table.concat({
 
 local static_p1 = table.concat({
   '%#StatusLineNC#',
-  pad(func('git_hunks')),
-  pad(func('py_swenv')),
-  pad(func('lsp_status')),
+  M.git_hunks and pad(func('git_hunks')) or "",
+  M.py_swenv and pad(func('py_swenv')) or "",
+  M.lsp_status and pad(func('lsp_status')) or "",
 })
 
 local static_p2 = table.concat({

@@ -12,6 +12,9 @@ local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
 
 g.os = loop.os_uname().sysname
+g.sys_reqr = {}
+g.exec = {}
+
 g.loaded_netrwPlugin = 0
 g.man_hard_wrap = true
 g.mapleader = ' '
