@@ -47,7 +47,7 @@ local M = {
   require('plugin.gitsigns_nvim'),
   require('plugin.guess_indent_nvim'),
   require('plugin.hlargs_nvim'),
-  require('plugin.indent_blankline_nvim'),
+  require('plugin.hlchunk_nvim'),
   require('plugin.markdown_preview'),
   require('plugin.mason_nvim'),
   require('plugin.matchparen_nvim'),
