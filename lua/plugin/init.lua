@@ -61,6 +61,7 @@ local M = {
   require('plugin.nvim_pqf'),
   require('plugin.nvim_spectre'),
   require('plugin.nvim_treesitter'),
+  require('plugin.nvim_ts_commentstring'),
   require('plugin.registers_nvim'),
   require('plugin.smart_splits_nvim'),
   require('plugin.suda'),

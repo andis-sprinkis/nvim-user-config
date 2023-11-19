@@ -25,12 +25,7 @@ local M = {
       indent = {
         enable = true,
         disable = disable,
-      },
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-        disable = disable,
-      },
+      }
     }
 
     local o = vim.opt
