@@ -38,7 +38,6 @@ local M = {
   require('plugin.bufstop'),
   require('plugin.colorscheme'),
   require('plugin.comment_nvim'),
-  require('plugin.debugprint_nvim'),
   require('plugin.dirvish'),
   require('plugin.dressing_nvim'),
   require('plugin.fm_nvim'),
