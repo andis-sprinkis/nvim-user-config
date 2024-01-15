@@ -29,4 +29,5 @@ git checkout minimal-config
 -   `fzf`
 -   `lf`
 -   `node`
+-   `rust`
 -   `sed`

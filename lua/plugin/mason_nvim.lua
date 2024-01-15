@@ -16,7 +16,6 @@ local M = {
       'awk_ls',
       'bashls',
       -- 'clangd',
-      -- 'cmake',
       'cssls',
       'dockerls',
       'eslint',
@@ -29,6 +28,10 @@ local M = {
       'tsserver',
       'yamlls',
     }
+
+    if sys_reqr.lsp_neocmake then
+      table.insert(lsp_servers, 'neocmake')
+    end
 
     local dap_providers = {
       -- 'codelldb',
