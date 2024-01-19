@@ -29,7 +29,6 @@ local M = {
   end,
   dependencies = {
     'mfussenegger/nvim-dap',
-    'nvim-treesitter/nvim-treesitter',
   },
   event = 'VeryLazy'
 }
