@@ -21,7 +21,8 @@ local M = {
         }
       },
     })
-  end
+  end,
+  commit = "d17bc1f87736b6a7f058b2f246e651d34d648b47"
 }
 
 return M
