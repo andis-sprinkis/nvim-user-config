@@ -39,7 +39,8 @@ local M = {
     }
 
     local linters_formatters = {
-      'prettier'
+      'prettier',
+      'shellcheck'
     }
 
     -- Mappings.
