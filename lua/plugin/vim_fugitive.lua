@@ -1,8 +1,8 @@
-local uc = vim.api.nvim_create_user_command
-
 local M = {
   'tpope/vim-fugitive',
   config = function()
+    local uc = vim.api.nvim_create_user_command
+
     local ucmd = function(cmd)
       return function(opt_ucmd) vim.cmd(cmd .. ' ' .. opt_ucmd.args) end
     end
