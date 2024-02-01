@@ -10,6 +10,7 @@ local M = {
     local opt_cmd = { nargs = '?' }
 
     uc('Gc', ucmd 'G commit', opt_cmd)
+    uc('Gcm', ucmd 'G commit -m', opt_cmd)
     uc('Gca', ucmd('G commit --amend'), opt_cmd)
     uc('Gcan', ucmd('G commit --amend --no-edit'), opt_cmd)
     uc('Gd', ucmd('G diff'), opt_cmd)
