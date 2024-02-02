@@ -50,6 +50,7 @@ o.termguicolors = true
 o.title = true
 o.titlelen = 1000
 o.updatetime = 100
+o.virtualedit:append 'block'
 o.winblend = 10
 o.writebackup = false
 
