@@ -24,7 +24,6 @@ o.hlsearch = false
 o.list = true
 o.listchars:append 'eol:↲'
 o.listchars:append 'extends:>'
-o.listchars:append 'leadmultispace:+'
 o.listchars:append 'precedes:<'
 o.listchars:append 'space:·'
 o.listchars:append 'tab:» '
