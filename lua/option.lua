@@ -24,6 +24,7 @@ o.hlsearch = false
 o.list = true
 o.listchars:append 'eol:↲'
 o.listchars:append 'extends:>'
+o.listchars:append 'leadmultispace:+'
 o.listchars:append 'precedes:<'
 o.listchars:append 'space:·'
 o.listchars:append 'tab:» '
@@ -47,6 +48,7 @@ o.termguicolors = true
 o.title = true
 o.titlelen = 1000
 o.updatetime = 100
+o.virtualedit:append 'block'
 o.winblend = 10
 o.writebackup = false
 
@@ -144,6 +146,22 @@ ac(
       vim.highlight.on_yank({ timeout = 170 })
     end,
   }
+)
+
+vim.api.nvim_create_user_command(
+  'CopyLocRel',
+  function()
+    vim.fn.setreg('+', vim.fn.expand('%:.') .. ' ' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
+  end,
+  {}
+)
+
+vim.api.nvim_create_user_command(
+  'CopyLocAbs',
+  function()
+    vim.fn.setreg('+', vim.fn.expand('%:p') .. ' ' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
+  end,
+  {}
 )
 
 if g.neoray == 1 then
