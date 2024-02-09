@@ -183,7 +183,7 @@ ac(
 vim.api.nvim_create_user_command(
   'CopyLocRel',
   function()
-    vim.fn.setreg('+', vim.fn.expand('%:.') .. ' ' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
+    vim.fn.setreg('+', vim.fn.expand('%:.') .. ':' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
   end,
   {}
 )
@@ -191,7 +191,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'CopyLocAbs',
   function()
-    vim.fn.setreg('+', vim.fn.expand('%:p') .. ' ' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
+    vim.fn.setreg('+', vim.fn.expand('%:p') .. ':' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
   end,
   {}
 )
