@@ -79,7 +79,7 @@ local M = {
           { name = 'color_names' },
           {
             name = 'npm',
-            keyword_length = 4,
+            keyword_length = 3,
           },
         }
       )
@@ -102,14 +102,31 @@ local M = {
       mapping = cmpm.preset.cmdline(),
       sources = cmpc.sources(
         {
-          { name = 'cmdline_history' },
-          { name = 'cmdline' },
-          { name = 'path' },
-          { name = 'buffer' },
-          { name = 'nvim_lsp' },
+          {
+            name = 'cmdline',
+          },
+          {
+            name = 'cmdline_history',
+          },
+          {
+            name = 'path',
+            keyword_length = 2,
+          },
+          {
+            name = 'buffer',
+            keyword_length = 2,
+          },
+          {
+            name = 'nvim_lsp',
+            keyword_length = 2,
+          },
           source_cmp_rg,
-          { name = 'zsh' },
-          { name = 'tmux' },
+          {
+            name = 'zsh',
+          },
+          {
+            name = 'tmux',
+          },
           source_cmp_dictionary,
           { name = 'emoji' },
         }
