@@ -49,6 +49,7 @@ local M = {
   require('plugin.guess_indent_nvim'),
   require('plugin.hlargs_nvim'),
   require('plugin.hlchunk_nvim'),
+  require('plugin.lf_vim'),
   require('plugin.markdown_preview'),
   require('plugin.mason_nvim'),
   require('plugin.matchparen_nvim'),
