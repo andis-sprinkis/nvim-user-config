@@ -70,6 +70,7 @@ local M = {
   require('plugin.swenv_nvim'),
   require('plugin.treesj'),
   require('plugin.url_open'),
+  require('plugin.vim_color_convert_to'),
   require('plugin.vim_doge'),
   require('plugin.vim_eunuch'),
   require('plugin.vim_fugitive'),
