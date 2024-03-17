@@ -1,6 +1,6 @@
 local M = {
   'amadeus/vim-convert-color-to',
-  event = 'VeryLazy'
+  event = { "CmdlineEnter" },
 }
 
 return M

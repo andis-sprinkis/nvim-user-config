@@ -158,6 +158,8 @@ local M = {
       end
     })
 
+    require('mason-null-ls').setup({ ensure_installed = linters_formatters })
+
     local null_ls = require('null-ls')
 
     null_ls.setup({
@@ -178,8 +180,6 @@ local M = {
         end
       end,
     })
-
-    require('mason-null-ls').setup({ ensure_installed = linters_formatters })
 
     require('mason-nvim-dap').setup({
       automatic_setup = true,
