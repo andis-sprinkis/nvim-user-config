@@ -41,7 +41,6 @@ local M = {
   require('plugin.colorscheme'),
   require('plugin.comment_nvim'),
   require('plugin.dirvish'),
-  require('plugin.dressing_nvim'),
   require('plugin.fm_nvim'),
   require('plugin.fzf_lua'),
   require('plugin.fzf_vim'),
