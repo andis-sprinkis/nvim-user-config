@@ -3,6 +3,7 @@ local sys_reqr = g.sys_reqr
 
 local M = {
   'ibhagwan/fzf-lua',
+  url = 'https://gitlab.com/ibhagwan/fzf-lua',
   cond = sys_reqr.fzf_lua,
   enabled = sys_reqr.fzf_lua,
   config = function()
