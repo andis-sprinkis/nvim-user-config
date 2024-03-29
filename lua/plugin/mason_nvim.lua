@@ -74,7 +74,7 @@ local M = {
       -- km('n', '<Leader>wr', lspbuf.remove_workLeader_folder, map_opts)
       -- km('n', '<Leader>wl', function() print(vim.inspect(lspbuf.list_workLeader_folders())) end, map_opts)
       km('n', '<Leader>D', lspbuf.type_definition, map_opts)
-      -- vim.keymap.set('n', '<Leader>rn', lspbuf.rename, map_opts)
+      km('n', '<Leader>rn', lspbuf.rename, map_opts)
       km('n', '<Leader>ca', lspbuf.code_action, map_opts)
       km('n', 'gr', lspbuf.references, map_opts)
 
