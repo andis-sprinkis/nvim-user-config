@@ -1,4 +1,4 @@
-# Andis Neovim configuration files
+# The Andis Neovim configuration files
 
 ## Installation
 
