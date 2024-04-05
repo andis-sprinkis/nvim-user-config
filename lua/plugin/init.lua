@@ -65,7 +65,7 @@ local M = {
   require('plugin.nvim_ts_commentstring'),
   require('plugin.registers_nvim'),
   require('plugin.smart_splits_nvim'),
-  require('plugin.suda'),
+  require('plugin.suda_vim'),
   require('plugin.swenv_nvim'),
   require('plugin.treesj'),
   require('plugin.url_open'),
