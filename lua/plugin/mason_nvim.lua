@@ -20,7 +20,7 @@ local M = {
       'dockerls',
       'eslint',
       'html',
-      'jsonls',
+      -- 'jsonls',
       'lua_ls',
       'pylsp',
       'stylelint_lsp',
