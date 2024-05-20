@@ -28,7 +28,6 @@ set splitbelow
 set splitkeep=screen
 set splitright
 set tabstop=2
-set termguicolors
 set title
 set titlelen=1000
 set updatetime=100
