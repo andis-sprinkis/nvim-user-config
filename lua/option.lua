@@ -46,7 +46,6 @@ o.splitkeep = 'screen'
 o.splitright = true
 o.swapfile = false
 o.tabstop = 2
-o.termguicolors = true
 o.title = true
 o.titlelen = 1000
 o.updatetime = 100
