@@ -13,6 +13,7 @@ g.man_hard_wrap = true
 g.mapleader = ' '
 g.netrw_banner = false
 g.netrw_liststyle= true
+g.netrw_sort_sequence = '[\\/]\\s'
 o.backup = false
 o.breakindent = true
 o.clipboard = 'unnamedplus'
