@@ -8,7 +8,6 @@ local env = vim.env
 local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
 
-cmd.colorscheme('lunaperche')
 g.man_hard_wrap = true
 g.mapleader = ' '
 g.netrw_banner = false
