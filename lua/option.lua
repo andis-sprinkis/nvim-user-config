@@ -11,7 +11,7 @@ local ac = api.nvim_create_autocmd
 g.man_hard_wrap = true
 g.mapleader = ' '
 g.netrw_banner = false
-g.netrw_liststyle= true
+g.netrw_liststyle = true
 g.netrw_sort_sequence = '[\\/]\\s'
 o.backup = false
 o.breakindent = true
@@ -63,7 +63,7 @@ km('n', '<C-j>', '<C-W><C-J>')
 km('n', '<C-k>', '<C-W><C-K>')
 km('n', '<C-l>', '<C-W><C-L>')
 km('n', '<C-h>', '<C-W><C-H>')
-km('n', '-', ":Explore<cr>", { silent = true })
+km('n', '-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>', { silent = true })
 km('n', '<leader>b', ":set nomore <Bar> :ls <Bar> :set more <CR>:b<Space>", { silent = true })
 
 km(
@@ -160,6 +160,12 @@ vim.api.nvim_create_user_command(
     vim.fn.setreg('+', vim.fn.expand('%:p') .. ' ' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
   end,
   {}
+)
+
+vim.api.nvim_create_user_command(
+  'ExploreFind',
+  'let @/=expand("%:t") | execute \'Explore\' expand("%:h") | normal n',
+  { bang = true }
 )
 
 if g.neoray == 1 then
