@@ -63,7 +63,7 @@ km('n', '<C-j>', '<C-W><C-J>')
 km('n', '<C-k>', '<C-W><C-K>')
 km('n', '<C-l>', '<C-W><C-L>')
 km('n', '<C-h>', '<C-W><C-H>')
-km('n', '-', ':let @/=expand("%:t") \\| execute \'Explore\' expand("%:h") \\| normal n<CR>', { silent = true }) -- From https://superuser.com/a/1536118
+km('n', '-', 'let @/=expand("%:t") | execute \'Explore\' expand("%:h") | normal n<CR>', { silent = true }) -- From https://superuser.com/a/1536118
 km('n', '<leader>b', ":set nomore \\| :ls \\| :set more <CR>:b<Space>", { silent = true })
 
 km(
