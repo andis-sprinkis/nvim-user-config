@@ -66,8 +66,8 @@ nnoremap <C-q> :q<CR>
 
 tnoremap <C-w> <C-\><C-n>
 
-nnoremap <silent><nowait>- :let @/=expand("%:t") \| execute 'Explore' expand("%:h") \| normal n<CR>
+nnoremap <silent><nowait>- :let @/=expand("%:t") <Bar> execute 'Explore' expand("%:h") <Bar> normal n<CR>
 
-nnoremap <silent><leader>b :set nomore \| :ls \| :set more <CR>:b<Space>
+nnoremap <silent><leader>b :set nomore <Bar> :ls <Bar> :set more <CR>:b<Space>
 
 command! ExploreFind let @/=expand("%:t") | execute 'Explore' expand("%:h") | normal n
