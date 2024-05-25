@@ -1,10 +1,16 @@
 local M = {
-  'shellRaining/hlchunk.nvim',
-  event = { "UIEnter" },
+  "shellRaining/hlchunk.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("hlchunk").setup({
       chunk = {
-        notify = false
+        enable = true
+      },
+      indent = {
+        enable = true
+      },
+      line_num = {
+        enable = true
       },
       blank = {
         enable = false
