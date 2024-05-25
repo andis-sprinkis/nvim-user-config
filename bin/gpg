@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-[ -n "$FUGITIVE" ] && set -- --pinentry-mode "loopback" "$@"
+[ "$FUGITIVE" ] && set -- --pinentry-mode "loopback" "$@"
 
 exec /usr/bin/gpg "$@"
