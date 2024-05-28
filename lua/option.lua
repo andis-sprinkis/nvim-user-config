@@ -72,7 +72,7 @@ km(
   '<leader>a',
   function()
     vim.wo.wrap = not vim.wo.wrap
-    vim.notify((vim.wo.wrap and 'Enabled' or 'Disabled') .. ' the window line wrap.')
+    vim.notify('vim.wo.wrap = ' .. (vim.wo.wrap and 'true' or 'false'))
   end
 )
 
@@ -168,7 +168,7 @@ ac(
 
         for i in pairs(g.large_file_callbacks) do g.large_file_callbacks[i]() end
 
-        vim.notify('The file is larger than ' .. max_size .. ' bytes. Some of the buffer options and plugins are disabled.')
+        vim.notify('File is larger than ' .. max_size .. ' bytes. Some of the buffer options and plugins are disabled.')
 
         return
       end
