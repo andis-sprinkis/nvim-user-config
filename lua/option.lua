@@ -41,6 +41,7 @@ o.signcolumn = 'yes:2'
 o.splitbelow = true
 o.splitkeep = 'screen'
 o.splitright = true
+o.statuscolumn = '%s%=%T%r│%T'
 o.swapfile = false
 o.tabstop = 2
 o.title = true
