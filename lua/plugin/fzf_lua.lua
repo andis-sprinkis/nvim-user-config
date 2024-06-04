@@ -83,10 +83,17 @@ local M = {
     km('n', '<leader>z', fzflua.builtin)
     km('n', '<leader>h', fzflua.help_tags)
   end,
+  event = { "CmdlineEnter" },
+  keys = {
+    { "<tab>",     mode = { "n" } },
+    { "<s-tab>",   mode = { "n" } },
+    { "<leader>e", mode = { "n" } },
+    { "<leader>z", mode = { "n" } },
+    { "<leader>h", mode = { "n" } },
+  },
   dependencies = {
     'stevearc/dressing.nvim',
   },
-  event = 'VeryLazy'
 }
 
 return M
