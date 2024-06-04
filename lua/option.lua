@@ -8,9 +8,9 @@ local loop = vim.loop
 local km = vim.keymap.set
 local api = vim.api
 local env = vim.env
-local uc = api.nvim_create_user_command
 local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
+local uc = api.nvim_create_user_command
 
 g.os = loop.os_uname().sysname
 g.sys_reqr = {}
