@@ -8,6 +8,7 @@ local loop = vim.loop
 local km = vim.keymap.set
 local api = vim.api
 local env = vim.env
+local uc = api.nvim_create_user_command
 local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
 
@@ -180,7 +181,7 @@ ac(
   }
 )
 
-vim.api.nvim_create_user_command(
+uc(
   'CopyLocRel',
   function()
     vim.fn.setreg('+', vim.fn.expand('%:.') .. ':' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
@@ -188,7 +189,7 @@ vim.api.nvim_create_user_command(
   {}
 )
 
-vim.api.nvim_create_user_command(
+uc(
   'CopyLocAbs',
   function()
     vim.fn.setreg('+', vim.fn.expand('%:p') .. ':' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')

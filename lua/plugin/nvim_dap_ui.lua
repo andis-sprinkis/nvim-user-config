@@ -4,7 +4,7 @@ local M = {
     local api = vim.api
     local ag = api.nvim_create_augroup
     local ac = api.nvim_create_autocmd
-    local cuc = api.nvim_create_user_command
+    local uc = api.nvim_create_user_command
     local dap, dapui = require("dap"), require("dapui")
 
     dapui.setup({
@@ -123,13 +123,14 @@ local M = {
       }
     )
 
-    cuc('DapUIClose', dapui.close, {})
-    cuc('DapUIOpen', function() dapui.open({ reset = true }) end, {})
-    cuc('DapUIToggle', function() dapui.toggle({ reset = true }) end, {})
+    uc('DapUIClose', dapui.close, {})
+    uc('DapUIOpen', function() dapui.open({ reset = true }) end, {})
+    uc('DapUIToggle', function() dapui.toggle({ reset = true }) end, {})
   end,
   cmd = { 'DapUIOpen', 'DapUIToggle' },
   dependencies = {
     'mfussenegger/nvim-dap',
+    'nvim-neotest/nvim-nio'
   },
 }
 
