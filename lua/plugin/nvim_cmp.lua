@@ -89,6 +89,9 @@ local M = {
       { '/', '?' },
       {
         mapping = cmpm.preset.cmdline(),
+        view = {
+          entries = { name = 'custom', selection_order = 'near_cursor' }
+        },
         sources = cmpc.sources(
           {
             { name = 'buffer' },
@@ -100,14 +103,13 @@ local M = {
 
     cmp.setup.cmdline({ ':', '@' }, {
       mapping = cmpm.preset.cmdline(),
+      view = {
+        entries = { name = 'custom', selection_order = 'near_cursor' }
+      },
       sources = cmpc.sources(
         {
-          {
-            name = 'cmdline',
-          },
-          {
-            name = 'cmdline_history',
-          },
+          { name = 'cmdline' },
+          { name = 'cmdline_history' },
           {
             name = 'path',
             keyword_length = 2,
@@ -121,12 +123,8 @@ local M = {
             keyword_length = 2,
           },
           source_cmp_rg,
-          {
-            name = 'zsh',
-          },
-          {
-            name = 'tmux',
-          },
+          { name = 'zsh' },
+          { name = 'tmux' },
           source_cmp_dictionary,
           { name = 'emoji' },
         }
