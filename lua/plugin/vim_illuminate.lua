@@ -5,6 +5,10 @@ local M = {
     table.insert(vim.g.large_file_callbacks, function()
       vim.cmd("IlluminatePauseBuf")
     end)
+
+    require('illuminate').configure({
+      filetypes_denylist = {},
+    })
   end
 }
 
