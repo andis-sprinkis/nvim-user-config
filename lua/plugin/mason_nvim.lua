@@ -15,7 +15,7 @@ local M = {
     local lsp_servers = {
       'awk_ls',
       'bashls',
-      -- 'clangd',
+      'clangd',
       'cssls',
       'dockerls',
       'eslint',
