@@ -5,7 +5,9 @@ local M = {
       filetype_exclude = {
         "dirvish",
         "fugitive",
+        "help",
         "lazy",
+        "man"
       }
     }
   end,
