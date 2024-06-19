@@ -33,6 +33,10 @@ local M = {
       table.insert(lsp_servers, 'neocmake')
     end
 
+    if sys_reqr.lsp_asm then
+      table.insert(lsp_servers, 'asm_lsp')
+    end
+
     local dap_providers = {
       -- 'codelldb',
       -- 'python',
