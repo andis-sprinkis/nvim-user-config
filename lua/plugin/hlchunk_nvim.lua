@@ -10,7 +10,8 @@ local M = {
     require("hlchunk").setup({
       chunk = {
         enable = true,
-        exclude_filetypes = exclude_filetypes
+        exclude_filetypes = exclude_filetypes,
+        delay = 0
       },
       indent = {
         enable = true,
