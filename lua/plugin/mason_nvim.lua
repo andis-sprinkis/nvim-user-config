@@ -43,6 +43,7 @@ local M = {
     }
 
     local linters_formatters = {
+      'asmfmt',
       'prettier',
       'shellcheck'
     }
@@ -168,6 +169,7 @@ local M = {
 
     null_ls.setup({
       sources = {
+        null_ls.builtins.formatting.asmfmt,
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.code_actions.gitsigns,
       },
