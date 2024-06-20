@@ -136,7 +136,7 @@ ac(
   'FileType',
   {
     group = ag_option,
-    pattern = 'make',
+    pattern = { 'make', 'gitconfig' },
     callback = function()
       ol.expandtab = false
     end
