@@ -1,6 +1,6 @@
 local fn = vim.fn
 local g = vim.g
-local os = g.os
+-- local os = g.os
 local exec = g.exec
 local executable = fn.executable
 
