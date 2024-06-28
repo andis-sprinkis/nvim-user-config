@@ -58,7 +58,7 @@ local M = {
         preview = {
           default = (exec.bat and 'bat') or (exec.cat and 'cat') or 'builtin',
           wrap = 'wrap',
-          layout = 'vertial',
+          layout = 'vertical',
           vertical = 'up:60%',
           border = 'noborder'
         },
