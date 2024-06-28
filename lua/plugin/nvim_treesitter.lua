@@ -10,8 +10,7 @@ local M = {
       highlight = {
         enable = true,
         disable = function (lang, buf)
-          -- https://github.com/nvim-treesitter/nvim-treesitter/issues/5603
-          local langs_disable = { "c", "cpp" }
+          local langs_disable = {}
 
           for i in ipairs(langs_disable) do
             if (langs_disable[i] == lang) then

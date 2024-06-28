@@ -1,7 +1,12 @@
 local M = {
   "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
-  opts = {},
+  opts = {
+    indent = { char = "│" },
+  },
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter',
+  }
 }
 
 return M
