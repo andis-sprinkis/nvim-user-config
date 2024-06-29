@@ -70,7 +70,7 @@ local M = {
           { name = 'latex_symbols' },
           { name = 'nvim_lua' },
           { name = 'path' },
-          { name = 'buffer' },
+          { name = 'buffer' }, -- TODO: autocommand to detach from large buffers
           { name = 'tmux' },
           { name = 'zsh' },
           source_cmp_rg,

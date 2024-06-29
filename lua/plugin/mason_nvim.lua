@@ -108,6 +108,7 @@ local M = {
       server_capabilities.documentRangeFormattingProvider = false
     end
 
+    -- TODO: autocommand to detach from large buffers
     require("mason").setup()
 
     require("mason-lspconfig").setup({ ensure_installed = lsp_servers })
@@ -163,6 +164,7 @@ local M = {
       end
     })
 
+    -- TODO: autocommand to detach from large buffers
     require('mason-null-ls').setup({ ensure_installed = linters_formatters })
 
     local null_ls = require('null-ls')

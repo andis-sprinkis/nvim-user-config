@@ -1,6 +1,7 @@
 local M = {
   'haringsrob/nvim_context_vt',
   config = function()
+    -- TODO: autocommand to detach from large buffers
     local context_vt = require("nvim_context_vt")
     local context_vt_utils = require('nvim_context_vt.utils')
 

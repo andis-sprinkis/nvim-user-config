@@ -5,13 +5,13 @@ local M = {
       return vim.b.large_file_buf
     end
 
+    local langs_disable = {}
+
     require 'nvim-treesitter.configs'.setup {
       ensure_installed = "all",
       highlight = {
         enable = true,
         disable = function (lang, buf)
-          local langs_disable = {}
-
           for i in ipairs(langs_disable) do
             if (langs_disable[i] == lang) then
               return true

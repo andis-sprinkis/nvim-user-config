@@ -1,6 +1,6 @@
 local M = {
   'monkoose/matchparen.nvim',
-  config = true,
+  config = true, -- TODO: autocommand to detach from large buffers
   event = 'VeryLazy'
 }
 
