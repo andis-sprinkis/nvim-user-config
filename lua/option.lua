@@ -45,7 +45,7 @@ o.signcolumn = 'yes:2'
 o.splitbelow = true
 o.splitkeep = 'screen'
 o.splitright = true
-o.statuscolumn = '%s%=%T%{v:relnum?v:relnum:v:lnum}│%T'
+o.statuscolumn = "%s%=%T%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : '┊'}│%T"
 o.swapfile = false
 o.tabstop = 2
 o.title = true
