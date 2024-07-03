@@ -40,11 +40,12 @@ local static_p1 = table.concat({
 
 local static_p2 = table.concat({
   '%=',
-  pad(func('bname') .. '%m%r%h%q'),
+  pad(func('bname')),
   '%=%#StatusLineNC#',
+  pad('%h%q%r%m'),
   pad(func('ft')),
   pad(func('fenc_ffmat')),
-  ' %3p%% %2l(%02c)/%-3L ',
+  pad('%3c %2l/%-L'),
 })
 
 function M.statusline(active)
