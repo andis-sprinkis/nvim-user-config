@@ -117,7 +117,7 @@ local static_p2 = table.concat({
   '%=%#StatusLineNC#',
   pad(func('ft')),
   pad(func('fenc_ffmat')),
-  ' %3p%% %2l(%02c)/%-3L ',
+  ' %3c %2l/%2L ',
 })
 
 function M.statusline(active)
