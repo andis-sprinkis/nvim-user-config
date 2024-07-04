@@ -10,7 +10,7 @@ local M = {
     local api = vim.api
     local km = vim.keymap.set
 
-    local au_spectre = api.nvim_create_augroup('spectre', {})
+    local au_spectre = api.nvim_create_augroup('spectre', { clear = true })
 
     api.nvim_create_autocmd(
       { 'Filetype' },

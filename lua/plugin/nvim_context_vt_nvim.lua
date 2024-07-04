@@ -16,7 +16,7 @@ local M = {
     local ag = vim.api.nvim_create_augroup
     local ac = vim.api.nvim_create_autocmd
 
-    local ag_nvim_context_vt_cfg = ag('nvim_context_vt_cfg', {})
+    local ag_nvim_context_vt_cfg = ag('nvim_context_vt_cfg', { clear = true })
 
     ac({ 'BufRead' }, {
       group = ag_nvim_context_vt_cfg,

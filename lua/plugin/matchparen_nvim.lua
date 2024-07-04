@@ -8,7 +8,7 @@ local M = {
     local ag = vim.api.nvim_create_augroup
     local ac = vim.api.nvim_create_autocmd
 
-    local ag_matchparen_nvim_cfg = ag('matchparen_nvim_cfg', {})
+    local ag_matchparen_nvim_cfg = ag('matchparen_nvim_cfg', { clear = true })
 
     ac({ 'BufRead' }, {
       group = ag_matchparen_nvim_cfg,

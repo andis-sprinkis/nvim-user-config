@@ -90,7 +90,7 @@ local M = {
       dapui_watches = true,
     }
 
-    local ag_dapui_cfg = ag('dapui_cfg', {})
+    local ag_dapui_cfg = ag('dapui_cfg', { clear = true })
 
     ac(
       'FileType',

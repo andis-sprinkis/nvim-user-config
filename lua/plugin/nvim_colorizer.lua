@@ -14,7 +14,7 @@ local M = {
     local ag = vim.api.nvim_create_augroup
     local ac = vim.api.nvim_create_autocmd
 
-    local ag_vim_colorizer_cfg = ag('vim_colorizer_cfg', {})
+    local ag_vim_colorizer_cfg = ag('vim_colorizer_cfg', { clear = true })
 
     ac({ 'BufRead' }, {
       group = ag_vim_colorizer_cfg,
