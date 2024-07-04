@@ -57,8 +57,6 @@ local M = {
 
     local function buf_format() lspbuf.format({ async = true }) end
 
-    vim.api.nvim_create_user_command('Format', buf_format, { bang = true })
-
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
     local on_attach = function(client, bufnr)

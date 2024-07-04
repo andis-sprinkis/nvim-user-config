@@ -18,7 +18,7 @@ if (sys_reqr.lsp_plugins) then
   local lsp_severity = { { 'Warn', 'W' }, { 'Error', 'E' }, { 'Info', 'I' }, { 'Hint', 'H' } }
 
   function M.lsp_status()
-    if vim.tbl_isempty(lsp.buf_get_clients(0)) then return '' end
+    if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then return '' end
 
     local status = {}
 
