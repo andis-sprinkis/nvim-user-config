@@ -1,9 +1,11 @@
 local M = {
   'm-demare/hlargs.nvim',
   config = function()
-    -- TODO: autocommand to detach from large buffers
     require('hlargs').setup {
       hl_priority = 200,
+      disable = function ()
+        return vim.b.large_file_buf
+      end
     }
   end,
   event = 'VeryLazy',
