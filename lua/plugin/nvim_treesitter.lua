@@ -1,25 +1,15 @@
 local M = {
   'nvim-treesitter/nvim-treesitter',
   config = function()
-    local disable = function(lang, buf)
+    local disable = function()
       return vim.b.large_file_buf
     end
-
-    local langs_disable = {}
 
     require 'nvim-treesitter.configs'.setup {
       ensure_installed = "all",
       highlight = {
         enable = true,
-        disable = function (lang, buf)
-          for i in ipairs(langs_disable) do
-            if (langs_disable[i] == lang) then
-              return true
-            end
-          end
-
-          return disable(lang, buf)
-        end,
+        disable = disable,
       },
       indent = {
         enable = true,
@@ -27,10 +17,22 @@ local M = {
       }
     }
 
-    local o = vim.opt
-    o.foldmethod = 'expr'
-    o.foldenable = false
-    o.foldexpr = 'nvim_treesitter#foldexpr()'
+    local ag = vim.api.nvim_create_augroup
+    local ac = vim.api.nvim_create_autocmd
+
+    local ag_nvim_treesitter_cfg = ag('nvim_treesitter_cfg', {})
+
+    ac({ 'BufRead' }, {
+      group = ag_nvim_treesitter_cfg,
+      callback = function()
+        if not disable() then
+          local ol = vim.opt_local
+          ol.foldmethod = 'expr'
+          ol.foldenable = false
+          ol.foldexpr = 'nvim_treesitter#foldexpr()'
+        end
+      end
+    })
   end,
   build = ':TSUpdate'
 }
