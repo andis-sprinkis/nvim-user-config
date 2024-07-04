@@ -165,15 +165,11 @@ ac(
 
       if ok and stats and (stats.size > max_file_size_b) then
         b.large_file_buf = true
-
-        ol.foldmethod = "manual"
-
-        vim.notify('This file is larger than ' .. max_file_size_kb .. ' KB. Some of the buffer options and plugins are disabled.')
-
+        ol.foldmethod = "expr"
         return
       end
 
-      vim.b.large_file_buf = false
+      b.large_file_buf = false
     end,
     group = ag_option,
   }

@@ -86,6 +86,8 @@ function M.bname()
   return name
 end
 
+function M.large_file_buf() return vim.b.large_file_buf and '[Large]' or '' end
+
 local function pad(x) return '%( ' .. x .. ' %)' end
 
 local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
@@ -115,7 +117,7 @@ local static_p2 = table.concat({
   '%=',
   pad(func('bname')),
   '%=%#StatusLineNC#',
-  pad('%h%q%r%m'),
+  pad('%h%q%r%m' .. func('large_file_buf')),
   pad(func('ft')),
   pad(func('fenc_ffmat')),
   pad('%3c %2l/%-L'),
