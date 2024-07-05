@@ -1,5 +1,4 @@
-local g = vim.g
-local sys_reqr = g.sys_reqr
+local sys_reqr = vim.g.sys_reqr
 
 local M = {
   'williamboman/mason.nvim',
@@ -61,7 +60,6 @@ local M = {
     -- after the language server attaches to the current buffer
     local on_attach = function(client, bufnr)
       local map_opts = { buffer = bufnr }
-      local server_capabilities = client.server_capabilities
 
       -- Enable completion triggered by <c-x><c-o>
       api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -81,6 +79,8 @@ local M = {
       km('n', '<Leader>ca', lspbuf.code_action, map_opts)
       km('n', 'gr', lspbuf.references, map_opts)
 
+      local server_capabilities = client.server_capabilities
+
       if server_capabilities.documentFormattingProvider then
         km('n', '<Leader>f', buf_format, map_opts)
       end
@@ -88,6 +88,9 @@ local M = {
       if server_capabilities.documentRangeFormattingProvider then
         km('x', '<Leader>f', buf_format, map_opts)
       end
+
+      -- Disabling LSP highlights
+      -- server_capabilities.semanticTokensProvider = nil
     end
 
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -97,13 +100,6 @@ local M = {
         capabilities = cmp_nvim_lsp.default_capabilities(),
         on_attach = on_attach,
       }
-    end
-
-    local function remove_formatting_capabilities(client)
-      local server_capabilities                           = client.server_capabilities
-
-      server_capabilities.documentFormattingProvider      = false
-      server_capabilities.documentRangeFormattingProvider = false
     end
 
     -- TODO: autocommand to detach from large buffers
@@ -149,7 +145,11 @@ local M = {
         local config = make_config()
 
         config.on_attach = function(client, bufnr)
-          remove_formatting_capabilities(client)
+          local server_capabilities                           = client.server_capabilities
+
+          server_capabilities.documentFormattingProvider      = false
+          server_capabilities.documentRangeFormattingProvider = false
+
           on_attach(client, bufnr)
         end
 
@@ -157,7 +157,9 @@ local M = {
       end,
       ["clangd"] = function()
         local config = make_config()
+
         config.capabilities.offsetEncoding = { "utf-16" }
+
         lspconfig.clangd.setup(config)
       end
     })
