@@ -128,9 +128,20 @@ ac(
   'FileType',
   {
     group = ag_option,
-    pattern = 'make',
+    pattern = { 'asm', 'make', 'gitconfig' },
     callback = function()
       ol.expandtab = false
+    end
+  }
+)
+
+ac(
+  'FileType',
+  {
+    group = ag_option,
+    pattern = { 'markdown' },
+    callback = function()
+      ol.formatoptions:append 'r'
     end
   }
 )
