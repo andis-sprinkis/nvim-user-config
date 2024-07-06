@@ -144,6 +144,17 @@ ac(
 )
 
 ac(
+  'FileType',
+  {
+    group = ag_option,
+    pattern = { 'markdown' },
+    callback = function()
+      ol.formatoptions:append 'r'
+    end
+  }
+)
+
+ac(
   'TextYankPost',
   {
     group = ag_option,
