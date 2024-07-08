@@ -5,9 +5,6 @@ local M = {
     'williamboman/mason.nvim',
   },
   event = "VeryLazy",
-  opts = {
-    notifications = true
-  }
 }
 
 return M
