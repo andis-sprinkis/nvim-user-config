@@ -38,9 +38,13 @@ o.showmode = false
 o.sidescrolloff = 20
 o.signcolumn = 'yes:2'
 o.splitbelow = true
-o.splitkeep = 'screen'
+if vim.fn.has('nvim-0.8.2') == 1 then
+  o.splitkeep = 'screen'
+end
+if vim.fn.has('nvim-0.10') == 1 then
+  o.statuscolumn = "%s%=%T%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : '┊'}│%T"
+end
 o.splitright = true
-o.statuscolumn = "%s%=%T%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : '┊'}│%T"
 o.swapfile = false
 o.tabstop = 2
 o.title = true
