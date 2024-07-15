@@ -87,7 +87,7 @@ ac(
   {
     group = ag_option,
     callback = function()
-      pcall(function() cmd.cd('%:p:h') end)
+      pcall(function() cmd([[cd %:p:h]]) end)
     end
   }
 )
@@ -97,7 +97,7 @@ ac(
   {
     group = ag_option,
     callback = function()
-      cmd.wincmd('=')
+      cmd([[wincmd =]])
     end
   }
 )
@@ -110,7 +110,7 @@ ac(
       ol.number = false
       ol.relativenumber = false
       ol.signcolumn = 'no'
-      cmd.startinsert()
+      cmd[[startinsert]]
     end
   }
 )
