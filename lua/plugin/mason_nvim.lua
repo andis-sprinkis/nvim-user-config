@@ -102,7 +102,6 @@ local M = {
       }
     end
 
-    -- TODO: autocommand to detach from large buffers
     require("mason").setup()
 
     require("mason-lspconfig").setup({ ensure_installed = lsp_servers })
@@ -164,7 +163,6 @@ local M = {
       end
     })
 
-    -- TODO: autocommand to detach from large buffers
     require('mason-null-ls').setup({ ensure_installed = linters_formatters })
 
     local null_ls = require('null-ls')
@@ -193,6 +191,19 @@ local M = {
       automatic_setup = true,
       ensure_installed = dap_providers
     })
+
+    -- vim.api.nvim_create_autocmd('LspAttach', {
+    --   callback = function()
+    --     if vim.b.large_file_buf then
+    --       vim.defer_fn(function()
+    --         vim.cmd [[LspStop]]
+    --         vim.notify(
+    --           "LSP clients for the buffer were stopped because it is large."
+    --         )
+    --       end, 10)
+    --     end
+    --   end
+    -- })
   end,
   dependencies = {
     'b0o/schemastore.nvim',
