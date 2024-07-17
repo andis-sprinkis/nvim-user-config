@@ -79,6 +79,7 @@ local M = {
   require('plugin.vim_octave'),
   require('plugin.vim_table_mode'),
   require('plugin.vim_wordmotion'),
+  require('plugin.which_key_nvim'),
   require('plugin.winshift_nvim'),
 }
 
