@@ -68,7 +68,7 @@ local M = {
       -- See `:help vim.lsp.*` for documentation on any of the below functions
       km('n', 'gD', lspbuf.declaration, map_opts)
       km('n', 'gd', lspbuf.definition, map_opts)
-      km('n', 'K', lspbuf.hover, map_opts)
+      km({ 'n', 'x' }, 'K', lspbuf.hover, map_opts)
       km('n', 'gi', lspbuf.implementation, map_opts)
       km('n', '<C-s>', lspbuf.signature_help, map_opts)
       -- km('n', '<Leader>wa', lspbuf.add_workLeader_folder, map_opts)
