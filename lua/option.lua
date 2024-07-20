@@ -68,6 +68,8 @@ km('n', '<C-l>', '<C-W><C-L>')
 km('n', '<C-h>', '<C-W><C-H>')
 km('n', '-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>', { silent = true })
 km('n', '<leader>b', ":set nomore <Bar> :ls <Bar> :set more <CR>:b<Space>", { silent = true })
+km('n', '/', '/\\c')
+km('n', '?', '?\\c')
 
 km(
   'n',
