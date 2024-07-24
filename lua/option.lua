@@ -54,21 +54,21 @@ o.virtualedit:append 'block'
 o.winblend = 10
 o.writebackup = false
 
-km({ 'n', 'v' }, 'h', '<bs>')
-km({ 'n', 'v' }, 'l', '<space>')
-km('n', '<leader>v', cmd.split)
-km('n', '<leader>o', cmd.vsplit)
-km('t', '<C-w>', '<C-\\><C-n>')
-km('n', '<C-A-j>', function() cmd.resize('+2') end)
-km('n', '<C-A-k>', function() cmd.resize('-2') end)
-km('n', '<C-A-l>', function() cmd('vertical resize +4') end)
-km('n', '<C-A-h>', function() cmd('vertical resize -4') end)
-km('n', '<C-j>', '<C-W><C-J>')
-km('n', '<C-k>', '<C-W><C-K>')
-km('n', '<C-l>', '<C-W><C-L>')
-km('n', '<C-h>', '<C-W><C-H>')
-km('n', '/', '/\\c')
-km('n', '?', '?\\c')
+km({ 'n', 'v' }, 'h', '<bs>', { desc = "Move to next character (<BS>)" })
+km({ 'n', 'v' }, 'l', '<space>', { desc = "Move to previous character (<Space>)" })
+km('n', '<leader>v', cmd.split, { desc = "Split window (split)" })
+km('n', '<leader>o', cmd.vsplit, { desc = "Split window (vsplit)" })
+km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode" })
+km('n', '<C-A-j>', function() cmd.resize('+2') end, { desc = "Increase window size (resize)" })
+km('n', '<C-A-k>', function() cmd.resize('-2') end, { desc = "Decrease window size (resize)" })
+km('n', '<C-A-l>', function() cmd('vertical resize +4') end, { desc = "Increase window size (vertical resize)" })
+km('n', '<C-A-h>', function() cmd('vertical resize -4') end, { desc = "Decrease window size (vertical resize)" })
+km('n', '<C-j>', '<C-W><C-J>', { desc = "Dunno" })
+km('n', '<C-k>', '<C-W><C-K>', { desc = "Dunno" })
+km('n', '<C-l>', '<C-W><C-L>', { desc = "Dunno" })
+km('n', '<C-h>', '<C-W><C-H>', { desc = "Dunno" })
+km('n', '/', '/\\c', { desc = "Search forward" })
+km('n', '?', '?\\c', { desc = "Search backward" })
 
 km(
   'n',
