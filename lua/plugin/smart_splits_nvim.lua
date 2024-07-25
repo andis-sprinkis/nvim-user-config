@@ -9,15 +9,15 @@ local M = {
     })
 
     -- resizing splits
-    km('n', '<C-A-h>', smart_splits.resize_left)
-    km('n', '<C-A-j>', smart_splits.resize_down)
-    km('n', '<C-A-k>', smart_splits.resize_up)
-    km('n', '<C-A-l>', smart_splits.resize_right)
+    km('n', '<C-A-h>', smart_splits.resize_left, { desc = 'Dunno (smart-splits)' })
+    km('n', '<C-A-j>', smart_splits.resize_down, { desc = 'Dunno (smart-splits)' })
+    km('n', '<C-A-k>', smart_splits.resize_up, { desc = 'Dunno (smart-splits)' })
+    km('n', '<C-A-l>', smart_splits.resize_right, { desc = 'Dunno (smart-splits)' })
     -- moving between splits
-    km('n', '<C-h>', smart_splits.move_cursor_left)
-    km('n', '<C-j>', smart_splits.move_cursor_down)
-    km('n', '<C-k>', smart_splits.move_cursor_up)
-    km('n', '<C-l>', smart_splits.move_cursor_right)
+    km('n', '<C-h>', smart_splits.move_cursor_left, { desc = 'Dunno (smart-splits)' })
+    km('n', '<C-j>', smart_splits.move_cursor_down, { desc = 'Dunno (smart-splits)' })
+    km('n', '<C-k>', smart_splits.move_cursor_up, { desc = 'Dunno (smart-splits)' })
+    km('n', '<C-l>', smart_splits.move_cursor_right, { desc = 'Dunno (smart-splits)' })
   end,
   keys = {
     { '<C-A-h>', mode = 'n' },

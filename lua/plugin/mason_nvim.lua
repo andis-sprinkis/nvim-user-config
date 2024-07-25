@@ -49,44 +49,42 @@ local M = {
 
     -- Mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    km('n', '<Leader>d', diagnostic.open_float)
-    km('n', '[d', diagnostic.goto_prev)
-    km('n', ']d', diagnostic.goto_next)
-    km('n', '<Leader>q', diagnostic.setloclist)
+    km('n', '<Leader>d', diagnostic.open_float, { desc = 'Dunno (LSP)' })
+    km('n', '[d', diagnostic.goto_prev, { desc = 'Dunno (LSP)' })
+    km('n', ']d', diagnostic.goto_next, { desc = 'Dunno (LSP)' })
+    km('n', '<Leader>q', diagnostic.setloclist, { desc = 'Dunno (LSP)' })
 
     local function buf_format() lspbuf.format({ async = true }) end
 
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
     local on_attach = function(client, bufnr)
-      local map_opts = { buffer = bufnr }
-
       -- Enable completion triggered by <c-x><c-o>
       api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
       -- Mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
-      km('n', 'gD', lspbuf.declaration, map_opts)
-      km('n', 'gd', lspbuf.definition, map_opts)
-      km({ 'n', 'x' }, 'K', lspbuf.hover, map_opts)
-      km('n', 'gi', lspbuf.implementation, map_opts)
-      km('n', '<C-s>', lspbuf.signature_help, map_opts)
-      -- km('n', '<Leader>wa', lspbuf.add_workLeader_folder, map_opts)
-      -- km('n', '<Leader>wr', lspbuf.remove_workLeader_folder, map_opts)
-      -- km('n', '<Leader>wl', function() print(vim.inspect(lspbuf.list_workLeader_folders())) end, map_opts)
-      km('n', '<Leader>D', lspbuf.type_definition, map_opts)
-      km('n', '<Leader>rn', lspbuf.rename, map_opts)
-      km('n', '<Leader>ca', lspbuf.code_action, map_opts)
-      km('n', 'gr', lspbuf.references, map_opts)
+      km('n', 'gD', lspbuf.declaration, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      km('n', 'gd', lspbuf.definition, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      km({ 'n', 'x' }, 'K', lspbuf.hover, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      km('n', 'gi', lspbuf.implementation, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      km('n', '<C-s>', lspbuf.signature_help, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      -- km('n', '<Leader>wa', lspbuf.add_workLeader_folder, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      -- km('n', '<Leader>wr', lspbuf.remove_workLeader_folder, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      -- km('n', '<Leader>wl', function() print(vim.inspect(lspbuf.list_workLeader_folders())) end, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      km('n', '<Leader>D', lspbuf.type_definition, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      km('n', '<Leader>rn', lspbuf.rename, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      km('n', '<Leader>ca', lspbuf.code_action, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      km('n', 'gr', lspbuf.references, { buffer = bufnr, desc = 'Dunno (LSP)' })
 
       local server_capabilities = client.server_capabilities
 
       if server_capabilities.documentFormattingProvider then
-        km('n', '<Leader>f', buf_format, map_opts)
+        km('n', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Dunno (LSP)' })
       end
 
       if server_capabilities.documentRangeFormattingProvider then
-        km('x', '<Leader>f', buf_format, map_opts)
+        km('x', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Dunno (LSP)' })
       end
 
       -- Disabling LSP highlights
@@ -174,15 +172,14 @@ local M = {
         null_ls.builtins.code_actions.gitsigns,
       },
       on_attach = function(client, bufnr)
-        local map_opts = { buffer = bufnr }
         local server_capabilities = client.server_capabilities
 
         if server_capabilities.documentFormattingProvider then
-          km('n', '<Leader>f', buf_format, map_opts)
+          km('n', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Dunno (null-ls)' })
         end
 
         if server_capabilities.documentRangeFormattingProvider then
-          km('x', '<Leader>f', buf_format, map_opts)
+          km('x', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Dunno (null-ls)' })
         end
       end,
     })

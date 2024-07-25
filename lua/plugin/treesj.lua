@@ -9,9 +9,8 @@ local M = {
       max_join_length = 2048,
     })
 
-    local map_opts = { silent = true }
-    km('n', '<Leader>k', treesj.join, map_opts)
-    km('n', '<Leader>j', treesj.split, map_opts)
+    km('n', '<Leader>k', treesj.join, { silent = true, desc = 'Dunno (treesj)' })
+    km('n', '<Leader>j', treesj.split, { silent = true, desc = 'Dunno (treesj)' })
   end,
   event = 'VeryLazy'
 }
