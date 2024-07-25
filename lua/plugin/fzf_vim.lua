@@ -20,10 +20,9 @@ local M = {
       cmd('Files')
     end
 
-    local map_opts = { silent = true }
-    km('n', '<tab>', show_files_with_git, map_opts)
-    km('n', '<s-tab>', ':Files<cr>', map_opts)
-    km('n', '<leader>e', ':Rg<cr>', map_opts)
+    km('n', '<tab>', show_files_with_git, { silent = true, desc = 'Dunno (fzf.vim)' })
+    km('n', '<s-tab>', ':Files<cr>', { silent = true, desc = 'Dunno (fzf.vim)' })
+    km('n', '<leader>e', ':Rg<cr>', { silent = true, desc = 'Dunno (fzf.vim)' })
 
     if fn.executable('bat') == 1 then
       env.BAT_THEME = 'Visual Studio Dark+'

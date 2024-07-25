@@ -63,11 +63,11 @@ local M = {
       fzflua.files()
     end
 
-    km('n', '<tab>', show_files_with_git)
-    km('n', '<s-tab>', fzflua.files)
-    km('n', '<leader>e', function() fzflua.grep({ search = '' }) end)
-    km('n', '<leader>z', fzflua.builtin)
-    km('n', '<leader>h', fzflua.help_tags)
+    km('n', '<tab>', show_files_with_git, { desc = 'Dunno (fzf-lua)' })
+    km('n', '<s-tab>', fzflua.files, { desc = 'Dunno (fzf-lua)' })
+    km('n', '<leader>e', function() fzflua.grep({ search = '' }) end, { desc = 'Dunno (fzf-lua)' })
+    km('n', '<leader>z', fzflua.builtin, { desc = 'Dunno (fzf-lua)' })
+    km('n', '<leader>h', fzflua.help_tags, { desc = 'Dunno (fzf-lua)' })
   end,
   event = { "CmdlineEnter" },
   keys = {
