@@ -167,8 +167,8 @@ ac(
   }
 )
 
-local max_file_size_kb = 100
-local max_file_size_b = 1024 * max_file_size_kb -- 1024 * KB
+g.max_file_size_kb = 100
+g.max_file_size_b = 1024 * g.max_file_size_kb -- 1024 * KB
 
 ac(
   'BufReadPre',
@@ -176,7 +176,7 @@ ac(
     callback = function()
       local ok, stats = pcall(loop.fs_stat, api.nvim_buf_get_name(api.nvim_get_current_buf()))
 
-      if ok and stats and (stats.size > max_file_size_b) then
+      if ok and stats and (stats.size > g.max_file_size_b) then
         b.large_file_buf = true
         ol.foldmethod = "expr"
         return

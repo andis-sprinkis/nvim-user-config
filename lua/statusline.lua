@@ -55,6 +55,26 @@ if sys_reqr.swenv then
   end
 end
 
+function M.mime()
+  if vim.bo.ft ~= '' then return '' end
+
+  local bname = vim.fn.getreg('%')
+
+  if (bname == '') then return '' end
+
+  local file = io.open(bname, "r")
+
+  if not file then return '' end
+
+  file.close(file)
+
+  local cmd_mime_output = vim.fn.system('file --mime-type --brief ' .. fn.expand('%:p'))
+
+  if (vim.v.shell_error ~= 0) then return '' end
+
+  return vim.fn.trim(cmd_mime_output)
+end
+
 function M.ft() return bo.filetype end
 
 function M.fenc_ffmat()
@@ -86,7 +106,9 @@ function M.bname()
   return name
 end
 
-function M.large_file_buf() return vim.b.large_file_buf and '[Large]' or '' end
+local label_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
+
+function M.large_file_buf() return vim.b.large_file_buf and label_large_file_buf or '' end
 
 local function pad(x) return '%( ' .. x .. ' %)' end
 
@@ -118,6 +140,7 @@ local static_p2 = table.concat({
   pad(func('bname')),
   '%=%#StatusLineNC#',
   pad(func('large_file_buf') .. '%h%q%r%m'),
+  pad(func('mime')),
   pad(func('ft')),
   pad(func('fenc_ffmat')),
   pad('%3c %2l/%-L'),
