@@ -71,6 +71,7 @@ local M = {
   require('plugin.suda_vim'),
   require('plugin.swenv_nvim'),
   require('plugin.treesj'),
+  require('plugin.typst_preview_nvim'),
   require('plugin.vim_color_convert_to'),
   require('plugin.vim_doge'),
   require('plugin.vim_eunuch'),
