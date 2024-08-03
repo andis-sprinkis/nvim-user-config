@@ -1,13 +1,13 @@
 local fn = vim.fn
 local g = vim.g
 -- local os = g.os
-local exec = g.exec
 local executable = fn.executable
 
-exec = {
+g.exec = {
   bash = executable('bash') == 1,
   bat = executable('bat') == 1,
   cat = executable('cat') == 1,
+  chafa = executable('chafa') == 1,
   fzf = executable('fzf') == 1,
   lf = executable('lf') == 1,
   node = executable('node') == 1,
@@ -19,6 +19,8 @@ exec = {
   tmux = executable('tmux') == 1,
   zsh = executable('zsh') == 1,
 }
+
+local exec = g.exec
 
 g.sys_reqr = {
   cmp_tmux = exec.tmux,
