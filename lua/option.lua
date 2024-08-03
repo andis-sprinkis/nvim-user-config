@@ -55,8 +55,8 @@ o.writebackup = false
 
 km({ 'n', 'v' }, 'h', '<bs>')
 km({ 'n', 'v' }, 'l', '<space>')
-km('n', '<leader>v', ':vsplit<cr>', { silent = true })
-km('n', '<leader>o', ':split<cr>', { silent = true })
+km('n', '<leader>v', ':split<cr>', { silent = true })
+km('n', '<leader>o', ':vsplit<cr>', { silent = true })
 km('t', '<C-w>', '<C-\\><C-n>')
 km('n', '<C-A-j>', ':resize +2<cr>', { silent = true })
 km('n', '<C-A-k>', ':resize -2<cr>', { silent = true })
