@@ -49,10 +49,10 @@ local M = {
 
     -- Mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    km('n', '<Leader>d', diagnostic.open_float, { desc = 'Dunno (LSP)' })
-    km('n', '[d', diagnostic.goto_prev, { desc = 'Dunno (LSP)' })
-    km('n', ']d', diagnostic.goto_next, { desc = 'Dunno (LSP)' })
-    km('n', '<Leader>q', diagnostic.setloclist, { desc = 'Dunno (LSP)' })
+    km('n', '<Leader>d', diagnostic.open_float, { desc = 'Show diagnostics in a floating window (LSP)' })
+    km('n', '[d', diagnostic.goto_prev, { desc = 'Move to the previous diagnostic in the current buffer (LSP)' })
+    km('n', ']d', diagnostic.goto_next, { desc = 'Move to the next diagnostic in the current buffer (LSP)' })
+    km('n', '<Leader>q', diagnostic.setloclist, { desc = 'Add buffer diagnostics to the location list (LSP)' })
 
     local function buf_format() lspbuf.format({ async = true }) end
 
@@ -64,27 +64,27 @@ local M = {
 
       -- Mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
-      km('n', 'gD', lspbuf.declaration, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      km('n', 'gd', lspbuf.definition, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      km({ 'n', 'x' }, 'K', lspbuf.hover, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      km('n', 'gi', lspbuf.implementation, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      km('n', '<C-s>', lspbuf.signature_help, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      -- km('n', '<Leader>wa', lspbuf.add_workLeader_folder, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      -- km('n', '<Leader>wr', lspbuf.remove_workLeader_folder, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      -- km('n', '<Leader>wl', function() print(vim.inspect(lspbuf.list_workLeader_folders())) end, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      km('n', '<Leader>D', lspbuf.type_definition, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      km('n', '<Leader>rn', lspbuf.rename, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      km('n', '<Leader>ca', lspbuf.code_action, { buffer = bufnr, desc = 'Dunno (LSP)' })
-      km('n', 'gr', lspbuf.references, { buffer = bufnr, desc = 'Dunno (LSP)' })
+      km('n', 'gD', lspbuf.declaration, { buffer = bufnr, desc = 'Jump to the declaration of the symbol under the cursor (LSP)' })
+      km('n', 'gd', lspbuf.definition, { buffer = bufnr, desc = 'Jump to the definition of the symbol under the cursor (LSP)' })
+      km({ 'n', 'x' }, 'K', lspbuf.hover, { buffer = bufnr, desc = 'Display hover information about the symbol under the cursor (LSP)' })
+      km('n', 'gi', lspbuf.implementation, { buffer = bufnr, desc = 'List all the implementations for the symbol under the cursor (LSP)' })
+      km('n', '<C-s>', lspbuf.signature_help, { buffer = bufnr, desc = 'Displays signature information about the symbol under the cursor (LSP)' })
+      -- km('n', '<Leader>wa', lspbuf.add_workspace_folder, { buffer = bufnr, desc = 'Add the folder at path to the workspace folders (LSP)' })
+      -- km('n', '<Leader>wr', lspbuf.remove_workspace_folder, { buffer = bufnr, desc = 'Remove the folder at path from the workspace folders (LSP)' })
+      -- km('n', '<Leader>wl', function() print(vim.inspect(lspbuf.list_workspace_folders())) end, { buffer = bufnr, desc = 'List workspace folders (LSP)' })
+      km('n', '<Leader>D', lspbuf.type_definition, { buffer = bufnr, desc = 'Jump to the definition of the type of the symbol under the cursor (LSP)' })
+      km('n', '<Leader>rn', lspbuf.rename, { buffer = bufnr, desc = 'Rename all references to the symbol under the cursor (LSP)' })
+      km('n', '<Leader>ca', lspbuf.code_action, { buffer = bufnr, desc = 'Select a code action available at the current cursor position (LSP)' })
+      km('n', 'gr', lspbuf.references, { buffer = bufnr, desc = 'List all the references to the symbol under the cursor (LSP)' })
 
       local server_capabilities = client.server_capabilities
 
       if server_capabilities.documentFormattingProvider then
-        km('n', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Dunno (LSP)' })
+        km('n', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Format a buffer using the attached LSP (LSP)' })
       end
 
       if server_capabilities.documentRangeFormattingProvider then
-        km('x', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Dunno (LSP)' })
+        km('x', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Format a buffer using the attached LSP (LSP)' })
       end
 
       -- Disabling LSP highlights
@@ -175,11 +175,11 @@ local M = {
         local server_capabilities = client.server_capabilities
 
         if server_capabilities.documentFormattingProvider then
-          km('n', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Dunno (null-ls)' })
+          km('n', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Format a buffer using the attached LSP (null-ls)' })
         end
 
         if server_capabilities.documentRangeFormattingProvider then
-          km('x', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Dunno (null-ls)' })
+          km('x', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Format a buffer using the attached LSP (null-ls)' })
         end
       end,
     })
