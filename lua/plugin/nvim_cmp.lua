@@ -27,6 +27,16 @@ local M = {
       keyword_length = 3,
     }
 
+    local source_cmp_buffer = {
+      name = 'buffer',
+      option = {
+        get_bufnrs = function()
+          if vim.b.large_file_buf then return {} end
+          return { buf = vim.api.nvim_get_current_buf() }
+        end
+      }
+    }
+
     cmp.setup({
       enabled = function()
         return api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
@@ -70,7 +80,7 @@ local M = {
           { name = 'latex_symbols' },
           { name = 'nvim_lua' },
           { name = 'path' },
-          { name = 'buffer' }, -- TODO: autocommand to detach from large buffers https://vi.stackexchange.com/a/43986
+          source_cmp_buffer,
           { name = 'tmux' },
           { name = 'zsh' },
           source_cmp_rg,
@@ -94,7 +104,7 @@ local M = {
         },
         sources = cmpc.sources(
           {
-            { name = 'buffer' },
+            source_cmp_buffer,
             { name = 'cmdline_history' },
           }
         ),
@@ -114,10 +124,7 @@ local M = {
             name = 'path',
             keyword_length = 2,
           },
-          {
-            name = 'buffer',
-            keyword_length = 2,
-          },
+          source_cmp_buffer,
           {
             name = 'nvim_lsp',
             keyword_length = 2,
