@@ -88,18 +88,18 @@ function M.fenc_ffmat()
   return table.concat(r, ' ')
 end
 
-local fugitive_bname_pattern = os == 'Windows_NT' and [[^fugitive:\\.*\%.git.*\(%x-)\(.*)]] or
-    [[^fugitive://.*/%.git.*/(%x-)/(.*)]]
+-- local fugitive_bname_pattern = os == 'Windows_NT' and [[^fugitive:\\.*\%.git.*\(%x-)\(.*)]] or
+-- [[^fugitive://.*/%.git.*/(%x-)/(.*)]]
 
 function M.bname()
   local width = math.floor(api.nvim_win_get_width(0) * 0.5)
   local name = fn.fnamemodify(api.nvim_buf_get_name(0), ':.')
 
-  if vim.startswith(name, 'fugitive') then
-    local _, commit, relpath
-    _, _, commit, relpath = name:find(fugitive_bname_pattern)
-    name = relpath .. '@' .. commit:sub(1, 7)
-  end
+  -- if vim.startswith(name, 'fugitive') then
+  --   local _, commit, relpath
+  --   _, _, commit, relpath = name:find(fugitive_bname_pattern)
+  --   name = relpath .. '@' .. commit:sub(1, 7)
+  -- end
 
   if #name > width then name = '...' .. name:sub(-width) end
 
