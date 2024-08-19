@@ -77,11 +77,11 @@ local M = {
       fzflua.files()
     end
 
-    km('n', '<tab>', show_files_with_git, { desc = 'Dunno (fzf-lua)' })
-    km('n', '<s-tab>', fzflua.files, { desc = 'Dunno (fzf-lua)' })
-    km('n', '<leader>e', function() fzflua.grep({ search = '' }) end, { desc = 'Dunno (fzf-lua)' })
-    km('n', '<leader>z', fzflua.builtin, { desc = 'Dunno (fzf-lua)' })
-    km('n', '<leader>h', fzflua.help_tags, { desc = 'Dunno (fzf-lua)' })
+    km('n', '<tab>', show_files_with_git, { desc = 'Search file paths in the working directory (Git or all) (fzf-lua)' })
+    km('n', '<s-tab>', fzflua.files, { desc = 'Search file paths in the working directory (all) (fzf-lua)' })
+    km('n', '<leader>e', function() fzflua.grep({ search = '' }) end, { desc = 'Search text in files in the working directory (Git or all) (fzf-lua)' })
+    km('n', '<leader>z', fzflua.builtin, { desc = 'Search fzf-lua builtin commands (fzf-lua)' })
+    km('n', '<leader>h', fzflua.help_tags, { desc = 'Search Help tags (fzf-lua)' })
   end,
   event = { "CmdlineEnter" },
   keys = {

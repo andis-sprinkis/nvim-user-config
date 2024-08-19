@@ -20,9 +20,9 @@ local M = {
       cmd('Files')
     end
 
-    km('n', '<tab>', show_files_with_git, { silent = true, desc = 'Dunno (fzf.vim)' })
-    km('n', '<s-tab>', ':Files<cr>', { silent = true, desc = 'Dunno (fzf.vim)' })
-    km('n', '<leader>e', ':Rg<cr>', { silent = true, desc = 'Dunno (fzf.vim)' })
+    km('n', '<tab>', show_files_with_git, { silent = true, desc = 'Search file paths in the working directory (Git or all)  (fzf.vim)' })
+    km('n', '<s-tab>', ':Files<cr>', { silent = true, desc = 'Search file paths in the working directory (all) (fzf.vim)' })
+    km('n', '<leader>e', ':Rg<cr>', { silent = true, desc = 'Search text in files in the working directory (Git or all) (fzf.vim)' })
 
     if fn.executable('bat') == 1 then
       env.BAT_THEME = 'Visual Studio Dark+'
