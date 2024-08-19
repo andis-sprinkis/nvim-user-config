@@ -16,7 +16,7 @@ g.os = loop.os_uname().sysname
 g.sys_reqr = {}
 g.exec = {}
 g.max_file_size_kb = 100
-g.max_file_size_b = 1024 * g.max_file_size_kb -- 1024 * <KB>
+g.max_file_size_b = 1024 * g.max_file_size_kb -- 1024 * KB
 
 g.loaded_netrwPlugin = 0
 g.man_hard_wrap = true
