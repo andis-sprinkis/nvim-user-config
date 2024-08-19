@@ -44,7 +44,8 @@ local M = {
     local linters_formatters = {
       'asmfmt',
       'prettier',
-      'shellcheck'
+      'shellcheck',
+      'checkmake'
     }
 
     -- Mappings.
@@ -169,6 +170,7 @@ local M = {
       sources = {
         null_ls.builtins.formatting.asmfmt,
         null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.checkmake,
         null_ls.builtins.code_actions.gitsigns,
       },
       on_attach = function(client, bufnr)
