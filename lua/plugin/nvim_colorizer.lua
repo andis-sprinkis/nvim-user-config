@@ -5,8 +5,7 @@ local M = {
       user_default_options = {
         RRGGBBAA = true,
         AARRGGBB = true,
-        rgb_fn = true,
-        hsl_fn = true,
+        css =  true,
         mode = "virtualtext"
       }
     }
