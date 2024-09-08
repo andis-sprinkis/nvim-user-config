@@ -24,7 +24,7 @@ local M = {
 
     local source_cmp_dictionary = {
       name = "dictionary",
-      keyword_length = 3,
+      keyword_length = 2,
     }
 
     local source_cmp_buffer = {
