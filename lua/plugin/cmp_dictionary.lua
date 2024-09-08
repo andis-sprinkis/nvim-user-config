@@ -2,7 +2,7 @@ local M = {
   'uga-rosa/cmp-dictionary',
   config = function()
     require("cmp_dictionary").setup({
-      exact_length = 2,
+      exact_length = 2, -- exact_length must match cmp sources entry keyword_length
       first_case_insensitive = true,
       document = {
         enable = false,
