@@ -151,7 +151,8 @@ local M = {
           on_attach(client, bufnr)
         end
 
-        lspconfig.tsserver.setup(config)
+        -- https://github.com/williamboman/mason.nvim/issues/1784
+        lspconfig.ts_ls.setup(config)
       end,
       ["clangd"] = function()
         local config = make_config()
