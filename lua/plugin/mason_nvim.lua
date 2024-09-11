@@ -24,7 +24,7 @@ local M = {
       'pylsp',
       'stylelint_lsp',
       'texlab',
-      'tsserver',
+      'ts_ls',
       'yamlls',
     }
 
@@ -139,7 +139,7 @@ local M = {
 
         lspconfig.jsonls.setup(config)
       end,
-      ["tsserver"] = function()
+      ["ts_ls"] = function()
         local config = make_config()
 
         config.on_attach = function(client, bufnr)
