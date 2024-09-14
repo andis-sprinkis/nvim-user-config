@@ -1,5 +1,5 @@
 local M = {
-  'andis-sprinkis/lf-vim',
+  'camnw/lf-vim',
   event = { 'BufReadPre lfrc' }
 }
 
