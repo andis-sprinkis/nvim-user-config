@@ -88,18 +88,47 @@ local M = {
 
     local function show_files_with_git()
       if vim.fn.system('git rev-parse --git-dir') == '.git\n' then
-        fzflua.git_files()
+        fzflua.git_files({ resume = true })
         return
       end
 
-      fzflua.files()
+      fzflua.files({ resume = true })
     end
 
-    km('n', '<tab>', show_files_with_git, { desc = 'Search file paths in the working directory (Git or all) (fzf-lua)' })
-    km('n', '<s-tab>', fzflua.files, { desc = 'Search file paths in the working directory (all) (fzf-lua)' })
-    km('n', '<leader>e', function() fzflua.grep({ search = '' }) end, { desc = 'Search text in files in the working directory (Git or all) (fzf-lua)' })
-    km('n', '<leader>z', fzflua.builtin, { desc = 'Search fzf-lua builtin commands (fzf-lua)' })
-    km('n', '<leader>h', fzflua.help_tags, { desc = 'Search Help tags (fzf-lua)' })
+    km(
+      'n',
+      '<tab>',
+      show_files_with_git,
+      { desc = 'Search file paths in the working directory (Git or all) (fzf-lua)' }
+    )
+
+    km(
+      'n',
+      '<s-tab>',
+      function() fzflua.files({ resume = true }) end,
+      { desc = 'Search file paths in the working directory (all) (fzf-lua)' }
+    )
+
+    km(
+      'n',
+      '<leader>e',
+      function() fzflua.grep({ search = '', resume = true }) end,
+      { desc = 'Search text in files in the working directory (Git or all) (fzf-lua)' }
+    )
+
+    km(
+      'n',
+      '<leader>z',
+      function() fzflua.builtin({ resume = true }) end,
+      { desc = 'Search fzf-lua builtin commands (fzf-lua)' }
+    )
+
+    km(
+      'n',
+      '<leader>h',
+      function() fzflua.help_tags({ resume = true }) end,
+      { desc = 'Search Help tags (fzf-lua)' }
+    )
   end,
   event = { "CmdlineEnter" },
   keys = {
