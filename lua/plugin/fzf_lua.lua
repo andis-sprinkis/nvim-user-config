@@ -78,6 +78,7 @@ local M = {
           vertical = 'up:60%',
           border = 'noborder',
           scrollchars = {'│', '' },
+          delay = 50,
         },
         hl = {
           border = 'FloatBorder'
