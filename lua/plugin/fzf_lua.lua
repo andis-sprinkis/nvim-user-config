@@ -6,7 +6,7 @@ local M = {
   cond = sys_reqr.fzf_lua,
   enabled = sys_reqr.fzf_lua,
   config = function()
-    -- local exec = g.exec
+    local exec = g.exec
     local km = vim.keymap.set
 
     -- local previewer_ext_associations = {}
@@ -50,7 +50,7 @@ local M = {
           cmd = 'man %s | col -bx',
         },
         builtin = {
-          extensions      = g.os ~= 'Windows_NT' and {
+          extensions      =  sys_reqr.previewer and {
             -- TODO: table with all extensions
             ["jpg"]       = { "previewer", "{file}" },
             ["jpeg"]       = { "previewer", "{file}" },
