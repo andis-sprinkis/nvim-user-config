@@ -5,7 +5,6 @@ set -eu
 # - chafa width and height adjust to preview window
 # - preview <-> text info horizontal layout ?
 # - add preview utils to list of dependencies in README.md
-# - share thumbs dir with lf previewer ?
 # - make this the default fzf-lua previewer ?
 #   -  accepting highligted text document lines parameter like fzf-lua bat integration does
 # - merge with lf previewer ?
@@ -16,7 +15,7 @@ h_chr="${3:-120}"
 FPATH_THUMB=""
 
 thumb_cache_create() {
-  dir_cache_thumb="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/thumbnails"
+  dir_cache_thumb="${XDG_CACHE_HOME:-$HOME/.cache}/previewer/thumbnails"
 
   if [ ! -d "$dir_cache_thumb" ]; then
     mkdir -p "$dir_cache_thumb"
