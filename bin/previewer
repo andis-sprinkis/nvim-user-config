@@ -5,7 +5,7 @@ set -eu
 # - chafa width and height adjust to preview window
 # - preview <-> text info horizontal layout ?
 # - add preview utils to list of dependencies in README.md
-# - make this the default fzf-lua previewer ?
+# - make this the default fzf-lua and fzf-vim previewer ?
 #   -  accepting highligted text document lines parameter like fzf-lua bat integration does
 # - merge with lf previewer ?
 
