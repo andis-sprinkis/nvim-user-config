@@ -76,7 +76,8 @@ local M = {
           wrap = 'wrap',
           layout = 'vertical',
           vertical = 'up:60%',
-          border = 'noborder'
+          border = 'noborder',
+          scrollchars = {'│', '' },
         },
         hl = {
           border = 'FloatBorder'
