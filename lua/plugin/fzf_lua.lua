@@ -6,7 +6,7 @@ local M = {
   cond = sys_reqr.fzf_lua,
   enabled = sys_reqr.fzf_lua,
   config = function()
-    local exec = g.exec
+    -- local exec = g.exec
     local km = vim.keymap.set
 
     local fzflua = require('fzf-lua')
