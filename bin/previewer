@@ -1,3 +1,100 @@
 #!/usr/bin/env sh
+set -eu
 
-# TODO
+# TODO:
+# - chafa width and height adjust to preview window
+# - preview <-> text info horizontal layout ?
+# - add preview utils to list of dependencies in README.md
+# - make this the default fzf-lua previewer ?
+#   -  accepting highligted text document lines parameter like fzf-lua bat integration does
+
+fpath="$(readlink -f "$1")"
+w_chr="${2:-80}"
+h_chr="${3:-120}"
+FPATH_THUMB=""
+
+thumb_cache_create() {
+  dir_cache_thumb="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/thumbnails"
+
+  if [ ! -d "$dir_cache_thumb" ]; then
+    mkdir -p "$dir_cache_thumb"
+  fi
+
+  FPATH_THUMB="${dir_cache_thumb}/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$fpath" | sha256sum | cut -d" " -f1)"
+}
+
+print_mediainfo() {
+  mediainfo "$fpath" | head -n -2 | sed -e 's/ \+: /: /g' -e '/^General$/d'
+}
+
+print_chafa() {
+  chafa --format "symbols" --font-ratio "1/2" --animate "off" --polite "on" --work "1" -s "$1" "$2"
+}
+
+mime="$(file --mime-type --brief "$fpath")"
+
+echo "$mime" "($(file --brief "$fpath"))"
+
+case $mime in
+  application/eps|application/pdf|application/postscript|application/x-eps|image/x-eps)
+    thumb_cache_create
+
+    if [ ! -f "${FPATH_THUMB}.jpg" ]; then
+      pdftoppm -jpeg -jpegopt quality=50 -f "1" -singlefile "$1" "$FPATH_THUMB"
+    fi
+
+    print_chafa "${w_chr}x${h_chr}" "${FPATH_THUMB}.jpg"
+    echo
+    pdfinfo "$fpath"
+    echo
+    pdftotext -l "2" -nopgbrk -q -- "$fpath" -
+  ;;
+  application/bzip*|application/gzip|application/vnd.rar|application/x-7z-compressed|application/x-rar|application/x-tar|application/x-xz|application/zip)
+    print_mediainfo
+    echo
+    als -- "$fpath"
+  ;;
+  image/*)
+    print_chafa "${w_chr}x${h_chr}" "$fpath"
+    echo
+    print_mediainfo
+  ;;
+  video/*|application/x-ogm-video)
+    thumb_cache_create
+
+    if [ ! -f "${FPATH_THUMB}.jpg" ]; then
+      ffmpegthumbnailer -i "$1" -o "${FPATH_THUMB}.jpg" -s "0" -q "5"
+    fi
+
+    print_chafa "${w_chr}x${h_chr}" "${FPATH_THUMB}.jpg"
+    echo
+    print_mediainfo
+  ;;
+  *opendocument*)
+    odt2txt "$fpath"
+  ;;
+  audio/mpeg)
+    print_mediainfo
+    echo
+    mpg123-id3dump -- "$fpath"
+  ;;
+  audio/*|application/mxf|application/ogg|application/sdp|application/smil|application/streamingmedia|application/vnd.apple.mpegurl|application/vnd.ms-asf|application/vnd.rn-realmedia-vbr|application/vnd.rn-realmedia|application/x-cue|application/x-extension-m4a|application/x-extension-mp4|application/x-matroska|application/x-mpegurl|application/x-ogg|application/x-ogm-audio|application/x-ogm|application/x-shorten|application/x-smil|application/x-streamingmedia)
+    print_mediainfo
+  ;;
+  application/vnd.sqlite*)
+    sqlite3 "$fpath" '.tables'
+  ;;
+  application/x-executable|application/x-object)
+    readelf -a "$fpath"
+  ;;
+  inode/directory)
+    ls -la "$fpath"
+  ;;
+  application/octet-stream|application/x-bittorrent)
+  ;;
+  *)
+    bat --color=always --style=plain -- "$fpath"
+  ;;
+esac
+
+exit "0"

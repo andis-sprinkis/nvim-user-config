@@ -9,6 +9,15 @@ local M = {
     -- local exec = g.exec
     local km = vim.keymap.set
 
+    -- local previewer_ext_associations = {}
+    -- local previewer_ext = {
+    --
+    -- }
+    --
+    -- for _, ext in pairs(previewer_ext) do
+    --
+    -- end
+
     local fzflua = require('fzf-lua')
 
     fzflua.setup({
@@ -41,14 +50,18 @@ local M = {
           cmd = 'man %s | col -bx',
         },
         builtin = {
-          extensions      = {
-            -- TODO: previewer
-            ["jpg"]       = { "chafa", "{file}" },
-            ["jpeg"]       = { "chafa", "{file}" },
-            ["png"]       = { "chafa", "{file}" },
-            ["gif"]       = { "chafa", "{file}" },
-            ["webp"]       = { "chafa", "{file}" },
-          },
+          extensions      = g.os ~= 'Windows_NT' and {
+            -- TODO: table with all extensions
+            ["jpg"]       = { "previewer", "{file}" },
+            ["jpeg"]       = { "previewer", "{file}" },
+            ["png"]       = { "previewer", "{file}" },
+            ["gif"]       = { "previewer", "{file}" },
+            ["webp"]       = { "previewer", "{file}" },
+            ["pdf"]       = { "previewer", "{file}" },
+            ["mp4"]       = { "previewer", "{file}" },
+            ["mov"]       = { "previewer", "{file}" },
+            ["mkv"]       = { "previewer", "{file}" },
+          } or {},
         }
       },
       defaults = {
