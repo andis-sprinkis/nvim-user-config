@@ -35,28 +35,31 @@ local M = {
         bat = {
           cmd = 'bat',
           args = '--style=plain,numbers,header-filename,changes --color=always',
-          theme = 'Visual Studio Dark+'
+          theme = 'Visual Studio Dark+',
         },
         man = {
           cmd = 'man %s | col -bx',
+        },
+        builtin = {
+          extensions      = {
+            -- TODO: previewer
+            ["jpg"]       = { "chafa", "{file}" },
+            ["jpeg"]       = { "chafa", "{file}" },
+            ["png"]       = { "chafa", "{file}" },
+            ["gif"]       = { "chafa", "{file}" },
+            ["webp"]       = { "chafa", "{file}" },
+          },
         }
       },
-      files = {
-        git_icons = false
-      },
-      git = {
-        files = {
-          git_icons = false
-        },
-      },
-      grep = {
-        git_icons = false
+      defaults = {
+        git_icons = false,
+        file_icons = false
       },
       winopts = {
         fullscreen = true,
         border = 'none',
         preview = {
-          default = (exec.bat and 'bat') or (exec.cat and 'cat') or 'builtin',
+          -- default = (exec.bat and 'bat') or (exec.cat and 'cat') or 'builtin',
           wrap = 'wrap',
           layout = 'vertical',
           vertical = 'up:60%',
