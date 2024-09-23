@@ -31,5 +31,5 @@ git checkout minimal-config
 -   `node`
 -   `rust`
 -   `sed`
--   [`previewer` script](https://github.com/andis-sprinkis/nix-user-config/blob/master/.local/bin/previewer)
+-   [`previewer`](https://github.com/andis-sprinkis/nix-user-config/blob/master/.local/bin/previewer)
 -   [Dictionary word lists](https://github.com/andis-sprinkis/dict)
