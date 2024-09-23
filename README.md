@@ -22,7 +22,7 @@ An alternative configuration – without plugins and external dependencies:
 git checkout minimal-config
 ```
 
-## System dependencies
+## Dependencies
 
 -   `bash`
 -   `bat`
