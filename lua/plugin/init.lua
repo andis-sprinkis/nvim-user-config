@@ -11,7 +11,7 @@ g.exec = {
   fzf = executable('fzf') == 1,
   lf = executable('lf') == 1,
   node = executable('node') == 1,
-  previewer = executable('previewer') == 1,
+  previewer = executable('previewer') == 1, -- https://github.com/andis-sprinkis/nix-user-config/blob/master/.local/bin/previewer
   python3 = executable('python3') == 1,
   rg = executable('rg') == 1,
   rust = executable('rust') == 1,
