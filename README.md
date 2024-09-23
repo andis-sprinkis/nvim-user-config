@@ -16,7 +16,7 @@ git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvi
 
 ### Minimal configuration option
 
-An alternative configuration – without plugins or external dependencies:
+An alternative configuration – without plugins and external dependencies:
 
 ```sh
 git checkout minimal-config
@@ -31,3 +31,5 @@ git checkout minimal-config
 -   `node`
 -   `rust`
 -   `sed`
+-   [`previewer` script](https://github.com/andis-sprinkis/nix-user-config/blob/master/.local/bin/previewer)
+-   [Dictionary word lists](https://github.com/andis-sprinkis/dict)
