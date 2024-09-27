@@ -22,19 +22,19 @@ local M = {
 
     fzflua.setup({
       fzf_colors = {
-        ["fg"]      = { "fg", "CursorLine" },
         ["bg"]      = { "bg", "Normal" },
-        ["hl"]      = { "fg", "Comment" },
-        ["fg+"]     = { "fg", "Normal" },
         ["bg+"]     = { "bg", "CursorLine" },
+        ["fg"]      = { "fg", "CursorLine" },
+        ["fg+"]     = { "fg", "Normal" },
+        ["gutter"]  = "-1",
+        ["header"]  = { "fg", "Comment" },
+        ["hl"]      = { "fg", "Comment" },
         ["hl+"]     = { "fg", "Statement" },
         ["info"]    = { "fg", "PreProc" },
-        ["prompt"]  = { "fg", "Conditional" },
-        ["pointer"] = { "fg", "Exception" },
         ["marker"]  = { "fg", "Keyword" },
+        ["pointer"] = { "fg", "Exception" },
+        ["prompt"]  = { "fg", "Conditional" },
         ["spinner"] = { "fg", "Label" },
-        ["header"]  = { "fg", "Comment" },
-        ["gutter"]  = "-1",
       },
       previewers = {
         cat = {
