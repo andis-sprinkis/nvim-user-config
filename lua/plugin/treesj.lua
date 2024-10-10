@@ -9,8 +9,8 @@ local M = {
       max_join_length = 2048,
     })
 
-    km('n', '<Leader>k', treesj.join, { silent = true, desc = 'Dunno (treesj)' })
-    km('n', '<Leader>j', treesj.split, { silent = true, desc = 'Dunno (treesj)' })
+    km('n', '<Leader>k', treesj.join, { silent = true, desc = 'Join node under cursor (treesj)' })
+    km('n', '<Leader>j', treesj.split, { silent = true, desc = 'Split node under cursor (treesj)' })
   end,
   event = 'VeryLazy'
 }
