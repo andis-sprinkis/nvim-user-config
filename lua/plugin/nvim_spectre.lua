@@ -21,15 +21,33 @@ local M = {
       }
     )
 
-    -- search global
-    km('n', '<Leader>rr', spectre.open, { nowait = true, silent = true, desc = 'Dunno (nvim-spectre)' })
+    km(
+      'n',
+      '<Leader>rr',
+      spectre.open,
+      { nowait = true, silent = true, desc = 'Open Spectre (nvim-spectre)' }
+    )
 
-    -- search current word
-    km('n', '<Leader>rw', function() spectre.open_visual({ select_word = true }) end, { nowait = true, silent = true, desc = 'Dunno (nvim-spectre)' })
-    km('v', '<Leader>rw', spectre.open_visual, { nowait = true, silent = true, desc = 'Dunno (nvim-spectre)' })
+    km(
+      'n',
+      '<Leader>rw',
+      function() spectre.open_visual({ select_word = true }) end,
+      { nowait = true, silent = true, desc = 'Search current word (nvim-spectre)' }
+    )
 
-    -- search in current file
-    km('n', '<Leader>rf', spectre.open_file_search, { nowait = true, silent = true, desc = 'Dunno (nvim-spectre)' })
+    km(
+      'v',
+      '<Leader>rw',
+      spectre.open_visual,
+      { nowait = true, silent = true, desc = 'Search selected word (nvim-spectre)' }
+    )
+
+    km(
+      'n',
+      '<Leader>rf',
+      spectre.open_file_search,
+      { nowait = true, silent = true, desc = 'Search in current file (nvim-spectre)' }
+    )
   end,
   dependencies = { 'nvim-lua/plenary.nvim' },
   event = 'VeryLazy'
