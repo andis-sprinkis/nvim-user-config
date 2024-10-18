@@ -85,7 +85,7 @@ local M = {
       end
 
       if server_capabilities.documentRangeFormattingProvider then
-        km('x', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Format a buffer using the attached LSP (LSP)' })
+        km('x', '<Leader>f', buf_format, { buffer = bufnr, desc = 'Format the range using the attached LSP (LSP)' })
       end
 
       -- Disabling LSP highlights
