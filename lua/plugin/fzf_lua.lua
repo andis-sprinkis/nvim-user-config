@@ -50,17 +50,17 @@ local M = {
           cmd = 'man %s | col -bx',
         },
         builtin = {
-          extensions      =  sys_reqr.previewer and {
+          extensions = sys_reqr.previewer and {
             -- TODO: table with all extensions
-            ["jpg"]       = { "previewer", "{file}" },
-            ["jpeg"]       = { "previewer", "{file}" },
-            ["png"]       = { "previewer", "{file}" },
-            ["gif"]       = { "previewer", "{file}" },
-            ["webp"]       = { "previewer", "{file}" },
-            ["pdf"]       = { "previewer", "{file}" },
-            ["mp4"]       = { "previewer", "{file}" },
-            ["mov"]       = { "previewer", "{file}" },
-            ["mkv"]       = { "previewer", "{file}" },
+            ["jpg"]  = { "previewer", "{file}" },
+            ["jpeg"] = { "previewer", "{file}" },
+            ["png"]  = { "previewer", "{file}" },
+            ["gif"]  = { "previewer", "{file}" },
+            ["webp"] = { "previewer", "{file}" },
+            ["pdf"]  = { "previewer", "{file}" },
+            ["mp4"]  = { "previewer", "{file}" },
+            ["mov"]  = { "previewer", "{file}" },
+            ["mkv"]  = { "previewer", "{file}" },
           } or {},
         }
       },
@@ -77,7 +77,7 @@ local M = {
           layout = 'vertical',
           vertical = 'up:60%',
           border = 'noborder',
-          scrollchars = {'│', '' },
+          scrollchars = { '│', '' },
           delay = 50,
         },
         hl = {
