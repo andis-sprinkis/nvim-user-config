@@ -219,6 +219,57 @@ uc(
   {}
 )
 
+uc(
+  "Lf",
+  function(opt)
+    local buf = vim.api.nvim_create_buf(false, true)
+
+    local win = vim.api.nvim_open_win(
+      buf,
+      true,
+      {
+        style = "minimal",
+        relative = "editor",
+        width = vim.api.nvim_get_option("columns"),
+        height = vim.api.nvim_get_option("lines") - 1,
+        col = 0,
+        row = 0
+      }
+    )
+
+    vim.fn.termopen(
+      "lf -selection-path /tmp/lf-nvim " .. (opt.fargs[1] or "."),
+      {
+        on_exit = function()
+          vim.api.nvim_win_close(win, true)
+          vim.api.nvim_buf_delete(buf, { force = true })
+
+          local file = "/tmp/lf-nvim"
+
+          if io.open(file, "r") ~= nil then
+            for line in io.lines(file) do
+              vim.cmd("edit " .. vim.fn.fnameescape(line))
+            end
+
+            io.close(io.open(file, "r"))
+            os.remove(file)
+          end
+
+          vim.cmd.checktime()
+        end,
+      }
+    )
+
+    cmd("startinsert")
+
+    vim.api.nvim_win_set_option(win, "winhl", "Normal:Normal")
+  end,
+  {
+    nargs = "?",
+    complete = "dir"
+  }
+)
+
 if g.neoray == 1 then
   o.guifont = 'CascadiaCodePL:h13'
 
