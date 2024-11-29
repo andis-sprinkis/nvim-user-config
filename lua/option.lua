@@ -248,14 +248,14 @@ uc(
 
           if io.open(file, "r") ~= nil then
             for line in io.lines(file) do
-              vim.cmd("edit " .. vim.fn.fnameescape(line))
+              cmd("edit " .. fn.fnameescape(line))
             end
 
             io.close(io.open(file, "r"))
             os.remove(file)
           end
 
-          vim.cmd.checktime()
+          cmd.checktime()
         end,
       }
     )
