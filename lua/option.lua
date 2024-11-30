@@ -223,16 +223,16 @@ if fn.executable('lf') == 1 then
   uc(
     "Lf",
     function(opt)
-      local buf = vim.api.nvim_create_buf(false, true)
+      local buf = api.nvim_create_buf(false, true)
 
-      local win = vim.api.nvim_open_win(
+      local win = api.nvim_open_win(
         buf,
         true,
         {
           style = "minimal",
           relative = "editor",
-          width = vim.api.nvim_get_option("columns"),
-          height = vim.api.nvim_get_option("lines") - 1,
+          width = api.nvim_get_option("columns"),
+          height = api.nvim_get_option("lines") - 1,
           col = 0,
           row = 0
         }
@@ -244,20 +244,20 @@ if fn.executable('lf') == 1 then
           group = ag("LfWindow", {}),
           buffer = buf,
           callback = function()
-            vim.api.nvim_win_set_width(win, vim.api.nvim_get_option("columns"))
-            vim.api.nvim_win_set_height(win, vim.api.nvim_get_option("lines") - 1)
+            api.nvim_win_set_width(win, api.nvim_get_option("columns"))
+            api.nvim_win_set_height(win, api.nvim_get_option("lines") - 1)
           end,
         }
       )
 
       local cache_sel_path = fn.stdpath("cache") .. "/lf_sel_path"
 
-      vim.fn.termopen(
+      fn.termopen(
         "lf -selection-path " .. cache_sel_path .. " " .. (opt.fargs[1] or "."),
         {
           on_exit = function()
-            vim.api.nvim_win_close(win, true)
-            vim.api.nvim_buf_delete(buf, { force = true })
+            api.nvim_win_close(win, true)
+            api.nvim_buf_delete(buf, { force = true })
 
             if io.open(cache_sel_path, "r") ~= nil then
               for line in io.lines(cache_sel_path) do
@@ -275,7 +275,7 @@ if fn.executable('lf') == 1 then
 
       cmd("startinsert")
 
-      vim.api.nvim_win_set_option(win, "winhl", "Normal:Normal")
+      api.nvim_win_set_option(win, "winhl", "Normal:Normal")
     end,
     {
       nargs = "?",
