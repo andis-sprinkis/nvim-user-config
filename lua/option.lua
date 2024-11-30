@@ -259,7 +259,6 @@ if fn.executable('lf') == 1 then
             vim.api.nvim_win_close(win, true)
             vim.api.nvim_buf_delete(buf, { force = true })
 
-
             if io.open(cache_sel_path, "r") ~= nil then
               for line in io.lines(cache_sel_path) do
                 cmd("edit " .. fn.fnameescape(line))
