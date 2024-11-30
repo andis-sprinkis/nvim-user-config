@@ -237,6 +237,18 @@ uc(
       }
     )
 
+    ac(
+      "VimResized",
+      {
+        group = ag("LfWindow", {}),
+        buffer = buf,
+        callback = function()
+          vim.api.nvim_win_set_width(win, vim.api.nvim_get_option("columns"))
+          vim.api.nvim_win_set_height(win, vim.api.nvim_get_option("lines") - 1)
+        end,
+      }
+    )
+
     vim.fn.termopen(
       "lf -selection-path /tmp/lf-nvim " .. (opt.fargs[1] or "."),
       {
