@@ -250,22 +250,23 @@ if fn.executable('lf') == 1 then
         }
       )
 
+      local cache_sel_path = fn.stdpath("cache") .. "/lf_sel_path"
+
       vim.fn.termopen(
-        "lf -selection-path /tmp/lf-nvim " .. (opt.fargs[1] or "."),
+        "lf -selection-path " .. cache_sel_path .. " " .. (opt.fargs[1] or "."),
         {
           on_exit = function()
             vim.api.nvim_win_close(win, true)
             vim.api.nvim_buf_delete(buf, { force = true })
 
-            local file = "/tmp/lf-nvim"
 
-            if io.open(file, "r") ~= nil then
-              for line in io.lines(file) do
+            if io.open(cache_sel_path, "r") ~= nil then
+              for line in io.lines(cache_sel_path) do
                 cmd("edit " .. fn.fnameescape(line))
               end
 
-              io.close(io.open(file, "r"))
-              os.remove(file)
+              io.close(io.open(cache_sel_path, "r"))
+              os.remove(cache_sel_path)
             end
 
             cmd.checktime()
