@@ -219,68 +219,70 @@ uc(
   {}
 )
 
-uc(
-  "Lf",
-  function(opt)
-    local buf = vim.api.nvim_create_buf(false, true)
+if fn.executable('lf') == 1 then
+  uc(
+    "Lf",
+    function(opt)
+      local buf = vim.api.nvim_create_buf(false, true)
 
-    local win = vim.api.nvim_open_win(
-      buf,
-      true,
-      {
-        style = "minimal",
-        relative = "editor",
-        width = vim.api.nvim_get_option("columns"),
-        height = vim.api.nvim_get_option("lines") - 1,
-        col = 0,
-        row = 0
-      }
-    )
+      local win = vim.api.nvim_open_win(
+        buf,
+        true,
+        {
+          style = "minimal",
+          relative = "editor",
+          width = vim.api.nvim_get_option("columns"),
+          height = vim.api.nvim_get_option("lines") - 1,
+          col = 0,
+          row = 0
+        }
+      )
 
-    ac(
-      "VimResized",
-      {
-        group = ag("LfWindow", {}),
-        buffer = buf,
-        callback = function()
-          vim.api.nvim_win_set_width(win, vim.api.nvim_get_option("columns"))
-          vim.api.nvim_win_set_height(win, vim.api.nvim_get_option("lines") - 1)
-        end,
-      }
-    )
+      ac(
+        "VimResized",
+        {
+          group = ag("LfWindow", {}),
+          buffer = buf,
+          callback = function()
+            vim.api.nvim_win_set_width(win, vim.api.nvim_get_option("columns"))
+            vim.api.nvim_win_set_height(win, vim.api.nvim_get_option("lines") - 1)
+          end,
+        }
+      )
 
-    vim.fn.termopen(
-      "lf -selection-path /tmp/lf-nvim " .. (opt.fargs[1] or "."),
-      {
-        on_exit = function()
-          vim.api.nvim_win_close(win, true)
-          vim.api.nvim_buf_delete(buf, { force = true })
+      vim.fn.termopen(
+        "lf -selection-path /tmp/lf-nvim " .. (opt.fargs[1] or "."),
+        {
+          on_exit = function()
+            vim.api.nvim_win_close(win, true)
+            vim.api.nvim_buf_delete(buf, { force = true })
 
-          local file = "/tmp/lf-nvim"
+            local file = "/tmp/lf-nvim"
 
-          if io.open(file, "r") ~= nil then
-            for line in io.lines(file) do
-              cmd("edit " .. fn.fnameescape(line))
+            if io.open(file, "r") ~= nil then
+              for line in io.lines(file) do
+                cmd("edit " .. fn.fnameescape(line))
+              end
+
+              io.close(io.open(file, "r"))
+              os.remove(file)
             end
 
-            io.close(io.open(file, "r"))
-            os.remove(file)
-          end
+            cmd.checktime()
+          end,
+        }
+      )
 
-          cmd.checktime()
-        end,
-      }
-    )
+      cmd("startinsert")
 
-    cmd("startinsert")
-
-    vim.api.nvim_win_set_option(win, "winhl", "Normal:Normal")
-  end,
-  {
-    nargs = "?",
-    complete = "dir"
-  }
-)
+      vim.api.nvim_win_set_option(win, "winhl", "Normal:Normal")
+    end,
+    {
+      nargs = "?",
+      complete = "dir"
+    }
+  )
+end
 
 if g.neoray == 1 then
   o.guifont = 'CascadiaCodePL:h13'
