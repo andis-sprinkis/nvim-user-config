@@ -187,7 +187,7 @@ end
 uc(
   'CopyLocRel',
   function()
-    vim.fn.setreg('+', vim.fn.expand('%:.') .. ' ' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
+    fn.setreg('+', fn.expand('%:.') .. ' ' .. fn.line('.') .. ':' .. fn.col('.') .. '\n')
   end,
   {}
 )
@@ -195,7 +195,7 @@ uc(
 uc(
   'CopyLocAbs',
   function()
-    vim.fn.setreg('+', vim.fn.expand('%:p') .. ' ' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
+    fn.setreg('+', fn.expand('%:p') .. ' ' .. fn.line('.') .. ':' .. fn.col('.') .. '\n')
   end,
   {}
 )
