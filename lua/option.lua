@@ -1,12 +1,17 @@
 local g = vim.g
 local o = vim.opt
 local ol = vim.opt_local
+local fn = vim.fn
 local cmd = vim.cmd
+local loop = vim.loop
 local km = vim.keymap.set
 local api = vim.api
 local env = vim.env
 local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
+local uc = api.nvim_create_user_command
+
+g.os = loop.os_uname().sysname
 
 g.man_hard_wrap = true
 g.mapleader = ' '
@@ -162,7 +167,24 @@ ac(
   }
 )
 
-vim.api.nvim_create_user_command(
+if g.os ~= 'Windows_NT' then
+  -- Needs OSC 11
+
+  ac({ "UIEnter", "ColorScheme" }, {
+    callback = function()
+      local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+      if not normal.bg then return end
+      io.write(string.format("\027]11;#%06x\027\\", normal.bg))
+    end,
+  })
+
+  ac("UILeave", {
+    callback = function() io.write("\027]111\027\\") end,
+  })
+end
+
+
+uc(
   'CopyLocRel',
   function()
     vim.fn.setreg('+', vim.fn.expand('%:.') .. ' ' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
@@ -170,7 +192,7 @@ vim.api.nvim_create_user_command(
   {}
 )
 
-vim.api.nvim_create_user_command(
+uc(
   'CopyLocAbs',
   function()
     vim.fn.setreg('+', vim.fn.expand('%:p') .. ' ' .. vim.fn.line('.') .. ':' .. vim.fn.col('.') .. '\n')
@@ -178,11 +200,76 @@ vim.api.nvim_create_user_command(
   {}
 )
 
-vim.api.nvim_create_user_command(
+uc(
   'ExploreFind',
   'let @/=expand("%:t") | execute \'Explore\' expand("%:h") | normal n',
   { bang = true }
 )
+
+if fn.executable('lf') == 1 then
+  uc(
+    "Lf",
+    function(opt)
+      local buf = api.nvim_create_buf(false, true)
+
+      local win = api.nvim_open_win(
+        buf,
+        true,
+        {
+          style = "minimal",
+          relative = "editor",
+          width = api.nvim_get_option("columns"),
+          height = api.nvim_get_option("lines") - 1,
+          col = 0,
+          row = 0
+        }
+      )
+
+      ac(
+        "VimResized",
+        {
+          group = ag("LfWindow", {}),
+          buffer = buf,
+          callback = function()
+            api.nvim_win_set_width(win, api.nvim_get_option("columns"))
+            api.nvim_win_set_height(win, api.nvim_get_option("lines") - 1)
+          end,
+        }
+      )
+
+      local cache_sel_path = fn.stdpath("cache") .. "/lf_sel_path"
+
+      fn.termopen(
+        "lf -selection-path " .. cache_sel_path .. " " .. (opt.fargs[1] or "."),
+        {
+          on_exit = function()
+            api.nvim_win_close(win, true)
+            api.nvim_buf_delete(buf, { force = true })
+
+            if io.open(cache_sel_path, "r") ~= nil then
+              for line in io.lines(cache_sel_path) do
+                cmd("edit " .. fn.fnameescape(line))
+              end
+
+              io.close(io.open(cache_sel_path, "r"))
+              os.remove(cache_sel_path)
+            end
+
+            cmd.checktime()
+          end,
+        }
+      )
+
+      cmd("startinsert")
+
+      api.nvim_win_set_option(win, "winhl", "Normal:Normal")
+    end,
+    {
+      nargs = "?",
+      complete = "dir"
+    }
+  )
+end
 
 if g.neoray == 1 then
   o.guifont = 'CascadiaCodePL:h13'
