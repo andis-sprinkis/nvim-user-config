@@ -116,9 +116,6 @@ local M = {
 
         config.settings = {
           Lua = {
-            diagnostics = {
-              globals = { 'vim' },
-            },
             telemetry = {
               enable = false,
             },
