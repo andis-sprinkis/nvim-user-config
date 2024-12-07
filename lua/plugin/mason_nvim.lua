@@ -13,6 +13,7 @@ local M = {
 
     local lsp_servers = {
       -- 'awk_ls',
+      'asm_lsp',
       'bashls',
       'clangd',
       'cssls',
