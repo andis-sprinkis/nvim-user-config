@@ -68,7 +68,7 @@ function M.mime()
 
   file.close(file)
 
-  local cmd_mime_output = vim.fn.system('file --mime-type --brief ' .. fn.expand('%:p'))
+  local cmd_mime_output = vim.fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
 
   if (vim.v.shell_error ~= 0) then return '' end
 
