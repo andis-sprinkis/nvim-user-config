@@ -12,8 +12,8 @@ local M = {
     local km = vim.keymap.set
 
     local lsp_servers = {
-      'awk_ls',
       'asm_lsp',
+      'awk_ls',
       'bashls',
       'clangd',
       'cssls',
@@ -22,7 +22,8 @@ local M = {
       'html',
       'jsonls',
       'lua_ls',
-      'pylsp',
+      -- 'pylsp',
+      'ruff',
       'stylelint_lsp',
       'texlab',
       'ts_ls',
