@@ -193,6 +193,8 @@ local M = {
       }
     end
 
+    require("mason-lock").setup()
+
     require("mason").setup()
 
     require("mason-lspconfig").setup({ ensure_installed = lsp_servers })
@@ -304,16 +306,17 @@ local M = {
     -- })
   end,
   dependencies = {
+    'RRethy/vim-illuminate',
     'b0o/schemastore.nvim',
     'jay-babu/mason-nvim-dap.nvim',
     'jayp0521/mason-null-ls.nvim',
-    'nvimtools/none-ls.nvim',
-    'nvim-lua/plenary.nvim',
     'lewis6991/gitsigns.nvim',
-    'neovim/nvim-lspconfig',
-    'williamboman/mason-lspconfig.nvim',
     'mfussenegger/nvim-dap',
-    'RRethy/vim-illuminate',
+    'neovim/nvim-lspconfig',
+    'nvim-lua/plenary.nvim',
+    'nvimtools/none-ls.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    "zapling/mason-lock.nvim"
   }
 }
 
