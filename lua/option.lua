@@ -276,7 +276,7 @@ if fn.executable('lf') == 1 then
 
       cmd("startinsert")
 
-      api.nvim_win_set_option(win, "winhl", "Normal:Normal")
+      api.nvim_set_option_value('winhl', "Normal:Normal", { win = win })
     end,
     {
       nargs = "?",
