@@ -219,8 +219,8 @@ if fn.executable('lf') == 1 then
         {
           style = "minimal",
           relative = "editor",
-          width = api.nvim_get_option("columns"),
-          height = api.nvim_get_option("lines") - 1,
+          width = api.nvim_get_option_value("columns", {}),
+          height = api.nvim_get_option_value("lines", {}) - 1,
           col = 0,
           row = 0
         }
@@ -232,8 +232,8 @@ if fn.executable('lf') == 1 then
           group = ag("LfWindow", {}),
           buffer = buf,
           callback = function()
-            api.nvim_win_set_width(win, api.nvim_get_option("columns"))
-            api.nvim_win_set_height(win, api.nvim_get_option("lines") - 1)
+            api.nvim_win_set_width(win, api.nvim_get_option_value("columns", {}))
+            api.nvim_win_set_height(win, api.nvim_get_option_value("lines", {}) - 1)
           end,
         }
       )
@@ -263,7 +263,7 @@ if fn.executable('lf') == 1 then
 
       cmd("startinsert")
 
-      api.nvim_win_set_option(win, "winhl", "Normal:Normal")
+      api.nvim_set_option_value('winhl', "Normal:Normal", { win = win })
     end,
     {
       nargs = "?",
