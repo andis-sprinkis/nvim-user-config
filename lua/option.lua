@@ -82,7 +82,8 @@ km(
   function()
     vim.wo.wrap = not vim.wo.wrap
     vim.notify('vim.wo.wrap = ' .. (vim.wo.wrap and 'true' or 'false'))
-  end
+  end,
+  { desc = "Toggle line wrap" }
 )
 
 if not env.LANG then env.LANG = 'en_US.UTF-8' end
