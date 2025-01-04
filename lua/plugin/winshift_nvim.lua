@@ -6,7 +6,15 @@ local M = {
       focused_hl_group = "Visual", -- The highlight group used for the moving window
     })
 
-    vim.keymap.set('n', '<Leader>w', ':WinShift<cr>', { silent = true, desc = 'Enter window moving mode (winshift)' })
+    vim.keymap.set(
+      'n',
+      '<Leader>w',
+      ':WinShift<cr>',
+      {
+        silent = true,
+        desc = 'Enter window moving mode (winshift)',
+      }
+    )
   end,
   keys = { '<Leader>w' },
   cmd = { 'WinShift' }
