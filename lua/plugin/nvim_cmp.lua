@@ -9,6 +9,21 @@ local M = {
     local cmpc = cmp.config
     local api = vim.api
 
+    require("cmp_dictionary").setup({
+      exact_length = 2, -- exact_length must match cmp sources entry keyword_length
+      first_case_insensitive = true,
+      document = {
+        enable = false,
+        command = { "wn", "${label}", "-over" },
+      },
+      max_number_items = 3000,
+      debug = false,
+      paths = {
+        "~/.local/share/dict/aspell_en/aspell_en.dict",
+        "~/.local/share/dict/aspell_lv/aspell_lv_no_conjugations.dict",
+      }
+    })
+
     local luasnip = require("luasnip")
 
     local has_words_before = function()
@@ -185,7 +200,7 @@ local M = {
     'petertriho/cmp-git',
     'rafamadriz/friendly-snippets',
     'saadparwaiz1/cmp_luasnip',
-    require('plugin.cmp_dictionary'),
+    'uga-rosa/cmp-dictionary',
     {
       'rcarriga/cmp-dap',
       dependencies = {
