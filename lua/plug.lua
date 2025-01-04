@@ -4,11 +4,22 @@ local fn = vim.fn
 local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.uv.fs_stat(lazypath) then
-  if fn.confirm("Download and initialize the configured plugins?", "&Yes\n&No", 2) == 2 then
+  if fn.confirm(
+    "Download and initialize the configured plugins?",
+    "&Yes\n&No",
+    2
+  ) == 2 then
     return
   end
 
-  local out = fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+  local out = fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 
   if vim.v.shell_error ~= 0 then
     api.nvim_echo({
