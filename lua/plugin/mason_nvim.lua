@@ -324,6 +324,7 @@ local M = {
   end,
   dependencies = {
     'RRethy/vim-illuminate',
+    'artemave/workspace-diagnostics.nvim',
     'b0o/schemastore.nvim',
     'jay-babu/mason-nvim-dap.nvim',
     'jayp0521/mason-null-ls.nvim',
@@ -333,7 +334,6 @@ local M = {
     'nvim-lua/plenary.nvim',
     'nvimtools/none-ls.nvim',
     'williamboman/mason-lspconfig.nvim',
-    'workspace-diagnostics.nvim',
     'zapling/mason-lock.nvim',
   }
 }
