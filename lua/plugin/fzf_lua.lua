@@ -82,7 +82,7 @@ local M = {
           scrollchars = { '│', '' },
           delay = 50,
         },
-        hl = {
+        hls = {
           border = 'FloatBorder'
         }
       }
