@@ -1,5 +1,4 @@
 local g = vim.g
--- local os = g.os
 local api = vim.api
 local fn = vim.fn
 local executable = fn.executable
