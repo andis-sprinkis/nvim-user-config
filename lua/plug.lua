@@ -7,11 +7,7 @@ local executable = fn.executable
 local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.uv.fs_stat(lazypath) then
-  if fn.confirm(
-    "Download and initialize the configured plugins?",
-    "&Yes\n&No",
-    2
-  ) == 2 then
+  if fn.confirm("Download and initialize the configured plugins?", "&Yes\n&No", 2) == 2 then
     return
   end
 
@@ -27,7 +23,7 @@ if not vim.uv.fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     fn.getchar()
