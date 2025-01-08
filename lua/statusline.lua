@@ -7,7 +7,6 @@ local g = vim.g
 local lsp = vim.lsp
 local o = vim.opt
 local wo = vim.wo
-local os = g.os
 local sys_reqr = g.sys_reqr
 local ac = api.nvim_create_autocmd
 local ag = api.nvim_create_augroup
@@ -88,7 +87,7 @@ function M.fenc_ffmat()
   return table.concat(r, ' ')
 end
 
--- local fugitive_bname_pattern = os == 'Windows_NT' and [[^fugitive:\\.*\%.git.*\(%x-)\(.*)]] or
+-- local fugitive_bname_pattern = g.os == 'Windows_NT' and [[^fugitive:\\.*\%.git.*\(%x-)\(.*)]] or
 -- [[^fugitive://.*/%.git.*/(%x-)/(.*)]]
 
 function M.bname()
