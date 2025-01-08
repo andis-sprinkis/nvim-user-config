@@ -1,5 +1,5 @@
-local g = vim.g
-local sys_reqr = g.sys_reqr
+-- local g = vim.g
+-- local sys_reqr = g.sys_reqr
 
 local M = {
   -- 'junegunn/fzf.vim',
