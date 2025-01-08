@@ -5,7 +5,7 @@ local M = {
   'iamcco/markdown-preview.nvim',
   cond = sys_reqr.markdown_preview,
   enabled = sys_reqr.markdown_preview,
-  build = function() vim.cmd[[call mkdp#util#install()]] end,
+  build = function() vim.fn["mkdp#util#install"]() end,
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
   ft = { 'markdown', 'markdown.mdx' },
 }

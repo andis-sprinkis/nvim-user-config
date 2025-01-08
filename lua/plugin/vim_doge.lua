@@ -5,7 +5,7 @@ local M = {
   'kkoomen/vim-doge',
   cond = sys_reqr.vim_doge,
   enabled = sys_reqr.vim_doge,
-  build = function() vim.cmd[[call doge#install()]] end,
+  build = function() vim.fn["doge#install"]() end,
   init = function()
     g.doge_enable_mappings = 0
   end,
