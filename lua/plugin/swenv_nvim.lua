@@ -20,7 +20,6 @@ local M = {
   end,
   dependencies = {
     'stevearc/dressing.nvim',
-    'williamboman/mason.nvim',
   },
   event = 'VeryLazy'
 }
