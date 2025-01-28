@@ -76,18 +76,18 @@ local M = {
       { desc = 'Add buffer diagnostics to the location list (LSP)' }
     )
 
-    local workspace_diagnostics = require("workspace-diagnostics")
-
-    km(
-      'n',
-      '<Leader>x',
-      function()
-        for _, client in ipairs(vim.lsp.buf_get_clients()) do
-          workspace_diagnostics.populate_workspace_diagnostics(client, 0)
-        end
-      end,
-      { desc = 'Display the workspace diagnostics (LSP, workspace-diagnostics)' }
-    )
+    -- local workspace_diagnostics = require("workspace-diagnostics")
+    --
+    -- km(
+    --   'n',
+    --   '<Leader>x',
+    --   function()
+    --     for _, client in ipairs(vim.lsp.buf_get_clients()) do
+    --       workspace_diagnostics.populate_workspace_diagnostics(client, 0)
+    --     end
+    --   end,
+    --   { desc = 'Display the workspace diagnostics (LSP, workspace-diagnostics)' }
+    -- )
 
     local function buf_format() lspbuf.format({ async = true }) end
 
@@ -194,6 +194,8 @@ local M = {
 
       -- Disabling LSP highlights
       -- server_capabilities.semanticTokensProvider = nil
+
+      -- workspace_diagnostics.populate_workspace_diagnostics(client, bufnr)
     end
 
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -296,6 +298,8 @@ local M = {
             { buffer = bufnr, desc = 'Format a buffer using the attached LSP (null-ls)' }
           )
         end
+
+        -- workspace_diagnostics.populate_workspace_diagnostics(client, bufnr)
       end,
     })
 
