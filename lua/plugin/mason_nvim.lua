@@ -12,7 +12,6 @@ local M = {
     local km = vim.keymap.set
 
     local lsp_servers = {
-      'asm_lsp',
       'awk_ls',
       'bashls',
       'clangd',
