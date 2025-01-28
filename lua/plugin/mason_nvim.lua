@@ -194,8 +194,6 @@ local M = {
 
       -- Disabling LSP highlights
       -- server_capabilities.semanticTokensProvider = nil
-
-      -- workspace_diagnostics.populate_workspace_diagnostics(client, bufnr)
     end
 
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -298,8 +296,6 @@ local M = {
             { buffer = bufnr, desc = 'Format a buffer using the attached LSP (null-ls)' }
           )
         end
-
-        workspace_diagnostics.populate_workspace_diagnostics(client, bufnr)
       end,
     })
 
