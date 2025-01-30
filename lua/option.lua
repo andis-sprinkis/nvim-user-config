@@ -202,6 +202,14 @@ uc(
 )
 
 uc(
+  'Config',
+  function()
+    vim.cmd.edit(vim.fn.stdpath("config"))
+  end,
+  {}
+)
+
+uc(
   'ExploreFind',
   'let @/=expand("%:t") | execute \'Explore\' expand("%:h") | normal n',
   { bang = true }
