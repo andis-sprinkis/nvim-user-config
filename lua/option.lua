@@ -220,6 +220,14 @@ uc(
   {}
 )
 
+uc(
+  'Config',
+  function()
+    vim.cmd.edit(vim.fn.stdpath("config"))
+  end,
+  {}
+)
+
 if fn.executable('lf') == 1 then
   uc(
     "Lf",
