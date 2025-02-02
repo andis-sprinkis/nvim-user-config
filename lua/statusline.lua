@@ -142,7 +142,7 @@ local static_p2 = table.concat({
   pad(func('mime')),
   pad(func('ft')),
   pad(func('fenc_ffmat')),
-  pad('%3c %2l/%-L'),
+  pad('%3c %3p%% %2l/%-L'),
 })
 
 function M.statusline(active)
