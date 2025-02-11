@@ -26,6 +26,7 @@ git checkout minimal-config
 
 -   `bash`
 -   `bat`
+-   `curl`
 -   `fzf`
 -   `lf`
 -   `node`

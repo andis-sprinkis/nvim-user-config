@@ -37,6 +37,7 @@ g.exec = {
   bat = executable('bat') == 1,
   cat = executable('cat') == 1,
   chafa = executable('chafa') == 1,
+  curl = executable('curl') == 1,
   fzf = executable('fzf') == 1,
   node = executable('node') == 1,
   previewer = executable('previewer') == 1,
@@ -68,6 +69,7 @@ g.sys_reqr = {
   suda_vim = exec.sudo,
   swenv = exec.python3,
   vim_doge = exec.node,
+  typst_preview_nvim = exec.curl,
 }
 
 require("lazy").setup({
