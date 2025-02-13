@@ -14,7 +14,7 @@ local ag = api.nvim_create_augroup
 local M = {}
 
 if (sys_reqr.lsp_plugins) then
-  local lsp_severity = { { 'Warn', 'W' }, { 'Error', 'E' }, { 'Info', 'I' }, { 'Hint', 'H' } }
+  local lsp_severity = { { 'WARN', 'W' }, { 'ERROR', 'E' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
 
   function M.lsp_status()
     if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then return '' end
