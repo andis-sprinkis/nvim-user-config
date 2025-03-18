@@ -178,7 +178,7 @@ if g.os ~= 'Windows_NT' then
       if vim.fn.has('nvim-0.10') == 1 then
         normal = vim.api.nvim_get_hl(0, { name = "Normal" })
       else
-        normal = vim.api.nvim_get_hl_by_name("Normal")
+        normal = vim.api.nvim_get_hl_by_name("Normal", true)
       end
 
       if not normal.bg then return end
