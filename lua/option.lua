@@ -173,7 +173,14 @@ if g.os ~= 'Windows_NT' then
 
   ac({ "UIEnter", "ColorScheme" }, {
     callback = function()
-      local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+      local normal
+
+      if vim.fn.has('nvim-0.10') == 1 then
+        normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+      else
+        normal = vim.api.nvim_get_hl_by_name("Normal")
+      end
+
       if not normal.bg then return end
       io.write(string.format("\027]11;#%06x\027\\", normal.bg))
     end,
