@@ -118,7 +118,7 @@ ac(
       ol.number = false
       ol.relativenumber = false
       ol.signcolumn = 'no'
-      cmd[[startinsert]]
+      cmd [[startinsert]]
     end
   }
 )
@@ -271,7 +271,11 @@ if fn.executable('lf') == 1 then
 
       cmd("startinsert")
 
-      api.nvim_set_option_value('winhl', "Normal:Normal", { win = win })
+      if vim.fn.has('nvim-0.10') == 1 then
+        api.nvim_set_option_value('winhl', "Normal:Normal", { win = win })
+      else
+        api.nvim_win_set_option(win, 'winhl', "Normal:Normal")
+      end
     end,
     {
       nargs = "?",
