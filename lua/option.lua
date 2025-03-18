@@ -11,7 +11,11 @@ local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
 local uc = api.nvim_create_user_command
 
-g.os = loop.os_uname().sysname
+if vim.fn.has('nvim-0.10') == 1 then
+  g.os = vim.uv.os_uname().sysname
+else
+  g.os = loop.os_uname().sysname
+end
 
 g.man_hard_wrap = true
 g.mapleader = ' '
