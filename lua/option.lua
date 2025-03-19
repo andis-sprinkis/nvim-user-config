@@ -174,7 +174,7 @@ ac(
   'BufReadPre',
   {
     callback = function()
-      local ok, stats = pcall(loop.fs_stat, api.nvim_buf_get_name(api.nvim_get_current_buf()))
+      local ok, stats = pcall(vim.uv.fs_stat, api.nvim_buf_get_name(api.nvim_get_current_buf()))
 
       if ok and stats and (stats.size > g.max_file_size_b) then
         b.large_file_buf = true
