@@ -4,15 +4,15 @@ local o = vim.opt
 local ol = vim.opt_local
 local fn = vim.fn
 local cmd = vim.cmd
-local loop = vim.loop
 local km = vim.keymap.set
 local api = vim.api
 local env = vim.env
+local uv = vim.uv
 local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
 local uc = api.nvim_create_user_command
 
-g.os = vim.uv.os_uname().sysname
+g.os = uv.os_uname().sysname
 g.sys_reqr = {}
 g.exec = {}
 g.max_file_size_kb = 100
@@ -174,7 +174,7 @@ ac(
   'BufReadPre',
   {
     callback = function()
-      local ok, stats = pcall(vim.uv.fs_stat, api.nvim_buf_get_name(api.nvim_get_current_buf()))
+      local ok, stats = pcall(uv.fs_stat, api.nvim_buf_get_name(api.nvim_get_current_buf()))
 
       if ok and stats and (stats.size > g.max_file_size_b) then
         b.large_file_buf = true
