@@ -1,7 +1,25 @@
+local km = vim.keymap.set
+
 local M = {
   'justinmk/vim-dirvish',
   config = function()
     vim.g.dirvish_mode = ':sort ,^.*[\\/],'
+
+    local au_dirvish = vim.api.nvim_create_augroup('dirvish', { clear = true })
+
+    vim.api.nvim_create_autocmd(
+      { 'Filetype' },
+      {
+        group = au_dirvish,
+        pattern = 'dirvish',
+        callback = function()
+          km('n', '/', '/\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
+            { desc = "Search forward (vim-dirvish)", buffer = true })
+          km('n', '?', '?\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
+            { desc = "Search backward (vim-dirvish)", buffer = true })
+        end
+      }
+    )
   end,
   lazy = false,
   priority = 900
