@@ -5,12 +5,12 @@ local M = {
   config = function()
     vim.g.dirvish_mode = ':sort ,^.*[\\/],'
 
-    local au_dirvish = vim.api.nvim_create_augroup('dirvish', { clear = true })
+    local au_dirvish_usr = vim.api.nvim_create_augroup('dirvish_usr', { clear = true })
 
     vim.api.nvim_create_autocmd(
       { 'Filetype' },
       {
-        group = au_dirvish,
+        group = au_dirvish_usr,
         pattern = 'dirvish',
         callback = function()
           km('n', '/', '/\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
