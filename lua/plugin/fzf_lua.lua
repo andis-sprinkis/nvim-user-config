@@ -59,6 +59,7 @@ local M = {
             ["avif"] = { "previewer", "{file}" },
             ["webp"] = { "previewer", "{file}" },
             ["svg"]  = { "previewer", "{file}" },
+            ["ico"]  = { "previewer", "{file}" },
             ["pdf"]  = { "previewer", "{file}" },
             ["avi"]  = { "previewer", "{file}" },
             ["mkv"]  = { "previewer", "{file}" },
