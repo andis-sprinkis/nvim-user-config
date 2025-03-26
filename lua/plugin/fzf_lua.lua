@@ -66,6 +66,10 @@ local M = {
             ["mpeg"]  = { "previewer", "{file}" },
             ["mov"]  = { "previewer", "{file}" },
             ["mp4"]  = { "previewer", "{file}" },
+            ["zip"]  = { "previewer", "{file}" },
+            ["rar"]  = { "previewer", "{file}" },
+            ["tar"]  = { "previewer", "{file}" },
+            ["gz"]  = { "previewer", "{file}" },
           } or {},
         }
       },
