@@ -10,7 +10,7 @@ local M = {
       inline = { adapter = "copilot" },
     },
     opts = {
-      log_level = "DEBUG",
+      -- log_level = "DEBUG",
     },
   },
   dependencies = {
