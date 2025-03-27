@@ -17,6 +17,7 @@ local M = {
     "hrsh7th/nvim-cmp",
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    -- "zbirenbaum/copilot.lua"
     -- "github/copilot.vim"
   }
 }
