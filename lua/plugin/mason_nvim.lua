@@ -199,10 +199,12 @@ local M = {
     end
 
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    -- local blink_cmp = require('blink.cmp')
 
     local function make_config()
       return {
         capabilities = cmp_nvim_lsp.default_capabilities(),
+        -- capabilities = blink_cmp.get_lsp_capabilities(),
         on_attach = on_attach,
       }
     end
@@ -334,6 +336,7 @@ local M = {
     'nvimtools/none-ls.nvim',
     'williamboman/mason-lspconfig.nvim',
     'zapling/mason-lock.nvim',
+    'saghen/blink.cmp'
   }
 }
 
