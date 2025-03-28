@@ -1,5 +1,6 @@
 local M = {
   'saghen/blink.cmp',
+  enabled = false,
   version = '1.*',
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -34,7 +35,7 @@ local M = {
         -- Show the ghost text when the menu is open
         show_with_menu = true,
         -- Show the ghost text when the menu is closed
-        show_without_menu = false,
+        show_without_menu = true,
       },
       menu = {
         draw = {
@@ -46,6 +47,8 @@ local M = {
         }
       }
     },
+
+    snippets = { preset = 'luasnip' },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
@@ -64,6 +67,7 @@ local M = {
   opts_extend = { "sources.default" },
   dependencies = {
     'rafamadriz/friendly-snippets',
+    { 'L3MON4D3/LuaSnip', version = 'v2.*' },
   },
 }
 

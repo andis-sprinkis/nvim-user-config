@@ -15,6 +15,7 @@ local M = {
   },
   dependencies = {
     "hrsh7th/nvim-cmp",
+    -- 'saghen/blink.cmp',
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     -- "zbirenbaum/copilot.lua"

@@ -198,13 +198,12 @@ local M = {
       -- workspace_diagnostics.populate_workspace_diagnostics(client, bufnr)
     end
 
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
-    -- local blink_cmp = require('blink.cmp')
+    local fn_default_capabilities = require("cmp_nvim_lsp").default_capabilities
+    -- local fn_default_capabilities = require('blink.cmp').get_lsp_capabilities
 
     local function make_config()
       return {
-        capabilities = cmp_nvim_lsp.default_capabilities(),
-        -- capabilities = blink_cmp.get_lsp_capabilities(),
+        capabilities = fn_default_capabilities(),
         on_attach = on_attach,
       }
     end
