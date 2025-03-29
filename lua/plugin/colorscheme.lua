@@ -12,8 +12,8 @@ local M = {
       -- },
       group_overrides = {
         -- todo: use color_overrides instead
-        NormalFloat = { bg = c.vscTabOutside },
-        Pmenu = { fg = isDark and c.vscTabOutside or 'none', bg = c.vscPopupBack }
+        -- NormalFloat = { bg = c.vscTabOutside },
+        -- Pmenu = { fg = isDark and c.vscTabOutside or 'none', bg = c.vscPopupBack }
       }
     })
     colorscheme_vscode.load()
