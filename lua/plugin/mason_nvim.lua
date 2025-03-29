@@ -11,6 +11,13 @@ local M = {
     local lspbuf = lsp.buf
     local km = vim.keymap.set
 
+    vim.diagnostic.config({
+      virtual_text = true,
+      virtual_lines = {
+        current_line = true
+      },
+    })
+
     local lsp_servers = {
       'awk_ls',
       'bashls',
@@ -75,19 +82,6 @@ local M = {
       diagnostic.setloclist,
       { desc = 'Add buffer diagnostics to the location list (LSP)' }
     )
-
-    -- local workspace_diagnostics = require("workspace-diagnostics")
-    --
-    -- km(
-    --   'n',
-    --   '<Leader>x',
-    --   function()
-    --     for _, client in ipairs(vim.lsp.buf_get_clients()) do
-    --       workspace_diagnostics.populate_workspace_diagnostics(client, 0)
-    --     end
-    --   end,
-    --   { desc = 'Display the workspace diagnostics (LSP, workspace-diagnostics)' }
-    -- )
 
     local function buf_format() lspbuf.format({ async = true }) end
 
