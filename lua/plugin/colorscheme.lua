@@ -7,7 +7,11 @@ local M = {
 
     colorscheme_vscode.setup({
       italic_comments = true,
+      -- color_overrides = {
+      --   vscLineNumber = '#FFFFFF',
+      -- },
       group_overrides = {
+        -- todo: use color_overrides instead
         NormalFloat = { bg = c.vscTabOutside },
         Pmenu = { fg = isDark and c.vscTabOutside or 'none', bg = c.vscPopupBack }
       }
