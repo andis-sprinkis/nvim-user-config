@@ -12,7 +12,7 @@ local M = {
     local km = vim.keymap.set
 
     vim.diagnostic.config({
-      virtual_text = true,
+      -- virtual_text = true,
       virtual_lines = {
         current_line = true
       },
@@ -43,11 +43,6 @@ local M = {
     if sys_reqr.lsp_asm then
       table.insert(lsp_servers, 'asm_lsp')
     end
-
-    -- local dap_providers = {
-    --   'codelldb',
-    --   'python',
-    -- }
 
     local linters_formatters = {
       'asmfmt',
@@ -292,11 +287,6 @@ local M = {
         end
       end,
     })
-
-    -- require('mason-nvim-dap').setup({
-    --   automatic_setup = true,
-    --   ensure_installed = dap_providers
-    -- })
 
     -- vim.api.nvim_create_autocmd('LspAttach', {
     --   callback = function()
