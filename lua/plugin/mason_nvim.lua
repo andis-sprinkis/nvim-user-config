@@ -44,10 +44,10 @@ local M = {
       table.insert(lsp_servers, 'asm_lsp')
     end
 
-    local dap_providers = {
-      -- 'codelldb',
-      -- 'python',
-    }
+    -- local dap_providers = {
+    --   'codelldb',
+    --   'python',
+    -- }
 
     local linters_formatters = {
       'asmfmt',
