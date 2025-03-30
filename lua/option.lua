@@ -82,12 +82,11 @@ km(
   { desc = "Toggle line wrap" }
 )
 
-if g.os == 'Windows_NT' then
-  env.PATH = '%%ProgramFiles%%\\\\Git\\\\usr\\\\bin;' .. env.PATH
-else
-  if not env.LANG then env.LANG = 'en_US.UTF-8' end
-  env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
+if not env.LANG then
+  env.LANG = 'en_US.UTF-8'
 end
+
+env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
 
 local ag_option = ag('option', { clear = true })
 
@@ -188,21 +187,18 @@ ac(
   }
 )
 
-if g.os ~= 'Windows_NT' then
-  -- Needs OSC 11
+-- Needs OSC 11
+ac({ "UIEnter", "ColorScheme" }, {
+  callback = function()
+    local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+    if not normal.bg then return end
+    io.write(string.format("\027]11;#%06x\027\\", normal.bg))
+  end,
+})
 
-  ac({ "UIEnter", "ColorScheme" }, {
-    callback = function()
-      local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-      if not normal.bg then return end
-      io.write(string.format("\027]11;#%06x\027\\", normal.bg))
-    end,
-  })
-
-  ac("UILeave", {
-    callback = function() io.write("\027]111\027\\") end,
-  })
-end
+ac("UILeave", {
+  callback = function() io.write("\027]111\027\\") end,
+})
 
 uc(
   'CopyLocRel',
@@ -291,15 +287,4 @@ if fn.executable('lf') == 1 then
       complete = "dir"
     }
   )
-end
-
-if g.neoray == 1 then
-  o.guifont = 'CascadiaCodePL:h13'
-
-  cmd([[
-    NeoraySet KeyZoomIn <C-ScrollWheelUp>
-    NeoraySet KeyZoomOut <C-ScrollWheelDown>
-    NeoraySet WindowSize 108x40
-    NeoraySet WindowState centered
-  ]])
 end

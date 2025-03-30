@@ -2,16 +2,8 @@
 
 ## Installation
 
-Via \*nix shell:
-
 ```sh
 git clone https://github.com/andis-sprinkis/nvim-user-config $HOME/.config/nvim
-```
-
-Via CMD/PS on Windows:
-
-```dos
-git clone https://github.com/andis-sprinkis/nvim-user-config %APPDATA%\Local\nvim
 ```
 
 ### Minimal configuration option
@@ -24,13 +16,11 @@ git checkout minimal-config
 
 ## Dependencies
 
--   `bash`
 -   `bat`
 -   `curl`
 -   `fzf`
 -   `lf`
 -   `node`
 -   `rust`
--   `sed`
 -   [`previewer`](https://github.com/andis-sprinkis/nix-user-config/blob/master/.local/bin/previewer)
 -   [Dictionary word lists](https://github.com/andis-sprinkis/dict)

@@ -33,9 +33,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 g.exec = {
-  bash = executable('bash') == 1,
   bat = executable('bat') == 1,
-  cat = executable('cat') == 1,
   chafa = executable('chafa') == 1,
   curl = executable('curl') == 1,
   fzf = executable('fzf') == 1,
@@ -44,8 +42,6 @@ g.exec = {
   python3 = executable('python3') == 1,
   rg = executable('rg') == 1,
   rust = executable('rust') == 1,
-  sed = executable('sed') == 1,
-  sudo = executable('sudo') == 1,
   tmux = executable('tmux') == 1,
   zsh = executable('zsh') == 1,
 }
@@ -58,15 +54,11 @@ g.sys_reqr = {
   cmp_rg = exec.rg,
   fm_nvim = exec.lf,
   fzf_lua = exec.fzf,
-  -- fzf_lua = g.os ~= 'Windows_NT' and exec.fzf,
-  -- fzf_vim = g.os == 'Windows_NT' and exec.bash,
-  previewer = g.os ~= 'Windows_NT' and exec.previewer,
+  previewer = exec.previewer,
   lsp_asm = exec.rust,
   lsp_neocmake = exec.rust,
   lsp_plugins = exec.node,
   markdown_preview = exec.node,
-  nvim_spectre = exec.sed,
-  suda_vim = exec.sudo,
   swenv = exec.python3,
   vim_doge = exec.node,
   typst_preview_nvim = exec.curl,

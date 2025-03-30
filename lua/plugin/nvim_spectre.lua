@@ -1,10 +1,5 @@
-local g = vim.g
-local sys_reqr = g.sys_reqr
-
 local M = {
   'nvim-pack/nvim-spectre',
-  cond = sys_reqr.nvim_spectre,
-  enabled = sys_reqr.nvim_spectre,
   config = function()
     local spectre = require('spectre')
     local api = vim.api

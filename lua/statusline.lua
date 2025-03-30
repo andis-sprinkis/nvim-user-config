@@ -55,7 +55,7 @@ if sys_reqr.swenv then
 end
 
 function M.mime()
-  if vim.bo.ft ~= '' or g.os == 'Windows_NT' then return '' end
+  if vim.bo.ft ~= '' then return '' end
 
   local bname = vim.fn.getreg('%')
 
