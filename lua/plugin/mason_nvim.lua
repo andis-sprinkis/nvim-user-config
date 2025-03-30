@@ -55,7 +55,9 @@ local M = {
     km(
       'n',
       '<Leader>d',
-      diagnostic.open_float,
+      function()
+        diagnostic.open_float({ max_width = 90 })
+      end,
       { desc = 'Show diagnostics in a floating window (LSP)' }
     )
     km(
@@ -105,7 +107,9 @@ local M = {
       km(
         { 'n', 'x' },
         'K',
-        lspbuf.hover,
+        function()
+          lspbuf.hover({ max_width = 90 })
+        end,
         { buffer = bufnr, desc = 'Display hover information about the symbol under the cursor (LSP)' }
       )
       km(
@@ -117,7 +121,9 @@ local M = {
       km(
         'n',
         '<C-s>',
-        lspbuf.signature_help,
+        function()
+          lspbuf.signature_help({ max_width = 90 })
+        end,
         { buffer = bufnr, desc = 'Displays signature information about the symbol under the cursor (LSP)' }
       )
       -- km(
