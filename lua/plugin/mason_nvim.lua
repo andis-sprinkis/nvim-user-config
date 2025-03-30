@@ -56,8 +56,7 @@ local M = {
       'checkmake'
     }
 
-    -- Mappings.
-    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+    -- :help vim.diagnostic.*
     km(
       'n',
       '<Leader>d',
@@ -67,13 +66,17 @@ local M = {
     km(
       'n',
       '[d',
-      diagnostic.goto_prev,
+      function()
+        diagnostic.jump({ count = -1, float = false })
+      end,
       { desc = 'Move to the previous diagnostic in the current buffer (LSP)' }
     )
     km(
       'n',
       ']d',
-      diagnostic.goto_next,
+      function()
+        diagnostic.jump({ count = 1, float = false })
+      end,
       { desc = 'Move to the next diagnostic in the current buffer (LSP)' }
     )
     km(
@@ -83,16 +86,15 @@ local M = {
       { desc = 'Add buffer diagnostics to the location list (LSP)' }
     )
 
-    local function buf_format() lspbuf.format({ async = true }) end
+    local function buf_format()
+      lspbuf.format({ async = true })
+    end
 
-    -- Use an on_attach function to only map the following keys
-    -- after the language server attaches to the current buffer
     local on_attach = function(client, bufnr)
       -- Enable completion triggered by <c-x><c-o>
-      api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+      api.nvim_set_option_value('omnifunc', "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
-      -- Mappings.
-      -- See `:help vim.lsp.*` for documentation on any of the below functions
+      -- :help vim.lsp.buf.*
       km(
         'n',
         'gD',
@@ -185,11 +187,6 @@ local M = {
           { buffer = bufnr, desc = 'Format the range using the attached LSP (LSP)' }
         )
       end
-
-      -- Disabling LSP highlights
-      -- server_capabilities.semanticTokensProvider = nil
-
-      -- workspace_diagnostics.populate_workspace_diagnostics(client, bufnr)
     end
 
     local fn_default_capabilities = require("cmp_nvim_lsp").default_capabilities
@@ -293,8 +290,6 @@ local M = {
             { buffer = bufnr, desc = 'Format a buffer using the attached LSP (null-ls)' }
           )
         end
-
-        -- workspace_diagnostics.populate_workspace_diagnostics(client, bufnr)
       end,
     })
 
