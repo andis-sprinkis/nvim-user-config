@@ -310,10 +310,8 @@ local M = {
   dependencies = {
     'RRethy/vim-illuminate',
     'b0o/schemastore.nvim',
-    -- 'jay-babu/mason-nvim-dap.nvim',
     'jayp0521/mason-null-ls.nvim',
     'lewis6991/gitsigns.nvim',
-    -- 'mfussenegger/nvim-dap',
     'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',
     'nvimtools/none-ls.nvim',
