@@ -6,6 +6,7 @@ local M = {
     colorscheme_vscode.setup({
       italic_comments = true,
       color_overrides = {
+        -- TODO: dynamic override per light & dark theme
         vscPopupBack = '#272727',
       },
     })
