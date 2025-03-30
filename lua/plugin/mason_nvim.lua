@@ -293,10 +293,10 @@ local M = {
       end,
     })
 
-    require('mason-nvim-dap').setup({
-      automatic_setup = true,
-      ensure_installed = dap_providers
-    })
+    -- require('mason-nvim-dap').setup({
+    --   automatic_setup = true,
+    --   ensure_installed = dap_providers
+    -- })
 
     -- vim.api.nvim_create_autocmd('LspAttach', {
     --   callback = function()
@@ -315,10 +315,10 @@ local M = {
     'RRethy/vim-illuminate',
     'artemave/workspace-diagnostics.nvim',
     'b0o/schemastore.nvim',
-    'jay-babu/mason-nvim-dap.nvim',
+    -- 'jay-babu/mason-nvim-dap.nvim',
     'jayp0521/mason-null-ls.nvim',
     'lewis6991/gitsigns.nvim',
-    'mfussenegger/nvim-dap',
+    -- 'mfussenegger/nvim-dap',
     'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',
     'nvimtools/none-ls.nvim',

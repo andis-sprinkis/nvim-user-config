@@ -53,9 +53,9 @@ local M = {
     }
 
     cmp.setup({
-      enabled = function()
-        return api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
-      end,
+      -- enabled = function()
+      --   return api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+      -- end,
       snippet = {
         expand = function(args)
           require('luasnip').lsp_expand(args.body)
@@ -202,12 +202,12 @@ local M = {
     'rafamadriz/friendly-snippets',
     'saadparwaiz1/cmp_luasnip',
     'uga-rosa/cmp-dictionary',
-    {
-      'rcarriga/cmp-dap',
-      dependencies = {
-        'mfussenegger/nvim-dap',
-      }
-    },
+    -- {
+    --   'rcarriga/cmp-dap',
+    --   dependencies = {
+    --     'mfussenegger/nvim-dap',
+    --   }
+    -- },
     {
       'lukas-reineke/cmp-rg',
       cond = sys_reqr.cmp_rg,
