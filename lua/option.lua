@@ -124,7 +124,11 @@ ac(
       ol.number = false
       ol.relativenumber = false
       ol.signcolumn = 'no'
-      ol.statuscolumn = ''
+
+      if vim.fn.has('nvim-0.10') == 1 then
+        ol.statuscolumn = ''
+      end
+
       cmd [[startinsert]]
     end
   }
