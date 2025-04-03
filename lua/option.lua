@@ -29,10 +29,12 @@ o.expandtab = true
 o.foldlevel = 99
 o.hlsearch = false
 o.list = true
-o.listchars:append 'eol:↲'
-o.listchars:append 'tab:» '
-o.listchars:append 'extends:>'
-o.listchars:append 'precedes:<'
+o.listchars:append {
+  eol = '↲',
+  extends = '>',
+  precedes = '<',
+  tab = '» ',
+}
 o.mouse = 'a'
 o.number = true
 o.pumblend = 10
