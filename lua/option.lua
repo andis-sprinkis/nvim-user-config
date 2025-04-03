@@ -48,12 +48,15 @@ o.shm:append 'I'
 o.showmode = false
 o.sidescrolloff = 20
 o.splitbelow = true
+
 if vim.fn.has('nvim-0.8.2') == 1 then
   o.splitkeep = 'screen'
 end
+
 if vim.fn.has('nvim-0.10') == 1 then
   o.statuscolumn = "%s%=%T%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : '┊'}│%T"
 end
+
 o.splitright = true
 o.swapfile = false
 o.tabstop = 2
@@ -266,26 +269,35 @@ if fn.executable('lf') == 1 then
 
       local cache_sel_path = fn.stdpath("cache") .. "/lf_sel_path"
 
-      fn.termopen(
-        "lf -selection-path " .. cache_sel_path .. " " .. (opt.fargs[1] or "."),
-        {
-          on_exit = function()
-            api.nvim_win_close(win, true)
-            api.nvim_buf_delete(buf, { force = true })
+      local cmd_select_file = "lf -selection-path " .. cache_sel_path .. " " .. (opt.fargs[1] or ".")
 
-            if io.open(cache_sel_path, "r") ~= nil then
-              for line in io.lines(cache_sel_path) do
-                cmd("edit " .. fn.fnameescape(line))
-              end
+      local on_exit = function ()
+        api.nvim_win_close(win, true)
+        api.nvim_buf_delete(buf, { force = true })
 
-              io.close(io.open(cache_sel_path, "r"))
-              os.remove(cache_sel_path)
-            end
+        if io.open(cache_sel_path, "r") ~= nil then
+          for line in io.lines(cache_sel_path) do
+            cmd("edit " .. fn.fnameescape(line))
+          end
 
-            cmd.checktime()
-          end,
-        }
-      )
+          io.close(io.open(cache_sel_path, "r"))
+          os.remove(cache_sel_path)
+        end
+
+        cmd.checktime()
+      end
+
+      if vim.fn.has('nvim-0.11') == 1 then
+        fn.jobstart(
+          cmd_select_file,
+          { term = true, on_exit = on_exit }
+        )
+      else
+        fn.termopen(
+          cmd_select_file,
+          { on_exit = on_exit }
+        )
+      end
 
       cmd("startinsert")
 
