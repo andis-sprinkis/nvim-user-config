@@ -30,12 +30,14 @@ o.expandtab = true
 o.foldlevel = 99
 o.hlsearch = false
 o.list = true
-o.listchars:append 'eol:↲'
-o.listchars:append 'extends:>'
-o.listchars:append 'precedes:<'
-o.listchars:append 'space:·'
-o.listchars:append 'tab:» '
-o.listchars:append 'trail:·'
+o.listchars:append {
+  eol = '↲',
+  extends = '>',
+  precedes = '<',
+  space = '·',
+  tab = '» ',
+  trail = '·'
+}
 o.mouse = 'a'
 o.number = true
 o.pumblend = 10
