@@ -124,6 +124,7 @@ ac(
       ol.number = false
       ol.relativenumber = false
       ol.signcolumn = 'no'
+      ol.statuscolumn = ''
       cmd [[startinsert]]
     end
   }
