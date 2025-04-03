@@ -104,20 +104,6 @@ local function pad(x) return '%( ' .. x .. ' %)' end
 
 local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
-local dapui_panel_buf = {
-  ['dap-repl'] = true,
-  ['dap-terminal'] = true,
-  dapui_breakpoints = true,
-  dapui_console = true,
-  dapui_scopes = true,
-  dapui_stacks = true,
-  dapui_watches = true,
-}
-
-local static_dap_panel = table.concat({
-  pad(func('bname')),
-})
-
 local static_p1 = table.concat({
   '%#StatusLineNC#',
   M.git_hunks and pad(func('git_hunks')) or "",
@@ -137,13 +123,6 @@ local static_p2 = table.concat({
 })
 
 function M.statusline(active)
-  if (dapui_panel_buf[vim.bo.filetype]) then
-    return table.concat({
-      (active and '%#StatusLine#' or '%#StatusLineNC#'),
-      static_dap_panel
-    })
-  end
-
   return table.concat({
     static_p1,
     active and '%#StatusLine#' or '%#StatusLineNC#',

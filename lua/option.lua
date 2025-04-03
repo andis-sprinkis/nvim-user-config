@@ -259,9 +259,10 @@ if fn.executable('lf') == 1 then
 
       local cache_sel_path = fn.stdpath("cache") .. "/lf_sel_path"
 
-      fn.termopen(
+      fn.jobstart(
         "lf -selection-path " .. cache_sel_path .. " " .. (opt.fargs[1] or "."),
         {
+          term = true,
           on_exit = function()
             api.nvim_win_close(win, true)
             api.nvim_buf_delete(buf, { force = true })
