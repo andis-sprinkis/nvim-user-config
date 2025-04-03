@@ -141,10 +141,22 @@ ac(
   'FileType',
   {
     group = ag_option,
-    pattern = { 'man', 'help', 'vimdoc', 'netrw' },
+    pattern = { 'man', 'help', 'vimdoc' },
     callback = function()
       ol.number = true
       ol.relativenumber = true
+    end
+  }
+)
+
+ac(
+  'FileType',
+  {
+    group = ag_option,
+    pattern = { 'man', 'help', 'vimdoc' },
+    callback = function()
+      ol.number = true
+      ol.relativenumber = false
     end
   }
 )
