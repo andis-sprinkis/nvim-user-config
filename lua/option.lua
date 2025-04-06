@@ -161,17 +161,6 @@ ac(
 )
 
 ac(
-  'FileType',
-  {
-    group = ag_option,
-    pattern = { 'lf' },
-    callback = function()
-      ol.commentstring = '# %s'
-    end
-  }
-)
-
-ac(
   'TextYankPost',
   {
     group = ag_option,
