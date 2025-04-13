@@ -13,6 +13,8 @@ local M = {
         group = au_dirvish_usr,
         pattern = 'dirvish',
         callback = function()
+          vim.opt_local.list = false
+
           km('n', '/', '/\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
             { desc = "Search forward (vim-dirvish)", buffer = true })
           km('n', '?', '?\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
