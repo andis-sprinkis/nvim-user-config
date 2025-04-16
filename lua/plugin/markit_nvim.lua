@@ -14,7 +14,7 @@ local M = {
     }
 
     vim.api.nvim_set_hl(0, 'MarkSignHL', { link = 'LineNr' })
-    vim.api.nvim_set_hl(0, 'MarkSignNumHL', { link = nil })
+    vim.api.nvim_set_hl(0, 'MarkSignNumHL', {})
   end,
   event = { 'BufReadPre', 'BufNewFile' },
 }
