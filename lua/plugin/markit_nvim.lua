@@ -8,10 +8,12 @@ local M = {
         upper=7,
         builtin=5,
         bookmark=4,
-      }
+      },
+      refresh_interval = 100
     }
 
-    vim.api.nvim_set_hl(0, 'MarkSignHL', { link = 'Normal' })
+    vim.api.nvim_set_hl(0, 'MarkSignHL', { link = 'LineNr' })
+    vim.api.nvim_set_hl(0, 'MarkSignNumHL', { link = nil })
   end,
   excluded_filetypes = { 'lazy', 'mason', 'dirvish' },
   event = { 'BufReadPre', 'BufNewFile' },
