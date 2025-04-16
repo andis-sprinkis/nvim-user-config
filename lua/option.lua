@@ -39,6 +39,7 @@ o.listchars:append {
   trail = '·'
 }
 o.mouse = 'a'
+o.mousescroll = 'ver:6,hor:12'
 o.number = true
 o.pumblend = 10
 o.relativenumber = true
