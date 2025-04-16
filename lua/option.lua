@@ -36,6 +36,7 @@ o.listchars:append {
   tab = '» ',
 }
 o.mouse = 'a'
+o.mousescroll = 'ver:3,hor:12'
 o.number = true
 o.pumblend = 10
 o.relativenumber = true
