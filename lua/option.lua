@@ -23,7 +23,6 @@ g.man_hard_wrap = true
 g.mapleader = ' '
 o.backup = false
 o.breakindent = true
-o.cmdheight = 0
 o.clipboard = 'unnamedplus'
 o.cursorline = true
 o.expandtab = true
