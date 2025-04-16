@@ -4,18 +4,18 @@ local M = {
     require('markit').setup {
       builtin_marks = { ".", "<", ">", "^", "'" },
       sign_priority = {
-        lower=6,
-        upper=7,
-        builtin=5,
-        bookmark=4,
+        lower = 6,
+        upper = 7,
+        builtin = 5,
+        bookmark = 4,
       },
-      refresh_interval = 100
+      refresh_interval = 100,
+      excluded_filetypes = { 'lazy', 'mason', 'dirvish', 'fugitive' },
     }
 
     vim.api.nvim_set_hl(0, 'MarkSignHL', { link = 'LineNr' })
     vim.api.nvim_set_hl(0, 'MarkSignNumHL', { link = nil })
   end,
-  excluded_filetypes = { 'lazy', 'mason', 'dirvish' },
   event = { 'BufReadPre', 'BufNewFile' },
 }
 
