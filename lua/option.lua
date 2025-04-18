@@ -48,7 +48,6 @@ o.shiftwidth = 2
 o.shm:append 'I'
 o.showmode = false
 o.sidescrolloff = 20
-o.splitbelow = true
 
 if vim.fn.has('nvim-0.8.2') == 1 then
   o.splitkeep = 'screen'
@@ -58,7 +57,6 @@ if vim.fn.has('nvim-0.10') == 1 then
   o.statuscolumn = "%s%=%T%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : '┊'}│%T"
 end
 
-o.splitright = true
 o.swapfile = false
 o.tabstop = 2
 o.title = true
@@ -70,17 +68,7 @@ o.writebackup = false
 
 km({ 'n', 'v' }, 'h', '<bs>')
 km({ 'n', 'v' }, 'l', '<space>')
-km('n', '<leader>v', ':split<cr>', { silent = true })
-km('n', '<leader>o', ':vsplit<cr>', { silent = true })
 km('t', '<C-w>', '<C-\\><C-n>')
-km('n', '<C-A-j>', ':resize +2<cr>', { silent = true })
-km('n', '<C-A-k>', ':resize -2<cr>', { silent = true })
-km('n', '<C-A-l>', ':vertical resize +4<cr>', { silent = true })
-km('n', '<C-A-h>', ':vertical resize -4<cr>', { silent = true })
-km('n', '<C-j>', '<C-W><C-J>')
-km('n', '<C-k>', '<C-W><C-K>')
-km('n', '<C-l>', '<C-W><C-L>')
-km('n', '<C-h>', '<C-W><C-H>')
 km('n', '-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>')
 km('n', '<leader>b', ":set nomore <Bar> :ls <Bar> :set more <CR>:b<Space>", { silent = true })
 km('n', '/', '/\\c')
@@ -106,16 +94,6 @@ ac(
     group = ag_option,
     callback = function()
       pcall(function() cmd([[cd %:p:h]]) end)
-    end
-  }
-)
-
-ac(
-  'VimResized',
-  {
-    group = ag_option,
-    callback = function()
-      cmd([[wincmd =]])
     end
   }
 )
