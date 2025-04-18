@@ -96,6 +96,10 @@ function M.bname()
   return name
 end
 
+function M.winnr()
+  return vim.fn.winnr()
+end
+
 local label_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
 
 function M.large_file_buf() return vim.b.large_file_buf and label_large_file_buf or '' end
@@ -106,6 +110,7 @@ local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
 local static_p1 = table.concat({
   '%#StatusLineNC#',
+  pad(func('winnr')),
   M.git_hunks and pad(func('git_hunks')) or "",
   M.py_swenv and pad(func('py_swenv')) or "",
   M.lsp_status and pad(func('lsp_status')) or "",
