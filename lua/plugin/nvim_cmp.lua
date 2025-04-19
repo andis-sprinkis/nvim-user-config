@@ -7,7 +7,6 @@ local M = {
     local cmp = require("cmp")
     local cmpm = cmp.mapping
     local cmpc = cmp.config
-    local api = vim.api
 
     require("cmp_dictionary").setup({
       exact_length = 2, -- exact_length must match cmp sources entry keyword_length
