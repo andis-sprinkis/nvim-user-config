@@ -26,11 +26,6 @@ local M = {
 
     local luasnip = require("luasnip")
 
-    local has_words_before = function()
-      local line, col = unpack(api.nvim_win_get_cursor(0))
-      return col ~= 0 and api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
-
     local source_cmp_rg = {
       name = 'rg',
       keyword_length = 3,
@@ -58,13 +53,35 @@ local M = {
           require('luasnip').lsp_expand(args.body)
         end,
       },
+      view = {
+        entries = {
+          selection_order = 'near_cursor',
+        }
+      },
       mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<C-l>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.abort()
+          else
+            cmp.complete()
+          end
+        end),
+        ['<Esc>'] = cmp.mapping(function(fallback)
+          -- conditional needed to not break [digit]o/O
+          if cmp.visible() then
+            cmp.abort()
+            vim.defer_fn(function() vim.cmd('stopinsert') end, 0)
+          else
+            fallback()
+          end
+        end),
+        ['<CR>'] = cmp.mapping.confirm({ select = true })
       }),
+      experimental = {
+        ghost_text = { hl_group = 'Whitespace' }
+      },
       sources = cmpc.sources(
         {
           { name = 'copilot' },
@@ -92,9 +109,6 @@ local M = {
       { '/', '?' },
       {
         mapping = cmpm.preset.cmdline(),
-        view = {
-          entries = { name = 'custom', selection_order = 'near_cursor' }
-        },
         sources = cmpc.sources(
           {
             source_cmp_buffer,
@@ -106,9 +120,6 @@ local M = {
 
     cmp.setup.cmdline({ ':', '@' }, {
       mapping = cmpm.preset.cmdline(),
-      view = {
-        entries = { name = 'custom', selection_order = 'near_cursor' }
-      },
       sources = cmpc.sources(
         {
           { name = 'cmdline' },
@@ -179,12 +190,6 @@ local M = {
     'rafamadriz/friendly-snippets',
     'saadparwaiz1/cmp_luasnip',
     'uga-rosa/cmp-dictionary',
-    -- {
-    --   'rcarriga/cmp-dap',
-    --   dependencies = {
-    --     'mfussenegger/nvim-dap',
-    --   }
-    -- },
     {
       'lukas-reineke/cmp-rg',
       cond = sys_reqr.cmp_rg,

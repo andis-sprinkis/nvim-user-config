@@ -6,17 +6,7 @@ local M = {
   cond = sys_reqr.fzf_lua,
   enabled = sys_reqr.fzf_lua,
   config = function()
-    -- local exec = g.exec
     local km = vim.keymap.set
-
-    -- local previewer_ext_associations = {}
-    -- local previewer_ext = {
-    --
-    -- }
-    --
-    -- for _, ext in pairs(previewer_ext) do
-    --
-    -- end
 
     local fzflua = require('fzf-lua')
 
