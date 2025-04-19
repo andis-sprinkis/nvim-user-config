@@ -110,7 +110,6 @@ local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
 local static_p1 = table.concat({
   '%#StatusLineNC#',
-  pad(func('winnr')),
   M.git_hunks and pad(func('git_hunks')) or "",
   M.py_swenv and pad(func('py_swenv')) or "",
   M.lsp_status and pad(func('lsp_status')) or "",
@@ -125,6 +124,7 @@ local static_p2 = table.concat({
   pad(func('ft')),
   pad(func('fenc_ffmat')),
   pad('%3c %3p%% %2l/%-L'),
+  pad(func('winnr')),
 })
 
 function M.statusline(active)
