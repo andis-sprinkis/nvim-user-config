@@ -73,6 +73,7 @@ local static_p2 = table.concat({
   pad(func('ft')),
   pad(func('fenc_ffmat')),
   pad('%3c %2l/%-L'),
+  pad(func('winnr')),
 })
 
 function M.statusline(active)
