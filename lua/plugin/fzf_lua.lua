@@ -37,21 +37,12 @@ local M = {
         ["spinner"] = { "fg", "Label" },
       },
       previewers = {
-        cat = {
-          cmd = 'cat',
-          args = '--number',
-        },
-        bat = {
-          cmd = 'bat',
-          args = '--style=plain,numbers,header-filename,changes --color=always',
-          theme = 'Visual Studio Dark+',
-        },
         man = {
           cmd = 'man %s | col -bx',
         },
         builtin = {
           extensions = sys_reqr.previewer and {
-            -- TODO: table with all extensions
+            -- TODO: table with all extensions extracted from mimedb
             ["jpg"]  = { "previewer", "{file}" },
             ["jpeg"] = { "previewer", "{file}" },
             ["png"]  = { "previewer", "{file}" },
@@ -82,7 +73,6 @@ local M = {
         fullscreen = true,
         border = 'none',
         preview = {
-          -- default = (exec.bat and 'bat') or 'builtin',
           wrap = 'wrap',
           layout = 'vertical',
           vertical = 'up:60%',
