@@ -53,9 +53,6 @@ local M = {
     }
 
     cmp.setup({
-      -- enabled = function()
-      --   return api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
-      -- end,
       snippet = {
         expand = function(args)
           require('luasnip').lsp_expand(args.body)
