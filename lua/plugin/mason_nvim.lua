@@ -317,7 +317,6 @@ local M = {
     'nvimtools/none-ls.nvim',
     'williamboman/mason-lspconfig.nvim',
     'zapling/mason-lock.nvim',
-    'saghen/blink.cmp'
   }
 }
 
