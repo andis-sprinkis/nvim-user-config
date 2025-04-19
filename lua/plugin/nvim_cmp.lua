@@ -76,7 +76,7 @@ local M = {
             fallback()
           end
         end),
-        ['<CR>'] = cmp.mapping.confirm({ select = true })
+        ['<CR>'] = cmp.mapping.confirm({ select = false })
       }),
       experimental = {
         ghost_text = { hl_group = 'Whitespace' }
