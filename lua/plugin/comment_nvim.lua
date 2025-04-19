@@ -7,9 +7,19 @@ local M = {
   end,
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
-    'JoosepAlviste/nvim-ts-context-commentstring',
+    {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      config = function()
+        require('ts_context_commentstring').setup {
+          enable_autocmd = false,
+        }
+      end
+    }
   },
-  event = 'VeryLazy'
+  keys = {
+    { "gc", mode = { "n", "x" } },
+    { "gb", mode = { "n", "x" } },
+  },
 }
 
 return M
