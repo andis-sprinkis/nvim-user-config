@@ -60,8 +60,7 @@ local function pad(x) return '%( ' .. x .. ' %)' end
 local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
 local static_p1 = table.concat({
-  '%#StatusLineNC#',
-  pad(func('winnr')),
+  '%#StatusLineNC#'
 })
 
 local static_p2 = table.concat({
