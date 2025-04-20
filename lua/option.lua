@@ -132,6 +132,18 @@ ac(
   'FileType',
   {
     group = ag_option,
+    pattern = { 'netrw' },
+    callback = function()
+      km('n', '<leader>-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>',
+        { buffer = true })
+    end
+  }
+)
+
+ac(
+  'FileType',
+  {
+    group = ag_option,
     pattern = { 'asm', 'make', 'gitconfig' },
     callback = function()
       ol.expandtab = false
@@ -250,7 +262,7 @@ if fn.executable('lf') == 1 then
 
       local cmd_select_file = "lf -selection-path " .. cache_sel_path .. " " .. (opt.fargs[1] or ".")
 
-      local on_exit = function ()
+      local on_exit = function()
         api.nvim_win_close(win, true)
         api.nvim_buf_delete(buf, { force = true })
 
