@@ -7,6 +7,10 @@ local M = {
 
     local au_dirvish_usr = vim.api.nvim_create_augroup('dirvish_usr', { clear = true })
 
+    vim.keymap.del('n', '-')
+
+    km('n', '<leader>-', '<Plug>(dirvish_up)', { desc = "Show file directory (vim-dirvish)" })
+
     vim.api.nvim_create_autocmd(
       { 'Filetype' },
       {
@@ -14,6 +18,9 @@ local M = {
         pattern = 'dirvish',
         callback = function()
           vim.opt_local.list = false
+
+          km('n', '<leader>-', '<Plug>(dirvish_up)',
+            { desc = "Go up a directory (vim-dirvish)", buffer = true })
 
           km('n', '/', '/\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
             { desc = "Search forward (vim-dirvish)", buffer = true })
