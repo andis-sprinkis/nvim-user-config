@@ -69,7 +69,7 @@ o.writebackup = false
 km({ 'n', 'v' }, 'h', '<bs>')
 km({ 'n', 'v' }, 'l', '<space>')
 km('t', '<C-w>', '<C-\\><C-n>')
-km('n', '-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>')
+km('n', '<leader>-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>')
 km('n', '<leader>b', ":set nomore <Bar> :ls <Bar> :set more <CR>:b<Space>", { silent = true })
 km('n', '/', '/\\c')
 km('n', '?', '?\\c')
