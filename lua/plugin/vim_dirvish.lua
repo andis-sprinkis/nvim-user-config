@@ -5,11 +5,10 @@ local M = {
   config = function()
     vim.g.dirvish_mode = ':sort ,^.*[\\/],'
 
-    local au_dirvish_usr = vim.api.nvim_create_augroup('dirvish_usr', { clear = true })
-
     vim.keymap.del('n', '-')
-
     km('n', '<leader>-', '<Plug>(dirvish_up)', { desc = "Show file directory (vim-dirvish)" })
+
+    local au_dirvish_usr = vim.api.nvim_create_augroup('dirvish_usr', { clear = true })
 
     vim.api.nvim_create_autocmd(
       { 'Filetype' },
