@@ -20,7 +20,7 @@ local M = {
         callback = function()
           vim.opt_local.list = false
 
-          km('n', '<leader>-', '<Plug>(dirvish_up)',
+          km('n', '-', '<Plug>(dirvish_up)',
             { desc = "Go up a directory (vim-dirvish)", buffer = true })
 
           km('n', '/', '/\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
