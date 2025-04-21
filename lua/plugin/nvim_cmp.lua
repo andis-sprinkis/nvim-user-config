@@ -56,7 +56,7 @@ local M = {
         entries = {
           selection_order = 'near_cursor',
         }
-      },
+      }, -- TODO: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
       mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
