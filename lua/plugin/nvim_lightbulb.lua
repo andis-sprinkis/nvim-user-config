@@ -8,9 +8,10 @@ local M = {
       },
       ---@type (fun(client_name:string, result:lsp.CodeAction|lsp.Command):boolean)|nil
       filter = function (client, result)
-        if (client == 'ts_ls') then
-          --
+        if (result.kind == 'refactor.move') then
+          return false
         end
+
         return true
       end
     })
