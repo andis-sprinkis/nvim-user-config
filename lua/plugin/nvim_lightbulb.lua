@@ -1,6 +1,6 @@
 local M = {
   'kosayoda/nvim-lightbulb',
-  enable = false,
+  enabled = false,
   config = function()
     require("nvim-lightbulb").setup({
       autocmd = { enabled = true },
