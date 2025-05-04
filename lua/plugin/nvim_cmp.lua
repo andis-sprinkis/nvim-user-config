@@ -67,6 +67,20 @@ local M = {
             cmp.complete()
           end
         end),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if luasnip.locally_jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
         ['<Esc>'] = cmp.mapping(function(fallback)
           -- conditional needed to not break [digit]o/O
           if cmp.visible() then
