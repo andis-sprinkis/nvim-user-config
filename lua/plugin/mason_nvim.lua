@@ -193,72 +193,62 @@ local M = {
     local fn_default_capabilities = require("cmp_nvim_lsp").default_capabilities
     -- local fn_default_capabilities = require('blink.cmp').get_lsp_capabilities
 
-    local function make_config()
-      return {
-        capabilities = fn_default_capabilities(),
-        on_attach = on_attach,
-      }
-    end
-
     require("mason-lock").setup()
+
+    require("lspconfig")
+
+    vim.lsp.config('*', {
+      capabilities = fn_default_capabilities(),
+      on_attach = on_attach,
+    })
+
+    vim.lsp.config('lua_ls', {
+      capabilities = fn_default_capabilities(),
+      on_attach = on_attach,
+      settings = {
+        Lua = {
+          telemetry = {
+            enable = false,
+          },
+        },
+      },
+    })
+
+    vim.lsp.config('jsonls', {
+      capabilities = fn_default_capabilities(),
+      on_attach = on_attach,
+      settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+          validate = { enable = true },
+        },
+      },
+    })
+
+    vim.lsp.config('ts_ls', {
+      capabilities = fn_default_capabilities(),
+      on_attach = function(client, bufnr)
+        local server_capabilities                           = client.server_capabilities
+
+        server_capabilities.documentFormattingProvider      = false
+        server_capabilities.documentRangeFormattingProvider = false
+
+        on_attach(client, bufnr)
+      end
+    })
+
+    local ts_ls_capabilities = fn_default_capabilities()
+
+    ts_ls_capabilities.offsetEncoding = { "utf-16" }
+
+    vim.lsp.config('ts_ls', {
+      capabilities = ts_ls_capabilities,
+      on_attach = on_attach,
+    })
 
     require("mason").setup()
 
     require("mason-lspconfig").setup({ ensure_installed = lsp_servers })
-
-    local lspconfig = require("lspconfig")
-
-    require("mason-lspconfig").setup_handlers({
-      function(server_name)
-        lspconfig[server_name].setup(make_config())
-      end,
-      ["lua_ls"] = function()
-        local config = make_config()
-
-        config.settings = {
-          Lua = {
-            telemetry = {
-              enable = false,
-            },
-          }
-        }
-
-        lspconfig.lua_ls.setup(config)
-      end,
-      ["jsonls"] = function()
-        local config = make_config()
-
-        config.settings = {
-          json = {
-            schemas = require('schemastore').json.schemas(),
-            validate = { enable = true },
-          },
-        }
-
-        lspconfig.jsonls.setup(config)
-      end,
-      ["ts_ls"] = function()
-        local config = make_config()
-
-        config.on_attach = function(client, bufnr)
-          local server_capabilities                           = client.server_capabilities
-
-          server_capabilities.documentFormattingProvider      = false
-          server_capabilities.documentRangeFormattingProvider = false
-
-          on_attach(client, bufnr)
-        end
-
-        lspconfig.ts_ls.setup(config)
-      end,
-      ["clangd"] = function()
-        local config = make_config()
-
-        config.capabilities.offsetEncoding = { "utf-16" }
-
-        lspconfig.clangd.setup(config)
-      end
-    })
 
     require('mason-null-ls').setup({ ensure_installed = linters_formatters })
 
