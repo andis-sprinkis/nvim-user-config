@@ -230,6 +230,18 @@ local M = {
       end
     })
 
+    lsp.config('yamlls', {
+      settings = {
+        yaml = {
+          schemaStore = {
+            enable = false,
+            url = ""
+          },
+          schemas = require('schemastore').yaml.schemas(),
+        },
+      },
+    })
+
     local ts_ls_capabilities = fn_default_capabilities()
     ts_ls_capabilities.offsetEncoding = { "utf-16" }
 
