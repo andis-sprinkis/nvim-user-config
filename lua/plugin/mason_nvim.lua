@@ -1,7 +1,7 @@
 local sys_reqr = vim.g.sys_reqr
 
 local M = {
-  'williamboman/mason.nvim',
+  'mason-org/mason.nvim',
   cond = sys_reqr.lsp_plugins,
   enabled = sys_reqr.lsp_plugins,
   config = function()
@@ -305,10 +305,10 @@ local M = {
     'b0o/schemastore.nvim',
     'jayp0521/mason-null-ls.nvim',
     'lewis6991/gitsigns.nvim',
+    'mason-org/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',
     'nvimtools/none-ls.nvim',
-    'williamboman/mason-lspconfig.nvim',
     'zapling/mason-lock.nvim',
   }
 }

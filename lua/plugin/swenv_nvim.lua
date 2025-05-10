@@ -19,8 +19,8 @@ local M = {
     )
   end,
   dependencies = {
+    'mason-org/mason.nvim',
     'stevearc/dressing.nvim',
-    'williamboman/mason.nvim',
   },
   event = 'VeryLazy'
 }
