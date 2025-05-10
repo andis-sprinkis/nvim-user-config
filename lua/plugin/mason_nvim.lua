@@ -195,14 +195,12 @@ local M = {
 
     require("mason-lock").setup()
 
-    vim.lsp.config('*', {
+    lsp.config('*', {
       capabilities = fn_default_capabilities(),
       on_attach = on_attach,
     })
 
-    vim.lsp.config('lua_ls', {
-      capabilities = fn_default_capabilities(),
-      on_attach = on_attach,
+    lsp.config('lua_ls', {
       settings = {
         Lua = {
           telemetry = {
@@ -212,9 +210,7 @@ local M = {
       },
     })
 
-    vim.lsp.config('jsonls', {
-      capabilities = fn_default_capabilities(),
-      on_attach = on_attach,
+    lsp.config('jsonls', {
       settings = {
         json = {
           schemas = require('schemastore').json.schemas(),
@@ -223,8 +219,7 @@ local M = {
       },
     })
 
-    vim.lsp.config('ts_ls', {
-      capabilities = fn_default_capabilities(),
+    lsp.config('ts_ls', {
       on_attach = function(client, bufnr)
         local server_capabilities                           = client.server_capabilities
 
@@ -236,12 +231,10 @@ local M = {
     })
 
     local ts_ls_capabilities = fn_default_capabilities()
-
     ts_ls_capabilities.offsetEncoding = { "utf-16" }
 
-    vim.lsp.config('ts_ls', {
+    lsp.config('ts_ls', {
       capabilities = ts_ls_capabilities,
-      on_attach = on_attach,
     })
 
     require("mason").setup()
