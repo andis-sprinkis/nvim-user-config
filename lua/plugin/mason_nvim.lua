@@ -195,8 +195,6 @@ local M = {
 
     require("mason-lock").setup()
 
-    require("lspconfig")
-
     vim.lsp.config('*', {
       capabilities = fn_default_capabilities(),
       on_attach = on_attach,
