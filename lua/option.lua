@@ -63,10 +63,7 @@ o.title = true
 o.titlelen = 1000
 o.updatetime = 100
 o.virtualedit:append 'block'
-o.whichwrap:append '<'
-o.whichwrap:append '>'
-o.whichwrap:append 'h'
-o.whichwrap:append 'l'
+o.whichwrap:append '<,>,h,l'
 o.winblend = 10
 o.writebackup = false
 
