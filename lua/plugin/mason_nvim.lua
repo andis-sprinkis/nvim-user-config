@@ -48,7 +48,8 @@ local M = {
       'asmfmt',
       'prettier',
       'shellcheck',
-      'checkmake'
+      'checkmake',
+      'cspell'
     }
 
     -- :help vim.diagnostic.*
@@ -193,7 +194,7 @@ local M = {
     local fn_default_capabilities = require("cmp_nvim_lsp").default_capabilities
     -- local fn_default_capabilities = require('blink.cmp').get_lsp_capabilities
 
-    require("mason-lock").setup()
+    -- require("mason-lock").setup()
 
     lsp.config('*', {
       capabilities = fn_default_capabilities(),
@@ -256,6 +257,7 @@ local M = {
     require('mason-null-ls').setup({ ensure_installed = linters_formatters })
 
     local null_ls = require('null-ls')
+    -- local cspell = require("cspell")
 
     null_ls.setup({
       sources = {
@@ -263,6 +265,12 @@ local M = {
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.diagnostics.checkmake,
         null_ls.builtins.code_actions.gitsigns,
+        -- cspell.diagnostics.with({
+        --   diagnostics_postprocess = function(diag)
+        --     diag.severity = vim.diagnostic.severity.HINT
+        --   end,
+        -- }),
+        -- cspell.code_actions
       },
       on_attach = function(client, bufnr)
         local server_capabilities = client.server_capabilities
@@ -303,13 +311,14 @@ local M = {
   dependencies = {
     'RRethy/vim-illuminate',
     'b0o/schemastore.nvim',
+    'davidmh/cspell.nvim',
     'jayp0521/mason-null-ls.nvim',
     'lewis6991/gitsigns.nvim',
     'mason-org/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',
     'nvimtools/none-ls.nvim',
-    'zapling/mason-lock.nvim',
+    -- 'zapling/mason-lock.nvim',
   }
 }
 
