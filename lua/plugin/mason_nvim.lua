@@ -311,7 +311,7 @@ local M = {
   dependencies = {
     'RRethy/vim-illuminate',
     'b0o/schemastore.nvim',
-    'davidmh/cspell.nvim',
+    -- 'davidmh/cspell.nvim',
     'jayp0521/mason-null-ls.nvim',
     'lewis6991/gitsigns.nvim',
     'mason-org/mason-lspconfig.nvim',
