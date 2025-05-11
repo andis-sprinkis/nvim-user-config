@@ -54,11 +54,13 @@ o.title = true
 o.titlelen = 1000
 o.updatetime = 100
 o.virtualedit:append 'block'
+o.whichwrap:append '<'
+o.whichwrap:append '>'
+o.whichwrap:append 'h'
+o.whichwrap:append 'l'
 o.winblend = 10
 o.writebackup = false
 
-km({ 'n', 'v' }, 'h', '<bs>', { desc = "Move to next character (<BS>)" })
-km({ 'n', 'v' }, 'l', '<space>', { desc = "Move to previous character (<Space>)" })
 km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode" })
 km('n', '/', '/\\c', { desc = "Search forward" })
 km('n', '?', '?\\c', { desc = "Search backward" })
