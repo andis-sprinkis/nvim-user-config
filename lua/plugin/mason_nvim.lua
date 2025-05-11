@@ -194,8 +194,6 @@ local M = {
     local fn_default_capabilities = require("cmp_nvim_lsp").default_capabilities
     -- local fn_default_capabilities = require('blink.cmp').get_lsp_capabilities
 
-    -- require("mason-lock").setup()
-
     lsp.config('*', {
       capabilities = fn_default_capabilities(),
       on_attach = on_attach,
@@ -318,7 +316,6 @@ local M = {
     'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',
     'nvimtools/none-ls.nvim',
-    -- 'zapling/mason-lock.nvim',
   }
 }
 
