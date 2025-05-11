@@ -49,7 +49,7 @@ local M = {
       'prettier',
       'shellcheck',
       'checkmake',
-      'cspell'
+      -- 'cspell'
     }
 
     -- :help vim.diagnostic.*
