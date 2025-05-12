@@ -158,7 +158,7 @@ local M = {
     cmp.setup.filetype('gitcommit', {
       sources = cmpc.sources(
         {
-          { name = 'cmp_git' },
+          { name = 'git' },
           { name = 'buffer' },
           { name = 'nvim_lsp' },
           source_cmp_rg,
