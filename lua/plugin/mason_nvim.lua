@@ -7,7 +7,6 @@ local M = {
   config = function()
     local diagnostic = vim.diagnostic
     local lsp = vim.lsp
-    local api = vim.api
     local lspbuf = lsp.buf
     local km = vim.keymap.set
 
@@ -52,13 +51,19 @@ local M = {
       -- 'cspell'
     }
 
-    -- :help vim.diagnostic.*
+    -- Default keymaps (doc/lsp.txt):
+    -- "grn" is mapped in Normal mode to |vim.lsp.buf.rename()|
+    -- "gra" is mapped in Normal and Visual mode to |vim.lsp.buf.code_action()|
+    -- "grr" is mapped in Normal mode to |vim.lsp.buf.references()|
+    -- "gri" is mapped in Normal mode to |vim.lsp.buf.implementation()|
+    -- "gO" is mapped in Normal mode to |vim.lsp.buf.document_symbol()|
+    -- CTRL-S is mapped in Insert mode to |vim.lsp.buf.signature_help()|
+    -- |K| is mapped to |vim.lsp.buf.hover()| unless |'keywordprg'| is customized or a custom keymap for `K` exists.
+
     km(
       'n',
       '<Leader>d',
-      function()
-        diagnostic.open_float({ max_width = 90 })
-      end,
+      diagnostic.open_float,
       { desc = 'Show diagnostics in a floating window (LSP)' }
     )
     km(
@@ -89,85 +94,24 @@ local M = {
     end
 
     local on_attach = function(client, bufnr)
-      -- Enable completion triggered by <c-x><c-o>
-      api.nvim_set_option_value('omnifunc', "v:lua.vim.lsp.omnifunc", { buf = bufnr })
-
       -- :help vim.lsp.buf.*
       km(
         'n',
-        'gD',
+        'grl',
         lspbuf.declaration,
         { buffer = bufnr, desc = 'Jump to the declaration of the symbol under the cursor (LSP)' }
       )
       km(
         'n',
-        'gd',
+        'grd',
         lspbuf.definition,
         { buffer = bufnr, desc = 'Jump to the definition of the symbol under the cursor (LSP)' }
       )
       km(
-        { 'n', 'x' },
-        'K',
-        function()
-          lspbuf.hover({ max_width = 90 })
-        end,
-        { buffer = bufnr, desc = 'Display hover information about the symbol under the cursor (LSP)' }
-      )
-      km(
         'n',
-        'gi',
-        lspbuf.implementation,
-        { buffer = bufnr, desc = 'List all the implementations for the symbol under the cursor (LSP)' }
-      )
-      km(
-        'n',
-        '<C-s>',
-        function()
-          lspbuf.signature_help({ max_width = 90 })
-        end,
-        { buffer = bufnr, desc = 'Displays signature information about the symbol under the cursor (LSP)' }
-      )
-      -- km(
-      --   'n',
-      --   '<Leader>wa',
-      --   lspbuf.add_workspace_folder,
-      --   { buffer = bufnr, desc = 'Add the folder at path to the workspace folders (LSP)' }
-      -- )
-      -- km(
-      --   'n',
-      --   '<Leader>wr',
-      --   lspbuf.remove_workspace_folder,
-      --   { buffer = bufnr, desc = 'Remove the folder at path from the workspace folders (LSP)' }
-      -- )
-      -- km(
-      --   'n',
-      --   '<Leader>wl',
-      --   function() print(vim.inspect(lspbuf.list_workspace_folders())) end,
-      --   { buffer = bufnr, desc = 'List workspace folders (LSP)' }
-      -- )
-      km(
-        'n',
-        '<Leader>D',
+        'grt',
         lspbuf.type_definition,
         { buffer = bufnr, desc = 'Jump to the definition of the type of the symbol under the cursor (LSP)' }
-      )
-      km(
-        'n',
-        '<Leader>rn',
-        lspbuf.rename,
-        { buffer = bufnr, desc = 'Rename all references to the symbol under the cursor (LSP)' }
-      )
-      km(
-        'n',
-        '<Leader>ca',
-        lspbuf.code_action,
-        { buffer = bufnr, desc = 'Select a code action available at the current cursor position (LSP)' }
-      )
-      km(
-        'n',
-        'gr',
-        lspbuf.references,
-        { buffer = bufnr, desc = 'List all the references to the symbol under the cursor (LSP)' }
       )
 
       local server_capabilities = client.server_capabilities
@@ -175,7 +119,7 @@ local M = {
       if server_capabilities.documentFormattingProvider then
         km(
           'n',
-          '<Leader>f',
+          'grf',
           buf_format,
           { buffer = bufnr, desc = 'Format a buffer using the attached LSP (LSP)' }
         )
@@ -184,7 +128,7 @@ local M = {
       if server_capabilities.documentRangeFormattingProvider then
         km(
           'x',
-          '<Leader>f',
+          'grf',
           buf_format,
           { buffer = bufnr, desc = 'Format the range using the attached LSP (LSP)' }
         )
@@ -278,7 +222,7 @@ local M = {
         if server_capabilities.documentFormattingProvider then
           km(
             'n',
-            '<Leader>f',
+            'grf',
             buf_format,
             { buffer = bufnr, desc = 'Format a buffer using the attached LSP (null-ls)' }
           )
@@ -287,7 +231,7 @@ local M = {
         if server_capabilities.documentRangeFormattingProvider then
           km(
             'x',
-            '<Leader>f',
+            'grf',
             buf_format,
             { buffer = bufnr, desc = 'Format a buffer using the attached LSP (null-ls)' }
           )
