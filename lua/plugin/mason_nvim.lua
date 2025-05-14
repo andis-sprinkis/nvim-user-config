@@ -68,7 +68,7 @@ local M = {
     )
     km(
       'n',
-      '[d',
+      'grP',
       function()
         diagnostic.jump({ count = -1, float = false })
       end,
@@ -76,7 +76,7 @@ local M = {
     )
     km(
       'n',
-      ']d',
+      'grN',
       function()
         diagnostic.jump({ count = 1, float = false })
       end,
