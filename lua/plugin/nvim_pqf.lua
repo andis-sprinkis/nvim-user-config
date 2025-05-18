@@ -1,7 +1,7 @@
 local M = {
   'yorickpeterse/nvim-pqf',
   config = true,
-  event = 'VeryLazy',
+  filetype = 'qf',
 }
 
 return M
