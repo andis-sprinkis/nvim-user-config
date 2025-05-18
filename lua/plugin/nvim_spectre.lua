@@ -45,7 +45,8 @@ local M = {
     )
   end,
   dependencies = { 'nvim-lua/plenary.nvim' },
-  event = 'VeryLazy'
+  cmd = 'Spectre',
+  keys = { '<Leader>rr', '<Leader>rw', '<Leader>rf' }
 }
 
 return M
