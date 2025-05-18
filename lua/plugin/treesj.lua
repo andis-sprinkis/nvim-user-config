@@ -7,7 +7,8 @@ local M = {
     treesj.setup({
       use_default_keymaps = false,
       max_join_length = 2048,
-      notify = false
+      notify = false,
+      cursor_behavior = 'start'
     })
 
     km('n', '<Leader>k', treesj.join, { silent = true, desc = 'Join node under cursor (treesj)' })
