@@ -12,7 +12,8 @@ local M = {
     km('n', '<Leader>k', treesj.join, { silent = true, desc = 'Join node under cursor (treesj)' })
     km('n', '<Leader>j', treesj.split, { silent = true, desc = 'Split node under cursor (treesj)' })
   end,
-  event = 'VeryLazy'
+  keys = { '<Leader>k', '<Leader>j' },
+  dependencies = { 'nvim-treesitter/nvim-treesitter' }
 }
 
 return M
