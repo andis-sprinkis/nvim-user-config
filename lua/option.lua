@@ -53,6 +53,7 @@ o.swapfile = false
 o.tabstop = 2
 o.title = true
 o.titlelen = 1000
+o.titlestring = '%t%(%M%)%( (%{expand("%:~:h")})%)%a'
 o.updatetime = 100
 o.virtualedit:append 'block'
 o.whichwrap:append '<,>,h,l'
