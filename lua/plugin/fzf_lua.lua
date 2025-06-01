@@ -69,7 +69,6 @@ local M = {
           vertical = 'up:60%',
           scrollbar = false,
           border = 'border-top',
-          scrollchars = { '│', '' },
           delay = 20,
         }
       }
