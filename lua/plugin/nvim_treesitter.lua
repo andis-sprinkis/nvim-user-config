@@ -1,5 +1,6 @@
 local M = {
   'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
   config = function()
     local disable = function()
       return vim.b.large_file_buf
@@ -33,8 +34,7 @@ local M = {
         ol.foldexpr = 'nvim_treesitter#foldexpr()'
       end
     })
-  end,
-  build = ':TSUpdate'
+  end
 }
 
 return M
