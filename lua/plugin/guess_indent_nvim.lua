@@ -7,7 +7,10 @@ local M = {
         "fugitive",
         "help",
         "lazy",
-        "man"
+        "man",
+        "nofile",
+        "prompt",
+        "terminal",
       }
     }
   end,
