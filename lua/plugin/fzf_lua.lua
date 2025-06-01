@@ -63,15 +63,14 @@ local M = {
         fullscreen = true,
         border = 'none',
         preview = {
+          title = true,
           wrap = 'wrap',
           layout = 'vertical',
           vertical = 'up:60%',
-          border = 'noborder',
+          scrollbar = false,
+          border = 'border-top',
           scrollchars = { '│', '' },
-          delay = 50,
-        },
-        hls = {
-          border = 'FloatBorder'
+          delay = 20,
         }
       }
     })
