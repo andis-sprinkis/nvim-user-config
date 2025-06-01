@@ -3,7 +3,6 @@ local M = {
   config = function()
     require "ibl".setup({
       indent = { char = '│' },
-      scope = { highlight = 'Normal' }
     })
     local hooks = require "ibl.hooks"
     hooks.register(
