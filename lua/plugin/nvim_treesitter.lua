@@ -25,12 +25,12 @@ local M = {
     ac({ 'BufRead' }, {
       group = ag_nvim_treesitter_cfg,
       callback = function()
-        if not disable() then
-          local ol = vim.opt_local
-          ol.foldmethod = 'expr'
-          ol.foldenable = false
-          ol.foldexpr = 'nvim_treesitter#foldexpr()'
-        end
+        if disable() then return end
+
+        local ol = vim.opt_local
+        ol.foldmethod = 'expr'
+        ol.foldenable = false
+        ol.foldexpr = 'nvim_treesitter#foldexpr()'
       end
     })
   end,
