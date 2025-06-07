@@ -32,7 +32,6 @@ o.cursorline = true
 o.expandtab = true
 o.foldlevel = 99
 o.foldlevelstart = 99
--- o.hlsearch = false
 o.list = true
 opt.listchars:append {
   eol = '↲',
