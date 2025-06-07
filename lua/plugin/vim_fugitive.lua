@@ -19,7 +19,8 @@ local M = {
     uc('Gps', ucmd('G push'), opt_cmd)
     uc('Gs', ucmd('G status'), opt_cmd)
     uc('Gt', ucmd('G checkout'), opt_cmd)
-  end
+  end,
+  event = { "CmdlineEnter" }
 }
 
 return M

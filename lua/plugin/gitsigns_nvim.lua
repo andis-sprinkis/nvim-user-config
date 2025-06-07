@@ -5,9 +5,6 @@ local M = {
       sign_priority = 11
     }
   end,
-  dependencies = {
-    'tpope/vim-fugitive',
-  },
   event = 'VeryLazy'
 }
 
