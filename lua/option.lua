@@ -67,7 +67,7 @@ o.writebackup = false
 km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode" })
 km('n', '/', '/\\c', { desc = "Search forward" })
 km('n', '?', '?\\c', { desc = "Search backward" })
-km('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "" })
+km('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Clear search highlight" })
 
 km(
   'n',
