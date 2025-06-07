@@ -12,6 +12,16 @@ local M = {
 
     local au_dirvish_usr = vim.api.nvim_create_augroup('dirvish_usr', { clear = true })
 
+    local listchars = {
+      -- tab = '> ',
+      trail = '-',
+      nbsp = '+',
+      -- Custom:
+      eol = '↲',
+      extends = '>',
+      tab = '» ',
+    }
+
     vim.api.nvim_create_autocmd(
       { 'Filetype' },
       {
@@ -19,7 +29,9 @@ local M = {
         pattern = 'dirvish',
         callback = function()
           -- Workaround for https://github.com/justinmk/vim-dirvish/issues/257
-          vim.api.nvim_set_option_value('listchars', 'tab:> ,trail:-,nbsp:+,eol:↲,extends:>,tab:» ', { scope = 'local' })
+          vim.opt_local.listchars = listchars
+
+          -- vim.opt_local.listchars = listchars
 
           km('n', '-', '<Plug>(dirvish_up)',
             { desc = "Go up a directory (vim-dirvish)", buffer = true })
