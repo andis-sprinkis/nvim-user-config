@@ -156,10 +156,26 @@ local M = {
     })
 
     lsp.config('jsonls', {
+      before_init = function(_, client_config)
+        client_config.settings.json.schemas = require('schemastore').json.schemas()
+      end,
       settings = {
         json = {
-          schemas = require('schemastore').json.schemas(),
           validate = { enable = true },
+        },
+      },
+    })
+
+    lsp.config('yamlls', {
+      before_init = function(_, client_config)
+        client_config.settings.yaml.schemas = require('schemastore').yaml.schemas()
+      end,
+      settings = {
+        yaml = {
+          schemaStore = {
+            enable = false,
+            url = ""
+          },
         },
       },
     })
@@ -173,18 +189,6 @@ local M = {
 
         on_attach(client, bufnr)
       end
-    })
-
-    lsp.config('yamlls', {
-      settings = {
-        yaml = {
-          schemaStore = {
-            enable = false,
-            url = ""
-          },
-          schemas = require('schemastore').yaml.schemas(),
-        },
-      },
     })
 
     local ts_ls_capabilities = fn_default_capabilities()
