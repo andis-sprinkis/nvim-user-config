@@ -1,7 +1,8 @@
 local b = vim.b
 local g = vim.g
-local o = vim.opt
-local ol = vim.opt_local
+local o = vim.o
+local opt = vim.opt
+local optl = vim.opt_local
 local fn = vim.fn
 local cmd = vim.cmd
 local km = vim.keymap.set
@@ -21,16 +22,19 @@ g.max_file_size_b = 1024 * g.max_file_size_kb -- 1024 * KB
 g.loaded_netrwPlugin = 0
 g.man_hard_wrap = true
 g.mapleader = ' '
+g.maplocalleader = ' '
 o.backup = false
 o.breakindent = true
-o.clipboard = 'unnamedplus'
+vim.schedule(function()
+  o.clipboard = 'unnamedplus'
+end)
 o.cursorline = true
 o.expandtab = true
 o.foldlevel = 99
 o.foldlevelstart = 99
-o.hlsearch = false
+-- o.hlsearch = false
 o.list = true
-o.listchars:append {
+opt.listchars:append {
   eol = '↲',
   extends = '>',
   precedes = '<',
@@ -43,7 +47,7 @@ o.pumblend = 10
 o.relativenumber = true
 o.scrolljump = -100
 o.shiftwidth = 2
-o.shm:append 'I'
+opt.shm:append 'I'
 o.showmode = false
 o.sidescrolloff = 20
 o.signcolumn = 'yes:2'
@@ -51,18 +55,20 @@ o.splitkeep = 'screen'
 o.statuscolumn = "%s%=%T%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : '┊'}│%T"
 o.swapfile = false
 o.tabstop = 2
+o.timeoutlen = 300
 o.title = true
 o.titlelen = 1000
 o.titlestring = '%t%(%M%)%( (%{expand("%:~:h")})%)%a'
-o.updatetime = 100
-o.virtualedit:append 'block'
-o.whichwrap:append '<,>,h,l'
+o.updatetime = 150
+opt.virtualedit:append 'block'
+opt.whichwrap:append '<,>,h,l'
 o.winblend = 10
 o.writebackup = false
 
 km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode" })
 km('n', '/', '/\\c', { desc = "Search forward" })
 km('n', '?', '?\\c', { desc = "Search backward" })
+km('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "" })
 
 km(
   'n',
@@ -97,10 +103,10 @@ ac(
   {
     group = ag_option,
     callback = function()
-      ol.number = false
-      ol.relativenumber = false
-      ol.signcolumn = 'no'
-      ol.statuscolumn = ''
+      optl.number = false
+      optl.relativenumber = false
+      optl.signcolumn = 'no'
+      optl.statuscolumn = ''
       cmd.startinsert()
     end
   }
@@ -112,8 +118,8 @@ ac(
     group = ag_option,
     pattern = { 'man', 'help', 'vimdoc' },
     callback = function()
-      ol.number = true
-      ol.relativenumber = true
+      optl.number = true
+      optl.relativenumber = true
     end
   }
 )
@@ -124,7 +130,7 @@ ac(
     group = ag_option,
     pattern = { 'asm', 'make', 'gitconfig' },
     callback = function()
-      ol.expandtab = false
+      optl.expandtab = false
     end
   }
 )
@@ -135,7 +141,7 @@ ac(
     group = ag_option,
     pattern = { 'markdown' },
     callback = function()
-      ol.formatoptions:append 'r'
+      optl.formatoptions:append 'r'
     end
   }
 )
@@ -159,7 +165,7 @@ ac(
 
       if ok and stats and (stats.size > g.max_file_size_b) then
         b.large_file_buf = true
-        ol.foldmethod = "expr"
+        optl.foldmethod = "expr"
         return
       end
 
@@ -209,7 +215,7 @@ uc(
 if fn.executable('lf') == 1 then
   uc(
     "Lf",
-    function(opt)
+    function(option)
       local buf = api.nvim_create_buf(false, true)
 
       local win = api.nvim_open_win(
@@ -240,7 +246,7 @@ if fn.executable('lf') == 1 then
       local cache_sel_path = fn.stdpath("cache") .. "/lf_sel_path"
 
       fn.jobstart(
-        "lf -selection-path " .. cache_sel_path .. " " .. (opt.fargs[1] or "."),
+        "lf -selection-path " .. cache_sel_path .. " " .. (option.fargs[1] or "."),
         {
           term = true,
           on_exit = function()
