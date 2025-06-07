@@ -18,7 +18,11 @@ local M = {
         group = au_dirvish_usr,
         pattern = 'dirvish',
         callback = function()
-          vim.opt_local.list = false
+          -- Workaround for https://github.com/justinmk/vim-dirvish/issues/257
+          vim.cmd[[
+            setlocal listchars=tab:>\ ,trail:-,nbsp:+ " Default value
+            setlocal listchars+=eol:↲,extends:>,tab:»\ 
+          ]]
 
           km('n', '-', '<Plug>(dirvish_up)',
             { desc = "Go up a directory (vim-dirvish)", buffer = true })
