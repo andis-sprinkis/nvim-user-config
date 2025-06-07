@@ -7,15 +7,12 @@ local M = {
 
     vim.keymap.del('n', '-')
 
-    km('n', '<leader>-', '<Plug>(dirvish_up)',
-      { desc = "Show file directory (vim-dirvish)" })
-
-    local au_dirvish_usr = vim.api.nvim_create_augroup('dirvish_usr', { clear = true })
+    km('n', '<leader>-', '<Plug>(dirvish_up)', { desc = "Show file directory (vim-dirvish)" })
 
     vim.api.nvim_create_autocmd(
-      { 'Filetype' },
+      'Filetype',
       {
-        group = au_dirvish_usr,
+        group = vim.api.nvim_create_augroup('dirvish_usr', { clear = true }),
         pattern = 'dirvish',
         callback = function()
           -- Workaround for https://github.com/justinmk/vim-dirvish/issues/257
