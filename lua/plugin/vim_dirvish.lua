@@ -19,10 +19,7 @@ local M = {
         pattern = 'dirvish',
         callback = function()
           -- Workaround for https://github.com/justinmk/vim-dirvish/issues/257
-          vim.cmd[[
-            setlocal listchars=tab:>\ ,trail:-,nbsp:+ " Default value
-            setlocal listchars+=eol:↲,extends:>,tab:»\ 
-          ]]
+          vim.api.nvim_set_option_value('listchars', 'tab:> ,trail:-,nbsp:+,eol:↲,extends:>,tab:» ', { scope = 'local' })
 
           km('n', '-', '<Plug>(dirvish_up)',
             { desc = "Go up a directory (vim-dirvish)", buffer = true })
