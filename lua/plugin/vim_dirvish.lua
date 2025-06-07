@@ -19,15 +19,8 @@ local M = {
         pattern = 'dirvish',
         callback = function()
           -- Workaround for https://github.com/justinmk/vim-dirvish/issues/257
-          vim.opt_local.listchars = {
-            -- tab = '> ',
-            trail = '-',
-            nbsp = '+',
-            -- Custom:
-            eol = '↲',
-            extends = '>',
-            tab = '» ',
-          }
+          vim.opt_local.listchars = vim.opt.listchars:get()
+          vim.opt_local.listchars:remove('precedes')
 
           km('n', '-', '<Plug>(dirvish_up)',
             { desc = "Go up a directory (vim-dirvish)", buffer = true })
