@@ -51,6 +51,8 @@ o.showmode = false
 o.sidescrolloff = 20
 o.signcolumn = 'yes:2'
 o.splitkeep = 'screen'
+o.splitright = true
+o.splitbelow = true
 o.statuscolumn = "%s%=%T%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : '┊'}│%T"
 o.swapfile = false
 o.tabstop = 2
