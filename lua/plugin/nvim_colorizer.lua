@@ -1,11 +1,14 @@
 local M = {
-  'NvChad/nvim-colorizer.lua',
+  'catgoose/nvim-colorizer.lua',
+  event = "VeryLazy",
   config = function()
     require("colorizer").setup {
+      lazy_load = true,
       user_default_options = {
         RRGGBBAA = true,
         AARRGGBB = true,
-        css =  true,
+        css = true,
+        css_fn = true,
         mode = "virtualtext"
       }
     }
