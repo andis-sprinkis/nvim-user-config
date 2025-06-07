@@ -31,8 +31,6 @@ local M = {
           -- Workaround for https://github.com/justinmk/vim-dirvish/issues/257
           vim.opt_local.listchars = listchars
 
-          -- vim.opt_local.listchars = listchars
-
           km('n', '-', '<Plug>(dirvish_up)',
             { desc = "Go up a directory (vim-dirvish)", buffer = true })
 
