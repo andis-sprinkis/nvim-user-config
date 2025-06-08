@@ -19,8 +19,11 @@ local M = {
           vim.opt_local.listchars = vim.opt.listchars:get()
           vim.opt_local.listchars:remove('precedes')
 
+          km('n', '=', ':call dirvish#open("edit", 0)<CR>',
+            { desc = "Open file at cursor (vim-dirvish)", silent = true, nowait = true, buffer = true })
+
           km('n', '-', '<Plug>(dirvish_up)',
-            { desc = "Go up a directory (vim-dirvish)", buffer = true })
+            { desc = "Go up a directory (vim-dirvish)", silent = true, nowait = true, buffer = true })
 
           km('n', '/', '/\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
             { desc = "Search forward (vim-dirvish)", buffer = true })
