@@ -210,7 +210,7 @@ uc(
 uc(
   'Config',
   function()
-    vim.cmd.edit(vim.fn.stdpath("config"))
+    vim.cmd.edit(fn.stdpath("config"))
   end,
   {}
 )
