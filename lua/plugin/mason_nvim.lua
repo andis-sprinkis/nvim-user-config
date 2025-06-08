@@ -127,7 +127,7 @@ local M = {
 
       if server_capabilities.documentRangeFormattingProvider then
         km(
-          'x',
+          'v',
           'grf',
           buf_format,
           { buffer = bufnr, desc = 'Format the range using the attached LSP (LSP)' }
@@ -232,7 +232,7 @@ local M = {
 
         if server_capabilities.documentRangeFormattingProvider then
           km(
-            'x',
+            'v',
             'grf',
             buf_format,
             { buffer = bufnr, desc = 'Format a buffer using the attached LSP (null-ls)' }

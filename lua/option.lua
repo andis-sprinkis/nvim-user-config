@@ -70,6 +70,8 @@ km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode" })
 km('n', '/', '/\\c', { desc = "Search forward" })
 km('n', '?', '?\\c', { desc = "Search backward" })
 km('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Hide search highlight" })
+km({ 'n', 'v' }, '=', '+')
+km({ 'n', 'v' }, '+', '=')
 
 km(
   'n',

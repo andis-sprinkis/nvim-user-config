@@ -17,8 +17,8 @@ local M = {
     }
   },
   keys = {
-    { "gc", mode = { "n", "x" } },
-    { "gb", mode = { "n", "x" } },
+    { "gc", mode = { "n", "v" } },
+    { "gb", mode = { "n", "v" } },
   },
 }
 
