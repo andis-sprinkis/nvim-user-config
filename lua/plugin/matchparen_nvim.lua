@@ -1,6 +1,6 @@
 local M = {
   'monkoose/matchparen.nvim',
-  config = function ()
+  config = function()
     require('matchparen').setup({
       on_startup = false
     })
@@ -8,7 +8,7 @@ local M = {
     local ag = vim.api.nvim_create_augroup
     local ac = vim.api.nvim_create_autocmd
 
-    local ag_matchparen_nvim_cfg = ag('matchparen_nvim_cfg', { clear = true })
+    local ag_matchparen_nvim_cfg = ag('matchparen_nvim_cfg', {})
 
     ac({ 'BufRead' }, {
       group = ag_matchparen_nvim_cfg,

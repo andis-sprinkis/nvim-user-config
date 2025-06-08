@@ -21,7 +21,7 @@ local M = {
     local ag = vim.api.nvim_create_augroup
     local ac = vim.api.nvim_create_autocmd
 
-    local ag_nvim_treesitter_cfg = ag('nvim_treesitter_cfg', { clear = true })
+    local ag_nvim_treesitter_cfg = ag('nvim_treesitter_cfg', {})
 
     ac({ 'BufRead' }, {
       group = ag_nvim_treesitter_cfg,

@@ -87,7 +87,7 @@ end
 
 env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
 
-local ag_option = ag('option', { clear = true })
+local ag_option = ag('option', {})
 
 ac(
   'VimEnter',

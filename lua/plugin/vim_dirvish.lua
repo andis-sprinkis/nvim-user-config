@@ -12,7 +12,7 @@ local M = {
     vim.api.nvim_create_autocmd(
       'Filetype',
       {
-        group = vim.api.nvim_create_augroup('dirvish_usr', { clear = true }),
+        group = vim.api.nvim_create_augroup('dirvish_usr', {}),
         pattern = 'dirvish',
         callback = function()
           -- Workaround for https://github.com/justinmk/vim-dirvish/issues/257

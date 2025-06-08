@@ -135,7 +135,7 @@ function M.statusline(active)
   })
 end
 
-local ag_statusline = ag('statusline', { clear = true })
+local ag_statusline = ag('statusline', {})
 
 local statusline = M.statusline
 
