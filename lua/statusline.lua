@@ -1,7 +1,6 @@
 local api = vim.api
 local bo = vim.bo
 local fn = vim.fn
-local g = vim.g
 local o = vim.opt
 local wo = vim.wo
 local ac = api.nvim_create_autocmd
@@ -10,23 +9,9 @@ local ag = api.nvim_create_augroup
 local M = {}
 
 function M.mime()
-  if vim.bo.ft ~= '' or g.os == 'Windows_NT' then return '' end
+  if vim.bo.ft ~= '' then return '' end
 
-  local bname = vim.fn.getreg('%')
-
-  if (bname == '') then return '' end
-
-  local file = io.open(bname, "r")
-
-  if not file then return '' end
-
-  file.close(file)
-
-  local cmd_mime_output = vim.fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
-
-  if (vim.v.shell_error ~= 0) then return '' end
-
-  return vim.fn.trim(cmd_mime_output)
+  return vim.b.mime
 end
 
 function M.ft() return bo.filetype end
@@ -68,7 +53,7 @@ local static_p2 = table.concat({
   pad(func('bname')),
   '%=%#StatusLineNC#',
   pad('%h%q%r%m'),
-  -- pad(func('mime')),
+  pad(func('mime')),
   pad(func('ft')),
   pad(func('fenc_ffmat')),
   pad('%3c %2l/%-L %3p%%'),
