@@ -66,12 +66,22 @@ opt.whichwrap:append '<,>,h,l'
 o.winblend = 10
 o.writebackup = false
 
-km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode" })
+km({ 'n', 'v' }, '=', '+')
+km({ 'n', 'v' }, '+', '=')
+km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode in terminal buffer" })
 km('n', '/', '/\\c', { desc = "Search forward" })
 km('n', '?', '?\\c', { desc = "Search backward" })
 km('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Hide search highlight" })
-km({ 'n', 'v' }, '=', '+')
-km({ 'n', 'v' }, '+', '=')
+km('n', '<leader>v', cmd.split, { desc = "Split window (split)" })
+km('n', '<leader>o', cmd.vsplit, { desc = "Split window (vsplit)" })
+km('n', '<C-A-j>', function() cmd.resize('+2') end, { desc = "Increase window size (resize)" })
+km('n', '<C-A-k>', function() cmd.resize('-2') end, { desc = "Decrease window size (resize)" })
+km('n', '<C-A-l>', function() cmd('vertical resize +4') end, { desc = "Increase window size (vertical resize)" })
+km('n', '<C-A-h>', function() cmd('vertical resize -4') end, { desc = "Decrease window size (vertical resize)" })
+km('n', '<C-j>', '<C-w>j', { desc = "Move cursor to window above current one" })
+km('n', '<C-k>', '<C-w>k', { desc = "Move cursor to window below current one" })
+km('n', '<C-l>', '<C-w>l', { desc = "Move cursor to window left of current one" })
+km('n', '<C-h>', '<C-w>h', { desc = "Move cursor to window right of current one" })
 
 km(
   'n',
@@ -97,6 +107,16 @@ ac(
     group = ag_option,
     callback = function()
       pcall(function() cmd.cd('%:p:h') end)
+    end
+  }
+)
+
+ac(
+  'VimResized',
+  {
+    group = ag_option,
+    callback = function()
+      cmd([[wincmd =]])
     end
   }
 )
