@@ -120,7 +120,7 @@ local static_p2 = table.concat({
   pad(func('bname')),
   '%=%#StatusLineNC#',
   pad(func('large_file_buf') .. '%h%q%r%m'),
-  pad(func('mime')),
+  -- pad(func('mime')),
   pad(func('ft')),
   pad(func('fenc_ffmat')),
   pad('%3c %2l/%-L %3p%%'),
