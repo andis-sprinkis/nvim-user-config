@@ -110,13 +110,6 @@ local M = {
       function() fzflua.builtin({ resume = true }) end,
       { desc = 'Search fzf-lua builtin commands (fzf-lua)' }
     )
-
-    km(
-      'n',
-      '<leader>h',
-      function() fzflua.help_tags({ resume = true }) end,
-      { desc = 'Search Help tags (fzf-lua)' }
-    )
   end,
   event = { "CmdlineEnter" },
   keys = {
