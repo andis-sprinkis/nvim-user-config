@@ -72,6 +72,16 @@ km('n', '<leader>-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:
 km('n', '<leader>b', ":set nomore <Bar> :ls <Bar> :set more <CR>:b<Space>", { silent = true })
 km('n', '/', '/\\c')
 km('n', '?', '?\\c')
+km('n', '<leader>v', ':split<cr>', { silent = true })
+km('n', '<leader>o', ':vsplit<cr>', { silent = true })
+km('n', '<C-A-j>', ':resize +2<cr>', { silent = true })
+km('n', '<C-A-k>', ':resize -2<cr>', { silent = true })
+km('n', '<C-A-l>', ':vertical resize +4<cr>', { silent = true })
+km('n', '<C-A-h>', ':vertical resize -4<cr>', { silent = true })
+km('n', '<C-j>', '<C-W><C-J>')
+km('n', '<C-k>', '<C-W><C-K>')
+km('n', '<C-l>', '<C-W><C-L>')
+km('n', '<C-h>', '<C-W><C-H>')
 
 km(
   'n',
@@ -93,6 +103,16 @@ ac(
     group = ag_option,
     callback = function()
       pcall(function() cmd([[cd %:p:h]]) end)
+    end
+  }
+)
+
+ac(
+  'VimResized',
+  {
+    group = ag_option,
+    callback = function()
+      cmd([[wincmd =]])
     end
   }
 )
