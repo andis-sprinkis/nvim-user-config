@@ -46,7 +46,11 @@ local M = {
   end,
   dependencies = { 'nvim-lua/plenary.nvim' },
   cmd = 'Spectre',
-  keys = { '<Leader>rr', '<Leader>rw', '<Leader>rf' }
+  keys = {
+    { '<Leader>rr', mode = 'n' },
+    { '<Leader>rw', mode = { 'n', 'v' } },
+    { '<Leader>rf', mode = 'n' },
+  }
 }
 
 return M
