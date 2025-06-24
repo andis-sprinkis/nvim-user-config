@@ -82,7 +82,7 @@ ac({ 'WinLeave', 'FocusLost' }, {
   callback = function() wo.statusline = statusline(false) end
 })
 
-if g.os ~= 'Windows_NT' then
+if vim.g.os ~= 'Windows_NT' then
   ac(
     'BufReadPre',
     {
