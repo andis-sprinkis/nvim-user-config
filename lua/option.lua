@@ -1,6 +1,7 @@
 local g = vim.g
-local o = vim.opt
-local ol = vim.opt_local
+local o = vim.o
+local opt = vim.opt
+local optl = vim.opt_local
 local fn = vim.fn
 local cmd = vim.cmd
 local loop = vim.loop
@@ -19,18 +20,21 @@ end
 
 g.man_hard_wrap = true
 g.mapleader = ' '
+g.maplocalleader = ' '
 g.netrw_banner = false
 g.netrw_liststyle = true
 g.netrw_sort_sequence = '[\\/]\\s'
 o.backup = false
 o.breakindent = true
-o.clipboard = 'unnamedplus'
+vim.schedule(function()
+  o.clipboard = 'unnamedplus'
+end)
 o.cursorline = true
 o.expandtab = true
 o.foldlevel = 99
-o.hlsearch = false
+o.foldlevelstart = 99
 o.list = true
-o.listchars:append {
+opt.listchars:append {
   eol = '↲',
   extends = '>',
   precedes = '<',
@@ -45,9 +49,11 @@ o.pumblend = 10
 o.relativenumber = true
 o.scrolljump = -100
 o.shiftwidth = 2
-o.shm:append 'I'
+opt.shm:append 'I'
 o.showmode = false
 o.sidescrolloff = 20
+o.splitright = true
+o.splitbelow = true
 
 if vim.fn.has('nvim-0.8.2') == 1 then
   o.splitkeep = 'screen'
@@ -59,19 +65,24 @@ end
 
 o.swapfile = false
 o.tabstop = 2
+o.timeoutlen = 300
 o.title = true
 o.titlelen = 1000
-o.updatetime = 100
-o.virtualedit:append 'block'
-o.whichwrap:append '<,>,h,l'
+o.titlestring = '%t%(%M%)%( (%{expand("%:~:h")})%)%a'
+o.updatetime = 150
+opt.virtualedit:append 'block'
+opt.whichwrap:append '<,>,h,l'
 o.winblend = 10
 o.writebackup = false
 
+km({ 'n', 'v' }, '=', '+')
+km({ 'n', 'v' }, '+', '=')
 km('t', '<C-w>', '<C-\\><C-n>')
 km('n', '<leader>-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>')
 km('n', '<leader>b', ":set nomore <Bar> :ls <Bar> :set more <CR>:b<Space>", { silent = true })
 km('n', '/', '/\\c')
 km('n', '?', '?\\c')
+km('n', '<Esc>', '<cmd>nohlsearch<CR>')
 km('n', '<leader>v', ':split<cr>', { silent = true })
 km('n', '<leader>o', ':vsplit<cr>', { silent = true })
 km('n', '<C-A-j>', ':resize +2<cr>', { silent = true })
@@ -93,7 +104,9 @@ km(
   { desc = "Toggle line wrap" }
 )
 
-if not env.LANG then env.LANG = 'en_US.UTF-8' end
+if not env.LANG then
+  env.LANG = 'en_US.UTF-8'
+end
 
 local ag_option = ag('option', {})
 
@@ -122,12 +135,12 @@ ac(
   {
     group = ag_option,
     callback = function()
-      ol.number = false
-      ol.relativenumber = false
-      ol.signcolumn = 'no'
+      optl.number = false
+      optl.relativenumber = false
+      optl.signcolumn = 'no'
 
       if vim.fn.has('nvim-0.10') == 1 then
-        ol.statuscolumn = ''
+        optl.statuscolumn = ''
       end
 
       cmd [[startinsert]]
@@ -141,8 +154,8 @@ ac(
     group = ag_option,
     pattern = { 'man', 'help', 'vimdoc', 'netrw' },
     callback = function()
-      ol.number = true
-      ol.relativenumber = true
+      optl.number = true
+      optl.relativenumber = true
     end
   }
 )
@@ -165,7 +178,7 @@ ac(
     group = ag_option,
     pattern = { 'asm', 'make', 'gitconfig' },
     callback = function()
-      ol.expandtab = false
+      optl.expandtab = false
     end
   }
 )
@@ -176,7 +189,7 @@ ac(
     group = ag_option,
     pattern = { 'markdown' },
     callback = function()
-      ol.formatoptions:append 'r'
+      optl.formatoptions:append 'r'
     end
   }
 )
@@ -189,36 +202,6 @@ ac(
     callback = function()
       vim.highlight.on_yank({ timeout = 170 })
     end,
-  }
-)
-
-ac(
-  'BufReadPre',
-  {
-    callback = function()
-      local bname = vim.fn.getreg('%')
-
-      if (bname == '') then
-        vim.b.mime = ''
-        return
-      end
-
-      local file = io.open(bname, "r")
-
-      if not file then
-        vim.b.mime = ''
-        return
-      end
-
-      file.close(file)
-
-      local cmd_mime_output = vim.fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
-
-      if (vim.v.shell_error ~= 0) then vim.b.mime = '' end
-
-      vim.b.mime = vim.fn.trim(cmd_mime_output)
-    end,
-    group = ag_option,
   }
 )
 
@@ -279,7 +262,7 @@ uc(
 if fn.executable('lf') == 1 then
   uc(
     "Lf",
-    function(opt)
+    function(option)
       local buf = api.nvim_create_buf(false, true)
 
       local win = api.nvim_open_win(
@@ -309,7 +292,7 @@ if fn.executable('lf') == 1 then
 
       local cache_sel_path = fn.stdpath("cache") .. "/lf_sel_path"
 
-      local cmd_select_file = "lf -selection-path " .. cache_sel_path .. " " .. (opt.fargs[1] or ".")
+      local cmd_select_file = "lf -selection-path " .. cache_sel_path .. " " .. (option.fargs[1] or ".")
 
       local on_exit = function()
         api.nvim_win_close(win, true)

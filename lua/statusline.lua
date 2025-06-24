@@ -82,6 +82,38 @@ ac({ 'WinLeave', 'FocusLost' }, {
   callback = function() wo.statusline = statusline(false) end
 })
 
+if g.os ~= 'Windows_NT' then
+  ac(
+    'BufReadPre',
+    {
+      callback = function()
+        local bname = vim.fn.getreg('%')
+
+        if (bname == '') then
+          vim.b.mime = ''
+          return
+        end
+
+        local file = io.open(bname, "r")
+
+        if not file then
+          vim.b.mime = ''
+          return
+        end
+
+        file.close(file)
+
+        local cmd_mime_output = vim.fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
+
+        if (vim.v.shell_error ~= 0) then vim.b.mime = '' end
+
+        vim.b.mime = vim.fn.trim(cmd_mime_output)
+      end,
+      group = ag_statusline,
+    }
+  )
+end
+
 _G.statusline = M
 
 return M
