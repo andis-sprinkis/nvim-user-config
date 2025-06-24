@@ -54,13 +54,17 @@ if sys_reqr.swenv then
   end
 end
 
-function M.mime()
-  if vim.bo.ft ~= '' then return '' end
+function M.ft()
+  if vim.bo.filetype and vim.bo.filetype ~= '' then
+    return vim.bo.filetype
+  end
 
-  return vim.b.mime
+  if vim.b.mime and vim.b.mime ~= '' then
+    return vim.b.mime
+  end
+
+  return ''
 end
-
-function M.ft() return bo.filetype end
 
 function M.fenc_ffmat()
   local e = bo.fileencoding and bo.fileencoding or o.encoding
@@ -106,7 +110,6 @@ local static_p2 = table.concat({
   pad(func('bname')),
   '%=%#StatusLineNC#',
   pad(func('large_file_buf') .. '%h%q%r%m'),
-  pad(func('mime')),
   pad(func('ft')),
   pad(func('fenc_ffmat')),
   pad('%3c %2l/%-L %3p%%'),
@@ -134,6 +137,41 @@ ac({ 'WinLeave', 'FocusLost' }, {
   group = ag_statusline,
   callback = function() wo.statusline = statusline(false) end
 })
+
+ac(
+  'BufReadPre',
+  {
+    callback = function()
+      if vim.bo.filetype and vim.bo.filetype ~= '' then
+        vim.b.mime = ''
+        return
+      end
+
+      local bname = vim.fn.getreg('%')
+
+      if (bname == '') then
+        vim.b.mime = ''
+        return
+      end
+
+      local file = io.open(bname, "r")
+
+      if not file then
+        vim.b.mime = ''
+        return
+      end
+
+      file.close(file)
+
+      local cmd_mime_output = vim.fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
+
+      if (vim.v.shell_error ~= 0) then vim.b.mime = '' end
+
+      vim.b.mime = vim.fn.trim(cmd_mime_output)
+    end,
+    group = ag_statusline,
+  }
+)
 
 _G.statusline = M
 
