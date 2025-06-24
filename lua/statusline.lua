@@ -8,12 +8,6 @@ local ag = api.nvim_create_augroup
 
 local M = {}
 
-function M.mime()
-  if vim.bo.ft ~= '' then return '' end
-
-  return vim.b.mime
-end
-
 function M.ft()
   if vim.bo.filetype ~= '' then
     return vim.bo.filetype
@@ -59,7 +53,6 @@ local static_p2 = table.concat({
   pad(func('bname')),
   '%=%#StatusLineNC#',
   pad('%h%q%r%m'),
-  pad(func('mime')),
   pad(func('ft')),
   pad(func('fenc_ffmat')),
   pad('%3c %2l/%-L %3p%%'),
