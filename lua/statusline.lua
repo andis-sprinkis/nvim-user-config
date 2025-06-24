@@ -13,7 +13,7 @@ function M.ft()
     return vim.bo.filetype
   end
 
-  if vim.b.mime ~= '' then
+  if vim.b.mime and vim.b.mime ~= '' then
     return vim.b.mime
   end
 
