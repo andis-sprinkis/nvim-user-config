@@ -14,7 +14,13 @@ function M.mime()
   return vim.b.mime
 end
 
-function M.ft() return bo.filetype end
+function M.ft()
+  if vim.bo.filetype ~= '' then
+    return vim.bo.filetype
+  end
+
+  return vim.b.mime
+end
 
 function M.fenc_ffmat()
   local e = bo.fileencoding and bo.fileencoding or o.encoding
@@ -87,6 +93,11 @@ if vim.g.os ~= 'Windows_NT' then
     'BufReadPre',
     {
       callback = function()
+        if vim.bo.filetype ~= '' then
+          vim.b.mime = ''
+          return
+        end
+
         local bname = vim.fn.getreg('%')
 
         if (bname == '') then
