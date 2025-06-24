@@ -9,7 +9,7 @@ local ag = api.nvim_create_augroup
 local M = {}
 
 function M.ft()
-  if vim.bo.filetype ~= '' then
+  if vim.bo.filetype and vim.bo.filetype ~= '' then
     return vim.bo.filetype
   end
 
