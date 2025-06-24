@@ -13,7 +13,11 @@ function M.ft()
     return vim.bo.filetype
   end
 
-  return vim.b.mime
+  if vim.b.mime ~= '' then
+    return vim.b.mime
+  end
+
+  return ''
 end
 
 function M.fenc_ffmat()
