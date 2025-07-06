@@ -167,7 +167,6 @@ ac(
     pattern = { 'netrw' },
     callback = function()
       km('n', '=', '<Plug>NetrwLocalBrowseCheck', { buffer = true })
-      optl.scrolljump = 1
     end
   }
 )
