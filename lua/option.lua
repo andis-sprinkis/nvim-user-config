@@ -27,7 +27,15 @@ g.netrw_sort_sequence = '[\\/]\\s'
 o.backup = false
 o.breakindent = true
 vim.schedule(function()
-  o.clipboard = 'unnamedplus'
+  local cmd_output = vim.fn.system('id -u')
+
+  if (vim.v.shell_error ~= 0) then
+    return
+  end
+
+  if tonumber(vim.fn.trim(cmd_output)) >= 1000 then
+    o.clipboard = 'unnamedplus'
+  end
 end)
 o.cursorline = true
 o.expandtab = true
