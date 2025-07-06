@@ -166,7 +166,7 @@ ac(
     group = ag_option,
     pattern = { 'netrw' },
     callback = function()
-      km('n', '<leader>-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>',
+      km('n', '=', '<CR>',
         { buffer = true })
     end
   }
