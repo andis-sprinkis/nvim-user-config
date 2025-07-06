@@ -166,8 +166,7 @@ ac(
     group = ag_option,
     pattern = { 'netrw' },
     callback = function()
-      km('n', '=', '<CR>',
-        { buffer = true })
+      km('n', '=', '<CR>', { buffer = true })
     end
   }
 )
