@@ -166,6 +166,7 @@ ac(
     group = ag_option,
     pattern = { 'netrw' },
     callback = function()
+      km('n', '-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>', { buffer = true })
       km('n', '=', '<Plug>NetrwLocalBrowseCheck', { buffer = true })
     end
   }
