@@ -264,7 +264,6 @@ local M = {
     'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',
     'nvimtools/none-ls.nvim',
-    -- 'zapling/mason-lock.nvim',
   }
 }
 
