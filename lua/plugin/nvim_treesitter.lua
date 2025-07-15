@@ -3,6 +3,10 @@ local M = {
   build = ':TSUpdate',
   config = function()
     local disable = function()
+      if vim.bo.ft == 'tmux' then
+        return true
+      end
+
       return vim.b.large_file_buf
     end
 
