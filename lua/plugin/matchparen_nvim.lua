@@ -1,9 +1,7 @@
 local M = {
   'monkoose/matchparen.nvim',
   config = function()
-    require('matchparen').setup({
-      on_startup = false
-    })
+    require("matchparen").setup()
 
     local ag = vim.api.nvim_create_augroup
     local ac = vim.api.nvim_create_autocmd
