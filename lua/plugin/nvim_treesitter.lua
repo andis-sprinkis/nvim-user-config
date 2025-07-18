@@ -5,6 +5,10 @@ local M = {
   build = ':TSUpdate',
   config = function()
     local disable = function()
+      if vim.bo.ft == 'zathurarc' then
+        return true
+      end
+
       if vim.bo.ft == 'tmux' then
         return true
       end
