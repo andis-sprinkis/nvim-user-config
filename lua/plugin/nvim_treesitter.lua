@@ -6,9 +6,9 @@ local M = {
   config = function()
     local disable = function()
       if
-        vim.bo.ft == 'zathurarc'
-        or vim.bo.ft == 'tmux'
-        or vim.b.large_file_buf
+          vim.bo.ft == 'zathurarc'
+          or vim.bo.ft == 'tmux'
+          or vim.b.large_file_buf
       then
         return true
       end
