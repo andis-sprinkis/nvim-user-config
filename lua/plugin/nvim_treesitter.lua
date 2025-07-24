@@ -5,15 +5,15 @@ local M = {
   build = ':TSUpdate',
   config = function()
     local disable = function()
-      if vim.bo.ft == 'zathurarc' then
+      if
+        vim.bo.ft == 'zathurarc'
+        or vim.bo.ft == 'tmux'
+        or vim.b.large_file_buf
+      then
         return true
       end
 
-      if vim.bo.ft == 'tmux' then
-        return true
-      end
-
-      return vim.b.large_file_buf
+      return false
     end
 
     require 'nvim-treesitter.configs'.setup {

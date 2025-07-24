@@ -43,14 +43,12 @@ g.exec = {
   rg = executable('rg') == 1,
   rust = executable('rust') == 1,
   tmux = executable('tmux') == 1,
-  zsh = executable('zsh') == 1,
 }
 
 local exec = g.exec
 
 g.sys_reqr = {
   cmp_tmux = exec.tmux,
-  cmp_zsh = exec.zsh,
   cmp_rg = exec.rg,
   fm_nvim = exec.lf,
   fzf_lua = exec.fzf,

@@ -105,7 +105,6 @@ local M = {
           { name = 'path' },
           source_cmp_buffer,
           { name = 'tmux' },
-          { name = 'zsh' },
           source_cmp_rg,
           source_cmp_dictionary,
           { name = 'emoji' },
@@ -147,7 +146,6 @@ local M = {
             keyword_length = 2,
           },
           source_cmp_rg,
-          { name = 'zsh' },
           { name = 'tmux' },
           source_cmp_dictionary,
           { name = 'emoji' },
@@ -163,7 +161,6 @@ local M = {
           { name = 'nvim_lsp' },
           source_cmp_rg,
           { name = 'path' },
-          { name = 'zsh' },
           { name = 'tmux' },
           source_cmp_dictionary,
           { name = 'emoji' },
@@ -177,7 +174,6 @@ local M = {
         sources = cmpc.sources({
           { name = "dap" },
           { name = 'path' },
-          { name = 'zsh' },
           { name = 'tmux' },
         }),
       }
@@ -210,11 +206,6 @@ local M = {
     {
       'nat-418/cmp-color-names.nvim',
       config = true
-    },
-    {
-      'tamago324/cmp-zsh',
-      cond = sys_reqr.cmp_zsh,
-      enabled = sys_reqr.cmp_zsh
     },
     {
       'andersevenrud/cmp-tmux',
