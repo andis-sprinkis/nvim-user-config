@@ -175,17 +175,6 @@ local M = {
       ),
     })
 
-    cmp.setup.filetype(
-      { "dap-repl", "dapui_watches", "dapui_hover" },
-      {
-        sources = cmpc.sources({
-          { name = "dap" },
-          { name = 'path' },
-          { name = 'tmux' },
-        }),
-      }
-    )
-
     luasnip.filetype_extend('all', { 'loremipsum' })
 
     require("luasnip.loaders.from_vscode").lazy_load()
