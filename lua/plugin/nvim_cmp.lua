@@ -47,6 +47,13 @@ local M = {
     }
 
     cmp.setup({
+      formatting = {
+        format = function(entry, vim_item)
+          vim_item.menu = entry.source.name
+
+          return vim_item
+        end,
+      },
       snippet = {
         expand = function(args)
           require('luasnip').lsp_expand(args.body)
