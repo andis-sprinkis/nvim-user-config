@@ -28,7 +28,6 @@ local M = {
     })
   end,
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
-  event = 'VeryLazy'
 }
 
 return M

@@ -16,11 +16,11 @@ git checkout minimal-config
 
 ## Dependencies
 
--   `bat`
--   `curl`
--   `fzf`
--   `lf`
--   `node`
--   `rust`
--   [`previewer`](https://github.com/andis-sprinkis/nix-user-config/blob/master/.local/bin/previewer)
--   [Dictionary word lists](https://github.com/andis-sprinkis/dict)
+- `bat`
+- `curl`
+- `fzf`
+- `lf`
+- `node`
+- `rust`
+- [`previewer`](https://github.com/andis-sprinkis/nix-user-config/blob/master/.local/bin/previewer)
+- [Dictionary word lists](https://github.com/andis-sprinkis/dict)

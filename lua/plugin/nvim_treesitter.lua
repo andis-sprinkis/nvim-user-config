@@ -11,7 +11,14 @@ local M = {
     end
 
     require 'nvim-treesitter.configs'.setup {
-      ensure_installed = "all",
+      ensure_installed = {
+        'css',
+        'javascript',
+        'json',
+        'tsx',
+        'typescript',
+        'yaml'
+      },
       highlight = {
         enable = true,
         disable = disable,
