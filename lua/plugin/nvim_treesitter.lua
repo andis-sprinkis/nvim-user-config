@@ -6,8 +6,6 @@ local M = {
   config = function()
     local disable = function()
       return vim.b.large_file_buf
-        or vim.bo.ft == 'zathurarc'
-        or vim.bo.ft == 'tmux'
     end
 
     require 'nvim-treesitter.configs'.setup {
