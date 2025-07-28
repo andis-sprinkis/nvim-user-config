@@ -30,7 +30,6 @@ local M = {
       -- 'pylsp',
       'ruff',
       'stylelint_lsp',
-      'texlab',
       'ts_ls',
       'yamlls',
     }

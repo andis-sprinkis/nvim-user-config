@@ -10,11 +10,16 @@ local M = {
 
     require 'nvim-treesitter.configs'.setup {
       ensure_installed = {
+        'awk',
+        'cpp',
         'css',
+        'html',
         'javascript',
         'json',
+        'make',
         'tsx',
         'typescript',
+        'xml',
         'yaml'
       },
       highlight = {
@@ -24,7 +29,15 @@ local M = {
       indent = {
         enable = true,
         disable = disable,
-      }
+      },
+      incremental_selection = {
+        enable = true,
+        disable = disable,
+      },
+      textobjects = {
+        enable = true,
+        disable = disable,
+      },
     }
 
     local ag = vim.api.nvim_create_augroup
