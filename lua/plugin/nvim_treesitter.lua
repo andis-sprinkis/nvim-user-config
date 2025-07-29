@@ -17,6 +17,7 @@ local M = {
         'javascript',
         'json',
         'make',
+        'styled',
         'tsx',
         'typescript',
         'xml',
