@@ -198,18 +198,44 @@ ac(
   }
 )
 
--- Needs OSC 11
-ac({ "UIEnter", "ColorScheme" }, {
-  callback = function()
-    local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-    if not normal.bg then return end
-    io.write(string.format("\027]11;#%06x\027\\", normal.bg))
-  end,
-})
+ac(
+  'BufWritePre',
+  {
+    callback = function()
+      local dir = fn.expand('<afile>:p:h')
 
-ac("UILeave", {
-  callback = function() io.write("\027]111\027\\") end,
-})
+      if dir:find('%l+://') == 1 then
+        return
+      end
+
+      if fn.isdirectory(dir) == 0 then
+        fn.mkdir(dir, 'p')
+      end
+    end,
+    group = ag_option,
+  }
+)
+
+-- Needs OSC 11
+ac(
+  { "UIEnter", "ColorScheme" },
+  {
+    callback = function()
+      local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+      if not normal.bg then return end
+      io.write(string.format("\027]11;#%06x\027\\", normal.bg))
+    end,
+    group = ag_option,
+  }
+)
+
+ac(
+  "UILeave",
+  {
+    callback = function() io.write("\027]111\027\\") end,
+    group = ag_option,
+  }
+)
 
 uc(
   'CopyLocRel',
