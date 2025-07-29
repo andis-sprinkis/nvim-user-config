@@ -49,7 +49,6 @@ local exec = g.exec
 g.sys_reqr = {
   cmp_tmux = exec.tmux,
   cmp_rg = exec.rg,
-  fm_nvim = exec.lf,
   fzf_lua = exec.fzf,
   previewer = exec.previewer,
   lsp_asm = exec.rust,
