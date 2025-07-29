@@ -34,7 +34,6 @@ vim.opt.rtp:prepend(lazypath)
 
 g.exec = {
   bat = executable('bat') == 1,
-  chafa = executable('chafa') == 1,
   curl = executable('curl') == 1,
   fzf = executable('fzf') == 1,
   node = executable('node') == 1,
