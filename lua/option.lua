@@ -198,6 +198,8 @@ ac(
   }
 )
 
+-- mkdir on save.
+-- Adapted from https://github.com/jghauser/mkdir.nvim (License: GPL-3.0)
 ac(
   'BufWritePre',
   {
@@ -215,6 +217,7 @@ ac(
     group = ag_option,
   }
 )
+--
 
 -- Needs OSC 11
 ac(
@@ -236,6 +239,46 @@ ac(
     group = ag_option,
   }
 )
+
+-- [window view topline is not preserved when switching buffers · Issue #26828 · neovim/neovim](https://github.com/neovim/neovim/issues/26828)
+-- Workaround.
+-- Adapted from https://github.com/BranimirE/fix-auto-scroll.nvim (license: Apache-2.0).
+local saved_buff_view = {}
+
+ac('BufEnter', {
+  group = ag_option,
+  pattern = '*',
+  callback = function()
+    local buf = fn.bufnr("%")
+    local win_id = fn.win_getid()
+
+    if saved_buff_view[win_id] and saved_buff_view[win_id][buf] then
+      local v = fn.winsaveview()
+
+      if v.lnum == 1 and v.col == 0 and not api.nvim_get_option_value('diff', {}) then
+        fn.winrestview(saved_buff_view[win_id][buf])
+      end
+
+      saved_buff_view[win_id][buf] = nil
+    end
+  end
+})
+
+ac('BufLeave', {
+  group = ag_option,
+  pattern = '*',
+  callback = function()
+    local buf = fn.bufnr("%")
+    local win_id = fn.win_getid()
+
+    if not saved_buff_view[win_id] then
+      saved_buff_view[win_id] = {}
+    end
+
+    saved_buff_view[win_id][buf] = fn.winsaveview()
+  end
+})
+--
 
 uc(
   'CopyLocRel',
@@ -261,6 +304,8 @@ uc(
   {}
 )
 
+-- Opening the lf file manager in a floating terminal window.
+-- Adapted from https://github.com/is0n/fm-nvim (license: GPL-3.0)
 if fn.executable('lf') == 1 then
   uc(
     "Lf",
@@ -326,3 +371,4 @@ if fn.executable('lf') == 1 then
     }
   )
 end
+--
