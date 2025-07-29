@@ -10,6 +10,7 @@ local M = {
         "man",
         "nofile",
         "prompt",
+        "spectre_panel",
         "terminal",
       }
     }
