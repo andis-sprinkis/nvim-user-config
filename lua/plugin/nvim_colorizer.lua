@@ -4,9 +4,10 @@ local M = {
   config = function()
     require("colorizer").setup {
       lazy_load = true,
+      names_opts = {
+        uppercase = true
+      },
       user_default_options = {
-        RRGGBBAA = true,
-        AARRGGBB = true,
         css = true,
         css_fn = true,
         mode = "virtualtext"
