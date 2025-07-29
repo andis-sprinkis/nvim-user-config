@@ -204,29 +204,54 @@ ac(
   }
 )
 
+ac(
+  'BufWritePre',
+  {
+    callback = function()
+      local dir = fn.expand('<afile>:p:h')
+
+      if dir:find('%l+://') == 1 then
+        return
+      end
+
+      if fn.isdirectory(dir) == 0 then
+        fn.mkdir(dir, 'p')
+      end
+    end,
+    group = ag_option,
+  }
+)
+
 if g.os ~= 'Windows_NT' then
   -- Needs OSC 11
 
-  ac({ "UIEnter", "ColorScheme" }, {
-    callback = function()
-      local normal
+  ac(
+    { "UIEnter", "ColorScheme" },
+    {
+      callback = function()
+        local normal
 
-      if vim.fn.has('nvim-0.10') == 1 then
-        normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-      else
-        normal = vim.api.nvim_get_hl_by_name("Normal", true)
-      end
+        if vim.fn.has('nvim-0.10') == 1 then
+          normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        else
+          normal = vim.api.nvim_get_hl_by_name("Normal", true)
+        end
 
-      if not normal.bg then return end
-      io.write(string.format("\027]11;#%06x\027\\", normal.bg))
-    end,
-  })
+        if not normal.bg then return end
+        io.write(string.format("\027]11;#%06x\027\\", normal.bg))
+      end,
+      group = ag_option,
+    }
+  )
 
-  ac("UILeave", {
-    callback = function() io.write("\027]111\027\\") end,
-  })
+  ac(
+    "UILeave",
+    {
+      callback = function() io.write("\027]111\027\\") end,
+      group = ag_option,
+    }
+  )
 end
-
 
 uc(
   'CopyLocRel',
