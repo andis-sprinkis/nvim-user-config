@@ -55,7 +55,7 @@ local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 local static_p2 =
     '%=' ..
     pad(func('bname')) ..
-    '%=%#StatusLineNC#' ..
+    '%=%#StatusLineNC# ' ..
     pad_r('%h%q%r%m') ..
     pad_r(func('ft')) ..
     pad_r(func('fenc_ffmat')) ..
