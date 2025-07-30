@@ -60,7 +60,7 @@ if vim.fn.has('nvim-0.8.2') == 1 then
 end
 
 if vim.fn.has('nvim-0.10') == 1 then
-  o.statuscolumn = "%s%=%T%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : '┊'}│%T"
+  o.statuscolumn = "%s%=%T%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : '┊'} %T"
 end
 
 o.swapfile = false
