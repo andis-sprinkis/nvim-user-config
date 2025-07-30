@@ -45,30 +45,28 @@ function M.winnr()
 end
 
 local function pad(x) return '%( ' .. x .. ' %)' end
+local function pad_l(x) return '%( ' .. x .. '%)' end
+local function pad_r(x) return '%(' .. x .. ' %)' end
 
 local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
-local static_p1 = table.concat({
-  '%#StatusLineNC#'
-})
+-- local static_p1 =
 
-local static_p2 = table.concat({
-  '%=',
-  pad(func('bname')),
-  '%=%#StatusLineNC#',
-  pad('%h%q%r%m'),
-  pad(func('ft')),
-  pad(func('fenc_ffmat')),
-  pad('%3c %2l/%-L %3p%%'),
-  pad(func('winnr')),
-})
+local static_p2 =
+    '%=' ..
+    pad(func('bname')) ..
+    '%=%#StatusLineNC#' ..
+    pad_r('%h%q%r%m') ..
+    pad_r(func('ft')) ..
+    pad_r(func('fenc_ffmat')) ..
+    pad_r('%3c %2l/%-L %3p%%') ..
+    pad_r(func('winnr'))
 
 function M.statusline(active)
-  return table.concat({
-    static_p1,
-    active and '%#StatusLine#' or '%#StatusLineNC#',
-    static_p2,
-  })
+  return
+      '%#StatusLineNC#' ..
+      (active and '%#StatusLine#' or '%#StatusLineNC#') ..
+      static_p2
 end
 
 local ag_statusline = ag('statusline', {})
