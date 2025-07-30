@@ -95,33 +95,36 @@ local label_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
 function M.large_file_buf() return vim.b.large_file_buf and label_large_file_buf or '' end
 
 local function pad(x) return '%( ' .. x .. ' %)' end
+local function pad_l(x) return '%( ' .. x .. '%)' end
+local function pad_r(x) return '%(' .. x .. ' %)' end
 
 local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
-local static_p1 = table.concat({
-  '%#StatusLineNC#',
-  M.git_hunks and pad(func('git_hunks')) or "",
-  M.py_swenv and pad(func('py_swenv')) or "",
-  M.lsp_status and pad(func('lsp_status')) or "",
-})
+local static_p1 =
+    (M.git_hunks and pad_l(func('git_hunks')) or "") ..
+    (M.py_swenv and pad_l(func('py_swenv')) or "") ..
+    (M.lsp_status and pad_l(func('lsp_status')) or "")
 
-local static_p2 = table.concat({
-  '%=',
-  pad(func('bname')),
-  '%=%#StatusLineNC#',
-  pad(func('large_file_buf') .. '%h%q%r%m'),
-  pad(func('ft')),
-  pad(func('fenc_ffmat')),
-  pad('%3c %2l/%-L %3p%%'),
-  pad(func('winnr')),
-})
+if string.len(static_p1) then
+  static_p1 = pad_r(static_p1)
+end
+
+local static_p2 =
+    '%=' ..
+    pad(func('bname')) ..
+    '%=%#StatusLineNC# ' ..
+    pad_r(func('large_file_buf') .. '%h%q%r%m') ..
+    pad_r(func('ft')) ..
+    pad_r(func('fenc_ffmat')) ..
+    pad_r('%3c %2l/%-L %3p%%') ..
+    pad_r(func('winnr'))
 
 function M.statusline(active)
-  return table.concat({
-    static_p1,
-    active and '%#StatusLine#' or '%#StatusLineNC#',
-    static_p2,
-  })
+  return
+      '%#StatusLineNC#' ..
+      static_p1 ..
+      (active and '%#StatusLine#' or '%#StatusLineNC#') ..
+      static_p2
 end
 
 local ag_statusline = ag('statusline', {})
