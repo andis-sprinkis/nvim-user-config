@@ -13,6 +13,7 @@ local M = {
         'awk',
         'cpp',
         'css',
+        'gitcommit',
         'html',
         'javascript',
         'json',
