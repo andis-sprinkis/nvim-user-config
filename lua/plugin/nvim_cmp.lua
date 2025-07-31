@@ -114,7 +114,6 @@ local M = {
           source_cmp_rg,
           source_cmp_dictionary,
           { name = 'emoji' },
-          { name = 'color_names' },
           {
             name = 'npm',
             keyword_length = 3,
@@ -197,10 +196,6 @@ local M = {
       'lukas-reineke/cmp-rg',
       cond = sys_reqr.cmp_rg,
       enabled = sys_reqr.cmp_rg,
-    },
-    {
-      'nat-418/cmp-color-names.nvim',
-      config = true
     },
     {
       'andersevenrud/cmp-tmux',
