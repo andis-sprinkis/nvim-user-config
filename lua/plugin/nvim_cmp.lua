@@ -107,7 +107,6 @@ local M = {
           { name = 'copilot' },
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
-          { name = 'latex_symbols' },
           { name = 'nvim_lua' },
           { name = 'path' },
           source_cmp_buffer,
