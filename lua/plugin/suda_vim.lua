@@ -1,7 +1,7 @@
 local g = vim.g
 
 local M = {
-  'lambdalisue/suda.vim',
+  'lambdalisue/vim-suda',
   config = function()
     g.suda_smart_edit = 0
   end,
