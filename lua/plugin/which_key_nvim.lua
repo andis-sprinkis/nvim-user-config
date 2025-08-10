@@ -3,7 +3,7 @@ local M = {
   event = "VeryLazy",
   opts = {
     delay = function(ctx)
-      return ctx.plugin and 0 or 80
+      return ctx.plugin and 0 or 100
     end,
     win = {
       padding = { 0, 1 },
