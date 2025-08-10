@@ -2,6 +2,16 @@ local M = {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
+    win = {
+      padding = { 0, 1 },
+      title = false,
+      wo = {
+        winhl = 'Normal:Normal'
+      }
+    },
+    layout = {
+      spacing = 2
+    },
     icons = {
       mappings = false,
       breadcrumb = ">",
