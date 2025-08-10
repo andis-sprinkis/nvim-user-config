@@ -2,6 +2,9 @@ local M = {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
+    delay = function(ctx)
+      return ctx.plugin and 0 or 80
+    end,
     win = {
       padding = { 0, 1 },
       title = false,
@@ -10,7 +13,7 @@ local M = {
       }
     },
     layout = {
-      spacing = 2
+      spacing = 1
     },
     icons = {
       mappings = false,
