@@ -9,7 +9,8 @@ local M = {
       padding = { 0, 1 },
       title = false,
       wo = {
-        winhl = 'Normal:Normal'
+        -- winhl = 'Normal:Normal',
+        winblend = 20
       }
     },
     layout = {
