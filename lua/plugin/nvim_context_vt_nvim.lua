@@ -1,5 +1,5 @@
 local M = {
-  'haringsrob/nvim_context_vt',
+  'andersevenrud/nvim_context_vt',
   config = function()
     local context_vt = require("nvim_context_vt")
     local context_vt_utils = require('nvim_context_vt.utils')
