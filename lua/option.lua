@@ -219,27 +219,6 @@ ac(
 )
 --
 
--- Needs OSC 11
-ac(
-  { "UIEnter", "ColorScheme" },
-  {
-    callback = function()
-      local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-      if not normal.bg then return end
-      io.write(string.format("\027]11;#%06x\027\\", normal.bg))
-    end,
-    group = ag_option,
-  }
-)
-
-ac(
-  "UILeave",
-  {
-    callback = function() io.write("\027]111\027\\") end,
-    group = ag_option,
-  }
-)
-
 -- [window view topline is not preserved when switching buffers · Issue #26828 · neovim/neovim](https://github.com/neovim/neovim/issues/26828)
 -- Workaround.
 -- Adapted from https://github.com/BranimirE/fix-auto-scroll.nvim (license: Apache-2.0).
