@@ -3,6 +3,10 @@ local M = {
   event = "VeryLazy",
   opts = {
     delay = function(ctx)
+      if ctx.keys == "<Space>" then
+        return 800
+      end
+
       return ctx.plugin and 0 or 100
     end,
     win = {

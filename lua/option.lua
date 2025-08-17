@@ -78,10 +78,10 @@ km('n', '<C-A-j>', function() cmd.resize('+2') end, { desc = "Increase window si
 km('n', '<C-A-k>', function() cmd.resize('-2') end, { desc = "Decrease window size (resize)" })
 km('n', '<C-A-l>', function() cmd('vertical resize +4') end, { desc = "Increase window size (vertical resize)" })
 km('n', '<C-A-h>', function() cmd('vertical resize -4') end, { desc = "Decrease window size (vertical resize)" })
-km('n', '<C-j>', '<C-w>j', { desc = "Move cursor to window above current one" })
-km('n', '<C-k>', '<C-w>k', { desc = "Move cursor to window below current one" })
-km('n', '<C-l>', '<C-w>l', { desc = "Move cursor to window left of current one" })
-km('n', '<C-h>', '<C-w>h', { desc = "Move cursor to window right of current one" })
+km('n', '<leader>j', '<C-w>j', { desc = "Move cursor to window above current one" })
+km('n', '<leader>k', '<C-w>k', { desc = "Move cursor to window below current one" })
+km('n', '<leader>l', '<C-w>l', { desc = "Move cursor to window left of current one" })
+km('n', '<leader>h', '<C-w>h', { desc = "Move cursor to window right of current one" })
 
 km(
   'n',
