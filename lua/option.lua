@@ -89,10 +89,10 @@ km('n', '<C-A-j>', ':resize +2<cr>', { silent = true })
 km('n', '<C-A-k>', ':resize -2<cr>', { silent = true })
 km('n', '<C-A-l>', ':vertical resize +4<cr>', { silent = true })
 km('n', '<C-A-h>', ':vertical resize -4<cr>', { silent = true })
-km('n', '<C-j>', '<C-W><C-J>')
-km('n', '<C-k>', '<C-W><C-K>')
-km('n', '<C-l>', '<C-W><C-L>')
-km('n', '<C-h>', '<C-W><C-H>')
+km('n', '<leader>j', '<C-W><C-J>')
+km('n', '<leader>k', '<C-W><C-K>')
+km('n', '<leader>l', '<C-W><C-L>')
+km('n', '<leader>h', '<C-W><C-H>')
 
 km(
   'n',
