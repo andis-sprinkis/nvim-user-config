@@ -126,7 +126,7 @@ ac(
     group = ag_option,
     callback = function()
       if (not vim.g.started_with_stdin) and vim.fn.argc() == 0 then
-        cmd([[Explore]])
+        cmd.Explore()
       end
     end
   }
@@ -155,7 +155,7 @@ ac(
         optl.statuscolumn = ''
       end
 
-      cmd [[startinsert]]
+      cmd([[startinsert]])
     end
   }
 )
