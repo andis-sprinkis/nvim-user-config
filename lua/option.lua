@@ -121,6 +121,18 @@ ac(
 )
 
 ac(
+  'UIEnter',
+  {
+    group = ag_option,
+    callback = function()
+      if (not vim.g.started_with_stdin) and vim.fn.argc() == 0 then
+        cmd([[Explore]])
+      end
+    end
+  }
+)
+
+ac(
   'VimResized',
   {
     group = ag_option,
