@@ -1,5 +1,5 @@
 local M = {
-  "lf",
+  "_virt_lf",
   virtual = true,
   config = function()
     -- Opening the lf file manager in a floating terminal window.

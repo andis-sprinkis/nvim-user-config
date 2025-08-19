@@ -1,5 +1,5 @@
 local M = {
-  "statusline",
+  "_virt_statusline",
   virtual = true,
   config = function()
     local api = vim.api
