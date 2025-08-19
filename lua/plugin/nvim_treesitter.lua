@@ -15,6 +15,7 @@ local M = {
         'css',
         'gitcommit',
         'html',
+        'java',
         'javascript',
         'json',
         'make',
