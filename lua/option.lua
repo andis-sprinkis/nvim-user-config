@@ -340,7 +340,7 @@ if fn.executable('lf') == 1 then
         }
       )
 
-      cmd("startinsert")
+      cmd.startinsert()
 
       api.nvim_set_option_value('winhl', "Normal:Normal", { win = win })
     end,
