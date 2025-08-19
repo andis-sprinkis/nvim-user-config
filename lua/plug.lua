@@ -36,6 +36,7 @@ g.exec = {
   bat = executable('bat') == 1,
   curl = executable('curl') == 1,
   fzf = executable('fzf') == 1,
+  lf = executable('lf') == 1,
   node = executable('node') == 1,
   previewer = executable('previewer') == 1,
   python3 = executable('python3') == 1,
