@@ -32,6 +32,18 @@ local M = {
         end
       }
     )
+
+    vim.api.nvim_create_autocmd(
+      'UIEnter',
+      {
+        group = vim.api.nvim_create_augroup('dirvish_usr', {}),
+        callback = function()
+          if (not vim.g.started_with_stdin) and vim.fn.argc() == 0 then
+            vim.cmd [[Dirvish]]
+          end
+        end
+      }
+    )
   end,
   lazy = false,
   priority = 900
