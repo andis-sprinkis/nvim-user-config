@@ -1,4 +1,5 @@
 local km = vim.keymap.set
+local ac = vim.api.nvim_create_autocmd
 
 local M = {
   'justinmk/vim-dirvish',
@@ -9,10 +10,12 @@ local M = {
 
     km('n', '<leader>-', '<Plug>(dirvish_up)', { desc = "Show file directory (vim-dirvish)" })
 
-    vim.api.nvim_create_autocmd(
+    local ag_dirvish_usr = vim.api.nvim_create_augroup('dirvish_usr', {})
+
+    ac(
       'Filetype',
       {
-        group = vim.api.nvim_create_augroup('dirvish_usr', {}),
+        group = ag_dirvish_usr,
         pattern = 'dirvish',
         callback = function()
           -- Workaround for https://github.com/justinmk/vim-dirvish/issues/257
@@ -33,10 +36,10 @@ local M = {
       }
     )
 
-    vim.api.nvim_create_autocmd(
+    ac(
       'UIEnter',
       {
-        group = vim.api.nvim_create_augroup('dirvish_usr', {}),
+        group = ag_dirvish_usr,
         callback = function()
           if (not vim.g.started_with_stdin) and vim.fn.argc() == 0 then
             vim.cmd [[Dirvish]]
