@@ -155,7 +155,7 @@ ac(
         optl.statuscolumn = ''
       end
 
-      cmd([[startinsert]])
+      cmd.startinsert()
     end
   }
 )
@@ -372,7 +372,7 @@ if fn.executable('lf') == 1 then
         )
       end
 
-      cmd("startinsert")
+      cmd.startinsert()
 
       if vim.fn.has('nvim-0.10') == 1 then
         api.nvim_set_option_value('winhl', "Normal:Normal", { win = win })
