@@ -11,8 +11,9 @@ local env = vim.env
 local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
 local uc = api.nvim_create_user_command
+local tbl_filter = vim.tbl_filter
 
-if vim.fn.has('nvim-0.10') == 1 then
+if fn.has('nvim-0.10') == 1 then
   g.os = vim.uv.os_uname().sysname
 else
   g.os = loop.os_uname().sysname
@@ -55,11 +56,11 @@ o.sidescrolloff = 20
 o.splitright = true
 o.splitbelow = true
 
-if vim.fn.has('nvim-0.8.2') == 1 then
+if fn.has('nvim-0.8.2') == 1 then
   o.splitkeep = 'screen'
 end
 
-if vim.fn.has('nvim-0.10') == 1 then
+if fn.has('nvim-0.10') == 1 then
   o.statuscolumn = "%s%=%T%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : '┊'} %T"
 end
 
@@ -125,7 +126,7 @@ ac(
   {
     group = ag_option,
     callback = function()
-      if (not vim.g.started_with_stdin) and vim.fn.argc() == 0 then
+      if (not vim.g.started_with_stdin) and fn.argc() == 0 then
         cmd.Explore()
       end
     end
@@ -151,7 +152,7 @@ ac(
       optl.relativenumber = false
       optl.signcolumn = 'no'
 
-      if vim.fn.has('nvim-0.10') == 1 then
+      if fn.has('nvim-0.10') == 1 then
         optl.statuscolumn = ''
       end
 
@@ -398,7 +399,7 @@ ac(
     callback = function()
       local curr_buf_id = api.nvim_get_current_buf()
 
-      buf_hist = vim.tbl_filter(function(buf_id) return buf_id ~= curr_buf_id end, buf_hist)
+      buf_hist = tbl_filter(function(buf_id) return buf_id ~= curr_buf_id end, buf_hist)
 
       table.insert(buf_hist, 1, curr_buf_id)
     end,
@@ -406,8 +407,8 @@ ac(
 )
 
 local function switch_to_buf_idx(buf_idx)
-  buf_hist = vim.tbl_filter(
-    function(buf_id) return vim.fn.bufexists(buf_id) == 1 and vim.fn.buflisted(buf_id) == 1 end,
+  buf_hist = tbl_filter(
+    function(buf_id) return fn.bufexists(buf_id) == 1 and fn.buflisted(buf_id) == 1 end,
     buf_hist
   )
 
