@@ -6,6 +6,8 @@ local M = {
     -- Adapted from https://github.com/mihaifm/bufstop (license: MIT).
 
     local api = vim.api
+    local fn = vim.fn
+    local tbl_filter = vim.tbl_filter
     local ac = api.nvim_create_autocmd
     local ag = api.nvim_create_augroup
     local km = vim.keymap.set
@@ -19,7 +21,7 @@ local M = {
         callback = function()
           local curr_buf_id = api.nvim_get_current_buf()
 
-          buf_hist = vim.tbl_filter(function(buf_id) return buf_id ~= curr_buf_id end, buf_hist)
+          buf_hist = tbl_filter(function(buf_id) return buf_id ~= curr_buf_id end, buf_hist)
 
           table.insert(buf_hist, 1, curr_buf_id)
         end,
@@ -27,8 +29,8 @@ local M = {
     )
 
     local function switch_to_buf_idx(buf_idx)
-      buf_hist = vim.tbl_filter(
-        function(buf_id) return vim.fn.bufexists(buf_id) == 1 and vim.fn.buflisted(buf_id) == 1 end,
+      buf_hist = tbl_filter(
+        function(buf_id) return fn.bufexists(buf_id) == 1 and fn.buflisted(buf_id) == 1 end,
         buf_hist
       )
 
