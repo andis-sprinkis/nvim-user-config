@@ -228,8 +228,8 @@ ac('BufEnter', {
   group = ag_option,
   pattern = '*',
   callback = function()
-    local buf = fn.bufnr("%")
-    local win_id = fn.win_getid()
+    local buf = api.nvim_get_current_buf()
+    local win_id = api.nvim_get_current_win()
 
     if saved_buff_view[win_id] and saved_buff_view[win_id][buf] then
       local v = fn.winsaveview()
@@ -247,8 +247,8 @@ ac('BufLeave', {
   group = ag_option,
   pattern = '*',
   callback = function()
-    local buf = fn.bufnr("%")
-    local win_id = fn.win_getid()
+    local buf = api.nvim_get_current_buf()
+    local win_id = api.nvim_get_current_win()
 
     if not saved_buff_view[win_id] then
       saved_buff_view[win_id] = {}
