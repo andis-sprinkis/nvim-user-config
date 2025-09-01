@@ -387,6 +387,7 @@ if fn.executable('lf') == 1 then
     }
   )
 end
+--
 
 -- Cycling between the last n viewed buffers using key maps.
 -- Adapted from https://github.com/mihaifm/bufstop (license: MIT).
@@ -446,4 +447,3 @@ if g.neoray == 1 then
     NeoraySet WindowState centered
   ]])
 end
---
