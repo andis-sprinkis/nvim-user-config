@@ -28,15 +28,14 @@ local M = {
       }
     )
 
-    local function switch_to_buf_idx(buf_idx)
-      buf_hist = tbl_filter(
-        function(buf_id) return fn.bufexists(buf_id) == 1 and fn.buflisted(buf_id) == 1 end,
-        buf_hist
-      )
+    local filter_buf_exists_listed = function(buf_id)
+      return fn.bufexists(buf_id) == 1 and fn.buflisted(buf_id) == 1
+    end
 
-      if buf_idx <= #buf_hist then
-        vim.cmd.b(buf_hist[buf_idx])
-      end
+    local function switch_to_buf_idx(buf_idx)
+      buf_hist = tbl_filter(filter_buf_exists_listed, buf_hist)
+
+      if buf_idx <= #buf_hist then vim.cmd.b(buf_hist[buf_idx]) end
     end
 
     local idx_keys = { "<F2>", "<F3>", "<F4>", "<F5>", "<F6>", "<F7>", "<F8>", "<F9>", "<F10>", "<F11>", "<F12>" }
