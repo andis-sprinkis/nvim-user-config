@@ -2,6 +2,9 @@ local M = {
   "_virt_bufkeys",
   virtual = true,
   config = function()
+    -- Cycling between the last n viewed buffers using key maps.
+    -- Adapted from https://github.com/mihaifm/bufstop (license: MIT).
+
     local api = vim.api
     local ac = api.nvim_create_autocmd
     local ag = api.nvim_create_augroup
@@ -51,6 +54,7 @@ local M = {
       function() switch_to_buf_idx(2) end,
       { desc = 'Cycle between the last 2 buffers (_virt_bufkeys)' }
     )
+    ---
   end
 }
 
