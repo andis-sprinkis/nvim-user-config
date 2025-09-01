@@ -38,15 +38,19 @@ local M = {
 
     for idx, key in ipairs(idx_keys) do
       km(
-        { 'n', 'v' },
+        'n',
         key,
         function() switch_to_buf_idx(idx + 1) end,
         { desc = 'Cycle between the last ' .. idx + 1 .. ' buffers (_virt_bufkeys)' }
       )
     end
 
-    km({ 'n', 'v' }, '<leader><leader>', function() switch_to_buf_idx(2) end,
-      { desc = 'Cycle between the last 2 buffers (_virt_bufkeys)' })
+    km(
+      'n',
+      '<leader><leader>',
+      function() switch_to_buf_idx(2) end,
+      { desc = 'Cycle between the last 2 buffers (_virt_bufkeys)' }
+    )
   end
 }
 
