@@ -214,7 +214,6 @@ local M = {
       }
     )
 
-    -- TODO: check for the events when gitsigns variables update
     ac(
       {
         'BufEnter',
