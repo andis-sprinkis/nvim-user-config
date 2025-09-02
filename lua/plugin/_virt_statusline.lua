@@ -18,23 +18,7 @@ local M = {
 
     local M = {}
 
-    if (sys_reqr.lsp_plugins) then
-      local lsp_severity = { { 'WARN', 'W' }, { 'ERROR', 'E' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
-
-      function M.lsp_status()
-        if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then return '' end
-
-        local status = {}
-
-        for _, ty in ipairs(lsp_severity) do
-          local n = diagnostic.get(0, { severity = ty[1] })
-          if #n > 0 then table.insert(status, ty[2] .. ':' .. #n) end
-        end
-
-        return table.concat(status, ' ')
-      end
-    end
-
+    local lsp_severity = { { 'WARN', 'W' }, { 'ERROR', 'E' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
     local label_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
 
     function M.large_file_buf() return b.large_file_buf and label_large_file_buf or '' end
@@ -48,7 +32,7 @@ local M = {
     local static_p1 =
         pad_l('%{b:statusline_git_hunks}')
         .. (sys_reqr.swenv and pad_l('%{b:statusline_py_swenv}') or "")
-        .. (sys_reqr.lsp_plugins and pad_l(func('lsp_status')) or "")
+        .. (sys_reqr.lsp_plugins and pad_l('%{b:statusline_lsp_status}') or "")
 
     if string.len(static_p1) then
       static_p1 = pad_r(static_p1)
@@ -155,6 +139,22 @@ local M = {
       w.statusline_bname = name
     end
 
+    local function set_statusline_lsp_status()
+      if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then
+        vim.b.statusline_lsp_status = ''
+        return
+      end
+
+      local status = {}
+
+      for _, ty in ipairs(lsp_severity) do
+        local n = diagnostic.get(0, { severity = ty[1] })
+        if #n > 0 then table.insert(status, ty[2] .. ':' .. #n) end
+      end
+
+      vim.b.statusline_lsp_status = table.concat(status, ' ')
+    end
+
     ac(
       {
         'FileType',
@@ -181,14 +181,12 @@ local M = {
         'TextChanged',
         'TextChangedI',
         'CursorHold',
-        'CursorHoldI',
-        'CursorMoved',
-        'CursorMovedI',
-        'ModeChanged',
+        'CursorHoldI'
       },
       {
         callback = function()
           set_statusline_git_hunks()
+          set_statusline_lsp_status()
         end,
         group = ag_statusline,
       }
