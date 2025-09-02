@@ -4,6 +4,7 @@ local M = {
   config = function()
     local api = vim.api
     local b = vim.b
+    local w = vim.w
     local bo = vim.bo
     local diagnostic = vim.diagnostic
     local fn = vim.fn
@@ -34,60 +35,14 @@ local M = {
       end
     end
 
-    function M.git_hunks()
-      if b.gitsigns_status then
-        return b.gitsigns_status == '' and b.gitsigns_head or b.gitsigns_head .. ' ' .. b.gitsigns_status
-      end
-
-      return g.gitsigns_head and g.gitsigns_head or ''
-    end
-
-    if sys_reqr.swenv then
-      function M.py_swenv()
-        if vim.b.statusline_py_swenv and vim.b.statusline_py_swenv ~= '' then
-          return vim.b.statusline_py_swenv
-        end
-
-        return ''
-      end
-    end
-
-    function M.ft()
-      if vim.bo.filetype and vim.bo.filetype ~= '' then
-        return vim.bo.filetype
-      end
-
-      if vim.b.statusline_mime and vim.b.statusline_mime ~= '' then
-        return vim.b.statusline_mime
-      end
-
-      return ''
-    end
-
-    function M.fenc_ffmat()
-      if vim.b.statusline_fenc_ffmat and vim.b.statusline_fenc_ffmat ~= '' then
-        return vim.b.statusline_fenc_ffmat
-      end
-
-      return ''
-    end
-
-    function M.bname()
-      local width = math.floor(api.nvim_win_get_width(0) * 0.5)
-      local name = fn.fnamemodify(api.nvim_buf_get_name(0), ':.')
-
-      if #name > width then name = '...' .. name:sub(-width) end
-
-      return name
-    end
-
-    -- function M.winnr()
-    --   return vim.fn.winnr()
-    -- end
+    function M.git_hunks() return b.statusline_git_hunks and b.statusline_git_hunks or '' end
+    function M.py_swenv() return b.statusline_py_swenv and b.statusline_py_swenv or '' end
+    function M.bname() return w.statusline_bname and w.statusline_bname or '' end
+    function M.mime_ft() return b.statusline_mime_ft and b.statusline_mime_ft or '' end
+    function M.fenc_ffmat() return b.statusline_fenc_ffmat and b.statusline_fenc_ffmat or '' end
 
     local label_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
-
-    function M.large_file_buf() return vim.b.large_file_buf and label_large_file_buf or '' end
+    function M.large_file_buf() return b.large_file_buf and label_large_file_buf or '' end
 
     local function pad(x) return '%( ' .. x .. ' %)' end
     local function pad_l(x) return '%( ' .. x .. '%)' end
@@ -96,9 +51,9 @@ local M = {
     local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
     local static_p1 =
-        (M.git_hunks and pad_l(func('git_hunks')) or "")
-        .. (M.py_swenv and pad_l(func('py_swenv')) or "")
-        .. (M.lsp_status and pad_l(func('lsp_status')) or "")
+        pad_l(func('git_hunks'))
+        .. (sys_reqr.swenv and pad_l(func('py_swenv')) or "")
+        .. (sys_reqr.lsp_plugins and pad_l(func('lsp_status')) or "")
 
     if string.len(static_p1) then
       static_p1 = pad_r(static_p1)
@@ -109,10 +64,9 @@ local M = {
         .. pad(func('bname'))
         .. '%=%#StatusLineNC# '
         .. pad_r(func('large_file_buf') .. '%h%q%r%m')
-        .. pad_r(func('ft'))
+        .. pad_r(func('mime_ft'))
         .. pad_r(func('fenc_ffmat'))
         .. pad_r('%3c %2l/%-L %3p%%')
-    -- .. pad_r(func('winnr'))
 
     function M.statusline(active)
       return
@@ -147,49 +101,117 @@ local M = {
       vim.b.statusline_fenc_ffmat = table.concat(r, ' ')
     end
 
-    local function set_statusline_mime()
-      if vim.bo.filetype and vim.bo.filetype ~= '' then
-        vim.b.statusline_mime = ''
+    local function set_statusline_mime_ft()
+      if bo.filetype and bo.filetype ~= '' then
+        b.statusline_mime_ft = vim.bo.filetype
         return
       end
 
       local bname = vim.fn.getreg('%')
 
       if (bname == '') then
-        vim.b.statusline_mime = ''
+        b.statusline_mime_ft = ''
         return
       end
 
       local file = io.open(bname, "r")
 
       if not file then
-        vim.b.statusline_mime = ''
+        b.statusline_mime_ft = ''
         return
       end
 
       file.close(file)
 
-      local cmd_mime_output = vim.fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
+      local cmd_mime_output = fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
 
-      if (vim.v.shell_error ~= 0) then vim.b.statusline_mime = '' end
+      if (vim.v.shell_error ~= 0) then b.statusline_mime_ft = '' end
 
-      vim.b.statusline_mime = vim.fn.trim(cmd_mime_output)
+      b.statusline_mime_ft = fn.trim(cmd_mime_output)
     end
 
     local function set_statusline_py_swenv()
-      local swenv_api = require("swenv.api")
-      local venv = swenv_api.get_current_venv()
+      if sys_reqr.swenv then
+        local swenv_api = require("swenv.api")
+        local venv = swenv_api.get_current_venv()
 
-      vim.b.statusline_py_swenv = venv and "venv:" .. venv.name or ''
+        b.statusline_py_swenv = venv and "venv:" .. venv.name or ''
+      end
+    end
+
+    local function set_statusline_git_hunks()
+      if b.gitsigns_status then
+        b.statusline_git_hunks = b.gitsigns_status == '' and b.gitsigns_head or
+            b.gitsigns_head .. ' ' .. b.gitsigns_status
+        return
+      end
+
+      b.statusline_git_hunks = g.gitsigns_head and g.gitsigns_head or ''
+    end
+
+    local function set_statusline_bname()
+      -- TODO: update on all visible windows
+
+      local width = math.floor(api.nvim_win_get_width(0) * 0.5)
+      local name = fn.fnamemodify(api.nvim_buf_get_name(0), ':.')
+
+      if #name > width then name = '...' .. name:sub(-width) end
+
+      w.statusline_bname = name
     end
 
     ac(
-      'BufWinEnter',
+      {
+        'FileType',
+        'BufWinEnter',
+        'BufEnter',
+        'FileChangedShellPost',
+        'VimResume'
+      },
       {
         callback = function()
-          set_statusline_mime()
+          set_statusline_mime_ft()
           set_statusline_fenc_ffmat()
-          if sys_reqr.swenv then set_statusline_py_swenv() end
+          set_statusline_git_hunks()
+          set_statusline_py_swenv()
+        end,
+        group = ag_statusline,
+      }
+    )
+
+    -- TODO: check for the events when gitsigns variables update
+    ac(
+      {
+        'SafeState',
+        'TextChanged',
+        'TextChangedI',
+        'CursorHold',
+        'CursorHoldI',
+        'CursorMoved',
+        'CursorMovedI',
+        'ModeChanged',
+      },
+      {
+        callback = function()
+          set_statusline_git_hunks()
+        end,
+        group = ag_statusline,
+      }
+    )
+
+    ac(
+      {
+        'BufWinEnter',
+        'BufEnter',
+        'VimResized',
+        'WinNew',
+        'WinResized',
+        'WinEnter',
+        'OptionSet',
+      },
+      {
+        callback = function()
+          set_statusline_bname()
         end,
         group = ag_statusline,
       }
