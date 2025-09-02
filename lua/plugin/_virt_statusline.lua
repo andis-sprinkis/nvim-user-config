@@ -35,13 +35,13 @@ local M = {
       end
     end
 
+    local label_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
+
     function M.git_hunks() return b.statusline_git_hunks and b.statusline_git_hunks or '' end
     function M.py_swenv() return b.statusline_py_swenv and b.statusline_py_swenv or '' end
     function M.bname() return w.statusline_bname and w.statusline_bname or '' end
     function M.mime_ft() return b.statusline_mime_ft and b.statusline_mime_ft or '' end
     function M.fenc_ffmat() return b.statusline_fenc_ffmat and b.statusline_fenc_ffmat or '' end
-
-    local label_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
     function M.large_file_buf() return b.large_file_buf and label_large_file_buf or '' end
 
     local function pad(x) return '%( ' .. x .. ' %)' end
