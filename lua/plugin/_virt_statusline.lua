@@ -157,19 +157,59 @@ local M = {
 
     ac(
       {
-        'FileType',
-        'BufWinEnter',
         'BufEnter',
+        'BufNew',
+        'BufWinEnter',
         'FileChangedShellPost',
+        'FileType',
         'VimResume'
       },
       {
-        callback = function()
-          set_statusline_mime_ft()
-          set_statusline_fenc_ffmat()
-          set_statusline_git_hunks()
-          set_statusline_py_swenv()
-        end,
+        callback = set_statusline_mime_ft,
+        group = ag_statusline,
+      }
+    )
+
+    ac(
+      {
+        'BufEnter',
+        'BufNew',
+        'BufWinEnter',
+        'FileChangedShellPost',
+        'FileType',
+        'VimResume'
+      },
+      {
+        callback = set_statusline_fenc_ffmat,
+        group = ag_statusline,
+      }
+    )
+
+    ac(
+      {
+        'BufEnter',
+        'BufNew',
+        'BufWinEnter'
+      },
+      {
+        callback = set_statusline_py_swenv,
+        group = ag_statusline,
+      }
+    )
+
+    ac(
+      {
+        'BufEnter',
+        'BufWinEnter',
+        'BufWritePost',
+        'CursorHold',
+        'CursorHoldI',
+        'FileChangedShellPost',
+        'ModeChanged',
+        'VimResume'
+      },
+      {
+        callback = set_statusline_lsp_status,
         group = ag_statusline,
       }
     )
@@ -177,35 +217,34 @@ local M = {
     -- TODO: check for the events when gitsigns variables update
     ac(
       {
-        'SafeState',
-        'TextChanged',
-        'TextChangedI',
+        'BufEnter',
+        'BufWinEnter',
         'CursorHold',
-        'CursorHoldI'
+        'CursorHoldI',
+        'BufWritePost',
+        'FileChangedShellPost',
+        'ModeChanged',
+        'VimResume'
       },
       {
-        callback = function()
-          set_statusline_git_hunks()
-          set_statusline_lsp_status()
-        end,
+        callback = set_statusline_git_hunks,
         group = ag_statusline,
       }
     )
 
     ac(
       {
-        'BufWinEnter',
         'BufEnter',
+        'BufWinEnter',
+        'BufWritePost',
+        'OptionSet',
         'VimResized',
+        'WinEnter',
         'WinNew',
         'WinResized',
-        'WinEnter',
-        'OptionSet',
       },
       {
-        callback = function()
-          set_statusline_bname()
-        end,
+        callback = set_statusline_bname,
         group = ag_statusline,
       }
     )
