@@ -43,12 +43,12 @@ local M = {
     end
 
     if sys_reqr.swenv then
-      local swenv_api = require("swenv.api")
-
       function M.py_swenv()
-        local venv = swenv_api.get_current_venv()
+        if vim.b.statusline_py_swenv and vim.b.statusline_py_swenv ~= '' then
+          return vim.b.statusline_py_swenv
+        end
 
-        return venv and "venv:" .. venv.name or ''
+        return ''
       end
     end
 
@@ -57,22 +57,19 @@ local M = {
         return vim.bo.filetype
       end
 
-      if vim.b.mime and vim.b.mime ~= '' then
-        return vim.b.mime
+      if vim.b.statusline_mime and vim.b.statusline_mime ~= '' then
+        return vim.b.statusline_mime
       end
 
       return ''
     end
 
     function M.fenc_ffmat()
-      local e = bo.fileencoding and bo.fileencoding or o.encoding
-      local f = bo.fileformat
-      local r = {}
+      if vim.b.statusline_fenc_ffmat and vim.b.statusline_fenc_ffmat ~= '' then
+        return vim.b.statusline_fenc_ffmat
+      end
 
-      if e ~= 'utf-8' then r[#r + 1] = e end
-      if f ~= 'unix' then r[#r + 1] = '[' .. f .. ']' end
-
-      return table.concat(r, ' ')
+      return ''
     end
 
     function M.bname()
@@ -139,36 +136,60 @@ local M = {
       callback = function() wo.statusline = statusline(false) end
     })
 
+    local function set_statusline_fenc_ffmat()
+      local e = bo.fileencoding and bo.fileencoding or o.encoding
+      local f = bo.fileformat
+      local r = {}
+
+      if e ~= 'utf-8' then r[#r + 1] = e end
+      if f ~= 'unix' then r[#r + 1] = '[' .. f .. ']' end
+
+      vim.b.statusline_fenc_ffmat = table.concat(r, ' ')
+    end
+
+    local function set_statusline_mime()
+      if vim.bo.filetype and vim.bo.filetype ~= '' then
+        vim.b.statusline_mime = ''
+        return
+      end
+
+      local bname = vim.fn.getreg('%')
+
+      if (bname == '') then
+        vim.b.statusline_mime = ''
+        return
+      end
+
+      local file = io.open(bname, "r")
+
+      if not file then
+        vim.b.statusline_mime = ''
+        return
+      end
+
+      file.close(file)
+
+      local cmd_mime_output = vim.fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
+
+      if (vim.v.shell_error ~= 0) then vim.b.statusline_mime = '' end
+
+      vim.b.statusline_mime = vim.fn.trim(cmd_mime_output)
+    end
+
+    local function set_statusline_py_swenv()
+      local swenv_api = require("swenv.api")
+      local venv = swenv_api.get_current_venv()
+
+      vim.b.statusline_py_swenv = venv and "venv:" .. venv.name or ''
+    end
+
     ac(
-      'BufReadPre',
+      'BufWinEnter',
       {
         callback = function()
-          if vim.bo.filetype and vim.bo.filetype ~= '' then
-            vim.b.mime = ''
-            return
-          end
-
-          local bname = vim.fn.getreg('%')
-
-          if (bname == '') then
-            vim.b.mime = ''
-            return
-          end
-
-          local file = io.open(bname, "r")
-
-          if not file then
-            vim.b.mime = ''
-            return
-          end
-
-          file.close(file)
-
-          local cmd_mime_output = vim.fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
-
-          if (vim.v.shell_error ~= 0) then vim.b.mime = '' end
-
-          vim.b.mime = vim.fn.trim(cmd_mime_output)
+          set_statusline_mime()
+          set_statusline_fenc_ffmat()
+          if sys_reqr.swenv then set_statusline_py_swenv() end
         end,
         group = ag_statusline,
       }
