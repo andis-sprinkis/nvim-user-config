@@ -37,11 +37,6 @@ local M = {
 
     local label_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
 
-    function M.git_hunks() return b.statusline_git_hunks and b.statusline_git_hunks or '' end
-    function M.py_swenv() return b.statusline_py_swenv and b.statusline_py_swenv or '' end
-    function M.bname() return w.statusline_bname and w.statusline_bname or '' end
-    function M.mime_ft() return b.statusline_mime_ft and b.statusline_mime_ft or '' end
-    function M.fenc_ffmat() return b.statusline_fenc_ffmat and b.statusline_fenc_ffmat or '' end
     function M.large_file_buf() return b.large_file_buf and label_large_file_buf or '' end
 
     local function pad(x) return '%( ' .. x .. ' %)' end
@@ -51,8 +46,8 @@ local M = {
     local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
 
     local static_p1 =
-        pad_l(func('git_hunks'))
-        .. (sys_reqr.swenv and pad_l(func('py_swenv')) or "")
+        pad_l('%{b:statusline_git_hunks}')
+        .. (sys_reqr.swenv and pad_l('%{b:statusline_py_swenv}') or "")
         .. (sys_reqr.lsp_plugins and pad_l(func('lsp_status')) or "")
 
     if string.len(static_p1) then
@@ -61,11 +56,11 @@ local M = {
 
     local static_p2 =
         '%='
-        .. pad(func('bname'))
+        .. pad('%{w:statusline_bname}')
         .. '%=%#StatusLineNC# '
         .. pad_r(func('large_file_buf') .. '%h%q%r%m')
-        .. pad_r(func('mime_ft'))
-        .. pad_r(func('fenc_ffmat'))
+        .. pad_r('%{b:statusline_mime_ft}')
+        .. pad_r('%{b:statusline_fenc_ffmat}')
         .. pad_r('%3c %2l/%-L %3p%%')
 
     function M.statusline(active)
