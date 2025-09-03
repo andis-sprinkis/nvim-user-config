@@ -26,13 +26,12 @@ local M = {
     local function pad(x) return '%( ' .. x .. ' %)' end
     local function pad_l(x) return '%( ' .. x .. '%)' end
     local function pad_r(x) return '%(' .. x .. ' %)' end
-
-    local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
+    local function var_exists(x) return '%{exists(\'' .. x .. '\')?' .. x .. ':\'\'}' end
 
     local static_p1 =
-        pad_l('%{b:statusline_git_hunks}')
-        .. (sys_reqr.swenv and pad_l('%{b:statusline_py_swenv}') or "")
-        .. (sys_reqr.lsp_plugins and pad_l('%{b:statusline_lsp_status}') or "")
+        pad_l(var_exists('b:statusline_git_hunks'))
+        .. (sys_reqr.swenv and pad_l(var_exists('b:statusline_py_swenv')) or '')
+        .. (sys_reqr.lsp_plugins and pad_l(var_exists('b:statusline_lsp_status')) or "")
 
     if string.len(static_p1) then
       static_p1 = pad_r(static_p1)
@@ -40,11 +39,11 @@ local M = {
 
     local static_p2 =
         '%='
-        .. pad('%{w:statusline_bname}')
+        .. pad(var_exists('w:statusline_bname'))
         .. '%=%#StatusLineNC# '
-        .. pad_r(func('large_file_buf') .. '%h%q%r%m')
-        .. pad_r('%{b:statusline_mime_ft}')
-        .. pad_r('%{b:statusline_fenc_ffmat}')
+        .. pad_r(var_exists('b:statusline_large_file_buf') .. '%h%q%r%m')
+        .. pad_r(var_exists('b:statusline_mime_ft'))
+        .. pad_r(var_exists('b:statusline_fenc_ffmat'))
         .. pad_r('%3c %2l/%-L %3p%%')
 
     function M.statusline(active)
@@ -68,6 +67,15 @@ local M = {
       group = ag_statusline,
       callback = function() wo.statusline = statusline(false) end
     })
+
+    local function set_statusline_large_file_buf()
+      if b.large_file_buf then
+        b.statusline_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
+        return
+      end
+
+      b.statusline_large_file_buf = ''
+    end
 
     local function set_statusline_fenc_ffmat()
       local e = bo.fileencoding and bo.fileencoding or o.encoding
@@ -160,6 +168,23 @@ local M = {
         'BufEnter',
         'BufNew',
         'BufWinEnter',
+        'BufWritePost',
+        'FileChangedShellPost',
+        'FileType',
+        'VimResume',
+      },
+      {
+        callback = set_statusline_large_file_buf,
+        group = ag_statusline,
+      }
+    )
+
+    ac(
+      {
+        'BufEnter',
+        'BufNew',
+        'BufWinEnter',
+        'BufWritePost',
         'FileChangedShellPost',
         'FileType',
         'VimResume'
@@ -175,6 +200,7 @@ local M = {
         'BufEnter',
         'BufNew',
         'BufWinEnter',
+        'BufWritePost',
         'FileChangedShellPost',
         'FileType',
         'VimResume'
@@ -222,6 +248,7 @@ local M = {
         'CursorHoldI',
         'BufWritePost',
         'FileChangedShellPost',
+        'BufWritePost',
         'ModeChanged',
         'VimResume'
       },

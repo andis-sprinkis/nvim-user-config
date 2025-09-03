@@ -181,7 +181,7 @@ ac(
 )
 
 ac(
-  'BufReadPre',
+  { 'BufReadPre', 'BufWritePost', 'FileChangedShell' },
   {
     callback = function()
       local ok, stats = pcall(uv.fs_stat, api.nvim_buf_get_name(api.nvim_get_current_buf()))
