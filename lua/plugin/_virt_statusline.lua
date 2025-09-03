@@ -16,20 +16,14 @@ local M = {
     local ac = api.nvim_create_autocmd
     local ag = api.nvim_create_augroup
 
-    local M = {}
-
-    local lsp_severity = { { 'WARN', 'W' }, { 'ERROR', 'E' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
-    local label_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
-
-    function M.large_file_buf() return b.large_file_buf and label_large_file_buf or '' end
-
     local function pad(x) return '%( ' .. x .. ' %)' end
     local function pad_l(x) return '%( ' .. x .. '%)' end
     local function pad_r(x) return '%(' .. x .. ' %)' end
     local function var_exists(x) return '%{exists(\'' .. x .. '\')?' .. x .. ':\'\'}' end
 
     local static_p1 =
-        pad_l(var_exists('b:statusline_git_hunks'))
+        '%#StatusLineNC#'
+        .. pad_l(var_exists('b:statusline_git_hunks'))
         .. (sys_reqr.swenv and pad_l(var_exists('b:statusline_py_swenv')) or '')
         .. (sys_reqr.lsp_plugins and pad_l(var_exists('b:statusline_lsp_status')) or "")
 
@@ -46,35 +40,17 @@ local M = {
         .. pad_r(var_exists('b:statusline_fenc_ffmat'))
         .. pad_r('%3c %2l/%-L %3p%%')
 
-    function M.statusline(active)
+    local function statusline(active)
       return
-          '%#StatusLineNC#'
-          .. static_p1
+          static_p1
           .. (active and '%#StatusLine#' or '%#StatusLineNC#')
           .. static_p2
     end
 
-    local ag_statusline = ag('statusline', {})
-
-    local statusline = M.statusline
-
-    ac({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
-      group = ag_statusline,
-      callback = function() wo.statusline = statusline(true) end
-    })
-
-    ac({ 'WinLeave', 'FocusLost' }, {
-      group = ag_statusline,
-      callback = function() wo.statusline = statusline(false) end
-    })
+    local large_file_buf_fmat = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
 
     local function set_statusline_large_file_buf()
-      if b.large_file_buf then
-        b.statusline_large_file_buf = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
-        return
-      end
-
-      b.statusline_large_file_buf = ''
+      b.statusline_large_file_buf = b.large_file_buf and large_file_buf_fmat or ''
     end
 
     local function set_statusline_fenc_ffmat()
@@ -147,9 +123,11 @@ local M = {
       w.statusline_bname = name
     end
 
+    local lsp_severity = { { 'WARN', 'W' }, { 'ERROR', 'E' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
+
     local function set_statusline_lsp_status()
       if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then
-        vim.b.statusline_lsp_status = ''
+        b.statusline_lsp_status = ''
         return
       end
 
@@ -160,8 +138,10 @@ local M = {
         if #n > 0 then table.insert(status, ty[2] .. ':' .. #n) end
       end
 
-      vim.b.statusline_lsp_status = table.concat(status, ' ')
+      b.statusline_lsp_status = table.concat(status, ' ')
     end
+
+    local ag_statusline = ag('statusline', {})
 
     ac(
       {
@@ -275,9 +255,15 @@ local M = {
       }
     )
 
-    _G.statusline = M
+    ac({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
+      group = ag_statusline,
+      callback = function() wo.statusline = statusline(true) end
+    })
 
-    return M
+    ac({ 'WinLeave', 'FocusLost' }, {
+      group = ag_statusline,
+      callback = function() wo.statusline = statusline(false) end
+    })
   end,
   dependencies = {
     'AckslD/swenv.nvim',
