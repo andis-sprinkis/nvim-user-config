@@ -113,12 +113,12 @@ local M = {
     end
 
     local function set_statusline_bname()
-      vim.tbl_filter(function(win)
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
         local max_width = math.floor(api.nvim_win_get_width(win) * 0.5)
         local name = fn.fnamemodify(api.nvim_buf_get_name(fn.getwininfo(win)[1].bufnr), ':.')
         if #name > max_width then name = '...' .. name:sub(-max_width) end
         w[win].statusline_bname = name
-      end, vim.api.nvim_list_wins())
+      end
     end
 
     local lsp_severity = { { 'WARN', 'W' }, { 'ERROR', 'E' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
