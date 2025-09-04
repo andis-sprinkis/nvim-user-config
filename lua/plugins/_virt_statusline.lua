@@ -65,17 +65,17 @@ return {
         end
       end
 
-      local e = bo.fileencoding and bo.fileencoding or o.encoding
-      local f = bo.fileformat
+      local fenc = bo.fileencoding and bo.fileencoding or o.encoding
+      local ffmat = bo.fileformat
 
       local status = {}
 
-      if e ~= 'utf-8' then
-        status[#status + 1] = e
+      if fenc ~= 'utf-8' then
+        status[#status + 1] = fenc
       end
 
-      if f ~= 'unix' then
-        status[#status + 1] = '[' .. f .. ']'
+      if ffmat ~= 'unix' then
+        status[#status + 1] = '[' .. ffmat .. ']'
       end
 
       if #status > 0 then
