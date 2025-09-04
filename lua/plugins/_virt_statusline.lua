@@ -50,10 +50,29 @@ local M = {
     local large_file_buf_fmat = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
 
     local function set_statusline_large_file_buf()
+      if vim.bo.buftype == 'terminal' then
+        b.statusline_large_file_buf = ''
+        return
+      end
+
       b.statusline_large_file_buf = b.large_file_buf and large_file_buf_fmat or ''
     end
 
+    local ft_ignore_fenc_ffmat = { 'man', 'help' }
+
     local function set_statusline_fenc_ffmat()
+      if vim.bo.buftype == 'terminal' then
+        b.statusline_fenc_ffmat = ''
+        return
+      end
+
+      for _, ft in ipairs(ft_ignore_fenc_ffmat) do
+        if vim.bo.ft == ft then
+          b.statusline_fenc_ffmat = ''
+          return
+        end
+      end
+
       local e = bo.fileencoding and bo.fileencoding or o.encoding
       local f = bo.fileformat
       local r = {}
@@ -102,7 +121,16 @@ local M = {
       end
     end
 
+    local ft_ignore_git_hunks = { 'man', 'help' }
+
     local function set_statusline_git_hunks()
+      for _, ft in ipairs(ft_ignore_git_hunks) do
+        if vim.bo.ft == ft then
+          b.statusline_git_hunks = ''
+          return
+        end
+      end
+
       if b.gitsigns_status then
         b.statusline_git_hunks = b.gitsigns_status == '' and b.gitsigns_head or
             b.gitsigns_head .. ' ' .. b.gitsigns_status
@@ -123,7 +151,21 @@ local M = {
 
     local lsp_severity = { { 'WARN', 'W' }, { 'ERROR', 'E' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
 
+    local ft_ignore_lsp_status = { 'dirvish', 'futigive', 'lazy', 'man', 'help', '' }
+
     local function set_statusline_lsp_status()
+      for _, ft in ipairs(ft_ignore_lsp_status) do
+        if vim.bo.ft == ft then
+          b.statusline_lsp_status = ''
+          return
+        end
+      end
+
+      if vim.bo.buftype == 'terminal' then
+        b.statusline_lsp_status = ''
+        return
+      end
+
       if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then
         b.statusline_lsp_status = ''
         return
