@@ -63,7 +63,7 @@ g.sys_reqr = {
 
 require("lazy").setup({
   spec = {
-    { import = "plugin" },
+    { import = "plugins" },
   },
   ui = {
     icons = {
