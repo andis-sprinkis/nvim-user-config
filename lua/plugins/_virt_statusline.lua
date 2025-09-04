@@ -26,7 +26,7 @@ return {
 
     local p2 =
         '%='
-        .. '%(' .. "%{exists('w:statusline_bname')?w:statusline_bname:''}" .. ' %)'
+        .. '%( ' .. "%{exists('w:statusline_bname')?w:statusline_bname:''}" .. ' %)'
         .. '%=%#StatusLineNC#'
         .. '%( '
         .. '%(' .. "%{exists('b:statusline_large_file_buf')?b:statusline_large_file_buf:''}" .. '%h%q%r%m' .. ' %)'
