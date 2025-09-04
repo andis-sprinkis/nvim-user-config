@@ -16,7 +16,7 @@ return {
     local ac = api.nvim_create_autocmd
     local ag = api.nvim_create_augroup
 
-    local static_p1 =
+    local p1 =
         '%#StatusLineNC#'
         .. '%('
         .. '%( ' .. "%{exists('b:statusline_git_hunks')?b:statusline_git_hunks:''}" .. '%)'
@@ -24,7 +24,7 @@ return {
         .. '%( ' .. "%{exists('b:statusline_lsp_status')?b:statusline_lsp_status:''}" .. '%)'
         .. ' %)'
 
-    local static_p2 =
+    local p2 =
         '%='
         .. "%{exists('w:statusline_bname')?w:statusline_bname:''}"
         .. '%=%#StatusLineNC#'
@@ -36,10 +36,7 @@ return {
         .. ' %)'
 
     local function statusline(active)
-      return
-          static_p1
-          .. (active and '%#StatusLine#' or '%#StatusLineNC#')
-          .. static_p2
+      return p1 .. (active and '%#StatusLine#' or '%#StatusLineNC#') .. p2
     end
 
     local large_file_buf_fmat = '[Size >' .. tostring(g.max_file_size_kb) .. 'K]'
@@ -181,7 +178,7 @@ return {
 
       for _, ty in ipairs(lsp_severity) do
         local n = diagnostic.get(0, { severity = ty[1] })
-        if #n > 0 then 
+        if #n > 0 then
           table.insert(status, ty[2] .. ':' .. #n)
         end
       end
