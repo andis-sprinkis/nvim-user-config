@@ -43,7 +43,7 @@ return {
 
     local function set_statusline_large_file_buf()
       if vim.bo.buftype == 'terminal' then
-        b.statusline_large_file_buf = ''
+        b.statusline_large_file_buf = nil
         return
       end
 
@@ -95,14 +95,14 @@ return {
       local bname = vim.fn.getreg('%')
 
       if (bname == '') then
-        b.statusline_mime_ft = ''
+        b.statusline_mime_ft = nil
         return
       end
 
       local file = io.open(bname, "r")
 
       if not file then
-        b.statusline_mime_ft = ''
+        b.statusline_mime_ft = nil
         return
       end
 
@@ -110,7 +110,10 @@ return {
 
       local cmd_mime_output = fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
 
-      if (vim.v.shell_error ~= 0) then b.statusline_mime_ft = '' end
+      if (vim.v.shell_error ~= 0) then
+        b.statusline_mime_ft = nil
+        return
+      end
 
       b.statusline_mime_ft = fn.trim(cmd_mime_output)
     end
