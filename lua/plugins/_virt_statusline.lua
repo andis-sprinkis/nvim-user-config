@@ -59,7 +59,7 @@ return {
       end
 
       for _, ft in ipairs(ft_ignore_fenc_ffmat) do
-        if vim.bo.ft == ft then
+        if bo.ft == ft then
           b.statusline_fenc_ffmat = nil
           return
         end
@@ -79,16 +79,16 @@ return {
       end
 
       if #status > 0 then
-        vim.b.statusline_fenc_ffmat = table.concat(status, ' ')
+        b.statusline_fenc_ffmat = table.concat(status, ' ')
         return
       end
 
-      vim.b.statusline_fenc_ffmat = nil
+      b.statusline_fenc_ffmat = nil
     end
 
     local function set_statusline_mime_ft()
       if bo.filetype and bo.filetype ~= '' then
-        b.statusline_mime_ft = vim.bo.filetype
+        b.statusline_mime_ft = bo.filetype
         return
       end
 
@@ -122,7 +122,7 @@ return {
 
     local function set_statusline_git_hunks()
       for _, ft in ipairs(ft_ignore_git_hunks) do
-        if vim.bo.ft == ft then
+        if bo.ft == ft then
           b.statusline_git_hunks = nil
           return
         end
@@ -138,7 +138,7 @@ return {
     end
 
     local function set_statusline_bname()
-      for _, win in ipairs(vim.api.nvim_list_wins()) do
+      for _, win in ipairs(api.nvim_list_wins()) do
         local max_width = math.floor(api.nvim_win_get_width(win) * 0.5)
         local name = fn.fnamemodify(api.nvim_buf_get_name(fn.getwininfo(win)[1].bufnr), ':.')
         if #name > max_width then name = '...' .. name:sub(-max_width) end
@@ -152,13 +152,13 @@ return {
 
     local function set_statusline_lsp_status()
       for _, ft in ipairs(ft_ignore_lsp_status) do
-        if vim.bo.ft == ft then
+        if bo.ft == ft then
           b.statusline_lsp_status = nil
           return
         end
       end
 
-      if vim.bo.buftype == 'terminal' then
+      if bo.buftype == 'terminal' then
         b.statusline_lsp_status = nil
         return
       end
