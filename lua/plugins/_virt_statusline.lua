@@ -1,4 +1,4 @@
-local M = {
+return {
   "_virt_statusline",
   virtual = true,
   config = function()
@@ -16,29 +16,24 @@ local M = {
     local ac = api.nvim_create_autocmd
     local ag = api.nvim_create_augroup
 
-    local function pad(x) return '%( ' .. x .. ' %)' end
-    local function pad_l(x) return '%( ' .. x .. '%)' end
-    local function pad_r(x) return '%(' .. x .. ' %)' end
-    local function var_exists(x) return '%{exists(\'' .. x .. '\')?' .. x .. ':\'\'}' end
-
     local static_p1 =
         '%#StatusLineNC#'
-        .. pad_l(var_exists('b:statusline_git_hunks'))
-        .. (sys_reqr.swenv and pad_l(var_exists('b:statusline_py_swenv')) or '')
-        .. (sys_reqr.lsp_plugins and pad_l(var_exists('b:statusline_lsp_status')) or "")
-
-    if string.len(static_p1) then
-      static_p1 = pad_r(static_p1)
-    end
+        .. '%('
+        .. '%( ' .. "%{exists('b:statusline_git_hunks')?b:statusline_git_hunks:''}" .. '%)'
+        .. '%( ' .. "%{exists('b:statusline_py_swenv')?b:statusline_py_swenv:''}" .. '%)'
+        .. '%( ' .. "%{exists('b:statusline_lsp_status')?b:statusline_lsp_status:''}" .. '%)'
+        .. ' %)'
 
     local static_p2 =
         '%='
-        .. pad(var_exists('w:statusline_bname'))
-        .. '%=%#StatusLineNC# '
-        .. pad_r(var_exists('b:statusline_large_file_buf') .. '%h%q%r%m')
-        .. pad_r(var_exists('b:statusline_mime_ft'))
-        .. pad_r(var_exists('b:statusline_fenc_ffmat'))
-        .. pad_r('%3c %2l/%-L %3p%%')
+        .. "%{exists('w:statusline_bname')?w:statusline_bname:''}"
+        .. '%=%#StatusLineNC#'
+        .. '%( '
+        .. '%(' .. "%{exists('b:statusline_large_file_buf')?b:statusline_large_file_buf:''}" .. '%h%q%r%m' .. ' %)'
+        .. '%(' .. "%{exists('b:statusline_mime_ft')?b:statusline_mime_ft:''}" .. ' %)'
+        .. '%(' .. "%{exists('b:statusline_fenc_ffmat')?b:statusline_fenc_ffmat:''}" .. ' %)'
+        .. '%3c %2l/%-L %3p%%'
+        .. ' %)'
 
     local function statusline(active)
       return
@@ -62,25 +57,36 @@ local M = {
 
     local function set_statusline_fenc_ffmat()
       if vim.bo.buftype == 'terminal' then
-        b.statusline_fenc_ffmat = ''
+        b.statusline_fenc_ffmat = nil
         return
       end
 
       for _, ft in ipairs(ft_ignore_fenc_ffmat) do
         if vim.bo.ft == ft then
-          b.statusline_fenc_ffmat = ''
+          b.statusline_fenc_ffmat = nil
           return
         end
       end
 
       local e = bo.fileencoding and bo.fileencoding or o.encoding
       local f = bo.fileformat
-      local r = {}
 
-      if e ~= 'utf-8' then r[#r + 1] = e end
-      if f ~= 'unix' then r[#r + 1] = '[' .. f .. ']' end
+      local status = {}
 
-      vim.b.statusline_fenc_ffmat = table.concat(r, ' ')
+      if e ~= 'utf-8' then
+        status[#status + 1] = e
+      end
+
+      if f ~= 'unix' then
+        status[#status + 1] = '[' .. f .. ']'
+      end
+
+      if #status > 0 then
+        vim.b.statusline_fenc_ffmat = table.concat(status, ' ')
+        return
+      end
+
+      vim.b.statusline_fenc_ffmat = nil
     end
 
     local function set_statusline_mime_ft()
@@ -117,7 +123,7 @@ local M = {
         local swenv_api = require("swenv.api")
         local venv = swenv_api.get_current_venv()
 
-        b.statusline_py_swenv = venv and "venv:" .. venv.name or ''
+        b.statusline_py_swenv = venv and "venv:" .. venv.name or nil
       end
     end
 
@@ -126,7 +132,7 @@ local M = {
     local function set_statusline_git_hunks()
       for _, ft in ipairs(ft_ignore_git_hunks) do
         if vim.bo.ft == ft then
-          b.statusline_git_hunks = ''
+          b.statusline_git_hunks = nil
           return
         end
       end
@@ -137,7 +143,7 @@ local M = {
         return
       end
 
-      b.statusline_git_hunks = g.gitsigns_head and g.gitsigns_head or ''
+      b.statusline_git_hunks = g.gitsigns_head and g.gitsigns_head or nil
     end
 
     local function set_statusline_bname()
@@ -156,18 +162,18 @@ local M = {
     local function set_statusline_lsp_status()
       for _, ft in ipairs(ft_ignore_lsp_status) do
         if vim.bo.ft == ft then
-          b.statusline_lsp_status = ''
+          b.statusline_lsp_status = nil
           return
         end
       end
 
       if vim.bo.buftype == 'terminal' then
-        b.statusline_lsp_status = ''
+        b.statusline_lsp_status = nil
         return
       end
 
       if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then
-        b.statusline_lsp_status = ''
+        b.statusline_lsp_status = nil
         return
       end
 
@@ -175,10 +181,17 @@ local M = {
 
       for _, ty in ipairs(lsp_severity) do
         local n = diagnostic.get(0, { severity = ty[1] })
-        if #n > 0 then table.insert(status, ty[2] .. ':' .. #n) end
+        if #n > 0 then 
+          table.insert(status, ty[2] .. ':' .. #n)
+        end
       end
 
-      b.statusline_lsp_status = table.concat(status, ' ')
+      if #status > 0 then
+        b.statusline_lsp_status = table.concat(status, ' ')
+        return
+      end
+
+      b.statusline_lsp_status = nil
     end
 
     local ag_statusline = ag('statusline', {})
@@ -311,5 +324,3 @@ local M = {
     'mason-org/mason.nvim',
   }
 }
-
-return M
