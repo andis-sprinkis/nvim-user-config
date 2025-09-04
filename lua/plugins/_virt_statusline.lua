@@ -92,23 +92,14 @@ return {
         return
       end
 
-      local bname = vim.fn.getreg('%')
+      local fname = fn.expand('%:p')
 
-      if (bname == '') then
+      if (fname == '') or (not vim.uv.fs_stat(fname)) then
         b.statusline_mime_ft = nil
         return
       end
 
-      local file = io.open(bname, "r")
-
-      if not file then
-        b.statusline_mime_ft = nil
-        return
-      end
-
-      file.close(file)
-
-      local cmd_mime_output = fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
+      local cmd_mime_output = fn.system('file --mime-type --brief "' .. fname .. '"')
 
       if (vim.v.shell_error ~= 0) then
         b.statusline_mime_ft = nil
@@ -214,13 +205,8 @@ return {
 
     ac(
       {
-        'BufEnter',
-        'BufNew',
         'BufWinEnter',
-        'BufWritePost',
-        'FileChangedShellPost',
-        'FileType',
-        'VimResume'
+        'FileType'
       },
       {
         callback = set_statusline_mime_ft,
