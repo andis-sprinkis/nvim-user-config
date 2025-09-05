@@ -14,11 +14,11 @@ local M = {
     local ignoreFt = { "lazy", "mason" }
 
     local function checkInactiveBuf()
-      local openBufs = fn.getbufinfo({ buflisted = 1 })
+      local listedBufs = fn.getbufinfo({ buflisted = 1 })
 
-      if #openBufs == 0 then return end
+      if #listedBufs == 0 then return end
 
-      for _, buf in pairs(openBufs) do
+      for _, buf in pairs(listedBufs) do
         -- Visible?
         if buf.hidden == 0 and buf.loaded == 1 then goto continue end
         -- Unsaved?
