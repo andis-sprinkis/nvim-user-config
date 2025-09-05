@@ -5,7 +5,7 @@ local M = {
   virtual = true,
   config = function()
     -- Opening the lf file manager in a floating terminal window.
-    -- Adapted from https://github.com/is0n/fm-nvim (license: GPL-3.0)
+    -- Adapted from https://github.com/is0n/fm-nvim (license: GPL-3.0).
 
     local api = vim.api
     local uc = api.nvim_create_user_command
