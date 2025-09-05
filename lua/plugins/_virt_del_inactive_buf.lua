@@ -19,17 +19,17 @@ local M = {
       if #openBufs == 0 then return end
 
       for _, buf in pairs(openBufs) do
-        -- Is buffer visible?
+        -- Visible?
         if buf.hidden == 0 and buf.loaded == 1 then goto continue end
-        -- Is buffer unsaved?
+        -- Unsaved?
         if get_opt("modified", { buf = buf.bufnr }) then goto continue end
-        -- Is buffer special type?
+        -- Special type?
         if get_opt("buftype", { buf = buf.bufnr }) ~= "" then goto continue end
-        -- Is buffer used recently?
+        -- Used recently?
         if os.time() - buf.lastused < inactiveAfterMins * 60 then goto continue end
-        -- Is buffer ignored filetype?
+        -- Ignored filetype?
         if vim.tbl_contains(ignoreFt, get_opt("filetype", { buf = buf.bufnr })) then goto continue end
-        -- Is buffer alternate-file?
+        -- Alternate-file?
         if buf.name == fn.expand("#:p") then goto continue end
 
         api.nvim_buf_delete(buf.bufnr, { force = false, unload = false })
