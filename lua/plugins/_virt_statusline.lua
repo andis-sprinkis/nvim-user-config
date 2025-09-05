@@ -146,7 +146,7 @@ return {
       end
     end
 
-    local lsp_severity = { { 'WARN', 'W' }, { 'ERROR', 'E' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
+    local lsp_severity = { { 'ERROR', 'E' }, { 'WARN', 'W' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
 
     local ft_ignore_lsp = { 'dirvish', 'futigive', 'lazy', 'man', 'help', '' }
 
