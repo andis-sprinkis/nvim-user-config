@@ -104,7 +104,6 @@ local M = {
       },
       sources = cmpc.sources(
         {
-          { name = 'copilot' },
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
           { name = 'nvim_lua' },
@@ -202,23 +201,6 @@ local M = {
       cond = sys_reqr.cmp_tmux,
       enabled = sys_reqr.cmp_tmux
     },
-    -- {
-    --   "zbirenbaum/copilot-cmp",
-    --   config = function()
-    --     require("copilot_cmp").setup()
-    --   end,
-    --   dependencies = {
-    --     {
-    --       "zbirenbaum/copilot.lua",
-    --       config = function()
-    --         require("copilot").setup({
-    --           suggestion = { enabled = false },
-    --           panel = { enabled = false },
-    --         })
-    --       end
-    --     }
-    --   }
-    -- }
   },
   event = { "InsertEnter", "CmdlineEnter" },
 }
