@@ -42,7 +42,7 @@ return {
     local largef_msg = '[Size >' .. tostring(g.maxfsize_kb) .. 'K]'
 
     local function set_statl_largef()
-      if vim.bo.buftype == 'terminal' then
+      if vim.bo.buftype ~= '' and vim.bo.buftype ~= 'help' then
         b.statl_largef = nil
         return
       end
@@ -50,10 +50,10 @@ return {
       b.statl_largef = b.largef and largef_msg or ''
     end
 
-    local ft_ignore_encfmt = { 'man', 'help' }
+    local ft_ignore_encfmt = { 'lazy', 'mason', 'man', 'help' }
 
     local function set_statl_encfmt()
-      if vim.bo.buftype == 'terminal' then
+      if vim.bo.buftype ~= '' then
         b.statl_encfmt = nil
         return
       end
@@ -92,6 +92,11 @@ return {
         return
       end
 
+      if bo.buftype ~= '' then
+        b.statl_mimeft = nil
+        return
+      end
+
       local fname = fn.expand('%:p')
 
       if (fname == '') or (not vim.uv.fs_stat(fname)) then
@@ -118,7 +123,7 @@ return {
       end
     end
 
-    local ft_ignore_git = { 'man', 'help' }
+    local ft_ignore_git = { 'lazy', 'mason', 'man', 'help' }
 
     local function set_statl_git()
       for _, ft in ipairs(ft_ignore_git) do
@@ -148,19 +153,19 @@ return {
 
     local lsp_severity = { { 'ERROR', 'E' }, { 'WARN', 'W' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
 
-    local ft_ignore_lsp = { 'dirvish', 'futigive', 'lazy', 'man', 'help', '' }
+    local ft_ignore_lsp = { 'dirvish', 'futigive', 'lazy', 'mason', 'man', 'help', '' }
 
     local function set_statl_lsp()
+      if bo.buftype ~= '' then
+        b.statl_lsp = nil
+        return
+      end
+
       for _, ft in ipairs(ft_ignore_lsp) do
         if bo.ft == ft then
           b.statl_lsp = nil
           return
         end
-      end
-
-      if bo.buftype == 'terminal' then
-        b.statl_lsp = nil
-        return
       end
 
       if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then

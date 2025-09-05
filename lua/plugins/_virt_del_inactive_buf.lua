@@ -11,7 +11,7 @@ local M = {
 
     local inactiveAfterMins = 20
     local checkIntervalSecs = 30
-    local ignoreFt = { "lazy" }
+    local ignoreFt = { "lazy", "mason" }
 
     local function checkInactiveBuf()
       local openBufs = fn.getbufinfo({ buflisted = 1 })
