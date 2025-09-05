@@ -58,11 +58,9 @@ return {
         return
       end
 
-      for _, ft in ipairs(ft_ignore_encfmt) do
-        if bo.ft == ft then
-          b.statl_encfmt = nil
-          return
-        end
+      if vim.tbl_contains(ft_ignore_encfmt, bo.ft) then
+        b.statl_encfmt = nil
+        return
       end
 
       local enc = bo.fileencoding and bo.fileencoding or o.encoding
@@ -126,11 +124,9 @@ return {
     local ft_ignore_git = { 'lazy', 'mason', 'man', 'help' }
 
     local function set_statl_git()
-      for _, ft in ipairs(ft_ignore_git) do
-        if bo.ft == ft then
-          b.statl_git = nil
-          return
-        end
+      if vim.tbl_contains(ft_ignore_git, bo.ft) then
+        b.statl_git = nil
+        return
       end
 
       if b.gitsigns_status then
@@ -161,11 +157,9 @@ return {
         return
       end
 
-      for _, ft in ipairs(ft_ignore_lsp) do
-        if bo.ft == ft then
-          b.statl_lsp = nil
-          return
-        end
+      if vim.tbl_contains(ft_ignore_lsp, bo.ft) then
+        b.statl_lsp = nil
+        return
       end
 
       if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then
