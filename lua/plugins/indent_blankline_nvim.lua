@@ -8,7 +8,7 @@ local M = {
     hooks.register(
       hooks.type.ACTIVE,
       function(bufnr)
-        return not vim.b.large_file_buf
+        return not vim.b.largef
       end
     )
   end,

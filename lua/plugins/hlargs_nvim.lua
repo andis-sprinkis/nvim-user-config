@@ -4,7 +4,7 @@ local M = {
     require('hlargs').setup {
       hl_priority = 200,
       disable = function ()
-        return vim.b.large_file_buf
+        return vim.b.largef
       end
     }
   end,

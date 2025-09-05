@@ -40,7 +40,7 @@ local M = {
       name = 'buffer',
       option = {
         get_bufnrs = function()
-          if vim.b.large_file_buf then return {} end
+          if vim.b.largef then return {} end
           return { buf = vim.api.nvim_get_current_buf() }
         end
       }

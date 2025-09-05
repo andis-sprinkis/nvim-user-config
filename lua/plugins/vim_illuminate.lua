@@ -6,7 +6,7 @@ local M = {
       filetypes_denylist = {},
       delay = 675,
       should_enable = function(buf)
-        return not vim.b.large_file_buf
+        return not vim.b.largef
       end
     })
   end

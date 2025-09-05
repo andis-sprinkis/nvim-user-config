@@ -5,7 +5,7 @@ local M = {
   build = ':TSUpdate',
   config = function()
     local disable = function()
-      return vim.b.large_file_buf
+      return vim.b.largef
     end
 
     require 'nvim-treesitter.configs'.setup {

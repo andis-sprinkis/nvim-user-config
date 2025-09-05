@@ -22,7 +22,7 @@ local M = {
     ac({ 'BufRead' }, {
       group = ag_vim_colorizer_cfg,
       callback = function()
-        if vim.b.large_file_buf then
+        if vim.b.largef then
           vim.cmd("ColorizerDetachFromBuffer")
         end
       end

@@ -242,7 +242,7 @@ local M = {
 
     -- vim.api.nvim_create_autocmd('LspAttach', {
     --   callback = function()
-    --     if vim.b.large_file_buf then
+    --     if vim.b.largef then
     --       vim.defer_fn(function()
     --         vim.cmd [[LspStop]]
     --         vim.notify(

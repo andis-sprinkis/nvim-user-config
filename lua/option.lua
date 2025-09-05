@@ -16,8 +16,8 @@ local uc = api.nvim_create_user_command
 g.os = uv.os_uname().sysname
 g.sys_reqr = {}
 g.exec = {}
-g.max_file_size_kb = 100
-g.max_file_size_b = 1024 * g.max_file_size_kb -- 1024 * KB
+g.maxfsize_kb = 100
+g.maxfsize_b = 1024 * g.maxfsize_kb -- 1024 * KB
 
 g.loaded_netrwPlugin = 0
 g.man_hard_wrap = true
@@ -186,13 +186,13 @@ ac(
     callback = function()
       local ok, stats = pcall(uv.fs_stat, api.nvim_buf_get_name(api.nvim_get_current_buf()))
 
-      if ok and stats and (stats.size > g.max_file_size_b) then
-        b.large_file_buf = true
+      if ok and stats and (stats.size > g.maxfsize_b) then
+        b.largef = true
         optl.foldmethod = "expr"
         return
       end
 
-      b.large_file_buf = false
+      b.largef = false
     end,
     group = ag_option,
   }

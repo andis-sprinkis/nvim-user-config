@@ -11,7 +11,7 @@ local M = {
     ac({ 'BufRead' }, {
       group = ag_matchparen_nvim_cfg,
       callback = function()
-        if vim.b.large_file_buf then
+        if vim.b.largef then
           vim.cmd("MatchParenDisable")
         else
           vim.cmd("MatchParenEnable")
