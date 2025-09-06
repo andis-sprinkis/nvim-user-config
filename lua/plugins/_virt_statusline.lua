@@ -37,7 +37,7 @@ return {
         .. '%3c %2l/%-L %3p%%'
         .. ' %)'
 
-    local function statlfmt(focus) return p1 .. (focus and '' or 'NC') .. p2 end
+    local function fmt_statl(focus) return p1 .. (focus and '' or 'NC') .. p2 end
 
     local largef_msg = '[Size >' .. g.maxfsize_kb .. 'K]'
 
@@ -294,17 +294,15 @@ return {
 
     ac({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
       group = ag_statl,
-      callback = function() wo.statusline = statlfmt(true) end
+      callback = function() wo.statusline = fmt_statl(true) end
     })
 
     ac({ 'WinLeave', 'FocusLost' }, {
       group = ag_statl,
-      callback = function() wo.statusline = statlfmt(false) end
+      callback = function() wo.statusline = fmt_statl(false) end
     })
   end,
   dependencies = {
     'AckslD/swenv.nvim',
-    'lewis6991/gitsigns.nvim',
-    'mason-org/mason.nvim',
   }
 }
