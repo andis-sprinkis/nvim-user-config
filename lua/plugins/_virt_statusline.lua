@@ -26,8 +26,8 @@ return {
         .. '%#StatusLine'
 
     local p2 =
-        '#' ..
-        '%='
+        '#'
+        .. '%='
         .. '%( ' .. "%{exists('w:statl_bname')?w:statl_bname:''}" .. ' %)'
         .. '%=%#StatusLineNC#'
         .. '%( '
@@ -39,7 +39,7 @@ return {
 
     local function statlfmt(focus) return p1 .. (focus and '' or 'NC') .. p2 end
 
-    local largef_msg = '[Size >' .. tostring(g.maxfsize_kb) .. 'K]'
+    local largef_msg = '[Size >' .. g.maxfsize_kb .. 'K]'
 
     local function set_statl_largef()
       if vim.bo.buftype ~= '' and vim.bo.buftype ~= 'help' then
@@ -147,9 +147,8 @@ return {
       end
     end
 
-    local lsp_severity = { { 'ERROR', 'E' }, { 'WARN', 'W' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
-
     local ft_ignore_lsp = { 'dirvish', 'futigive', 'lazy', 'mason', 'man', 'help', '' }
+    local lsp_severity = { { 'ERROR', 'E' }, { 'WARN', 'W' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
 
     local function set_statl_lsp()
       if bo.buftype ~= '' then
