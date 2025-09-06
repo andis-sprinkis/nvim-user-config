@@ -9,13 +9,14 @@ local M = {
         builtin = 5,
         bookmark = 4,
       },
-      refresh_interval = 100,
+      refresh_interval = 150,
       excluded_filetypes = { 'lazy', 'mason', 'fugitive' },
     }
 
     vim.api.nvim_set_hl(0, 'MarkSignHL', { link = 'LineNr' })
     vim.api.nvim_set_hl(0, 'MarkSignNumHL', {})
   end,
+  dependencies = { '2kabhishek/pickme.nvim' },
   event = { 'BufReadPre', 'BufNewFile' },
 }
 
