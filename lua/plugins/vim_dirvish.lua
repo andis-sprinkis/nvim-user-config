@@ -41,7 +41,11 @@ local M = {
       {
         group = ag_dirvish_usr,
         callback = function()
-          if (not vim.g.started_with_stdin) and vim.fn.argc() == 0 then
+          if
+              not vim.g.started_with_stdin
+              and vim.fn.argc() == 0
+              and not vim.tbl_contains(vim.v.argv, '+Man!')
+          then
             vim.cmd.Dirvish()
           end
         end
