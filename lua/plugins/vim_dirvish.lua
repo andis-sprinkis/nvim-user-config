@@ -36,22 +36,25 @@ local M = {
       }
     )
 
+    local has_stdin = false
+
     ac(
       'StdinReadPre',
       {
         group = ag_dirvish_usr,
         callback = function()
-          vim.g.has_stdin = true
+          has_stdin = true
         end
       }
     )
 
     ac(
-      'UiEnter',
+      'UIEnter',
       {
         group = ag_dirvish_usr,
         callback = function()
-          if vim.g.has_stdin or vim.fn.argc() == 0 or vim.tbl_contains(vim.v.argv, '+Man!') then return end
+          if has_stdin or vim.fn.argc() > 0 or vim.tbl_contains(vim.v.argv, '+Man!') then return end
+
           vim.cmd.Dirvish()
         end
       }
