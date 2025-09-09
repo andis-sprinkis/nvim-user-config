@@ -3,7 +3,6 @@ local sys_reqr = g.sys_reqr
 
 local M = {
   'kkoomen/vim-doge',
-  cond = sys_reqr.vim_doge,
   enabled = sys_reqr.vim_doge,
   build = function() vim.fn["doge#install"]() end,
   init = function()

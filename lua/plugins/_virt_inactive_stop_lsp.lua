@@ -3,7 +3,6 @@ local sys_reqr = vim.g.sys_reqr
 local M = {
   "_virt_inactive_stop_lsp",
   virtual = true,
-  cond = sys_reqr.lsp_plugins,
   enabled = sys_reqr.lsp_plugins,
   event = "VeryLazy",
   config = function()

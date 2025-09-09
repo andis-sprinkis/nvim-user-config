@@ -2,7 +2,6 @@ local sys_reqr = vim.g.sys_reqr
 
 local M = {
   'mason-org/mason.nvim',
-  cond = sys_reqr.lsp_plugins,
   enabled = sys_reqr.lsp_plugins,
   config = function()
     local diagnostic = vim.diagnostic

@@ -1,6 +1,5 @@
 local M = {
   "_virt_lf",
-  cond = vim.g.sys_reqr.lf,
   enabled = vim.g.sys_reqr.lf,
   virtual = true,
   config = function()

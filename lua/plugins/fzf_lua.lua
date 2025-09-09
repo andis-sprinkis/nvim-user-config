@@ -3,7 +3,6 @@ local sys_reqr = g.sys_reqr
 
 local M = {
   'ibhagwan/fzf-lua',
-  cond = sys_reqr.fzf_lua,
   enabled = sys_reqr.fzf_lua,
   config = function()
     local km = vim.keymap.set

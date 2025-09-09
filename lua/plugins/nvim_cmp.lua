@@ -193,12 +193,10 @@ local M = {
     'uga-rosa/cmp-dictionary',
     {
       'lukas-reineke/cmp-rg',
-      cond = sys_reqr.cmp_rg,
       enabled = sys_reqr.cmp_rg,
     },
     {
       'andersevenrud/cmp-tmux',
-      cond = sys_reqr.cmp_tmux,
       enabled = sys_reqr.cmp_tmux
     },
   },
