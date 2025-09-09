@@ -3,9 +3,7 @@ local M = {
   config = function()
     require('hlargs').setup {
       hl_priority = 200,
-      disable = function ()
-        return vim.b.largef
-      end
+      disable = function () return vim.b.largef end
     }
   end,
   event = 'VeryLazy',
