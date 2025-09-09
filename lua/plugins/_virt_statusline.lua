@@ -1,5 +1,5 @@
 return {
-  "_virt_statl",
+  "_virt_statusline",
   virtual = true,
   config = function()
     local api = vim.api
