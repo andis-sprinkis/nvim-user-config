@@ -292,7 +292,7 @@ return {
       }
     )
 
-    ac({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
+    ac({ 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
       group = ag_statl,
       callback = function() wo.statusline = fmt_statl(true) end
     })

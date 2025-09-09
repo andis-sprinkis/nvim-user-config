@@ -62,9 +62,7 @@ g.sys_reqr = {
 }
 
 require("lazy").setup({
-  spec = {
-    { import = "plugins" },
-  },
+  spec = { import = "plugins" },
   ui = {
     icons = {
       cmd = "[Cmd]",
