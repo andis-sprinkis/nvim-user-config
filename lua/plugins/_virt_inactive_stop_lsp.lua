@@ -6,8 +6,8 @@ local M = {
   enabled = sys_reqr.lsp_plugins,
   event = "VeryLazy",
   config = function()
-    -- Stopping LSP clients when inactive.
-    -- Extracted from https://github.com/Zeioth/garbage-day.nvim (License: GPL-3).
+    -- Stopping LSP clients when the application is inactive for some time.
+    -- Adapted from https://github.com/Zeioth/garbage-day.nvim (license: GPL-3).
 
     local excluded_lsp_clients = { "null-ls", "jdtls", "marksman", "lua_ls" }
     local lsp_start_focus_delay = 1000      -- ms
@@ -96,6 +96,7 @@ local M = {
         )
       end
     })
+    --
   end
 }
 
