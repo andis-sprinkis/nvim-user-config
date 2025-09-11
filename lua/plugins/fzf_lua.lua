@@ -119,7 +119,6 @@ local M = {
   end,
   event = { "CmdlineEnter" },
   keys = {
-    { "<F1>",      mode = { "n" } },
     { "<tab>",     mode = { "n" } },
     { "<s-tab>",   mode = { "n" } },
     { "<leader>e", mode = { "n" } },
