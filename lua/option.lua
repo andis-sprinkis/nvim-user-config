@@ -1,3 +1,4 @@
+local b = vim.b
 local g = vim.g
 local o = vim.o
 local opt = vim.opt
@@ -12,6 +13,9 @@ local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
 local uc = api.nvim_create_user_command
 local tbl_filter = vim.tbl_filter
+
+g.maxfsize_kb = 100
+g.maxfsize_b = 1024 * g.maxfsize_kb -- 1024 * KB
 
 if fn.has('nvim-0.10') == 1 then
   g.os = vim.uv.os_uname().sysname
@@ -217,6 +221,24 @@ ac(
   }
 )
 
+ac(
+  { 'BufReadPre', 'BufWritePost', 'FileChangedShell' },
+  {
+    callback = function()
+      local ok, stats = pcall(uv.fs_stat, api.nvim_buf_get_name(api.nvim_get_current_buf()))
+
+      if ok and stats and (stats.size > g.maxfsize_b) then
+        b.largef = true
+        optl.foldmethod = "expr"
+        return
+      end
+
+      b.largef = false
+    end,
+    group = ag_option,
+  }
+)
+
 -- mkdir on save.
 -- Adapted from https://github.com/jghauser/mkdir.nvim (license: GPL-3.0).
 ac(
@@ -414,7 +436,11 @@ end
 local function switch_to_buf_idx(buf_idx)
   buf_hist = tbl_filter(filter_buf_exists_listed, buf_hist)
 
-  if buf_idx <= #buf_hist then vim.cmd.b(buf_hist[buf_idx]) end
+  local len_hist = #buf_hist
+
+  if len_hist <= 1 then return end
+
+  vim.cmd.b(buf_hist[buf_idx <= len_hist and buf_idx or len_hist])
 end
 
 local idx_keys = { "<F2>", "<F3>", "<F4>", "<F5>", "<F6>", "<F7>", "<F8>", "<F9>", "<F10>", "<F11>", "<F12>" }

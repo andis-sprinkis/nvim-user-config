@@ -1,125 +1,182 @@
 local api = vim.api
+local b = vim.b
+local w = vim.w
 local bo = vim.bo
 local fn = vim.fn
+local g = vim.g
 local o = vim.opt
 local wo = vim.wo
 local ac = api.nvim_create_autocmd
 local ag = api.nvim_create_augroup
 
-local M = {}
+local p1 =
+    '%#StatusLineNC#'
+    .. '%#StatusLine'
 
-function M.ft()
-  if vim.bo.filetype and vim.bo.filetype ~= '' then
-    return vim.bo.filetype
+local p2 =
+    '#'
+    .. '%='
+    .. '%( ' .. "%{exists('w:statl_bname')?w:statl_bname:''}" .. ' %)'
+    .. '%=%#StatusLineNC#'
+    .. '%( '
+    .. '%(' .. "%{exists('b:statl_largef')?b:statl_largef:''}" .. '%h%q%r%m' .. ' %)'
+    .. '%(' .. "%{exists('b:statl_mimeft')?b:statl_mimeft:''}" .. ' %)'
+    .. '%(' .. "%{exists('b:statl_encfmt')?b:statl_encfmt:''}" .. ' %)'
+    .. '%3c %2l/%-L %3p%%'
+    .. ' %)'
+
+local function fmt_statl(focus) return p1 .. (focus and '' or 'NC') .. p2 end
+
+local largef_msg = '[Size >' .. g.maxfsize_kb .. 'K]'
+
+local function set_statl_largef()
+  if vim.bo.buftype ~= '' and vim.bo.buftype ~= 'help' then
+    b.statl_largef = nil
+    return
   end
 
-  if vim.b.mime and vim.b.mime ~= '' then
-    return vim.b.mime
+  b.statl_largef = b.largef and largef_msg or ''
+end
+
+local ft_ignore_encfmt = { 'lazy', 'mason', 'man', 'help' }
+
+local function set_statl_encfmt()
+  if vim.bo.buftype ~= '' then
+    b.statl_encfmt = nil
+    return
   end
 
-  return ''
+  if vim.tbl_contains(ft_ignore_encfmt, bo.ft) then
+    b.statl_encfmt = nil
+    return
+  end
+
+  local enc = bo.fileencoding and bo.fileencoding or o.encoding
+  local fmt = bo.fileformat
+
+  local msg = {}
+
+  if enc ~= 'utf-8' then
+    msg[#msg + 1] = enc
+  end
+
+  if fmt ~= 'unix' then
+    msg[#msg + 1] = '[' .. fmt .. ']'
+  end
+
+  if #msg > 0 then
+    b.statl_encfmt = table.concat(msg, ' ')
+    return
+  end
+
+  b.statl_encfmt = nil
 end
 
-function M.fenc_ffmat()
-  local e = bo.fileencoding and bo.fileencoding or o.encoding
-  local f = bo.fileformat
-  local r = {}
+local function set_statl_mimeft()
+  if bo.filetype and bo.filetype ~= '' then
+    b.statl_mimeft = bo.filetype
+    return
+  end
 
-  if e ~= 'utf-8' then r[#r + 1] = e end
-  if f ~= 'unix' then r[#r + 1] = '[' .. f .. ']' end
+  if bo.buftype ~= '' then
+    b.statl_mimeft = nil
+    return
+  end
 
-  return table.concat(r, ' ')
+  local fname = fn.expand('%:p')
+
+  if (fname == '') or (not vim.uv.fs_stat(fname)) then
+    b.statl_mimeft = nil
+    return
+  end
+
+  local cmd_mime_output = fn.system('file --mime-type --brief "' .. fname .. '"')
+
+  if (vim.v.shell_error ~= 0) then
+    b.statl_mimeft = nil
+    return
+  end
+
+  b.statl_mimeft = fn.trim(cmd_mime_output)
 end
 
-function M.bname()
-  local width = math.floor(api.nvim_win_get_width(0) * 0.5)
-  local name = fn.fnamemodify(api.nvim_buf_get_name(0), ':.')
-
-  if #name > width then name = '...' .. name:sub(-width) end
-
-  return name
+local function set_statl_bname()
+  for _, win in ipairs(api.nvim_list_wins()) do
+    local max_width = math.floor(api.nvim_win_get_width(win) * 0.5)
+    local name = fn.fnamemodify(api.nvim_buf_get_name(fn.getwininfo(win)[1].bufnr), ':.')
+    if #name > max_width then name = '...' .. name:sub(-max_width) end
+    w[win].statl_bname = name
+  end
 end
 
--- function M.winnr()
---   return vim.fn.winnr()
--- end
+local ag_statl = ag('statl', {})
 
-local function pad(x) return '%( ' .. x .. ' %)' end
-local function pad_l(x) return '%( ' .. x .. '%)' end
-local function pad_r(x) return '%(' .. x .. ' %)' end
+ac(
+  {
+    'BufEnter',
+    'BufNew',
+    'BufWinEnter',
+    'BufWritePost',
+    'FileChangedShellPost',
+    'FileType',
+    'VimResume',
+  },
+  {
+    callback = set_statl_largef,
+    group = ag_statl,
+  }
+)
 
-local function func(name) return '%{%v:lua.statusline.' .. name .. '()%}' end
+ac(
+  {
+    'BufWinEnter',
+    'FileType'
+  },
+  {
+    callback = set_statl_mimeft,
+    group = ag_statl,
+  }
+)
 
--- local static_p1 =
+ac(
+  {
+    'BufEnter',
+    'BufNew',
+    'BufWinEnter',
+    'BufWritePost',
+    'FileChangedShellPost',
+    'FileType',
+    'VimResume'
+  },
+  {
+    callback = set_statl_encfmt,
+    group = ag_statl,
+  }
+)
 
-local static_p2 =
-    '%='
-    .. pad(func('bname'))
-    .. '%=%#StatusLineNC# '
-    .. pad_r('%h%q%r%m')
-    .. pad_r(func('ft'))
-    .. pad_r(func('fenc_ffmat'))
-    .. pad_r('%3c %2l/%-L %3p%%')
-    -- .. pad_r(func('winnr'))
+ac(
+  {
+    'BufEnter',
+    'BufWinEnter',
+    'BufWritePost',
+    'OptionSet',
+    'VimResized',
+    'WinEnter',
+    'WinNew',
+    'WinResized',
+  },
+  {
+    callback = set_statl_bname,
+    group = ag_statl,
+  }
+)
 
-function M.statusline(active)
-  return
-      '%#StatusLineNC#'
-      .. (active and '%#StatusLine#' or '%#StatusLineNC#')
-      .. static_p2
-end
-
-local ag_statusline = ag('statusline', {})
-
-local statusline = M.statusline
-
-ac({ 'VimEnter', 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
-  group = ag_statusline,
-  callback = function() wo.statusline = statusline(true) end
+ac({ 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
+  group = ag_statl,
+  callback = function() wo.statusline = fmt_statl(true) end
 })
 
 ac({ 'WinLeave', 'FocusLost' }, {
-  group = ag_statusline,
-  callback = function() wo.statusline = statusline(false) end
+  group = ag_statl,
+  callback = function() wo.statusline = fmt_statl(false) end
 })
-
-if vim.g.os ~= 'Windows_NT' then
-  ac(
-    'BufReadPre',
-    {
-      callback = function()
-        if vim.bo.filetype ~= '' then
-          vim.b.mime = ''
-          return
-        end
-
-        local bname = vim.fn.getreg('%')
-
-        if (bname == '') then
-          vim.b.mime = ''
-          return
-        end
-
-        local file = io.open(bname, "r")
-
-        if not file then
-          vim.b.mime = ''
-          return
-        end
-
-        file.close(file)
-
-        local cmd_mime_output = vim.fn.system('file --mime-type --brief "' .. fn.expand('%:p') .. '"')
-
-        if (vim.v.shell_error ~= 0) then vim.b.mime = '' end
-
-        vim.b.mime = vim.fn.trim(cmd_mime_output)
-      end,
-      group = ag_statusline,
-    }
-  )
-end
-
-_G.statusline = M
-
-return M
