@@ -59,7 +59,7 @@ local M = {
       function() switch_to_buf_idx(2) end,
       { desc = 'Cycle between the last 2 buffers (_virt_bufkeys)' }
     )
-    ---
+    --
   end
 }
 
