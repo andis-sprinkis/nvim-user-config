@@ -105,13 +105,6 @@ local M = {
 
     km(
       'n',
-      '<F1>',
-      function() fzflua.helptags() end,
-      { desc = 'Search help tags (fzf-lua)' }
-    )
-
-    km(
-      'n',
       '<leader>z',
       function() fzflua.builtin({ resume = true }) end,
       { desc = 'Search fzf-lua builtin commands (fzf-lua)' }
