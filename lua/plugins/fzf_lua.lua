@@ -123,6 +123,7 @@ local M = {
     { "<s-tab>",   mode = { "n" } },
     { "<leader>e", mode = { "n" } },
     { "<leader>z", mode = { "n" } },
+    { "<leader>Z", mode = { "n" } },
   },
   dependencies = {
     'stevearc/dressing.nvim',
