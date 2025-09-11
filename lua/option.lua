@@ -457,6 +457,13 @@ end
 
 km(
   'n',
+  '<F1>',
+  function() switch_to_buf_idx(2) end,
+  { desc = 'Cycle between the last 2 buffers (_virt_bufkeys)' }
+)
+
+km(
+  'n',
   '<leader><leader>',
   function() switch_to_buf_idx(2) end,
   { desc = 'Cycle between the last 2 buffers (_virt_bufkeys)' }
