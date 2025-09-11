@@ -9,6 +9,8 @@ local M = {
     vim.keymap.del('n', '-')
 
     km('n', '<leader>-', '<Plug>(dirvish_up)', { desc = "Show file directory (vim-dirvish)" })
+    km('n', '<leader>b', function() vim.cmd.Dirvish(vim.fn.getcwd()) end,
+      { desc = "Go to current working directory (vim-dirvish)", silent = true, nowait = true })
 
     local ag_dirvish_usr = vim.api.nvim_create_augroup('dirvish_usr', {})
 
@@ -30,6 +32,7 @@ local M = {
 
           km('n', '/', '/\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
             { desc = "Search forward (vim-dirvish)", buffer = true })
+
           km('n', '?', '?\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
             { desc = "Search backward (vim-dirvish)", buffer = true })
         end
