@@ -6,6 +6,7 @@ local optl = vim.opt_local
 local fn = vim.fn
 local cmd = vim.cmd
 local loop = vim.loop
+local uv = vim.uv
 local km = vim.keymap.set
 local api = vim.api
 local env = vim.env
@@ -18,7 +19,7 @@ g.maxfsize_kb = 100
 g.maxfsize_b = 1024 * g.maxfsize_kb -- 1024 * KB
 
 if fn.has('nvim-0.10') == 1 then
-  g.os = vim.uv.os_uname().sysname
+  g.os = uv.os_uname().sysname
 else
   g.os = loop.os_uname().sysname
 end
