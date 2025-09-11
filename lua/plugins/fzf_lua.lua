@@ -124,10 +124,7 @@ local M = {
     { "<leader>e", mode = { "n" } },
     { "<leader>z", mode = { "n" } },
     { "<leader>Z", mode = { "n" } },
-  },
-  dependencies = {
-    'stevearc/dressing.nvim',
-  },
+  }
 }
 
 return M
