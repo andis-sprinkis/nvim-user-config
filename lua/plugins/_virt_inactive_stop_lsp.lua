@@ -36,7 +36,7 @@ local M = {
       lsp_start_timer:start(lsp_start_retries_timeout, 0, start_lsp_timer_callback)
     end
 
-    -- Stop all LSP clients - including the ones in other buffers.
+    -- Stop all LSP clients for all buffers.
     local function stop_lsp()
       for _, client in pairs(vim.lsp.get_clients()) do
         if not vim.tbl_contains(excluded_lsp_clients, client.name) then
