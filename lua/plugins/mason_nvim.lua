@@ -187,11 +187,11 @@ local M = {
       end
     })
 
-    local ts_ls_capabilities = fn_default_capabilities()
-    ts_ls_capabilities.offsetEncoding = { "utf-16" }
+    local clangd_capabilities = fn_default_capabilities()
+    clangd_capabilities.offsetEncoding = { "utf-16" }
 
-    lsp.config('ts_ls', {
-      capabilities = ts_ls_capabilities,
+    lsp.config('clangd', {
+      capabilities = clangd_capabilities,
     })
 
     require("mason").setup()
