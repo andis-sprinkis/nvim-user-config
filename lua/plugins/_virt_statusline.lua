@@ -114,10 +114,11 @@ return {
 
     local function set_statl_pyvenv()
       if sys_reqr.swenv then
-        local swenv_api = require("swenv.api")
-        local venv = swenv_api.get_current_venv()
-
-        b.statl_pyvenv = venv and "venv:" .. venv.name or nil
+        local status_mod, mod = pcall(require, "swenv.api")
+        if (status_mod) then
+          local venv = mod.get_current_venv()
+          b.statl_pyvenv = venv and "venv:" .. venv.name or nil
+        end
       end
     end
 
@@ -231,7 +232,6 @@ return {
     ac(
       {
         'BufEnter',
-        'BufNew',
         'BufWinEnter'
       },
       {
@@ -301,8 +301,5 @@ return {
       group = ag_statl,
       callback = function() wo.statusline = fmt_statl(false) end
     })
-  end,
-  dependencies = {
-    'AckslD/swenv.nvim',
-  }
+  end
 }
