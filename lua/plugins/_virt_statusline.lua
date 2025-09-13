@@ -190,7 +190,7 @@ return {
       {
         'BufReadPre',
         'BufWritePost',
-        'FileChangedShell'
+        'FileChangedShellPost'
       },
       {
         callback = set_statl_largef,
