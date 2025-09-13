@@ -113,13 +113,9 @@ local ag_statl = ag('statl', {})
 
 ac(
   {
-    'BufEnter',
-    'BufNew',
-    'BufWinEnter',
+    'BufReadPre',
     'BufWritePost',
-    'FileChangedShellPost',
-    'FileType',
-    'VimResume',
+    'FileChangedShell'
   },
   {
     callback = set_statl_largef,
