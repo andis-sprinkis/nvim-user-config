@@ -35,7 +35,7 @@ local function set_statl_largef()
     return
   end
 
-  b.statl_largef = b.largef and largef_msg or ''
+  b.statl_largef = b.largef and largef_msg or nil
 end
 
 local ft_ignore_encfmt = { 'lazy', 'mason', 'man', 'help' }
