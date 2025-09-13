@@ -179,7 +179,10 @@ local M = {
   end,
   dependencies = {
     'David-Kunz/cmp-npm',
-    'L3MON4D3/LuaSnip',
+    {
+      'L3MON4D3/LuaSnip',
+      dependencies = { 'rafamadriz/friendly-snippets' }
+    },
     'dmitmel/cmp-cmdline-history',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
@@ -188,7 +191,6 @@ local M = {
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-path',
     'petertriho/cmp-git',
-    'rafamadriz/friendly-snippets',
     'saadparwaiz1/cmp_luasnip',
     'uga-rosa/cmp-dictionary',
     {
