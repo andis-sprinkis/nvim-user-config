@@ -8,10 +8,8 @@ local M = {
         "help",
         "lazy",
         "man",
-        "nofile",
         "prompt",
         "spectre_panel",
-        "terminal",
       }
     }
   end,
