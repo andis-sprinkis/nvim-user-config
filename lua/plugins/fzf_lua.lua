@@ -9,6 +9,8 @@ local M = {
 
     local fzflua = require('fzf-lua')
 
+    fzflua.register_ui_select()
+
     fzflua.setup({
       fzf_colors = {
         ["bg"]      = { "bg", "Normal" },
@@ -117,14 +119,7 @@ local M = {
       { desc = 'Search fzf-lua builtin commands (fzf-lua)' }
     )
   end,
-  event = { "CmdlineEnter" },
-  keys = {
-    { "<tab>",     mode = { "n" } },
-    { "<s-tab>",   mode = { "n" } },
-    { "<leader>e", mode = { "n" } },
-    { "<leader>z", mode = { "n" } },
-    { "<leader>Z", mode = { "n" } },
-  }
+  event = 'VeryLazy',
 }
 
 return M
