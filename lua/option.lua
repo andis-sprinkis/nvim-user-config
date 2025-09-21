@@ -71,7 +71,6 @@ km({ 'n', 'v' }, '+', '=')
 km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode in terminal buffer" })
 km({ 'n', 'v' }, '/', '/\\c', { desc = "Search forward" })
 km({ 'n', 'v' }, '?', '?\\c', { desc = "Search backward" })
-km('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Hide search highlight" })
 km('n', '<leader>v', cmd.split, { desc = "Split window (split)" })
 km('n', '<leader>o', cmd.vsplit, { desc = "Split window (vsplit)" })
 km('n', '<C-A-j>', function() cmd.resize('+2') end, { desc = "Increase window size (resize)" })
@@ -82,6 +81,16 @@ km('n', '<leader>j', '<C-w>j', { desc = "Move cursor to window above current one
 km('n', '<leader>k', '<C-w>k', { desc = "Move cursor to window below current one" })
 km('n', '<leader>l', '<C-w>l', { desc = "Move cursor to window left of current one" })
 km('n', '<leader>h', '<C-w>h', { desc = "Move cursor to window right of current one" })
+
+km(
+  'n',
+  '<Esc>',
+  function()
+    vim.cmd.nohlsearch()
+    print("")
+  end,
+  { desc = "Hide search highlight and the command-line message." }
+)
 
 km(
   'n',
@@ -259,6 +268,107 @@ do
     end
   })
   --
+end
+
+do
+  local mime_for_editor = {
+    'text/*',
+    'inode/directory',
+    'inode/empty',
+    'image/svg%+xml',
+    'application/xml',
+    'application/*json*',
+    'application/xhtml*',
+    'application/javascript',
+    'application/x-httpd-php',
+    'application/x-wine-extension-ini',
+    'application/x-mswinurl',
+    'application/x-subrip',
+    'application/x-awk',
+  }
+
+  local function open_uri(uri)
+    -- TODO: detect file:// urls, convert to UNIX file path
+    -- TODO: error cases reporting
+
+    local current_file_dir = fn.expand('%:p:h')
+    local matches_file_path = false
+
+    if uri:sub(1, 2) == './' or uri:sub(1, 3) == '../' then
+      matches_file_path = true
+      uri = current_file_dir .. '/' .. uri
+    elseif uri:sub(1, 1) == '/' then
+      matches_file_path = true
+    end
+
+    -- TODO: */* and * paths as file-relative paths (excluding URLs!) 
+    -- TODO: try current the current working dir if the file relative dir fails ?
+
+    if matches_file_path then
+      local cmd_readlinkf_output = fn.system('readlink -f "' .. uri .. '"')
+
+      if (vim.v.shell_error ~= 0) then return end
+
+      uri = fn.trim(cmd_readlinkf_output)
+
+      if not uv.fs_stat(uri) then return end
+
+      local cmd_mime_output = fn.system('file --mime-type --brief "' .. uri .. '"')
+
+      if (vim.v.shell_error ~= 0) then return end
+
+      for _, mimepat in ipairs(mime_for_editor) do
+        if string.match(fn.trim(cmd_mime_output), mimepat) then
+          vim.cmd.e(uri)
+          return
+        end
+      end
+    end
+
+    local comm, err = vim.ui.open(uri)
+    local rv = comm and comm:wait(1000) or nil
+
+    if comm and rv and rv.code ~= 0 then
+      err = ('vim.ui.open: command %s (%d): %s'):format(
+        (rv.code == 124 and 'timeout' or 'failed'),
+        rv.code,
+        vim.inspect(comm.cmd)
+      )
+    end
+
+    return err
+  end
+
+  local desc = 'Opens filepath or URI under cursor with the system handler (user)'
+
+  km(
+    'n',
+    'gx',
+    function()
+      for _, uri in ipairs(require('vim.ui')._get_urls()) do
+        local err = open_uri(uri)
+
+        if err then vim.notify(err, vim.log.levels.ERROR) end
+      end
+    end,
+    { desc = desc }
+  )
+
+  km(
+    'x',
+    'gx',
+    function()
+      local lines = fn.getregion(fn.getpos('.'), fn.getpos('v'), { type = fn.mode() })
+
+      -- Trim whitespace on each line and concatenate lines.
+      local selected_text = table.concat(vim.iter(lines):map(vim.trim):totable())
+
+      local err = open_uri(selected_text)
+
+      if err then vim.notify(err, vim.log.levels.ERROR) end
+    end,
+    { desc = desc }
+  )
 end
 
 uc(
