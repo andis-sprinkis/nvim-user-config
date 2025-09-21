@@ -261,45 +261,47 @@ ac(
 )
 --
 
--- [window view topline is not preserved when switching buffers · Issue #26828 · neovim/neovim](https://github.com/neovim/neovim/issues/26828)
--- Workaround.
--- Adapted from https://github.com/BranimirE/fix-auto-scroll.nvim (license: Apache-2.0).
-local saved_buff_view = {}
+do
+  -- [window view topline is not preserved when switching buffers · Issue #26828 · neovim/neovim](https://github.com/neovim/neovim/issues/26828)
+  -- Workaround.
+  -- Adapted from https://github.com/BranimirE/fix-auto-scroll.nvim (license: Apache-2.0).
+  local saved_buff_view = {}
 
-ac('BufEnter', {
-  group = ag_option,
-  pattern = '*',
-  callback = function()
-    local buf = fn.bufnr("%")
-    local win_id = fn.win_getid()
+  ac('BufEnter', {
+    group = ag_option,
+    pattern = '*',
+    callback = function()
+      local buf = fn.bufnr("%")
+      local win_id = fn.win_getid()
 
-    if saved_buff_view[win_id] and saved_buff_view[win_id][buf] then
-      local v = fn.winsaveview()
+      if saved_buff_view[win_id] and saved_buff_view[win_id][buf] then
+        local v = fn.winsaveview()
 
-      if v.lnum == 1 and v.col == 0 and not api.nvim_get_option_value('diff', {}) then
-        fn.winrestview(saved_buff_view[win_id][buf])
+        if v.lnum == 1 and v.col == 0 and not api.nvim_get_option_value('diff', {}) then
+          fn.winrestview(saved_buff_view[win_id][buf])
+        end
+
+        saved_buff_view[win_id][buf] = nil
+      end
+    end
+  })
+
+  ac('BufLeave', {
+    group = ag_option,
+    pattern = '*',
+    callback = function()
+      local buf = fn.bufnr("%")
+      local win_id = fn.win_getid()
+
+      if not saved_buff_view[win_id] then
+        saved_buff_view[win_id] = {}
       end
 
-      saved_buff_view[win_id][buf] = nil
+      saved_buff_view[win_id][buf] = fn.winsaveview()
     end
-  end
-})
-
-ac('BufLeave', {
-  group = ag_option,
-  pattern = '*',
-  callback = function()
-    local buf = fn.bufnr("%")
-    local win_id = fn.win_getid()
-
-    if not saved_buff_view[win_id] then
-      saved_buff_view[win_id] = {}
-    end
-
-    saved_buff_view[win_id][buf] = fn.winsaveview()
-  end
-})
---
+  })
+  --
+end
 
 uc(
   'CopyLocRel',
@@ -412,63 +414,65 @@ if fn.executable('lf') == 1 then
 end
 --
 
--- Cycling between the last n viewed buffers using key maps.
--- Adapted from https://github.com/mihaifm/bufstop (license: MIT).
-local buf_hist = {}
+do
+  -- Cycling between the last n viewed buffers using key maps.
+  -- Adapted from https://github.com/mihaifm/bufstop (license: MIT).
+  local buf_hist = {}
 
-ac(
-  "BufWinEnter",
-  {
-    group = ag("Bufkeys", {}),
-    callback = function()
-      local curr_buf_id = api.nvim_get_current_buf()
+  ac(
+    "BufWinEnter",
+    {
+      group = ag("Bufkeys", {}),
+      callback = function()
+        local curr_buf_id = api.nvim_get_current_buf()
 
-      buf_hist = tbl_filter(function(buf_id) return buf_id ~= curr_buf_id end, buf_hist)
+        buf_hist = tbl_filter(function(buf_id) return buf_id ~= curr_buf_id end, buf_hist)
 
-      table.insert(buf_hist, 1, curr_buf_id)
-    end,
-  }
-)
+        table.insert(buf_hist, 1, curr_buf_id)
+      end,
+    }
+  )
 
-local filter_buf_exists_listed = function(buf_id)
-  return fn.bufexists(buf_id) == 1 and fn.buflisted(buf_id) == 1
-end
+  local filter_buf_exists_listed = function(buf_id)
+    return fn.bufexists(buf_id) == 1 and fn.buflisted(buf_id) == 1
+  end
 
-local function switch_to_buf_idx(buf_idx)
-  buf_hist = tbl_filter(filter_buf_exists_listed, buf_hist)
+  local function switch_to_buf_idx(buf_idx)
+    buf_hist = tbl_filter(filter_buf_exists_listed, buf_hist)
 
-  local len_hist = #buf_hist
+    local len_hist = #buf_hist
 
-  if len_hist <= 1 then return end
+    if len_hist <= 1 then return end
 
-  vim.cmd.b(buf_hist[buf_idx <= len_hist and buf_idx or len_hist])
-end
+    vim.cmd.b(buf_hist[buf_idx <= len_hist and buf_idx or len_hist])
+  end
 
-local idx_keys = { "<F2>", "<F3>", "<F4>", "<F5>", "<F6>", "<F7>", "<F8>", "<F9>", "<F10>", "<F11>", "<F12>" }
+  local idx_keys = { "<F2>", "<F3>", "<F4>", "<F5>", "<F6>", "<F7>", "<F8>", "<F9>", "<F10>", "<F11>", "<F12>" }
 
-for idx, key in ipairs(idx_keys) do
+  for idx, key in ipairs(idx_keys) do
+    km(
+      'n',
+      key,
+      function() switch_to_buf_idx(idx + 1) end,
+      { desc = 'Cycle between the last ' .. idx + 1 .. ' buffers (_virt_bufkeys)' }
+    )
+  end
+
   km(
     'n',
-    key,
-    function() switch_to_buf_idx(idx + 1) end,
-    { desc = 'Cycle between the last ' .. idx + 1 .. ' buffers (_virt_bufkeys)' }
+    '<F1>',
+    function() switch_to_buf_idx(2) end,
+    { desc = 'Cycle between the last 2 buffers (_virt_bufkeys)' }
   )
+
+  km(
+    'n',
+    '<leader><leader>',
+    function() switch_to_buf_idx(2) end,
+    { desc = 'Cycle between the last 2 buffers (_virt_bufkeys)' }
+  )
+  --
 end
-
-km(
-  'n',
-  '<F1>',
-  function() switch_to_buf_idx(2) end,
-  { desc = 'Cycle between the last 2 buffers (_virt_bufkeys)' }
-)
-
-km(
-  'n',
-  '<leader><leader>',
-  function() switch_to_buf_idx(2) end,
-  { desc = 'Cycle between the last 2 buffers (_virt_bufkeys)' }
-)
---
 
 if g.neoray == 1 then
   o.guifont = 'CascadiaCodePL:h13'
