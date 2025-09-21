@@ -302,7 +302,7 @@ do
     end
 
     -- TODO: */* and * paths as file-relative paths (excluding URLs!) 
-    -- TODO: try current the current working dir if the file relative dir fails ?
+    -- TODO: try the current working dir if the file relative dir fails ?
 
     if matches_file_path then
       local cmd_readlinkf_output = fn.system('readlink -f "' .. uri .. '"')
