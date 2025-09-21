@@ -438,6 +438,8 @@ do
   end
 
   local function switch_to_buf_idx(buf_idx)
+    if vim.api.nvim_win_get_config(0).relative ~= "" then return end
+
     buf_hist = tbl_filter(filter_buf_exists_listed, buf_hist)
 
     local len_hist = #buf_hist
