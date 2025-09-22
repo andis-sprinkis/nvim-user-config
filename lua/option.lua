@@ -293,8 +293,8 @@ do
 
     local status = {
       err = false,
-      uri_original = uri,
-      uri_updated = nil,
+      uri_input = uri,
+      uri_attempted = nil,
       message = nil
     }
 
@@ -337,7 +337,7 @@ do
       if (vim.v.shell_error ~= 0) then
         status.err = true
         status.message = '"readlink -f" exited with code ' .. vim.v.shell_error
-        status.uri_updated = uri
+        status.uri_attempted = uri
 
         return status
       end
@@ -349,7 +349,7 @@ do
       if not success then
         status.err = true
         status.message = err
-        status.uri_updated = uri
+        status.uri_attempted = uri
 
         return status
       end
@@ -359,7 +359,7 @@ do
       if (vim.v.shell_error ~= 0) then
         status.err = true
         status.message = '"file --mime-type --brief" exited with code ' .. vim.v.shell_error
-        status.uri_updated = uri
+        status.uri_attempted = uri
 
         return status
       end
@@ -369,7 +369,7 @@ do
       for _, pat in ipairs(mime_for_editor) do
         if string.match(cmd_mime_output, pat) then
           vim.cmd.e(uri)
-          status.uri_updated = uri
+          status.uri_attempted = uri
           return status
         end
       end
@@ -385,7 +385,7 @@ do
         rv.code,
         vim.inspect(comm.cmd)
       )
-      status.uri_updated = uri
+      status.uri_attempted = uri
 
       return status
     end
@@ -405,7 +405,7 @@ do
       for _, uri in ipairs(require('vim.ui')._get_urls()) do
         local status = open_uri(uri)
 
-        if status.err then vim.notify(status.message .. ' (' .. status.uri_updated .. ')', vim.log.levels.ERROR) end
+        if status.err then vim.notify(status.message .. ' (' .. status.uri_attempted .. ')', vim.log.levels.ERROR) end
       end
     end,
     { desc = desc }
