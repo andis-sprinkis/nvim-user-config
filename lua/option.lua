@@ -301,8 +301,20 @@ do
       if uri:sub(1, 7) == 'file://' then
         isFileUrl = true
 
-        -- isLocalFileUrl
-        -- has $(uname)@ or localhost@ or no prefix
+        local cmd_uname_output = fn.system('uname')
+
+        if (vim.v.shell_error ~= 0) then return end
+
+        if (not uri:match('^file://[%l%u%d%-%.]+@'))
+            or uri:match('^file://localhost@')
+            or uri:match('^file://' .. fn.trim(cmd_uname_output) .. '@')
+        then
+          isLocalFileUrl = true
+        end
+      end
+
+      if isLocalFileUrl then
+        -- convert url to file path
       end
     end
 
