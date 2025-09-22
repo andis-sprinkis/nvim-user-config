@@ -293,6 +293,7 @@ do
 
     local status = {
       err = false,
+      uri_original = uri,
       uri_updated = nil,
       message = nil
     }
