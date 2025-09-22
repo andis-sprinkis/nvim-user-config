@@ -325,12 +325,17 @@ do
     end
 
     if not isUrl or isFileUrl then
+      -- TODO: try the current working dir if the file-relative dir fails ?
+      local fp_abs
+      local fp_abs_file_relative
+      local fp_abs_cwd_relative
+
+      local is_aboslute = true
+
       if uri:sub(1, 1) ~= '/' then
         local current_file_dir = fn.expand('%:p:h')
         uri = current_file_dir .. '/' .. uri
       end
-
-      -- TODO: try the current working dir if the file-relative dir fails ?
 
       local cmd_readlinkf_output = fn.system({ 'readlink', '-f', uri })
 
@@ -392,6 +397,7 @@ do
 
     status.err = err ~= nil
     status.message = err
+    status.uri_attempted = uri
 
     return status
   end
@@ -405,7 +411,11 @@ do
       for _, uri in ipairs(require('vim.ui')._get_urls()) do
         local status = open_uri(uri)
 
-        if status.err then vim.notify(status.message .. ' (' .. status.uri_attempted .. ')', vim.log.levels.ERROR) end
+        if status.err then
+          vim.notify(status.message .. ' (' .. status.uri_attempted .. ')', vim.log.levels.ERROR)
+        else
+          vim.notify('Open: ' .. status.uri_attempted, vim.log.levels.INFO)
+        end
       end
     end,
     { desc = desc }
