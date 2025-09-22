@@ -304,15 +304,15 @@ do
 
         if (vim.v.shell_error ~= 0) then return end
 
-        uri:gsub('^file://localhost/', 'file://', 1)
-        uri:gsub('^file://' .. fn.trim(cmd_uname_output) .. '/', 'file://', 1)
+        uri = uri:gsub('^file://localhost/', 'file://', 1)
+        uri = uri:gsub('^file://' .. fn.trim(cmd_uname_output) .. '/', 'file://', 1)
 
         -- TODO: convert url to file path
       end
     end
 
     if isUrl == false then
-      if not uri:sub(1, 1) == '/' then
+      if uri:sub(1, 1) ~= '/' then
         local current_file_dir = fn.expand('%:p:h')
         uri = current_file_dir .. '/' .. uri
       end
