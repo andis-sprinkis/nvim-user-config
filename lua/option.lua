@@ -293,7 +293,6 @@ do
 
     local isUrl = false
     local isFileUrl = false
-    local isLocalFileUrl = false
 
     if uri:match('^[%l%u%d]+://') then
       isUrl = true
@@ -305,15 +304,9 @@ do
 
         if (vim.v.shell_error ~= 0) then return end
 
-        if (not uri:match('^file://[%l%u%d%-%.]+@'))
-            or uri:match('^file://localhost@')
-            or uri:match('^file://' .. fn.trim(cmd_uname_output) .. '@')
-        then
-          isLocalFileUrl = true
-        end
-      end
+        uri:gsub('file://localhost/', 'file://')
+        uri:gsub('file://' .. fn.trim(cmd_uname_output) .. '/', 'file://')
 
-      if isLocalFileUrl then
         -- TODO: convert url to file path
       end
     end
