@@ -76,7 +76,7 @@ local M = {
     })
 
     local function show_files_with_git()
-      if vim.fn.system('git rev-parse --git-dir') == '.git\n' then
+      if vim.fn.system({ 'git', 'rev-parse', '--git-dir' }) == '.git\n' then
         fzflua.git_files({ resume = true })
         return
       end

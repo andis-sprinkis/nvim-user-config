@@ -304,7 +304,7 @@ do
       if uri:sub(1, 7) == 'file://' then
         isFileUrl = true
 
-        local cmd_uname_output = fn.system('uname -n')
+        local cmd_uname_output = fn.system({ 'uname', '-n' })
 
         if (vim.v.shell_error ~= 0) then
           status.err = true
@@ -332,7 +332,7 @@ do
 
       -- TODO: try the current working dir if the file-relative dir fails ?
 
-      local cmd_readlinkf_output = fn.system('readlink -f "' .. uri .. '"')
+      local cmd_readlinkf_output = fn.system({ 'readlink', '-f', uri })
 
       if (vim.v.shell_error ~= 0) then
         status.err = true
@@ -354,7 +354,7 @@ do
         return status
       end
 
-      local cmd_mime_output = fn.system('file --mime-type --brief "' .. uri .. '"')
+      local cmd_mime_output = fn.system({ 'file', '--mime-type', '--brief', uri })
 
       if (vim.v.shell_error ~= 0) then
         status.err = true

@@ -102,7 +102,7 @@ return {
         return
       end
 
-      local cmd_mime_output = fn.system('file --mime-type --brief "' .. fname .. '"')
+      local cmd_mime_output = fn.system({ 'file', '--mime-type', '--brief', fname })
 
       if (vim.v.shell_error ~= 0) then
         b.statl_mimeft = nil
