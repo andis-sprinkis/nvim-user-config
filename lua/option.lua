@@ -288,11 +288,14 @@ do
   }
 
   local function open_uri(uri)
-    -- TODO: detect file:// urls, convert to UNIX file path
-    -- TODO: error cases reporting
-
     local isUrl = false
     local isFileUrl = false
+
+    local status = {
+      err = false,
+      uri_updated = nil,
+      message = nil
+    }
 
     if uri:match('^[%l%u%d]+://') then
       isUrl = true
@@ -300,18 +303,27 @@ do
       if uri:sub(1, 7) == 'file://' then
         isFileUrl = true
 
-        local cmd_uname_output = fn.system('uname')
+        local cmd_uname_output = fn.system('uname -n')
 
-        if (vim.v.shell_error ~= 0) then return end
+        if (vim.v.shell_error ~= 0) then
+          status.err = true
+          status.message = '"uname -n" exited with code ' .. vim.v.shell_error
 
-        uri = uri:gsub('^file://localhost/', 'file://', 1)
-        uri = uri:gsub('^file://' .. fn.trim(cmd_uname_output) .. '/', 'file://', 1)
+          return status
+        end
 
-        -- TODO: convert url to file path
+        local hex_to_char = function(x) return string.char(tonumber(x, 16)) end
+
+        uri = uri:gsub('^file://localhost/', '', 1)
+        uri = uri:gsub('^file://' .. fn.trim(cmd_uname_output) .. '/', '', 1)
+        uri = uri:gsub('^file://', '', 1)
+        uri = uri:gsub('#.*', '', 1)
+        uri = uri:gsub('?.*', '', 1)
+        uri = uri:gsub('%%([a-f0-9A-F][a-f0-9A-F])', hex_to_char)
       end
     end
 
-    if isUrl == false then
+    if not isUrl or isFileUrl then
       if uri:sub(1, 1) ~= '/' then
         local current_file_dir = fn.expand('%:p:h')
         uri = current_file_dir .. '/' .. uri
@@ -321,23 +333,43 @@ do
 
       local cmd_readlinkf_output = fn.system('readlink -f "' .. uri .. '"')
 
-      if (vim.v.shell_error ~= 0) then return end
+      if (vim.v.shell_error ~= 0) then
+        status.err = true
+        status.message = '"readlink -f" exited with code ' .. vim.v.shell_error
+        status.uri_updated = uri
+
+        return status
+      end
 
       uri = fn.trim(cmd_readlinkf_output)
 
-      if not uv.fs_stat(uri) then
-        print('File ' .. uri .. ' doesn\'t exist or is not readable.')
-        return
+      local success, err, err_name = uv.fs_stat(uri)
+
+      if not success then
+        status.err = true
+        status.message = err
+        status.uri_updated = uri
+
+        return status
       end
 
       local cmd_mime_output = fn.system('file --mime-type --brief "' .. uri .. '"')
 
-      if (vim.v.shell_error ~= 0) then return end
+      if (vim.v.shell_error ~= 0) then
+        status.err = true
+        status.message = '"file --mime-type --brief" exited with code ' .. vim.v.shell_error
+        status.uri_updated = uri
 
-      for _, mimepat in ipairs(mime_for_editor) do
-        if string.match(fn.trim(cmd_mime_output), mimepat) then
+        return status
+      end
+
+      cmd_mime_output = fn.trim(cmd_mime_output)
+
+      for _, pat in ipairs(mime_for_editor) do
+        if string.match(cmd_mime_output, pat) then
           vim.cmd.e(uri)
-          return
+          status.uri_updated = uri
+          return status
         end
       end
     end
@@ -346,14 +378,21 @@ do
     local rv = comm and comm:wait(1000) or nil
 
     if comm and rv and rv.code ~= 0 then
-      err = ('vim.ui.open: command %s (%d): %s'):format(
+      status.err = true
+      status.message = ('vim.ui.open: command %s (%d): %s'):format(
         (rv.code == 124 and 'timeout' or 'failed'),
         rv.code,
         vim.inspect(comm.cmd)
       )
+      status.uri_updated = uri
+
+      return status
     end
 
-    return err
+    status.err = err ~= nil
+    status.message = err
+
+    return status
   end
 
   local desc = 'Opens filepath or URI under cursor with the system handler (user)'
@@ -363,9 +402,9 @@ do
     'gx',
     function()
       for _, uri in ipairs(require('vim.ui')._get_urls()) do
-        local err = open_uri(uri)
+        local status = open_uri(uri)
 
-        if err then vim.notify(err, vim.log.levels.ERROR) end
+        if status.err then vim.notify(status.message .. ' (' .. status.uri_updated .. ')', vim.log.levels.ERROR) end
       end
     end,
     { desc = desc }
@@ -378,11 +417,11 @@ do
       local lines = fn.getregion(fn.getpos('.'), fn.getpos('v'), { type = fn.mode() })
 
       -- Trim whitespace on each line and concatenate lines.
-      local selected_text = table.concat(vim.iter(lines):map(vim.trim):totable())
+      local uri = table.concat(vim.iter(lines):map(vim.trim):totable())
 
-      local err = open_uri(selected_text)
+      local status = open_uri(uri)
 
-      if err then vim.notify(err, vim.log.levels.ERROR) end
+      if status.err then vim.notify(status.message, vim.log.levels.ERROR) end
     end,
     { desc = desc }
   )
