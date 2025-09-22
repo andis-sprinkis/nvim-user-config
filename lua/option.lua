@@ -280,38 +280,50 @@ do
     'application/*json*',
     'application/xhtml*',
     'application/javascript',
-    'application/x-httpd-php',
-    'application/x-wine-extension-ini',
-    'application/x-mswinurl',
-    'application/x-subrip',
-    'application/x-awk',
+    'application/x%-httpd%-php',
+    'application/x%-wine%-extension%-ini',
+    'application/x%-mswinurl',
+    'application/x%-subrip',
+    'application/x%-awk',
   }
 
   local function open_uri(uri)
     -- TODO: detect file:// urls, convert to UNIX file path
     -- TODO: error cases reporting
 
-    local current_file_dir = fn.expand('%:p:h')
-    local matches_file_path = false
+    local isUrl = false
+    local isFileUrl = false
+    local isLocalFileUrl = false
 
-    if uri:sub(1, 2) == './' or uri:sub(1, 3) == '../' then
-      matches_file_path = true
-      uri = current_file_dir .. '/' .. uri
-    elseif uri:sub(1, 1) == '/' then
-      matches_file_path = true
+    if uri:match('^[%l%u%d]+://') then
+      isUrl = true
+
+      if uri:sub(1, 7) == 'file://' then
+        isFileUrl = true
+
+        -- isLocalFileUrl
+        -- has $(uname)@ or localhost@ or no prefix
+      end
     end
 
-    -- TODO: */* and * paths as file-relative paths (excluding URLs!) 
-    -- TODO: try the current working dir if the file relative dir fails ?
+    if isUrl == false then
+      if not uri:sub(1, 1) == '/' then
+        local current_file_dir = fn.expand('%:p:h')
+        uri = current_file_dir .. '/' .. uri
+      end
 
-    if matches_file_path then
+      -- TODO: try the current working dir if the file-relative dir fails ?
+
       local cmd_readlinkf_output = fn.system('readlink -f "' .. uri .. '"')
 
       if (vim.v.shell_error ~= 0) then return end
 
       uri = fn.trim(cmd_readlinkf_output)
 
-      if not uv.fs_stat(uri) then return end
+      if not uv.fs_stat(uri) then
+        print('File ' .. uri .. ' doesn\'t exist or is not readable.')
+        return
+      end
 
       local cmd_mime_output = fn.system('file --mime-type --brief "' .. uri .. '"')
 
