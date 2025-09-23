@@ -288,8 +288,7 @@ do
   }
 
   local function open_uri(uri)
-    local isUrl = false
-    local isFileUrl = false
+    local isFilePath = true
 
     local status = {
       err = false,
@@ -298,33 +297,27 @@ do
       message = nil
     }
 
-    if uri:match('^[%l%u%d]+://') then
-      isUrl = true
+    if uri:sub(1, 7) == 'file://' then
+      local cmd_uname_output = fn.system({ 'uname', '-n' })
 
-      if uri:sub(1, 7) == 'file://' then
-        isFileUrl = true
+      if (vim.v.shell_error ~= 0) then
+        status.err = true
+        status.message = '"uname -n" exited with code ' .. vim.v.shell_error
 
-        local cmd_uname_output = fn.system({ 'uname', '-n' })
-
-        if (vim.v.shell_error ~= 0) then
-          status.err = true
-          status.message = '"uname -n" exited with code ' .. vim.v.shell_error
-
-          return status
-        end
-
-        local hex_to_char = function(x) return string.char(tonumber(x, 16)) end
-
-        uri = uri:gsub('^file://localhost/', '', 1)
-        uri = uri:gsub('^file://' .. fn.trim(cmd_uname_output) .. '/', '', 1)
-        uri = uri:gsub('^file://', '', 1)
-        uri = uri:gsub('#.*', '', 1)
-        uri = uri:gsub('?.*', '', 1)
-        uri = uri:gsub('%%([a-f0-9A-F][a-f0-9A-F])', hex_to_char)
+        return status
       end
+
+      uri = uri:gsub('^file://localhost/', '', 1)
+      uri = uri:gsub('^file://' .. fn.trim(cmd_uname_output) .. '/', '', 1)
+      uri = uri:gsub('^file://', '', 1)
+      uri = uri:gsub('#.*', '', 1)
+      uri = uri:gsub('?.*', '', 1)
+      uri = uri:gsub('%%([a-f0-9A-F][a-f0-9A-F])', function(x) return string.char(tonumber(x, 16)) end)
+    elseif uri:match('^[%l%u%d]+://') then
+      isFilePath = false
     end
 
-    if not isUrl or isFileUrl then
+    if isFilePath then
       -- TODO: try the current working dir if the file-relative dir fails ?
       local fp_abs
       local fp_abs_file_relative
@@ -369,10 +362,10 @@ do
         return status
       end
 
-      cmd_mime_output = fn.trim(cmd_mime_output)
+      local mime = fn.trim(cmd_mime_output)
 
       for _, pat in ipairs(mime_for_editor) do
-        if string.match(cmd_mime_output, pat) then
+        if string.match(mime, pat) then
           vim.cmd.e(uri)
           status.uri_attempted = uri
           return status
