@@ -22,7 +22,7 @@ local M = {
       'application/x%-awk',
     }
 
-    local function open_uri(uri)
+    local function open_uri(uri, with_vim_ui_open)
       local isFilePath = true
 
       local status = {
@@ -87,23 +87,25 @@ local M = {
           return status
         end
 
-        local cmd_mime_output = fn.system({ 'file', '--mime-type', '--brief', uri })
+        if not with_vim_ui_open then
+          local cmd_mime_output = fn.system({ 'file', '--mime-type', '--brief', uri })
 
-        if (vim.v.shell_error ~= 0) then
-          status.err = true
-          status.message = '"file --mime-type --brief" exited with code ' .. vim.v.shell_error
-          status.uri_attempted = uri
-
-          return status
-        end
-
-        local mime = fn.trim(cmd_mime_output)
-
-        for _, pat in ipairs(mime_for_editor) do
-          if string.match(mime, pat) then
-            vim.cmd.e(uri)
+          if (vim.v.shell_error ~= 0) then
+            status.err = true
+            status.message = '"file --mime-type --brief" exited with code ' .. vim.v.shell_error
             status.uri_attempted = uri
+
             return status
+          end
+
+          local mime = fn.trim(cmd_mime_output)
+
+          for _, pat in ipairs(mime_for_editor) do
+            if string.match(mime, pat) then
+              vim.cmd.e(uri)
+              status.uri_attempted = uri
+              return status
+            end
           end
         end
       end
@@ -130,43 +132,41 @@ local M = {
       return status
     end
 
-    local desc = 'Opens filepath or URI under cursor with the system handler (user)'
+    local function open_n(with_vim_ui_open)
+      for _, uri in ipairs(require('vim.ui')._get_urls()) do
+        local status = open_uri(uri, with_vim_ui_open)
 
-    km(
-      'n',
-      'gx',
-      function()
-        for _, uri in ipairs(require('vim.ui')._get_urls()) do
-          local status = open_uri(uri)
-
-          if status.err then
-            vim.notify(status.message .. ' (' .. status.uri_attempted .. ')', vim.log.levels.ERROR)
-          else
-            vim.notify('Open: ' .. status.uri_attempted, vim.log.levels.INFO)
-          end
+        if status.err then
+          vim.notify(status.message .. ' (' .. status.uri_attempted .. ')', vim.log.levels.ERROR)
+        else
+          vim.notify('Open: ' .. status.uri_attempted, vim.log.levels.INFO)
         end
-      end,
-      { desc = desc }
-    )
+      end
+    end
 
-    km(
-      'x',
-      'gx',
-      function()
-        local lines = fn.getregion(fn.getpos('.'), fn.getpos('v'), { type = fn.mode() })
+    local function open_x(with_vim_ui_open)
+      for _, uri in ipairs(require('vim.ui')._get_urls()) do
+        local status = open_uri(uri, with_vim_ui_open)
 
-        -- Trim whitespace on each line and concatenate lines.
-        local uri = table.concat(vim.iter(lines):map(vim.trim):totable())
+        if status.err then
+          vim.notify(status.message .. ' (' .. status.uri_attempted .. ')', vim.log.levels.ERROR)
+        else
+          vim.notify('Open: ' .. status.uri_attempted, vim.log.levels.INFO)
+        end
+      end
+    end
 
-        local status = open_uri(uri)
+    local desc = 'Opens filepath or URI under cursor (user)'
+    local desc_with_vim_ui_open = 'Opens filepath or URI under cursor with the system handler (user)'
 
-        if status.err then vim.notify(status.message, vim.log.levels.ERROR) end
-      end,
-      { desc = desc }
-    )
+    km('n', 'gx', open_n, { desc = desc })
+    km('x', 'gx', open_x, { desc = desc })
+    km('n', 'gX', function() open_n(true) end, { desc = desc_with_vim_ui_open })
+    km('x', 'gX', function() open_x(true) end, { desc = desc_with_vim_ui_open })
   end,
   keys = {
     { "gx", mode = { "n", "x" } },
+    { "gX", mode = { "n", "x" } },
   }
 }
 

@@ -68,19 +68,19 @@ o.writebackup = false
 
 km({ 'n', 'v' }, '=', '+')
 km({ 'n', 'v' }, '+', '=')
-km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode in terminal buffer" })
-km({ 'n', 'v' }, '/', '/\\c', { desc = "Search forward" })
-km({ 'n', 'v' }, '?', '?\\c', { desc = "Search backward" })
-km('n', '<leader>v', cmd.split, { desc = "Split window (split)" })
-km('n', '<leader>o', cmd.vsplit, { desc = "Split window (vsplit)" })
-km('n', '<C-A-j>', function() cmd.resize('+2') end, { desc = "Increase window size (resize)" })
-km('n', '<C-A-k>', function() cmd.resize('-2') end, { desc = "Decrease window size (resize)" })
-km('n', '<C-A-l>', function() cmd('vertical resize +4') end, { desc = "Increase window size (vertical resize)" })
-km('n', '<C-A-h>', function() cmd('vertical resize -4') end, { desc = "Decrease window size (vertical resize)" })
-km('n', '<leader>j', '<C-w>j', { desc = "Move cursor to window above current one" })
-km('n', '<leader>k', '<C-w>k', { desc = "Move cursor to window below current one" })
-km('n', '<leader>l', '<C-w>l', { desc = "Move cursor to window left of current one" })
-km('n', '<leader>h', '<C-w>h', { desc = "Move cursor to window right of current one" })
+km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode in terminal buffer (user)" })
+km({ 'n', 'v' }, '/', '/\\c', { desc = "Search forward (user)" })
+km({ 'n', 'v' }, '?', '?\\c', { desc = "Search backward (user)" })
+km('n', '<leader>v', cmd.split, { desc = "Split window (split) (user)" })
+km('n', '<leader>o', cmd.vsplit, { desc = "Split window (vsplit) (user)" })
+km('n', '<C-A-j>', function() cmd.resize('+2') end, { desc = "Increase window size (resize) (user)" })
+km('n', '<C-A-k>', function() cmd.resize('-2') end, { desc = "Decrease window size (resize) (user)" })
+km('n', '<C-A-l>', function() cmd('vertical resize +4') end, { desc = "Increase window size (vertical resize) (user)" })
+km('n', '<C-A-h>', function() cmd('vertical resize -4') end, { desc = "Decrease window size (vertical resize) (user)" })
+km('n', '<leader>j', '<C-w>j', { desc = "Move cursor to window above current one (user)" })
+km('n', '<leader>k', '<C-w>k', { desc = "Move cursor to window below current one (user)" })
+km('n', '<leader>l', '<C-w>l', { desc = "Move cursor to window left of current one (user)" })
+km('n', '<leader>h', '<C-w>h', { desc = "Move cursor to window right of current one (user)" })
 
 km(
   'n',
@@ -89,7 +89,7 @@ km(
     vim.cmd.nohlsearch()
     print("")
   end,
-  { desc = "Hide search highlight and the command-line message." }
+  { desc = "Hide search highlight and the command-line message (user)" }
 )
 
 km(
@@ -99,7 +99,7 @@ km(
     vim.wo.wrap = not vim.wo.wrap
     vim.notify('vim.wo.wrap = ' .. (vim.wo.wrap and 'true' or 'false'))
   end,
-  { desc = "Toggle line wrap" }
+  { desc = "Toggle line wrap (user)" }
 )
 
 if not env.LANG then
