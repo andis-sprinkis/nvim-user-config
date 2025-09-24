@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
 pkill -9 "nvim"
-rm -rf "${XDG_DATA_HOME:-$HOME/.local/share}/nvim"
-rm -rf "${XDG_STATE_HOME:-$HOME/.local/state}/nvim"
-rm "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/lazy-lock.json"
+rm -rf "${XDG_DATA_HOME:-"$HOME/.local/share"}/nvim"
+rm -rf "${XDG_STATE_HOME:-"$HOME/.local/state"}/nvim"
+rm "${XDG_CONFIG_HOME:-"$HOME/.config"}/nvim/lazy-lock.json"
