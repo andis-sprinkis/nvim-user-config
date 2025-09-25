@@ -53,20 +53,19 @@ local M = {
       end
 
       if isFilePath then
-        -- TODO: try the current working dir if the file-relative dir fails ?
-        local fp_file_rel
-        local fp_cwd_rel
-
-        local is_fp_aboslute = true
+        -- local fp_file_rel
+        -- local fp_cwd_rel
+        --
+        -- local is_fp_aboslute = true
 
         if uri:sub(1, 1) ~= '/' then
-          is_fp_aboslute = false
+          -- is_fp_aboslute = false
 
           local fp_current_file_dir = fn.expand('%:p:h')
-          local fp_cwd_dir = vim.fn.getcwd()
+          -- local fp_cwd_dir = vim.fn.getcwd()
 
-          fp_file_rel = fp_current_file_dir .. '/' .. uri
-          fp_cwd_rel = fp_cwd_dir .. '/' .. uri
+          -- fp_file_rel = fp_current_file_dir .. '/' .. uri
+          -- fp_cwd_rel = fp_cwd_dir .. '/' .. uri
 
           uri = fp_current_file_dir .. '/' .. uri
         end
