@@ -23,14 +23,14 @@ local M = {
     }
 
     local function open_uri(uri, with_vim_ui_open)
-      local isFilePath = true
-
       local status = {
         err = false,
         uri_input = uri,
         uri_attempted = nil,
         message = nil
       }
+
+      local isFilePath = true
 
       if uri:sub(1, 7) == 'file://' then
         local cmd_uname_output = fn.system({ 'uname', '-n' })
