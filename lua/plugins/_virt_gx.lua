@@ -156,13 +156,13 @@ local M = {
       end
     end
 
-    local desc = 'Opens filepath or URI under cursor (user)'
-    local desc_with_vim_ui_open = 'Opens filepath or URI under cursor with the system handler (user)'
+    local opt_x = { desc = 'Opens filepath or URI under cursor (user)' }
+    km('n', 'gx', open_n, opt_x)
+    km('x', 'gx', open_x, opt_x)
 
-    km('n', 'gx', open_n, { desc = desc })
-    km('x', 'gx', open_x, { desc = desc })
-    km('n', 'gX', function() open_n(true) end, { desc = desc_with_vim_ui_open })
-    km('x', 'gX', function() open_x(true) end, { desc = desc_with_vim_ui_open })
+    local opt_X = { desc = 'Opens filepath or URI under cursor with the system handler (user)' }
+    km('n', 'gX', function() open_n(true) end, opt_X)
+    km('x', 'gX', function() open_x(true) end, opt_X)
   end,
   keys = {
     { "gx", mode = { "n", "x" } },
