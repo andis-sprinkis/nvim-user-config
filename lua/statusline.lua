@@ -25,7 +25,8 @@ local p2 =
     .. '%3c %2l/%-L %3p%%'
     .. ' %)'
 
-local function fmt_statl(focus) wo.statusline = p1 .. (focus and '' or 'NC') .. p2 end
+local statl_focused = p1 .. p2
+local statl_unfocused = p1 .. 'NC' .. p2
 
 local largef_msg = '[Size >' .. g.maxfsize_kb .. 'K]'
 
@@ -169,10 +170,10 @@ ac(
 
 ac({ 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
   group = ag_statl,
-  callback = function() fmt_statl(true) end
+  callback = function() wo.statusline = statl_focused end
 })
 
 ac({ 'WinLeave', 'FocusLost' }, {
   group = ag_statl,
-  callback = function() fmt_statl(false) end
+  callback = function() wo.statusline = statl_unfocused end
 })
