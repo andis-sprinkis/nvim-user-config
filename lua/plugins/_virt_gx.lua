@@ -47,18 +47,11 @@ local M = {
         local variants
 
         if isFp then
-          if uri:sub(1, 1) == '/' then
-            variants = {
-              uri,
-              vim.fn.getcwd() .. '/' .. uri,
-              fn.expand('%:p:h') .. '/' .. uri,
-            }
-          else
-            variants = {
-              fn.expand('%:p:h') .. '/' .. uri,
-              vim.fn.getcwd() .. '/' .. uri
-            }
-          end
+          variants = {
+            uri,
+            fn.expand('%:p:h') .. '/' .. uri,
+            vim.fn.getcwd() .. '/' .. uri,
+          }
         else
           variants = { uri }
         end
