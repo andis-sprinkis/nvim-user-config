@@ -22,6 +22,17 @@ local M = {
       'application/x%-awk',
     }
 
+    local function file_url_to_fp(uri)
+      uri = uri:gsub('^file://localhost/', '', 1)
+      uri = uri:gsub('^file://' .. uv.os_gethostname() .. '/', '', 1)
+      uri = uri:gsub('^file://', '', 1)
+      uri = uri:gsub('#.*', '', 1)
+      uri = uri:gsub('?.*', '', 1)
+      uri = uri:gsub('%%([a-f0-9A-F][a-f0-9A-F])', function(x) return string.char(tonumber(x, 16)) end)
+
+      return uri
+    end
+
     local function open_uri(uri, with_vim_ui_open)
       local status = {
         err = false,
@@ -33,21 +44,7 @@ local M = {
       local isFilePath = true
 
       if uri:sub(1, 7) == 'file://' then
-        local cmd_uname_output = fn.system({ 'uname', '-n' })
-
-        if (vim.v.shell_error ~= 0) then
-          status.err = true
-          status.message = '"uname -n" exited with code ' .. vim.v.shell_error
-
-          return status
-        end
-
-        uri = uri:gsub('^file://localhost/', '', 1)
-        uri = uri:gsub('^file://' .. fn.trim(cmd_uname_output) .. '/', '', 1)
-        uri = uri:gsub('^file://', '', 1)
-        uri = uri:gsub('#.*', '', 1)
-        uri = uri:gsub('?.*', '', 1)
-        uri = uri:gsub('%%([a-f0-9A-F][a-f0-9A-F])', function(x) return string.char(tonumber(x, 16)) end)
+        uri = file_url_to_fp(uri)
       elseif uri:match('^[%l%u%d]+://') then
         isFilePath = false
       end
