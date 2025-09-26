@@ -33,6 +33,17 @@ local M = {
       return furl
     end
 
+    local function get_fp_variants(uri)
+      if uri:sub(1, 1) == '/' then
+        return { uri }
+      end
+
+      return {
+        fn.expand('%:p:h') .. '/' .. uri,
+        vim.fn.getcwd() .. '/' .. uri
+      }
+    end
+
     local function open_uri(uri, with_vim_ui_open)
       local status = {
         err = false,
@@ -48,22 +59,9 @@ local M = {
       uri = isFurl and furl_to_fp(uri) or uri
 
       if isFp then
-        -- local fp_file_rel
-        -- local fp_cwd_rel
-        --
-        -- local is_fp_aboslute = true
+        local fp_variants = get_fp_variants(uri)
 
-        if uri:sub(1, 1) ~= '/' then
-          -- is_fp_aboslute = false
-
-          local fp_currf_dir = fn.expand('%:p:h')
-          -- local fp_cwd_dir = vim.fn.getcwd()
-
-          -- fp_file_rel = fp_current_file_dir .. '/' .. uri
-          -- fp_cwd_rel = fp_cwd_dir .. '/' .. uri
-
-          uri = fp_currf_dir .. '/' .. uri
-        end
+        uri = fp_variants[1]
 
         local cmd_readlinkf_output = fn.system({ 'readlink', '-f', uri })
 
@@ -133,7 +131,9 @@ local M = {
     end
 
     local function open_n(with_vim_ui_open)
-      for _, uri in ipairs(require('vim.ui')._get_urls()) do
+      local urls = require('vim.ui')._get_urls()
+
+      for _, uri in ipairs(urls) do
         local status = open_uri(uri, with_vim_ui_open)
 
         if status.err then
@@ -145,7 +145,9 @@ local M = {
     end
 
     local function open_x(with_vim_ui_open)
-      for _, uri in ipairs(require('vim.ui')._get_urls()) do
+      local urls = require('vim.ui')._get_urls()
+
+      for _, uri in ipairs(urls) do
         local status = open_uri(uri, with_vim_ui_open)
 
         if status.err then
