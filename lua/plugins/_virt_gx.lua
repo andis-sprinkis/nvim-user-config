@@ -22,149 +22,100 @@ local M = {
       'application/x%-awk',
     }
 
-    local function furl_to_fp(furl)
-      furl = furl:gsub('^file://localhost/', '', 1)
-      furl = furl:gsub('^file://' .. uv.os_gethostname() .. '/', '', 1)
-      furl = furl:gsub('^file://', '', 1)
-      furl = furl:gsub('#.*', '', 1)
-      furl = furl:gsub('?.*', '', 1)
-      furl = furl:gsub('%%([a-f0-9A-F][a-f0-9A-F])', function(x) return string.char(tonumber(x, 16)) end)
+    local function create_uris_list(input)
+      local uris_list = {}
 
-      return furl
-    end
+      for _, uri in ipairs(input) do
+        local isUrl = uri:match('^[%l%u%d]+://')
+        local isFurl = uri:sub(1, 7) == 'file://'
+        local isFp = (not isUrl) or isFurl
 
-    local function get_fp_variants(uri)
-      if uri:sub(1, 1) == '/' then
-        return { uri }
+        if isFurl then
+          uri = uri:gsub('^file://localhost/', '', 1)
+          uri = uri:gsub('^file://' .. uv.os_gethostname() .. '/', '', 1)
+          uri = uri:gsub('^file://', '', 1)
+          uri = uri:gsub('#.*', '', 1)
+          uri = uri:gsub('?.*', '', 1)
+          uri = uri:gsub('%%([a-f0-9A-F][a-f0-9A-F])', function(x) return string.char(tonumber(x, 16)) end)
+        end
+
+        local variants
+
+        if isFp then
+          if uri:sub(1, 1) == '/' then
+            variants = { uri }
+          else
+            variants = {
+              fn.expand('%:p:h') .. '/' .. uri,
+              vim.fn.getcwd() .. '/' .. uri
+            }
+          end
+        else
+          variants = { uri }
+        end
+
+        table.insert(uris_list, { variants = variants, isFp = isFp })
       end
 
-      return {
-        fn.expand('%:p:h') .. '/' .. uri,
-        vim.fn.getcwd() .. '/' .. uri
-      }
+      return uris_list
     end
 
-    local function open_uri(uri, with_vim_ui_open)
-      local status = {
-        err = false,
-        uri_input = uri,
-        uri_attempted = nil,
-        message = nil
-      }
-
-      local isUrl = uri:match('^[%l%u%d]+://')
-      local isFurl = uri:sub(1, 7) == 'file://'
-      local isFp = (not isUrl) or isFurl
-
-      uri = isFurl and furl_to_fp(uri) or uri
-
+    local function open_variant(uri, isFp, with_vim_ui_open)
       if isFp then
-        local fp_variants = get_fp_variants(uri)
-
-        uri = fp_variants[1]
-
         local cmd_readlinkf_output = fn.system({ 'readlink', '-f', uri })
 
-        if (vim.v.shell_error ~= 0) then
-          status.err = true
-          status.message = '"readlink -f" exited with code ' .. vim.v.shell_error
-          status.uri_attempted = uri
-
-          return status
-        end
+        if (vim.v.shell_error ~= 0) then return false end
 
         uri = fn.trim(cmd_readlinkf_output)
 
         local success, err, err_name = uv.fs_stat(uri)
 
-        if not success then
-          status.err = true
-          status.message = err
-          status.uri_attempted = uri
-
-          return status
-        end
+        if not success then return false end
 
         if not with_vim_ui_open then
           local cmd_mime_output = fn.system({ 'file', '--mime-type', '--brief', uri })
 
-          if (vim.v.shell_error ~= 0) then
-            status.err = true
-            status.message = '"file --mime-type --brief" exited with code ' .. vim.v.shell_error
-            status.uri_attempted = uri
-
-            return status
-          end
+          if (vim.v.shell_error ~= 0) then return false end
 
           local mime = fn.trim(cmd_mime_output)
 
           for _, pat in ipairs(editor_mime) do
             if string.match(mime, pat) then
               vim.cmd.e(uri)
-              status.uri_attempted = uri
-              return status
+              return true
             end
           end
         end
       end
 
-      local comm, err = vim.ui.open(uri)
-      local rv = comm and comm:wait(1000) or nil
+      vim.ui.open(uri)
 
-      if comm and rv and rv.code ~= 0 then
-        status.err = true
-        status.message = ('vim.ui.open: command %s (%d): %s'):format(
-          (rv.code == 124 and 'timeout' or 'failed'),
-          rv.code,
-          vim.inspect(comm.cmd)
-        )
-        status.uri_attempted = uri
-
-        return status
-      end
-
-      status.err = err ~= nil
-      status.message = err
-      status.uri_attempted = uri
-
-      return status
+      return true
     end
 
-    local function open_n(with_vim_ui_open)
-      local urls = require('vim.ui')._get_urls()
-
-      for _, uri in ipairs(urls) do
-        local status = open_uri(uri, with_vim_ui_open)
-
-        if status.err then
-          vim.notify(status.message .. ' (' .. status.uri_attempted .. ')', vim.log.levels.ERROR)
-        else
-          vim.notify('Open: ' .. status.uri_attempted, vim.log.levels.INFO)
+    local function open_uris(with_vim_ui_open)
+      for _, uri in ipairs(create_uris_list(require('vim.ui')._get_urls())) do
+        for _, variant in ipairs(uri.variants) do
+          if open_variant(variant, uri.isFp, with_vim_ui_open) then
+            break
+          end
         end
       end
     end
 
-    local function open_x(with_vim_ui_open)
-      local urls = require('vim.ui')._get_urls()
+    km(
+      { 'n', 'x' },
+      'gx',
+      open_uris,
+      { desc = 'Opens filepath or URI under cursor (user)' }
+    )
 
-      for _, uri in ipairs(urls) do
-        local status = open_uri(uri, with_vim_ui_open)
-
-        if status.err then
-          vim.notify(status.message .. ' (' .. status.uri_attempted .. ')', vim.log.levels.ERROR)
-        else
-          vim.notify('Open: ' .. status.uri_attempted, vim.log.levels.INFO)
-        end
-      end
-    end
-
-    local opt_x = { desc = 'Opens filepath or URI under cursor (user)' }
-    km('n', 'gx', open_n, opt_x)
-    km('x', 'gx', open_x, opt_x)
-
-    local opt_X = { desc = 'Opens filepath or URI under cursor with the system handler (user)' }
-    km('n', 'gX', function() open_n(true) end, opt_X)
-    km('x', 'gX', function() open_x(true) end, opt_X)
+    km(
+      { 'n', 'x' },
+      'gX',
+      function() open_uris(true) end,
+      { desc = 'Opens filepath or URI under cursor with the system handler (user)' }
+    )
   end,
   keys = {
     { "gx", mode = { "n", "x" } },
