@@ -24,6 +24,7 @@ local M = {
 
     local function create_uris_list(input)
       local uris_list = {}
+      local hostname = uv.os_gethostname()
 
       for _, uri in ipairs(input) do
         local isUrl = uri:match('^[%l%u%d]+://')
@@ -32,7 +33,7 @@ local M = {
 
         if isFurl then
           uri = uri:gsub('^file://localhost/', '', 1)
-          uri = uri:gsub('^file://' .. uv.os_gethostname() .. '/', '', 1)
+          uri = uri:gsub('^file://' .. hostname .. '/', '', 1)
           uri = uri:gsub('^file://', '', 1)
           uri = uri:gsub('#.*', '', 1)
           uri = uri:gsub('?.*', '', 1)
@@ -43,7 +44,11 @@ local M = {
 
         if isFp then
           if uri:sub(1, 1) == '/' then
-            variants = { uri }
+            variants = {
+              vim.fn.getcwd() .. '/' .. uri,
+              fn.expand('%:p:h') .. '/' .. uri,
+              uri,
+            }
           else
             variants = {
               fn.expand('%:p:h') .. '/' .. uri,
