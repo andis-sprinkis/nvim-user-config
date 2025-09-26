@@ -99,29 +99,40 @@ local M = {
       return true
     end
 
-    local function open_uris(with_vim_ui_open)
-      for _, uri in ipairs(create_uris_list(require('vim.ui')._get_urls())) do
+    local function open_uris(uris, with_vim_ui_open)
+      local opened = {}
+
+      for _, uri in ipairs(create_uris_list(uris)) do
         for _, variant in ipairs(uri.variants) do
-          if open_variant(variant, uri.isFp, with_vim_ui_open) then return end
+          if open_variant(variant, uri.isFp, with_vim_ui_open) then
+            table.insert(opened, variant)
+            goto continue
+          end
         end
+        :: continue ::
       end
 
-      print('Nothing to open')
+      if #opened > 0 then print('Open: ' .. table.concat(opened, ', ')) else print('Nothing to open') end
     end
 
-    km(
-      { 'n', 'x' },
-      'gx',
-      open_uris,
-      { desc = 'Opens filepath or URI under cursor (user)' }
-    )
+    local function open_uris_n(with_vim_ui_open)
+      local uris = require('vim.ui')._get_urls()
+      open_uris(uris, with_vim_ui_open)
+    end
 
-    km(
-      { 'n', 'x' },
-      'gX',
-      function() open_uris(true) end,
-      { desc = 'Opens filepath or URI under cursor with the system handler (user)' }
-    )
+    local function open_uris_x(with_vim_ui_open)
+      local lines = vim.fn.getregion(vim.fn.getpos('.'), vim.fn.getpos('v'), { type = vim.fn.mode() })
+      local uris = vim.iter(lines):map(vim.trim):totable()
+      open_uris(uris, with_vim_ui_open)
+    end
+
+    local km_opt_normal = { desc = 'Opens filepath or URI under cursor (user)' }
+    local km_opt_system = { desc = 'Opens filepath or URI under cursor with the system handler (user)' }
+
+    km('n', 'gx', open_uris_n, km_opt_normal)
+    km('x', 'gx', open_uris_x, km_opt_normal)
+    km('n', 'gX', function() open_uris_n(true) end, km_opt_system)
+    km('x', 'gX', function() open_uris_x(true) end, km_opt_system)
   end,
   keys = {
     { "gx", mode = { "n", "x" } },
