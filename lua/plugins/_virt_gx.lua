@@ -29,11 +29,11 @@ local M = {
       for _, uri in ipairs(input) do
         if uri == '' then goto continue end
 
-        local isUrl = uri:match('^[%l%u%d]+://')
-        local isFurl = uri:sub(1, 7) == 'file://'
-        local isFp = (not isUrl) or isFurl
+        local is_url = uri:match('^[%l%u%d]+://')
+        local is_furl = uri:sub(1, 7) == 'file://'
+        local is_fp = (not is_url) or is_furl
 
-        if isFurl then
+        if is_furl then
           uri = uri:gsub('^file://localhost/', '/', 1)
           uri = uri:gsub('^file://' .. hostname .. '/', '/', 1)
           uri = uri:gsub('^file://', '', 1)
@@ -46,7 +46,7 @@ local M = {
 
         local variants
 
-        if isFp then
+        if is_fp then
           variants = {
             uri,
             fn.expand('%:p:h') .. '/' .. uri,
@@ -56,7 +56,7 @@ local M = {
           variants = { uri }
         end
 
-        table.insert(uris_list, { variants = variants, isFp = isFp })
+        table.insert(uris_list, { variants = variants, is_fp = is_fp })
 
         ::continue::
       end
