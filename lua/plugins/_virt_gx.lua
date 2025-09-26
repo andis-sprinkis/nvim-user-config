@@ -6,7 +6,7 @@ local M = {
     local fn = vim.fn
     local uv = vim.uv
 
-    local mime_for_editor = {
+    local editor_mime = {
       'text/*',
       'inode/directory',
       'inode/empty',
@@ -22,15 +22,15 @@ local M = {
       'application/x%-awk',
     }
 
-    local function file_url_to_fp(uri)
-      uri = uri:gsub('^file://localhost/', '', 1)
-      uri = uri:gsub('^file://' .. uv.os_gethostname() .. '/', '', 1)
-      uri = uri:gsub('^file://', '', 1)
-      uri = uri:gsub('#.*', '', 1)
-      uri = uri:gsub('?.*', '', 1)
-      uri = uri:gsub('%%([a-f0-9A-F][a-f0-9A-F])', function(x) return string.char(tonumber(x, 16)) end)
+    local function furl_to_fp(furl)
+      furl = furl:gsub('^file://localhost/', '', 1)
+      furl = furl:gsub('^file://' .. uv.os_gethostname() .. '/', '', 1)
+      furl = furl:gsub('^file://', '', 1)
+      furl = furl:gsub('#.*', '', 1)
+      furl = furl:gsub('?.*', '', 1)
+      furl = furl:gsub('%%([a-f0-9A-F][a-f0-9A-F])', function(x) return string.char(tonumber(x, 16)) end)
 
-      return uri
+      return furl
     end
 
     local function open_uri(uri, with_vim_ui_open)
@@ -41,15 +41,13 @@ local M = {
         message = nil
       }
 
-      local isFilePath = true
+      local isUrl = uri:match('^[%l%u%d]+://')
+      local isFurl = uri:sub(1, 7) == 'file://'
+      local isFp = (not isUrl) or isFurl
 
-      if uri:sub(1, 7) == 'file://' then
-        uri = file_url_to_fp(uri)
-      elseif uri:match('^[%l%u%d]+://') then
-        isFilePath = false
-      end
+      uri = isFurl and furl_to_fp(uri) or uri
 
-      if isFilePath then
+      if isFp then
         -- local fp_file_rel
         -- local fp_cwd_rel
         --
@@ -58,13 +56,13 @@ local M = {
         if uri:sub(1, 1) ~= '/' then
           -- is_fp_aboslute = false
 
-          local fp_current_file_dir = fn.expand('%:p:h')
+          local fp_currf_dir = fn.expand('%:p:h')
           -- local fp_cwd_dir = vim.fn.getcwd()
 
           -- fp_file_rel = fp_current_file_dir .. '/' .. uri
           -- fp_cwd_rel = fp_cwd_dir .. '/' .. uri
 
-          uri = fp_current_file_dir .. '/' .. uri
+          uri = fp_currf_dir .. '/' .. uri
         end
 
         local cmd_readlinkf_output = fn.system({ 'readlink', '-f', uri })
@@ -102,7 +100,7 @@ local M = {
 
           local mime = fn.trim(cmd_mime_output)
 
-          for _, pat in ipairs(mime_for_editor) do
+          for _, pat in ipairs(editor_mime) do
             if string.match(mime, pat) then
               vim.cmd.e(uri)
               status.uri_attempted = uri
