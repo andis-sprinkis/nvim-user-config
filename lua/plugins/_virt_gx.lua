@@ -31,6 +31,8 @@ local M = {
         if uri == '' then goto continue end
 
         local is_url = uri:match('^[%l%u%d]+://')
+        if is_url and uri:match('^[%l%u%d]+://$') then goto continue end
+
         local is_furl = uri:sub(1, 7) == 'file://'
         local is_fp = (not is_url) or is_furl
         local variants
