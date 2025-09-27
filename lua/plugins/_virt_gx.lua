@@ -33,6 +33,7 @@ local M = {
         local is_url = uri:match('^[%l%u%d]+://')
         local is_furl = uri:sub(1, 7) == 'file://'
         local is_fp = (not is_url) or is_furl
+        local variants
 
         if is_furl then
           uri = uri:gsub('^file://localhost/', '/', 1)
@@ -44,8 +45,6 @@ local M = {
 
           if uri == '' then goto continue end
         end
-
-        local variants
 
         if is_fp then
           if uri == '~' then uri = vim.fn.expand('~') end
