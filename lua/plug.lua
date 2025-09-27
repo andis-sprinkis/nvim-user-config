@@ -87,6 +87,9 @@ require("lazy").setup({
       },
     },
   },
+  change_detection = {
+    notify = false
+  },
   performance = {
     rtp = {
       disabled_plugins = {
