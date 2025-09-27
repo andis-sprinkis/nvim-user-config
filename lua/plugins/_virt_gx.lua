@@ -45,6 +45,8 @@ local M = {
           if uri == '' then goto continue end
         end
 
+        uri = uri:gsub('^~/', vim.fn.expand('~/'), 1)
+
         local variants
 
         if is_fp then
