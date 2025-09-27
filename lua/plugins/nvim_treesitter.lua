@@ -1,5 +1,5 @@
 local M = {
-  'nvim-treesitter/nvim-treesitter',
+  'https://github.com/nvim-treesitter/nvim-treesitter',
   branch = 'master',
   lazy = false,
   build = ':TSUpdate',

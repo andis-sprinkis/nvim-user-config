@@ -1,5 +1,5 @@
 local M = {
-  'RRethy/vim-illuminate',
+  'https://github.com/RRethy/vim-illuminate',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
   config = function()
     require('illuminate').configure({

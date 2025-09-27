@@ -1,5 +1,5 @@
 local M = {
-  'm-demare/hlargs.nvim',
+  'https://github.com/m-demare/hlargs.nvim',
   config = function()
     require('hlargs').setup {
       hl_priority = 200,

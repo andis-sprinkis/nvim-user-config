@@ -1,5 +1,5 @@
 local M = {
-  'AckslD/swenv.nvim',
+  'https://github.com/AckslD/swenv.nvim',
   config = function()
     require('swenv').setup({
       venvs_path = vim.fn.expand('~/.local/share/virtualenvs'),

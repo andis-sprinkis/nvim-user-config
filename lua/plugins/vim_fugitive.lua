@@ -1,5 +1,5 @@
 local M = {
-  'tpope/vim-fugitive',
+  'https://github.com/tpope/vim-fugitive',
   config = function()
     local uc = vim.api.nvim_create_user_command
 

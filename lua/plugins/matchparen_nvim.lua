@@ -1,5 +1,5 @@
 local M = {
-  'monkoose/matchparen.nvim',
+  'https://github.com/monkoose/matchparen.nvim',
   config = function()
     require("matchparen").setup()
 

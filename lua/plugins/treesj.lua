@@ -1,5 +1,5 @@
 local M = {
-  'Wansmer/treesj',
+  'https://github.com/Wansmer/treesj',
   config = function()
     local km = vim.keymap.set
     local treesj = require('treesj')

@@ -1,5 +1,5 @@
 local M = {
-  'lukas-reineke/indent-blankline.nvim',
+  'https://github.com/lukas-reineke/indent-blankline.nvim',
   config = function()
     require "ibl".setup({
       indent = { char = '│' },

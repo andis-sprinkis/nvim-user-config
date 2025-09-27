@@ -1,5 +1,5 @@
 local M = {
-  'mrjones2014/smart-splits.nvim',
+  'https://github.com/mrjones2014/smart-splits.nvim',
   config = function()
     local km = vim.keymap.set
     local smart_splits = require('smart-splits')

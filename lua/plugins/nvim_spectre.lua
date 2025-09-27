@@ -1,5 +1,5 @@
 local M = {
-  'nvim-pack/nvim-spectre',
+  'https://github.com/nvim-pack/nvim-spectre',
   config = function()
     local spectre = require('spectre')
     local api = vim.api

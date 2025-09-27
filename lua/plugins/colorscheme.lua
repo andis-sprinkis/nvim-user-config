@@ -1,5 +1,5 @@
 local M = {
-  'Mofiqul/vscode.nvim',
+  'https://github.com/Mofiqul/vscode.nvim',
   config = function()
     local colorscheme_vscode = require('vscode')
 

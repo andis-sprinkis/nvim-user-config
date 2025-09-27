@@ -1,5 +1,5 @@
 local M = {
-  'chaoren/vim-wordmotion',
+  'https://github.com/chaoren/vim-wordmotion',
   event = 'VeryLazy'
 }
 

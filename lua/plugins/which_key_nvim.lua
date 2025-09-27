@@ -1,5 +1,5 @@
 local M = {
-  "folke/which-key.nvim",
+  "https://github.com/folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
     delay = function(ctx)

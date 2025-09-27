@@ -1,5 +1,5 @@
 local M = {
-  'sindrets/winshift.nvim',
+  'https://github.com/sindrets/winshift.nvim',
   config = function()
     require("winshift").setup({
       highlight_moving_win = true,

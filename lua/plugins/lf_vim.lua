@@ -1,5 +1,5 @@
 local M = {
-  'andis-sprinkis/lf-vim',
+  'https://github.com/andis-sprinkis/lf-vim',
   event = { 'BufReadPre lfrc' }
 }
 

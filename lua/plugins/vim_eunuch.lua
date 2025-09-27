@@ -1,5 +1,5 @@
 local M = {
-  'tpope/vim-eunuch',
+  'https://github.com/tpope/vim-eunuch',
   event = 'VeryLazy'
 }
 

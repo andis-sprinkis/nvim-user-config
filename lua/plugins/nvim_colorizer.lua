@@ -1,5 +1,5 @@
 local M = {
-  'catgoose/nvim-colorizer.lua',
+  'https://github.com/catgoose/nvim-colorizer.lua',
   event = "VeryLazy",
   config = function()
     require("colorizer").setup {

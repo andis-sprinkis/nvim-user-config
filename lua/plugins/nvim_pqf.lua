@@ -1,5 +1,5 @@
 local M = {
-  'yorickpeterse/nvim-pqf',
+  'https://github.com/yorickpeterse/nvim-pqf',
   config = true,
   filetype = 'qf',
 }

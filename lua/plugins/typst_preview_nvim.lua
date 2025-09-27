@@ -1,5 +1,5 @@
 local M = {
-  'chomosuke/typst-preview.nvim',
+  'https://github.com/chomosuke/typst-preview.nvim',
   ft = 'typst',
   version = '1.*',
   enabled = vim.g.sys_reqr.typst_preview_nvim,

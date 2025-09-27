@@ -2,7 +2,7 @@ local g = vim.g
 local sys_reqr = g.sys_reqr
 
 local M = {
-  'ibhagwan/fzf-lua',
+  'https://github.com/ibhagwan/fzf-lua',
   enabled = sys_reqr.fzf_lua,
   config = function()
     local km = vim.keymap.set

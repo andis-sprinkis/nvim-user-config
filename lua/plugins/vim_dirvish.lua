@@ -2,7 +2,7 @@ local km = vim.keymap.set
 local ac = vim.api.nvim_create_autocmd
 
 local M = {
-  'justinmk/vim-dirvish',
+  'https://github.com/justinmk/vim-dirvish',
   config = function()
     vim.g.dirvish_mode = ':sort ,^.*[\\/],'
 

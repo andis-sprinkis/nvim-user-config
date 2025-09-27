@@ -2,7 +2,7 @@ local g = vim.g
 local sys_reqr = g.sys_reqr
 
 local M = {
-  'hrsh7th/nvim-cmp',
+  'https://github.com/hrsh7th/nvim-cmp',
   config = function()
     local cmp = require("cmp")
     local cmpm = cmp.mapping
