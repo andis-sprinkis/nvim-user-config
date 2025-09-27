@@ -2,9 +2,10 @@ local M = {
   "_virt_gx",
   virtual = true,
   config = function()
-    local km = vim.keymap.set
     local fn = vim.fn
     local uv = vim.uv
+    local km = vim.keymap.set
+    local notify = vim.notify
 
     local editor_mime = {
       'text/*',
@@ -47,11 +48,18 @@ local M = {
         local variants
 
         if is_fp then
-          variants = {
-            uri,
-            fn.expand('%:p:h') .. '/' .. uri,
-            vim.fn.getcwd() .. '/' .. uri,
-          }
+          if uri:sub(1, 1) == '/' then
+            variants = {
+              uri,
+              vim.fn.getcwd() .. '/' .. uri,
+              fn.expand('%:p:h') .. '/' .. uri,
+            }
+          else
+            variants = {
+              fn.expand('%:p:h') .. '/' .. uri,
+              vim.fn.getcwd() .. '/' .. uri,
+            }
+          end
         else
           variants = { uri }
         end
@@ -64,8 +72,8 @@ local M = {
       return uris_list
     end
 
-    local function open_variant(variant, isFp, with_vim_ui_open)
-      if isFp then
+    local function open_variant(variant, is_fp, with_vim_ui_open)
+      if is_fp then
         local cmd_readlinkf_output = fn.system({ 'readlink', '-f', variant })
 
         if (vim.v.shell_error ~= 0) then return false end
@@ -85,7 +93,6 @@ local M = {
 
           for _, pat in ipairs(editor_mime) do
             if string.match(mime, pat) then
-              print('Open: ' .. variant)
               vim.cmd.e(variant)
               return true
             end
@@ -93,9 +100,7 @@ local M = {
         end
       end
 
-      print('Open: ' .. variant)
       vim.ui.open(variant)
-
       return true
     end
 
@@ -104,7 +109,7 @@ local M = {
 
       for _, uri in ipairs(create_uris_list(uris)) do
         for _, variant in ipairs(uri.variants) do
-          if open_variant(variant, uri.isFp, with_vim_ui_open) then
+          if open_variant(variant, uri.is_fp, with_vim_ui_open) then
             table.insert(opened, variant)
             goto continue
           end
@@ -112,7 +117,7 @@ local M = {
         :: continue ::
       end
 
-      if #opened > 0 then print('Open: ' .. table.concat(opened, ', ')) else print('Nothing to open') end
+      if #opened > 0 then notify('Open: ' .. table.concat(opened, ', ')) else notify('Nothing to open') end
     end
 
     local function open_uris_n(with_vim_ui_open)
