@@ -47,19 +47,19 @@ local M = {
         end
 
         if is_fp then
-          if uri == '~' then uri = vim.fn.expand('~') end
-          uri = uri:gsub('^~/', vim.fn.expand('~/'), 1)
+          if uri == '~' then uri = fn.expand('~') end
+          uri = uri:gsub('^~/', fn.expand('~/'), 1)
 
           if uri:sub(1, 1) == '/' then
             variants = {
               uri,
-              vim.fn.getcwd() .. '/' .. uri,
+              fn.getcwd() .. '/' .. uri,
               fn.expand('%:p:h') .. '/' .. uri,
             }
           else
             variants = {
               fn.expand('%:p:h') .. '/' .. uri,
-              vim.fn.getcwd() .. '/' .. uri,
+              fn.getcwd() .. '/' .. uri,
             }
           end
         else
@@ -128,7 +128,7 @@ local M = {
     end
 
     local function open_uris_x(with_vim_ui_open)
-      local lines = vim.fn.getregion(vim.fn.getpos('.'), vim.fn.getpos('v'), { type = vim.fn.mode() })
+      local lines = fn.getregion(fn.getpos('.'), fn.getpos('v'), { type = fn.mode() })
       local uris = vim.iter(lines):map(vim.trim):totable()
       open_uris(uris, with_vim_ui_open)
     end
