@@ -20,7 +20,7 @@ local M = {
     { '<C-j>', mode = 'n' },
     { '<Leader>m', mode = 'n' },
   },
-  dependencies = { 'nvim-treesitter/nvim-treesitter' }
+  dependencies = { 'https://github.com/nvim-treesitter/nvim-treesitter' }
 }
 
 return M

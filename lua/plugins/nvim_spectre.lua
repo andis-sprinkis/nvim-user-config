@@ -44,7 +44,7 @@ local M = {
       { nowait = true, silent = true, desc = 'Search in current file (nvim-spectre)' }
     )
   end,
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = { 'https://github.com/nvim-lua/plenary.nvim' },
   cmd = 'Spectre',
   keys = {
     { '<Leader>rr', mode = 'n' },

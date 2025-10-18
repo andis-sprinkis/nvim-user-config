@@ -7,7 +7,7 @@ local M = {
     }
   end,
   event = 'VeryLazy',
-  dependencies = { 'nvim-treesitter/nvim-treesitter' }
+  dependencies = { 'https://github.com/nvim-treesitter/nvim-treesitter' }
 }
 
 return M

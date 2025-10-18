@@ -252,15 +252,15 @@ local M = {
     -- })
   end,
   dependencies = {
-    'RRethy/vim-illuminate',
-    'b0o/schemastore.nvim',
-    -- 'davidmh/cspell.nvim',
-    'jayp0521/mason-null-ls.nvim',
-    'lewis6991/gitsigns.nvim',
-    'mason-org/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig',
-    'nvim-lua/plenary.nvim',
-    'nvimtools/none-ls.nvim',
+    'https://github.com/RRethy/vim-illuminate',
+    'https://github.com/b0o/schemastore.nvim',
+    -- 'https://github.com/davidmh/cspell.nvim',
+    'https://github.com/jayp0521/mason-null-ls.nvim',
+    'https://github.com/lewis6991/gitsigns.nvim',
+    'https://github.com/mason-org/mason-lspconfig.nvim',
+    'https://github.com/neovim/nvim-lspconfig',
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/nvimtools/none-ls.nvim',
   }
 }
 

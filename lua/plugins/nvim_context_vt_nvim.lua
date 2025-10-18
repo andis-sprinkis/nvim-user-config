@@ -12,7 +12,7 @@ local M = {
       disable_virtual_lines = true,
     })
   end,
-  dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  dependencies = { 'https://github.com/nvim-treesitter/nvim-treesitter' },
   event = 'VeryLazy'
 }
 

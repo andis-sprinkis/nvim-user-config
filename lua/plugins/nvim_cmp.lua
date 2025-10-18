@@ -178,27 +178,27 @@ local M = {
     require("cmp_git").setup()
   end,
   dependencies = {
-    'David-Kunz/cmp-npm',
+    'https://github.com/David-Kunz/cmp-npm',
     {
-      'L3MON4D3/LuaSnip',
-      dependencies = { 'rafamadriz/friendly-snippets' }
+      'https://github.com/L3MON4D3/LuaSnip',
+      dependencies = { 'https://github.com/rafamadriz/friendly-snippets' }
     },
-    'dmitmel/cmp-cmdline-history',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-emoji',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lua',
-    'hrsh7th/cmp-path',
-    'petertriho/cmp-git',
-    'saadparwaiz1/cmp_luasnip',
-    'uga-rosa/cmp-dictionary',
+    'https://github.com/dmitmel/cmp-cmdline-history',
+    'https://github.com/hrsh7th/cmp-buffer',
+    'https://github.com/hrsh7th/cmp-cmdline',
+    'https://github.com/hrsh7th/cmp-emoji',
+    'https://github.com/hrsh7th/cmp-nvim-lsp',
+    'https://github.com/hrsh7th/cmp-nvim-lua',
+    'https://github.com/hrsh7th/cmp-path',
+    'https://github.com/petertriho/cmp-git',
+    'https://github.com/saadparwaiz1/cmp_luasnip',
+    'https://github.com/uga-rosa/cmp-dictionary',
     {
-      'lukas-reineke/cmp-rg',
+      'https://github.com/lukas-reineke/cmp-rg',
       enabled = sys_reqr.cmp_rg,
     },
     {
-      'andersevenrud/cmp-tmux',
+      'https://github.com/andersevenrud/cmp-tmux',
       enabled = sys_reqr.cmp_tmux
     },
   },
