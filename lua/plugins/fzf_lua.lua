@@ -69,7 +69,6 @@ local M = {
       winopts = {
         fullscreen = true,
         border = 'none',
-        scrollbar = false,
         preview = {
           title = true,
           wrap = 'wrap',
