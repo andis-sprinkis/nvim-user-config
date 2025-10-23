@@ -14,6 +14,30 @@ local M = {
 
     fzflua.register_ui_select()
 
+    local args_previewer = { "previewer", "{file}" }
+    local extensions_previewer = {
+      ["jpg"]  = args_previewer,
+      ["jpeg"] = args_previewer,
+      ["png"]  = args_previewer,
+      ["gif"]  = args_previewer,
+      ["avif"] = args_previewer,
+      ["webp"] = args_previewer,
+      ["svg"]  = args_previewer,
+      ["ico"]  = args_previewer,
+      ["pdf"]  = args_previewer,
+      ["avi"]  = args_previewer,
+      ["mkv"]  = args_previewer,
+      ["mpg"]  = args_previewer,
+      ["mpeg"] = args_previewer,
+      ["mov"]  = args_previewer,
+      ["mp4"]  = args_previewer,
+      ["zip"]  = args_previewer,
+      ["rar"]  = args_previewer,
+      ["tar"]  = args_previewer,
+      ["gz"]   = args_previewer,
+    }
+    -- TODO: table with all extensions extracted from mimedb
+
     fzflua.setup({
       fzf_colors = {
         ["bg"]      = { "bg", "Normal" },
@@ -35,28 +59,7 @@ local M = {
           cmd = 'man %s | col -bx',
         },
         builtin = {
-          extensions = sys_reqr.previewer and {
-            -- TODO: table with all extensions extracted from mimedb
-            ["jpg"]  = { "previewer", "{file}" },
-            ["jpeg"] = { "previewer", "{file}" },
-            ["png"]  = { "previewer", "{file}" },
-            ["gif"]  = { "previewer", "{file}" },
-            ["avif"] = { "previewer", "{file}" },
-            ["webp"] = { "previewer", "{file}" },
-            ["svg"]  = { "previewer", "{file}" },
-            ["ico"]  = { "previewer", "{file}" },
-            ["pdf"]  = { "previewer", "{file}" },
-            ["avi"]  = { "previewer", "{file}" },
-            ["mkv"]  = { "previewer", "{file}" },
-            ["mpg"]  = { "previewer", "{file}" },
-            ["mpeg"] = { "previewer", "{file}" },
-            ["mov"]  = { "previewer", "{file}" },
-            ["mp4"]  = { "previewer", "{file}" },
-            ["zip"]  = { "previewer", "{file}" },
-            ["rar"]  = { "previewer", "{file}" },
-            ["tar"]  = { "previewer", "{file}" },
-            ["gz"]   = { "previewer", "{file}" },
-          } or {},
+          extensions = extensions_previewer,
         }
       },
       defaults = {
