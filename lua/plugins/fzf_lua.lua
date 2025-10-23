@@ -9,6 +9,9 @@ local M = {
 
     local fzflua = require('fzf-lua')
 
+    fzflua.awesome_colorschemes = nil
+    fzflua.zoxide = nil
+
     fzflua.register_ui_select()
 
     fzflua.setup({
