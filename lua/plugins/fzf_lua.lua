@@ -69,6 +69,7 @@ local M = {
       winopts = {
         fullscreen = true,
         border = 'none',
+        scrollbar = false,
         preview = {
           title = true,
           wrap = 'wrap',
@@ -76,7 +77,7 @@ local M = {
           vertical = 'up:60%',
           scrollbar = false,
           border = 'border-top',
-          delay = 20,
+          delay = 15,
         }
       }
     })
