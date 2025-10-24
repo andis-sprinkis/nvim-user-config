@@ -6,10 +6,8 @@ return {
     local b = vim.b
     local w = vim.w
     local bo = vim.bo
-    local diagnostic = vim.diagnostic
     local fn = vim.fn
     local g = vim.g
-    local lsp = vim.lsp
     local o = vim.opt
     local wo = vim.wo
     local ac = api.nvim_create_autocmd
@@ -20,7 +18,7 @@ return {
         .. '%('
         .. '%( ' .. "%{exists('b:statl_git')?b:statl_git:''}" .. '%)' --[[ plug.gitsigns_nvim ]]
         .. '%( ' .. "%{exists('b:statl_pyvenv')?b:statl_pyvenv:''}" .. '%)' --[[ plug.swenv_nvim ]]
-        .. '%( ' .. "%{exists('b:statl_lsp')?b:statl_lsp:''}" .. '%)'
+        .. '%( ' .. "%{exists('b:statl_lsp')?b:statl_lsp:''}" .. '%)' --[[ plug.mason_nvim ]]
         .. ' %)'
         .. '%#StatusLine'
 
@@ -121,42 +119,6 @@ return {
       end
     end
 
-    local ft_ignore_lsp = { 'dirvish', 'futigive', 'lazy', 'mason', 'man', 'help', '' }
-    local lsp_severity = { { 'ERROR', 'E' }, { 'WARN', 'W' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
-
-    local function set_statl_lsp()
-      if bo.buftype ~= '' then
-        b.statl_lsp = nil
-        return
-      end
-
-      if vim.tbl_contains(ft_ignore_lsp, bo.ft) then
-        b.statl_lsp = nil
-        return
-      end
-
-      if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then
-        b.statl_lsp = nil
-        return
-      end
-
-      local msg = {}
-
-      for _, ty in ipairs(lsp_severity) do
-        local n = diagnostic.get(0, { severity = ty[1] })
-        if #n > 0 then
-          table.insert(msg, ty[2] .. ':' .. #n)
-        end
-      end
-
-      if #msg > 0 then
-        b.statl_lsp = table.concat(msg, ' ')
-        return
-      end
-
-      b.statl_lsp = nil
-    end
-
     local ag_statl = ag('statl', {})
 
     ac(
@@ -194,23 +156,6 @@ return {
       },
       {
         callback = set_statl_encfmt,
-        group = ag_statl,
-      }
-    )
-
-    ac(
-      {
-        'BufEnter',
-        'BufWinEnter',
-        'BufWritePost',
-        'CursorHold',
-        'CursorHoldI',
-        'FileChangedShellPost',
-        'ModeChanged',
-        'VimResume'
-      },
-      {
-        callback = set_statl_lsp,
         group = ag_statl,
       }
     )
