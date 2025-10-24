@@ -12,15 +12,14 @@ return {
     local lsp = vim.lsp
     local o = vim.opt
     local wo = vim.wo
-    local sys_reqr = g.sys_reqr
     local ac = api.nvim_create_autocmd
     local ag = api.nvim_create_augroup
 
     local p1 =
         '%#StatusLineNC#'
         .. '%('
-        .. '%( ' .. "%{exists('b:statl_git')?b:statl_git:''}" .. '%)'
-        .. '%( ' .. "%{exists('b:statl_pyvenv')?b:statl_pyvenv:''}" .. '%)'
+        .. '%( ' .. "%{exists('b:statl_git')?b:statl_git:''}" .. '%)' --[[ plug.gitsigns_nvim ]]
+        .. '%( ' .. "%{exists('b:statl_pyvenv')?b:statl_pyvenv:''}" .. '%)' --[[ plug.swenv_nvim ]]
         .. '%( ' .. "%{exists('b:statl_lsp')?b:statl_lsp:''}" .. '%)'
         .. ' %)'
         .. '%#StatusLine'
@@ -113,33 +112,6 @@ return {
       b.statl_mimeft = fn.trim(cmd_mime_output)
     end
 
-    local function set_statl_pyvenv()
-      if sys_reqr.swenv then
-        local status_mod, mod = pcall(require, "swenv.api")
-        if (status_mod) then
-          local venv = mod.get_current_venv()
-          b.statl_pyvenv = venv and "venv:" .. venv.name or nil
-        end
-      end
-    end
-
-    local ft_ignore_git = { 'lazy', 'mason', 'man', 'help' }
-
-    local function set_statl_git()
-      if vim.tbl_contains(ft_ignore_git, bo.ft) then
-        b.statl_git = nil
-        return
-      end
-
-      if b.gitsigns_status then
-        b.statl_git = b.gitsigns_status == '' and b.gitsigns_head or
-            b.gitsigns_head .. ' ' .. b.gitsigns_status
-        return
-      end
-
-      b.statl_git = g.gitsigns_head and g.gitsigns_head or nil
-    end
-
     local function set_statl_bname()
       for _, win in ipairs(api.nvim_list_wins()) do
         local max_width = math.floor(api.nvim_win_get_width(win) * 0.5)
@@ -229,17 +201,6 @@ return {
     ac(
       {
         'BufEnter',
-        'BufWinEnter'
-      },
-      {
-        callback = set_statl_pyvenv,
-        group = ag_statl,
-      }
-    )
-
-    ac(
-      {
-        'BufEnter',
         'BufWinEnter',
         'BufWritePost',
         'CursorHold',
@@ -250,24 +211,6 @@ return {
       },
       {
         callback = set_statl_lsp,
-        group = ag_statl,
-      }
-    )
-
-    ac(
-      {
-        'BufEnter',
-        'BufWinEnter',
-        'CursorHold',
-        'CursorHoldI',
-        'BufWritePost',
-        'FileChangedShellPost',
-        'BufWritePost',
-        'ModeChanged',
-        'VimResume'
-      },
-      {
-        callback = set_statl_git,
         group = ag_statl,
       }
     )

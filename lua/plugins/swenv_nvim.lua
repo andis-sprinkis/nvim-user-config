@@ -6,10 +6,28 @@ local M = {
       post_set_venv = function() vim.cmd.LspRestart() end
     })
 
-    vim.api.nvim_create_user_command(
+    local api = vim.api
+
+    local swenv_api = require('swenv.api')
+
+    api.nvim_create_user_command(
       'PythonSelectVenv',
-      require('swenv.api').pick_venv,
+      swenv_api.pick_venv,
       {}
+    )
+
+    api.nvim_create_autocmd(
+      {
+        'BufEnter',
+        'BufWinEnter'
+      },
+      {
+        callback = function()
+          local venv = swenv_api.get_current_venv()
+          vim.b.statl_pyvenv = venv and "venv:" .. venv.name or nil
+        end,
+        group = api.nvim_create_augroup('swenv_user', {}),
+      }
     )
   end,
   dependencies = {
