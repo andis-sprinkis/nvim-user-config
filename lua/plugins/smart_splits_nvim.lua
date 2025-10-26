@@ -1,12 +1,12 @@
 local M = {
   'https://github.com/mrjones2014/smart-splits.nvim',
+  init = function ()
+    vim.g.smart_splits_multiplexer_integration = false
+  end,
   config = function()
-    local km = vim.keymap.set
     local smart_splits = require('smart-splits')
 
-    smart_splits.setup({
-      multiplexer_integration = false,
-    })
+    local km = vim.keymap.set
 
     km('n', '<C-A-h>', smart_splits.resize_left, { desc = 'Change window size to the left direction (smart-splits)' })
     km('n', '<C-A-j>', smart_splits.resize_down, { desc = 'Change window size to the down direction (smart-splits)' })
