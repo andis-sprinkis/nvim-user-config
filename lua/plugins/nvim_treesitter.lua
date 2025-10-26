@@ -11,6 +11,7 @@ local M = {
     require 'nvim-treesitter.configs'.setup {
       ensure_installed = {
         'awk',
+        'bash',
         'cpp',
         'css',
         'gitcommit',
