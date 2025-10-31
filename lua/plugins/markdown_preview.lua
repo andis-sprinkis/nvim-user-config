@@ -7,6 +7,7 @@ local M = {
   config = function ()
     vim.g.mkdp_page_title = '${name} (Markdown preview)'
   end,
+  build = function() vim.fn["mkdp#util#install"]() end,
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
   ft = { 'markdown', 'markdown.mdx' },
 }
