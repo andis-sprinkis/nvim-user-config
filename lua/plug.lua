@@ -58,7 +58,7 @@ g.sys_reqr = {
   markdown_preview = exec.node,
   swenv = exec.python3,
   vim_doge = exec.node,
-  typst_preview_nvim = exec.curl,
+  -- typst_preview_nvim = exec.curl,
 }
 
 require("lazy").setup({
