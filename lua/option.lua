@@ -142,9 +142,7 @@ ac(
   'VimResized',
   {
     group = ag_option,
-    callback = function()
-      cmd([[wincmd =]])
-    end
+    command = "wincmd ="
   }
 )
 
@@ -177,6 +175,11 @@ ac(
     end
   }
 )
+
+ac("FileType", {
+  pattern = { "help", "man" },
+  command = "wincmd L",
+})
 
 ac(
   'FileType',
