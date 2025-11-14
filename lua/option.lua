@@ -66,6 +66,12 @@ opt.whichwrap:append '<,>,h,l'
 o.winblend = 10
 o.writebackup = false
 
+if not env.LANG then
+  env.LANG = 'en_US.UTF-8'
+end
+
+env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
+
 km({ 'n', 'v' }, '=', '+')
 km({ 'n', 'v' }, '+', '=')
 km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode in terminal buffer (user)" })
@@ -102,11 +108,10 @@ km(
   { desc = "Toggle line wrap (user)" }
 )
 
-if not env.LANG then
-  env.LANG = 'en_US.UTF-8'
-end
-
-env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
+cmd [[
+  aunmenu PopUp.How-to\ disable\ mouse
+  aunmenu PopUp.-2-
+]]
 
 local ag_option = ag('option', {})
 
