@@ -81,6 +81,13 @@ opt.whichwrap:append '<,>,h,l'
 o.winblend = 10
 o.writebackup = false
 
+if not env.LANG then
+  env.LANG = 'en_US.UTF-8'
+end
+
+cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
+cmd.aunmenu("PopUp.-2-")
+
 km({ 'n', 'v' }, '=', '+')
 km({ 'n', 'v' }, '+', '=')
 km('t', '<C-w>', '<C-\\><C-n>')
@@ -109,10 +116,6 @@ km(
   end,
   { desc = "Toggle line wrap" }
 )
-
-if not env.LANG then
-  env.LANG = 'en_US.UTF-8'
-end
 
 local ag_option = ag('option', {})
 
