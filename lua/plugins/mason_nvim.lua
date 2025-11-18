@@ -12,7 +12,7 @@ local M = {
     local api = vim.api
     local km = vim.keymap.set
 
-    vim.diagnostic.config({
+    diagnostic.config({
       -- virtual_text = true,
       virtual_lines = {
         current_line = true
