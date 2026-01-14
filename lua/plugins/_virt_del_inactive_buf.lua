@@ -36,6 +36,12 @@ local M = {
         if vim.tbl_contains(ignoreFt, get_opt("filetype", arg_bufnr)) then goto continue end
         -- Alternate-file?
         if buf.name == fn.expand("#:p") then goto continue end
+        -- In QuickFix list?
+        if vim.iter(vim.fn.getqflist())
+            :map(function(e) return e.bufnr end)
+            :find(buf.bufnr) then
+          goto continue
+        end
 
         api.nvim_buf_delete(bufnr, arg_buf_del)
 
