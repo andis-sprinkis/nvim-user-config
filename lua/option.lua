@@ -247,6 +247,7 @@ do
   -- [window view topline is not preserved when switching buffers · Issue #26828 · neovim/neovim](https://github.com/neovim/neovim/issues/26828)
   -- Workaround.
   -- Adapted from https://github.com/BranimirE/fix-auto-scroll.nvim (license: Apache-2.0).
+  -- To be fixed in nvim 0.11.6 [fix(buffer): switching buffer should respect jumpoptions+=view by zeertzjq · Pull Request #36969 · neovim/neovim](https://github.com/neovim/neovim/pull/36969)
   local saved_buff_view = {}
 
   ac('BufEnter', {
