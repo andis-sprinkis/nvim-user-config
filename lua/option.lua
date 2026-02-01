@@ -79,6 +79,22 @@ cmd.anoremenu("PopUp.-2-", "<Nop>")
 cmd.inoremenu("PopUp.-2-", "<Nop>")
 cmd.nnoremenu("PopUp.-2-", "<Nop>")
 cmd.vnoremenu("PopUp.-2-", "<Nop>")
+
+cmd.anoremenu("PopUp.Copy\\ Absolute\\ Path", "<Cmd>CopyLocAbs<CR>")
+cmd.inoremenu("PopUp.Copy\\ Absolute\\ Path", "<Cmd>CopyLocAbs<CR>")
+cmd.nnoremenu("PopUp.Copy\\ Absolute\\ Path", "<Cmd>CopyLocAbs<CR>")
+cmd.vnoremenu("PopUp.Copy\\ Absolute\\ Path", "<Cmd>CopyLocAbs<CR>")
+
+cmd.anoremenu("PopUp.Copy\\ Relative\\ Path", "<Cmd>CopyLocRel<CR>")
+cmd.inoremenu("PopUp.Copy\\ Relative\\ Path", "<Cmd>CopyLocRel<CR>")
+cmd.nnoremenu("PopUp.Copy\\ Relative\\ Path", "<Cmd>CopyLocRel<CR>")
+cmd.vnoremenu("PopUp.Copy\\ Relative\\ Path", "<Cmd>CopyLocRel<CR>")
+
+cmd.anoremenu("PopUp.-3-", "<Nop>")
+cmd.inoremenu("PopUp.-3-", "<Nop>")
+cmd.nnoremenu("PopUp.-3-", "<Nop>")
+cmd.vnoremenu("PopUp.-3-", "<Nop>")
+
 cmd.anoremenu("PopUp.Quit", "<Cmd>q<CR>")
 cmd.inoremenu("PopUp.Quit", "<Cmd>q<CR>")
 cmd.nnoremenu("PopUp.Quit", "<Cmd>q<CR>")
