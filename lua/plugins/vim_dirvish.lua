@@ -4,7 +4,7 @@ local ac = vim.api.nvim_create_autocmd
 local M = {
   'https://github.com/justinmk/vim-dirvish',
   config = function()
-    vim.g.dirvish_mode = ':sort ,^.*[\\/],'
+    vim.g.dirvish_mode = ':sort i | sort ,^.*[^/]$, ri'
 
     vim.keymap.del('n', '-')
 
