@@ -236,51 +236,6 @@ ac(
 )
 --
 
-do
-  -- [window view topline is not preserved when switching buffers · Issue #26828 · neovim/neovim](https://github.com/neovim/neovim/issues/26828)
-  -- Workaround.
-  -- Adapted from https://github.com/BranimirE/fix-auto-scroll.nvim (license: Apache-2.0).
-  -- To be fixed in nvim 0.11.6 [fix(buffer): switching buffer should respect jumpoptions+=view by zeertzjq · Pull Request #36969 · neovim/neovim](https://github.com/neovim/neovim/pull/36969)
-  if fn.has('nvim-0.11.6') == 0 then
-    local saved_buff_view = {}
-
-    ac('BufEnter', {
-      group = ag_option,
-      pattern = '*',
-      callback = function()
-        local buf = api.nvim_get_current_buf()
-        local win_id = api.nvim_get_current_win()
-
-        if saved_buff_view[win_id] and saved_buff_view[win_id][buf] then
-          local v = fn.winsaveview()
-
-          if v.lnum == 1 and v.col == 0 and not api.nvim_get_option_value('diff', {}) then
-            fn.winrestview(saved_buff_view[win_id][buf])
-          end
-
-          saved_buff_view[win_id][buf] = nil
-        end
-      end
-    })
-
-    ac('BufLeave', {
-      group = ag_option,
-      pattern = '*',
-      callback = function()
-        local buf = api.nvim_get_current_buf()
-        local win_id = api.nvim_get_current_win()
-
-        if not saved_buff_view[win_id] then
-          saved_buff_view[win_id] = {}
-        end
-
-        saved_buff_view[win_id][buf] = fn.winsaveview()
-      end
-    })
-  end
-  --
-end
-
 uc(
   'CopyLocRel',
   function()
