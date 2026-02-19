@@ -30,6 +30,7 @@ local M = {
       ["mpg"]  = args_previewer,
       ["mpeg"] = args_previewer,
       ["mov"]  = args_previewer,
+      ["mp3"]  = args_previewer,
       ["mp4"]  = args_previewer,
       ["zip"]  = args_previewer,
       ["rar"]  = args_previewer,
