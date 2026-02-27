@@ -12,16 +12,24 @@ local M = {
 
     local accel = {
       h = accel_h,
-      l = accel_h,
       j = accel_v,
       k = accel_v,
+      l = accel_h,
+      ['<Left>'] = accel_h,
+      ['<Down>'] = accel_v,
+      ['<Up>'] = accel_v,
+      ['<Right>'] = accel_h,
     }
 
     local chars = {
-      l = "l",
       h = "h",
       j = "gj",
       k = "gk",
+      l = "l",
+      ['<Left>'] = '<Left>',
+      ['<Down>'] = 'g<Down>',
+      ['<Up>'] = 'g<Up>',
+      ['<Right>'] = '<Right>'
     }
 
     local prev_dir
@@ -58,12 +66,20 @@ local M = {
     vim.keymap.set({ "n", "v" }, 'j', function() return move('j') end, { expr = true })
     vim.keymap.set({ "n", "v" }, 'k', function() return move('k') end, { expr = true })
     vim.keymap.set({ "n", "v" }, 'l', function() return move('l') end, { expr = true })
+    vim.keymap.set({ "n", "v" }, '<Left>', function() return move('<Left>') end, { expr = true })
+    vim.keymap.set({ "n", "v" }, '<Down>', function() return move('<Down>') end, { expr = true })
+    vim.keymap.set({ "n", "v" }, '<Up>', function() return move('<Up>') end, { expr = true })
+    vim.keymap.set({ "n", "v" }, '<Right>', function() return move('<Right>') end, { expr = true })
   end,
   keys = {
-    { "h", mode = { "n", "v" } },
-    { "j", mode = { "n", "v" } },
-    { "k", mode = { "n", "v" } },
-    { "l", mode = { "n", "v" } },
+    { "h",       mode = { "n", "v" } },
+    { "j",       mode = { "n", "v" } },
+    { "k",       mode = { "n", "v" } },
+    { "l",       mode = { "n", "v" } },
+    { "<Left>",  mode = { "n", "v" } },
+    { "<Down>",  mode = { "n", "v" } },
+    { "<Up>",    mode = { "n", "v" } },
+    { "<Right>", mode = { "n", "v" } },
   },
 }
 
