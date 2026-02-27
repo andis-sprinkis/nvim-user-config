@@ -632,7 +632,7 @@ do
   -- Accelerates movement of h, j, k, l and arrow keys.
   -- Adapted from https://github.com/xiyaowong/fast-cursor-move.nvim (license: MIT).
 
-  local key_accel = { 3, 30, 60, 90, 120, 160, 190 }
+  local key_accel = { 2, 30, 60, 90, 120, 160, 190 }
 
   local prev_key
   local prev_time = 0
