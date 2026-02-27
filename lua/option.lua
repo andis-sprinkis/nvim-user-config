@@ -660,7 +660,6 @@ do
     end
 
     return #key_accel .. key
-    --
   end
 
   km({ "n", "v" }, 'h', function() return mv('h') end, { expr = true })
@@ -671,6 +670,7 @@ do
   km({ "n", "v" }, '<Down>', function() return mv('<Down>') end, { expr = true })
   km({ "n", "v" }, '<Up>', function() return mv('<Up>') end, { expr = true })
   km({ "n", "v" }, '<Right>', function() return mv('<Right>') end, { expr = true })
+  --
 end
 
 if g.neoray == 1 then
