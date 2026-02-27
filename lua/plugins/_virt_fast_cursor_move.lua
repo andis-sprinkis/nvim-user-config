@@ -48,9 +48,7 @@ local M = {
       local key_accel = accel[dir]
 
       for idx, count in ipairs(key_accel) do
-        if move_count < count then
-          return idx .. chars[dir]
-        end
+        if move_count < count then return idx .. chars[dir] end
       end
 
       return #key_accel .. chars[dir]
