@@ -8,7 +8,7 @@ local M = {
     local fn = vim.fn
     local km = vim.keymap.set
 
-    local key_accel = { 3, 24, 30, 50, 90, 130, 160 }
+    local key_accel = { 3, 30, 60, 90, 120, 160, 190 }
 
     local prev_key
     local prev_time = 0
