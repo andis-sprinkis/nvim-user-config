@@ -2,7 +2,7 @@ local M = {
   "_virt_fast_cursor_move",
   virtual = true,
   config = function()
-    -- Accelerates movement of h, j, k, l keys
+    -- Accelerates movement of h, j, k, l and arrow keys
     -- Adapted from https://github.com/xiyaowong/fast-cursor-move.nvim (license: MIT).
 
     local fn = vim.fn
