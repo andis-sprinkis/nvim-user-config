@@ -8,15 +8,15 @@ local M = {
     local fn = vim.fn
     local km = vim.keymap.set
 
-    local key_accel = { 4, 12, 24, 48, 96, 156, 192 }
+    local key_accel = { 2, 16, 28, 56, 96, 156, 192 }
 
     local prev_key
     local prev_time = 0
     local move_count = 0
 
-    local function mv(key, key_remap)
+    local function mv(key)
       if fn.reg_recording() ~= "" or fn.reg_executing() ~= "" or vim.v.count > 0 then
-        return key_remap
+        return key
       end
 
       if key == prev_key then
@@ -32,20 +32,20 @@ local M = {
       end
 
       for idx, count in ipairs(key_accel) do
-        if move_count < count then return idx .. key_remap end
+        if move_count < count then return idx .. key end
       end
 
-      return #key_accel .. key_remap
+      return #key_accel .. key
     end
 
-    km({ "n", "v" }, 'h', function() return mv('h', 'h') end, { expr = true })
-    km({ "n", "v" }, 'j', function() return mv('j', 'gj') end, { expr = true })
-    km({ "n", "v" }, 'k', function() return mv('k', 'gk') end, { expr = true })
-    km({ "n", "v" }, 'l', function() return mv('l', 'l') end, { expr = true })
-    km({ "n", "v" }, '<Left>', function() return mv('<Left>', '<Left>') end, { expr = true })
-    km({ "n", "v" }, '<Down>', function() return mv('<Down>', 'g<Down>') end, { expr = true })
-    km({ "n", "v" }, '<Up>', function() return mv('<Up>', 'g<Up>') end, { expr = true })
-    km({ "n", "v" }, '<Right>', function() return mv('<Right>', '<Right>') end, { expr = true })
+    km({ "n", "v" }, 'h', function() return mv('h') end, { expr = true })
+    km({ "n", "v" }, 'j', function() return mv('j') end, { expr = true })
+    km({ "n", "v" }, 'k', function() return mv('k') end, { expr = true })
+    km({ "n", "v" }, 'l', function() return mv('l') end, { expr = true })
+    km({ "n", "v" }, '<Left>', function() return mv('<Left>') end, { expr = true })
+    km({ "n", "v" }, '<Down>', function() return mv('<Down>') end, { expr = true })
+    km({ "n", "v" }, '<Up>', function() return mv('<Up>') end, { expr = true })
+    km({ "n", "v" }, '<Right>', function() return mv('<Right>') end, { expr = true })
   end,
   keys = {
     { "h",       mode = { "n", "v" } },
