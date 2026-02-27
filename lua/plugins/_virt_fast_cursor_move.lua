@@ -22,7 +22,7 @@ local M = {
 
       if key == prev_key then
         local current_time = vim.loop.hrtime()
-        local elapsed_time = (current_time - prev_time) / 1000000
+        local elapsed_time = (current_time - prev_time) / 1e6
 
         prev_time = current_time
         move_count = elapsed_time > 150 and 0 or move_count + 1
