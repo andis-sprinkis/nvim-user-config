@@ -46,6 +46,7 @@ local M = {
     km({ "n", "v" }, '<Down>', function() return mv('<Down>') end, { expr = true })
     km({ "n", "v" }, '<Up>', function() return mv('<Up>') end, { expr = true })
     km({ "n", "v" }, '<Right>', function() return mv('<Right>') end, { expr = true })
+    --
   end,
   keys = {
     { "h",       mode = { "n", "v" } },
