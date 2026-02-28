@@ -11,8 +11,8 @@ local M = {
 
     local fn = vim.fn
 
-    local accel_v = { 5, 15, 45, 60, 90, 120, 160, 190, 220 }
-    local accel_h = { 5, 30, 60, 90, 120, 160, 190, 220, 250 }
+    local accel_v = { 5, 15, 45, 60, 90, 120, 160, 190, 220, 250, 280, 320 }
+    local accel_h = { 5, 30, 60, 90, 120, 160, 190, 220, 250, 280, 320, 350 }
 
     local prev_key
     local prev_time = 0
