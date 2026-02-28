@@ -8,6 +8,7 @@ local M = {
       Gcan = 'G commit --amend --no-edit',
       Gd = 'G diff',
       Gl = 'G log',
+      Gm = 'G merge',
       Gpl = 'G pull',
       Gps = 'G push',
       Gs = 'G status',
