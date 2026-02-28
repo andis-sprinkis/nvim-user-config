@@ -55,12 +55,12 @@ local M = {
     km(kmd, '=', function() return mv('+', key_accel_h) end, kopt)
     km(kmd, '+', '=')
 
-    km(kmd, 'w', function() return mv('w', key_accel_h) end, kopt)
-    km(kmd, 'W', function() return mv('W', key_accel_h) end, kopt)
-    km(kmd, 'e', function() return mv('e', key_accel_h) end, kopt)
-    km(kmd, 'E', function() return mv('E', key_accel_h) end, kopt)
-    km(kmd, 'b', function() return mv('b', key_accel_h) end, kopt)
-    km(kmd, 'B', function() return mv('B', key_accel_h) end, kopt)
+    -- km(kmd, 'w', function() return mv('w', key_accel_h) end, kopt)
+    -- km(kmd, 'W', function() return mv('W', key_accel_h) end, kopt)
+    -- km(kmd, 'e', function() return mv('e', key_accel_h) end, kopt)
+    -- km(kmd, 'E', function() return mv('E', key_accel_h) end, kopt)
+    -- km(kmd, 'b', function() return mv('b', key_accel_h) end, kopt)
+    -- km(kmd, 'B', function() return mv('B', key_accel_h) end, kopt)
     --
   end,
   keys = {
@@ -75,12 +75,12 @@ local M = {
     { "-",       mode = kmd },
     { "=",       mode = kmd },
     { "+",       mode = kmd },
-    { "w",       mode = kmd },
-    { "W",       mode = kmd },
-    { "e",       mode = kmd },
-    { "E",       mode = kmd },
-    { "b",       mode = kmd },
-    { "B",       mode = kmd },
+    -- { "w",       mode = kmd },
+    -- { "W",       mode = kmd },
+    -- { "e",       mode = kmd },
+    -- { "E",       mode = kmd },
+    -- { "b",       mode = kmd },
+    -- { "B",       mode = kmd },
   },
 }
 
