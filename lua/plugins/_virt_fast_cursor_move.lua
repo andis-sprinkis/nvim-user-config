@@ -11,14 +11,14 @@ local M = {
 
     local fn = vim.fn
 
-    local key_accel_v = { 5, 15, 45, 60, 90, 120, 160, 190, 220 }
-    local key_accel_h = { 5, 30, 60, 90, 120, 160, 190, 220, 250 }
+    local accel_v = { 5, 15, 45, 60, 90, 120, 160, 190, 220 }
+    local accel_h = { 5, 30, 60, 90, 120, 160, 190, 220, 250 }
 
     local prev_key
     local prev_time = 0
     local move_count = 0
 
-    local function mv(key, key_accel)
+    local function mv(key, accel)
       if fn.reg_recording() ~= "" or fn.reg_executing() ~= "" or vim.v.count > 0 then
         return key
       end
@@ -33,43 +33,43 @@ local M = {
         prev_key = key
       end
 
-      for idx, count in ipairs(key_accel) do
+      for idx, count in ipairs(accel) do
         if move_count < count then return idx .. key end
       end
 
-      return #key_accel .. key
+      return #accel .. key
     end
 
     local kopt = { expr = true }
 
-    km(kmd, 'h', function() return mv('h', key_accel_h) end, kopt)
-    km(kmd, 'j', function() return mv('j', key_accel_v) end, kopt)
-    km(kmd, 'k', function() return mv('k', key_accel_v) end, kopt)
-    km(kmd, 'l', function() return mv('l', key_accel_h) end, kopt)
+    km(kmd, 'h', function() return mv('h', accel_h) end, kopt)
+    km(kmd, 'j', function() return mv('j', accel_v) end, kopt)
+    km(kmd, 'k', function() return mv('k', accel_v) end, kopt)
+    km(kmd, 'l', function() return mv('l', accel_h) end, kopt)
 
-    km(kmd, '<Left>', function() return mv('<Left>', key_accel_h) end, kopt)
-    km(kmd, '<Down>', function() return mv('<Down>', key_accel_v) end, kopt)
-    km(kmd, '<Up>', function() return mv('<Up>', key_accel_v) end, kopt)
-    km(kmd, '<Right>', function() return mv('<Right>', key_accel_h) end, kopt)
+    km(kmd, '<Left>', function() return mv('<Left>', accel_h) end, kopt)
+    km(kmd, '<Down>', function() return mv('<Down>', accel_v) end, kopt)
+    km(kmd, '<Up>', function() return mv('<Up>', accel_v) end, kopt)
+    km(kmd, '<Right>', function() return mv('<Right>', accel_h) end, kopt)
 
-    km(kmd, '-', function() return mv('-', key_accel_h) end, kopt)
-    km(kmd, '=', function() return mv('+', key_accel_h) end, kopt)
+    km(kmd, '-', function() return mv('-', accel_h) end, kopt)
+    km(kmd, '=', function() return mv('+', accel_h) end, kopt)
     km(kmd, '+', '=')
 
     -- km(kmd, 'w', function() return mv("w", key_accel_h) end, kopt)
-    km(kmd, 'w', function() return mv("<cmd>lua require('spider').motion('w')<CR>", key_accel_h) end, kopt)
+    km(kmd, 'w', function() return mv("<cmd>lua require('spider').motion('w')<CR>", accel_h) end, kopt)
 
-    km(kmd, 'W', function() return mv('W', key_accel_h) end, kopt)
+    km(kmd, 'W', function() return mv('W', accel_h) end, kopt)
 
     -- km(kmd, 'e', function() return mv('e', key_accel_h) end, kopt)
-    km(kmd, 'e', function() return mv("<cmd>lua require('spider').motion('e')<CR>", key_accel_h) end, kopt)
+    km(kmd, 'e', function() return mv("<cmd>lua require('spider').motion('e')<CR>", accel_h) end, kopt)
 
-    km(kmd, 'E', function() return mv('E', key_accel_h) end, kopt)
+    km(kmd, 'E', function() return mv('E', accel_h) end, kopt)
 
     -- km(kmd, 'b', function() return mv('b', key_accel_h) end, kopt)
-    km(kmd, 'b', function() return mv("<cmd>lua require('spider').motion('b')<CR>", key_accel_h) end, kopt)
+    km(kmd, 'b', function() return mv("<cmd>lua require('spider').motion('b')<CR>", accel_h) end, kopt)
 
-    km(kmd, 'B', function() return mv('B', key_accel_h) end, kopt)
+    km(kmd, 'B', function() return mv('B', accel_h) end, kopt)
     --
   end,
   keys = {
