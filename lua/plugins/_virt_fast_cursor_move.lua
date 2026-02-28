@@ -8,7 +8,7 @@ local M = {
     local fn = vim.fn
     local km = vim.keymap.set
 
-    local key_accel_v = { 3, 15, 45, 60, 90, 120, 160, 190, 240 }
+    local key_accel_v = { 5, 15, 45, 60, 90, 120, 160, 190, 240 }
     local key_accel_h = { 5, 30, 60, 90, 120, 160, 190, 240, 280 }
 
     local prev_key
@@ -22,8 +22,8 @@ local M = {
 
       if key == prev_key then
         local current_time = vim.loop.hrtime()
+        move_count = (current_time - prev_time) / 1e6 > 300 and 0 or move_count + 1
         prev_time = current_time
-        move_count = (current_time - prev_time) / 1e6 > 150 and 0 or move_count + 1
       else
         prev_time = 0
         move_count = 0
@@ -41,13 +41,22 @@ local M = {
     km({ "n", "v" }, 'j', function() return mv('j', key_accel_v) end, { expr = true })
     km({ "n", "v" }, 'k', function() return mv('k', key_accel_v) end, { expr = true })
     km({ "n", "v" }, 'l', function() return mv('l', key_accel_h) end, { expr = true })
+
     km({ "n", "v" }, '<Left>', function() return mv('<Left>', key_accel_h) end, { expr = true })
     km({ "n", "v" }, '<Down>', function() return mv('<Down>', key_accel_v) end, { expr = true })
     km({ "n", "v" }, '<Up>', function() return mv('<Up>', key_accel_v) end, { expr = true })
     km({ "n", "v" }, '<Right>', function() return mv('<Right>', key_accel_h) end, { expr = true })
+
     km({ "n", "v" }, '-', function() return mv('-', key_accel_h) end, { expr = true })
     km({ "n", "v" }, '=', function() return mv('+', key_accel_h) end, { expr = true })
     km({ 'n', 'v' }, '+', '=')
+
+    km({ "n", "v" }, 'w', function() return mv('w', key_accel_h) end, { expr = true })
+    km({ "n", "v" }, 'W', function() return mv('W', key_accel_h) end, { expr = true })
+    km({ "n", "v" }, 'e', function() return mv('e', key_accel_h) end, { expr = true })
+    km({ "n", "v" }, 'E', function() return mv('E', key_accel_h) end, { expr = true })
+    km({ "n", "v" }, 'b', function() return mv('b', key_accel_h) end, { expr = true })
+    km({ "n", "v" }, 'B', function() return mv('B', key_accel_h) end, { expr = true })
     --
   end,
   keys = {
