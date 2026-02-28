@@ -8,8 +8,8 @@ local M = {
     local fn = vim.fn
     local km = vim.keymap.set
 
-    local key_accel_v = { 5, 15, 45, 60, 90, 120, 160, 190, 240 }
-    local key_accel_h = { 5, 30, 60, 90, 120, 160, 190, 240, 280 }
+    local key_accel_v = { 5, 15, 45, 60, 90, 120, 160, 190, 220 }
+    local key_accel_h = { 5, 30, 60, 90, 120, 160, 190, 220, 250 }
 
     local prev_key
     local prev_time = 0
