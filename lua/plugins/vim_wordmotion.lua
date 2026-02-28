@@ -1,6 +1,7 @@
 local M = {
   'https://github.com/chaoren/vim-wordmotion',
-  event = 'VeryLazy'
+  event = 'VeryLazy',
+  enabled = false
 }
 
 return M
