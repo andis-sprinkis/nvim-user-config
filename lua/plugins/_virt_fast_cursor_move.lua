@@ -8,23 +8,22 @@ local M = {
     local fn = vim.fn
     local km = vim.keymap.set
 
-    local key_accel = { 2, 30, 60, 90, 120, 160, 190 }
+    local key_accel_v = { 2, 15, 45, 60, 90, 120, 160, 190, 240 }
+    local key_accel_h = { 5, 30, 60, 90, 120, 160, 190, 240, 280 }
 
     local prev_key
     local prev_time = 0
     local move_count = 0
 
-    local function mv(key)
+    local function mv(key, key_accel)
       if fn.reg_recording() ~= "" or fn.reg_executing() ~= "" or vim.v.count > 0 then
         return key
       end
 
       if key == prev_key then
         local current_time = vim.loop.hrtime()
-        local elapsed_time = (current_time - prev_time) / 1e6
-
         prev_time = current_time
-        move_count = elapsed_time > 150 and 0 or move_count + 1
+        move_count = (current_time - prev_time) / 1e6 > 150 and 0 or move_count + 1
       else
         prev_time = 0
         move_count = 0
@@ -38,14 +37,14 @@ local M = {
       return #key_accel .. key
     end
 
-    km({ "n", "v" }, 'h', function() return mv('h') end, { expr = true })
-    km({ "n", "v" }, 'j', function() return mv('j') end, { expr = true })
-    km({ "n", "v" }, 'k', function() return mv('k') end, { expr = true })
-    km({ "n", "v" }, 'l', function() return mv('l') end, { expr = true })
-    km({ "n", "v" }, '<Left>', function() return mv('<Left>') end, { expr = true })
-    km({ "n", "v" }, '<Down>', function() return mv('<Down>') end, { expr = true })
-    km({ "n", "v" }, '<Up>', function() return mv('<Up>') end, { expr = true })
-    km({ "n", "v" }, '<Right>', function() return mv('<Right>') end, { expr = true })
+    km({ "n", "v" }, 'h', function() return mv('h', key_accel_h) end, { expr = true })
+    km({ "n", "v" }, 'j', function() return mv('j', key_accel_v) end, { expr = true })
+    km({ "n", "v" }, 'k', function() return mv('k', key_accel_v) end, { expr = true })
+    km({ "n", "v" }, 'l', function() return mv('l', key_accel_h) end, { expr = true })
+    km({ "n", "v" }, '<Left>', function() return mv('<Left>', key_accel_h) end, { expr = true })
+    km({ "n", "v" }, '<Down>', function() return mv('<Down>', key_accel_v) end, { expr = true })
+    km({ "n", "v" }, '<Up>', function() return mv('<Up>', key_accel_v) end, { expr = true })
+    km({ "n", "v" }, '<Right>', function() return mv('<Right>', key_accel_h) end, { expr = true })
     --
   end,
   keys = {
