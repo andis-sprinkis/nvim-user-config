@@ -77,8 +77,8 @@ cmd [[
   autocmd! nvim.popupmenu
 ]]
 
-km({ 'n', 'v' }, '=', '+')
-km({ 'n', 'v' }, '+', '=')
+-- km({ 'n', 'v' }, '=', '+')
+-- km({ 'n', 'v' }, '+', '=')
 km('t', '<C-w>', '<C-\\><C-n>', { desc = "Return to normal mode in terminal buffer (user)" })
 km({ 'n', 'v' }, '/', '/\\c', { desc = "Search forward (user)" })
 km({ 'n', 'v' }, '?', '?\\c', { desc = "Search backward (user)" })

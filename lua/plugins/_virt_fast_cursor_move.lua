@@ -8,7 +8,7 @@ local M = {
     local fn = vim.fn
     local km = vim.keymap.set
 
-    local key_accel_v = { 2, 15, 45, 60, 90, 120, 160, 190, 240 }
+    local key_accel_v = { 3, 15, 45, 60, 90, 120, 160, 190, 240 }
     local key_accel_h = { 5, 30, 60, 90, 120, 160, 190, 240, 280 }
 
     local prev_key
@@ -45,6 +45,9 @@ local M = {
     km({ "n", "v" }, '<Down>', function() return mv('<Down>', key_accel_v) end, { expr = true })
     km({ "n", "v" }, '<Up>', function() return mv('<Up>', key_accel_v) end, { expr = true })
     km({ "n", "v" }, '<Right>', function() return mv('<Right>', key_accel_h) end, { expr = true })
+    km({ "n", "v" }, '-', function() return mv('-', key_accel_h) end, { expr = true })
+    km({ "n", "v" }, '=', function() return mv('+', key_accel_h) end, { expr = true })
+    km({ 'n', 'v' }, '+', '=')
     --
   end,
   keys = {
