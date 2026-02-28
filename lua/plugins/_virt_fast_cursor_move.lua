@@ -1,3 +1,5 @@
+local kmd = { "n", "v" }
+
 local M = {
   "_virt_fast_cursor_move",
   virtual = true,
@@ -22,7 +24,7 @@ local M = {
 
       if key == prev_key then
         local current_time = vim.loop.hrtime()
-        move_count = (current_time - prev_time) / 1e6 > 300 and 0 or move_count + 1
+        move_count = (current_time - prev_time) / 1e6 > 150 and 0 or move_count + 1
         prev_time = current_time
       else
         prev_time = 0
@@ -37,37 +39,48 @@ local M = {
       return #key_accel .. key
     end
 
-    km({ "n", "v" }, 'h', function() return mv('h', key_accel_h) end, { expr = true })
-    km({ "n", "v" }, 'j', function() return mv('j', key_accel_v) end, { expr = true })
-    km({ "n", "v" }, 'k', function() return mv('k', key_accel_v) end, { expr = true })
-    km({ "n", "v" }, 'l', function() return mv('l', key_accel_h) end, { expr = true })
+    local kopt = { expr = true }
 
-    km({ "n", "v" }, '<Left>', function() return mv('<Left>', key_accel_h) end, { expr = true })
-    km({ "n", "v" }, '<Down>', function() return mv('<Down>', key_accel_v) end, { expr = true })
-    km({ "n", "v" }, '<Up>', function() return mv('<Up>', key_accel_v) end, { expr = true })
-    km({ "n", "v" }, '<Right>', function() return mv('<Right>', key_accel_h) end, { expr = true })
+    km(kmd, 'h', function() return mv('h', key_accel_h) end, kopt)
+    km(kmd, 'j', function() return mv('j', key_accel_v) end, kopt)
+    km(kmd, 'k', function() return mv('k', key_accel_v) end, kopt)
+    km(kmd, 'l', function() return mv('l', key_accel_h) end, kopt)
 
-    km({ "n", "v" }, '-', function() return mv('-', key_accel_h) end, { expr = true })
-    km({ "n", "v" }, '=', function() return mv('+', key_accel_h) end, { expr = true })
-    km({ 'n', 'v' }, '+', '=')
+    km(kmd, '<Left>', function() return mv('<Left>', key_accel_h) end, kopt)
+    km(kmd, '<Down>', function() return mv('<Down>', key_accel_v) end, kopt)
+    km(kmd, '<Up>', function() return mv('<Up>', key_accel_v) end, kopt)
+    km(kmd, '<Right>', function() return mv('<Right>', key_accel_h) end, kopt)
 
-    km({ "n", "v" }, 'w', function() return mv('w', key_accel_h) end, { expr = true })
-    km({ "n", "v" }, 'W', function() return mv('W', key_accel_h) end, { expr = true })
-    km({ "n", "v" }, 'e', function() return mv('e', key_accel_h) end, { expr = true })
-    km({ "n", "v" }, 'E', function() return mv('E', key_accel_h) end, { expr = true })
-    km({ "n", "v" }, 'b', function() return mv('b', key_accel_h) end, { expr = true })
-    km({ "n", "v" }, 'B', function() return mv('B', key_accel_h) end, { expr = true })
+    km(kmd, '-', function() return mv('-', key_accel_h) end, kopt)
+    km(kmd, '=', function() return mv('+', key_accel_h) end, kopt)
+    km(kmd, '+', '=')
+
+    km(kmd, 'w', function() return mv('w', key_accel_h) end, kopt)
+    km(kmd, 'W', function() return mv('W', key_accel_h) end, kopt)
+    km(kmd, 'e', function() return mv('e', key_accel_h) end, kopt)
+    km(kmd, 'E', function() return mv('E', key_accel_h) end, kopt)
+    km(kmd, 'b', function() return mv('b', key_accel_h) end, kopt)
+    km(kmd, 'B', function() return mv('B', key_accel_h) end, kopt)
     --
   end,
   keys = {
-    { "h",       mode = { "n", "v" } },
-    { "j",       mode = { "n", "v" } },
-    { "k",       mode = { "n", "v" } },
-    { "l",       mode = { "n", "v" } },
-    { "<Left>",  mode = { "n", "v" } },
-    { "<Down>",  mode = { "n", "v" } },
-    { "<Up>",    mode = { "n", "v" } },
-    { "<Right>", mode = { "n", "v" } },
+    { "h",       mode = kmd },
+    { "j",       mode = kmd },
+    { "k",       mode = kmd },
+    { "l",       mode = kmd },
+    { "<Left>",  mode = kmd },
+    { "<Down>",  mode = kmd },
+    { "<Up>",    mode = kmd },
+    { "<Right>", mode = kmd },
+    { "-",       mode = kmd },
+    { "=",       mode = kmd },
+    { "+",       mode = kmd },
+    { "w",       mode = kmd },
+    { "W",       mode = kmd },
+    { "e",       mode = kmd },
+    { "E",       mode = kmd },
+    { "b",       mode = kmd },
+    { "B",       mode = kmd },
   },
 }
 
