@@ -106,3 +106,11 @@ require("lazy").setup({
     },
   }
 })
+
+
+vim.keymap.set(
+  'ca',
+  'L',
+  function() return (vim.fn.getcmdtype() == ':' and vim.fn.getcmdline() == 'L') and 'Lazy' or 'L' end,
+  { expr = true }
+)

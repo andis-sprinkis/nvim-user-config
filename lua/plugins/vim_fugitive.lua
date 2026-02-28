@@ -1,24 +1,27 @@
 local M = {
   'https://github.com/tpope/vim-fugitive',
   config = function()
-    local uc = vim.api.nvim_create_user_command
+    local cmd_alias = {
+      Gc = 'G commit',
+      Gcm = 'G commit -m',
+      Gca = 'G commit --amend',
+      Gcan = 'G commit --amend --no-edit',
+      Gd = 'G diff',
+      Gl = 'G log',
+      Gpl = 'G pull',
+      Gps = 'G push',
+      Gs = 'G status',
+      Gt = 'G checkout',
+    }
 
-    local ucmd = function(cmd)
-      return function(opt_ucmd) vim.cmd(cmd .. ' ' .. opt_ucmd.args) end
+    for alias, fcmd in pairs(cmd_alias) do
+      vim.keymap.set(
+        'ca',
+        alias,
+        function() return (vim.fn.getcmdtype() == ':' and vim.fn.getcmdline() == alias) and fcmd or alias end,
+        { expr = true }
+      )
     end
-
-    local opt_cmd = { nargs = '?' }
-
-    uc('Gc', ucmd 'G commit', opt_cmd)
-    uc('Gcm', ucmd 'G commit -m', opt_cmd)
-    uc('Gca', ucmd('G commit --amend'), opt_cmd)
-    uc('Gcan', ucmd('G commit --amend --no-edit'), opt_cmd)
-    uc('Gd', ucmd('G diff'), opt_cmd)
-    uc('Gl', ucmd('G log'), opt_cmd)
-    uc('Gpl', ucmd('G pull'), opt_cmd)
-    uc('Gps', ucmd('G push'), opt_cmd)
-    uc('Gs', ucmd('G status'), opt_cmd)
-    uc('Gt', ucmd('G checkout'), opt_cmd)
   end,
   event = { "CmdlineEnter" }
 }

@@ -259,3 +259,18 @@ uc(
   end,
   {}
 )
+
+local cmd_alias = {
+  H = 'help',
+  man = 'Man',
+  M = 'Man',
+}
+
+for alias, fcmd in pairs(cmd_alias) do
+  vim.keymap.set(
+    'ca',
+    alias,
+    function() return (vim.fn.getcmdtype() == ':' and vim.fn.getcmdline() == alias) and fcmd or alias end,
+    { expr = true }
+  )
+end
