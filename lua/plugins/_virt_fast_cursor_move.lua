@@ -57,17 +57,17 @@ local M = {
     km(kmd, '=', function() return mv('+', accel_h) end, kopt)
     km(kmd, '+', '=')
 
-    -- km(kmd, 'w', function() return mv("w", key_accel_h) end, kopt)
+    -- km(kmd, 'w', function() return mv("w", accel_h) end, kopt)
     km(kmd, 'w', function() return mv("<cmd>lua require('spider').motion('w')<CR>", accel_h) end, kopt)
 
     km(kmd, 'W', function() return mv('W', accel_h) end, kopt)
 
-    -- km(kmd, 'e', function() return mv('e', key_accel_h) end, kopt)
+    -- km(kmd, 'e', function() return mv('e', accel_h) end, kopt)
     km(kmd, 'e', function() return mv("<cmd>lua require('spider').motion('e')<CR>", accel_h) end, kopt)
 
     km(kmd, 'E', function() return mv('E', accel_h) end, kopt)
 
-    -- km(kmd, 'b', function() return mv('b', key_accel_h) end, kopt)
+    -- km(kmd, 'b', function() return mv('b', accel_h) end, kopt)
     km(kmd, 'b', function() return mv("<cmd>lua require('spider').motion('b')<CR>", accel_h) end, kopt)
 
     km(kmd, 'B', function() return mv('B', accel_h) end, kopt)
