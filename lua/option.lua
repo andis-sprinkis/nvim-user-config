@@ -90,8 +90,8 @@ cmd [[
   autocmd! nvim.popupmenu
 ]]
 
-km({ 'n', 'v' }, '=', '+')
-km({ 'n', 'v' }, '+', '=')
+-- km({ 'n', 'v' }, '=', '+')
+-- km({ 'n', 'v' }, '+', '=')
 km('t', '<C-w>', '<C-\\><C-n>')
 km('n', '<leader>-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>')
 km('n', '<leader>b', ":set nomore <Bar> :ls <Bar> :set more <CR>:b<Space>", { silent = true })
@@ -629,47 +629,68 @@ do
 end
 
 do
-  -- Accelerates movement of h, j, k, l and arrow keys.
+  -- Accelerates movement of h, j, k, l, arrows and word-motion keys keys.
   -- Adapted from https://github.com/xiyaowong/fast-cursor-move.nvim (license: MIT).
 
-  local key_accel = { 2, 30, 60, 90, 120, 160, 190 }
+  local accel_v = { 5, 15, 45, 60, 90, 120, 160, 190, 220 }
+  local accel_h = { 5, 30, 60, 90, 120, 160, 190, 220, 250 }
 
   local prev_key
   local prev_time = 0
   local move_count = 0
 
-  local function mv(key)
+  local function mv(key, accel)
     if fn.reg_recording() ~= "" or fn.reg_executing() ~= "" or vim.v.count > 0 then
       return key
     end
 
     if key == prev_key then
       local current_time = vim.loop.hrtime()
-      local elapsed_time = (current_time - prev_time) / 1e6
-
+      move_count = (current_time - prev_time) / 1e6 > 150 and 0 or move_count + 1
       prev_time = current_time
-      move_count = elapsed_time > 150 and 0 or move_count + 1
     else
       prev_time = 0
       move_count = 0
       prev_key = key
     end
 
-    for idx, count in ipairs(key_accel) do
+    for idx, count in ipairs(accel) do
       if move_count < count then return idx .. key end
     end
 
-    return #key_accel .. key
+    return #accel .. key
   end
 
-  km({ "n", "v" }, 'h', function() return mv('h') end, { expr = true })
-  km({ "n", "v" }, 'j', function() return mv('j') end, { expr = true })
-  km({ "n", "v" }, 'k', function() return mv('k') end, { expr = true })
-  km({ "n", "v" }, 'l', function() return mv('l') end, { expr = true })
-  km({ "n", "v" }, '<Left>', function() return mv('<Left>') end, { expr = true })
-  km({ "n", "v" }, '<Down>', function() return mv('<Down>') end, { expr = true })
-  km({ "n", "v" }, '<Up>', function() return mv('<Up>') end, { expr = true })
-  km({ "n", "v" }, '<Right>', function() return mv('<Right>') end, { expr = true })
+  local kopt = { expr = true }
+
+  local kmd = { "n", "o", "x" }
+
+  km(kmd, 'h', function() return mv('h', accel_h) end, kopt)
+  km(kmd, 'j', function() return mv('j', accel_v) end, kopt)
+  km(kmd, 'k', function() return mv('k', accel_v) end, kopt)
+  km(kmd, 'l', function() return mv('l', accel_h) end, kopt)
+
+  km(kmd, '<Left>', function() return mv('<Left>', accel_h) end, kopt)
+  km(kmd, '<Down>', function() return mv('<Down>', accel_v) end, kopt)
+  km(kmd, '<Up>', function() return mv('<Up>', accel_v) end, kopt)
+  km(kmd, '<Right>', function() return mv('<Right>', accel_h) end, kopt)
+
+  km(kmd, '-', function() return mv('-', accel_h) end, kopt)
+
+  km(kmd, '=', function() return mv('+', accel_h) end, kopt)
+  km(kmd, '+', '=')
+
+  km(kmd, 'w', function() return mv("w", accel_h) end, kopt)
+
+  km(kmd, 'W', function() return mv('W', accel_h) end, kopt)
+
+  km(kmd, 'e', function() return mv('e', accel_h) end, kopt)
+
+  km(kmd, 'E', function() return mv('E', accel_h) end, kopt)
+
+  km(kmd, 'b', function() return mv('b', accel_h) end, kopt)
+
+  km(kmd, 'B', function() return mv('B', accel_h) end, kopt)
   --
 end
 
