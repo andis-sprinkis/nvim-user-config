@@ -53,6 +53,7 @@ local M = {
     km(kmd, '<Right>', function() return mv('<Right>', accel_h) end, kopt)
 
     km(kmd, '-', function() return mv('-', accel_h) end, kopt)
+
     km(kmd, '=', function() return mv('+', accel_h) end, kopt)
     km(kmd, '+', '=')
 
