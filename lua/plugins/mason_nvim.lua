@@ -1,18 +1,19 @@
 local sys_reqr = vim.g.sys_reqr
+local lsp = vim.lsp
 
 local M = {
   'https://github.com/mason-org/mason.nvim',
   enabled = sys_reqr.lsp_plugins,
+  init = function()
+    vim.lsp.set_log_level("OFF")
+  end,
   config = function()
     local diagnostic = vim.diagnostic
-    local lsp = vim.lsp
     local lspbuf = lsp.buf
     local b = vim.b
     local bo = vim.bo
     local api = vim.api
     local km = vim.keymap.set
-
-    lsp.set_log_level("OFF")
 
     diagnostic.config({
       -- virtual_text = true,
