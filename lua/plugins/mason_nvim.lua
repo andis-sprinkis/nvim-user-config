@@ -12,6 +12,8 @@ local M = {
     local api = vim.api
     local km = vim.keymap.set
 
+    lsp.set_log_level("OFF")
+
     diagnostic.config({
       -- virtual_text = true,
       virtual_lines = {
