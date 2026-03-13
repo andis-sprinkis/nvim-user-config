@@ -159,10 +159,13 @@ ac(
   }
 )
 
-ac("FileType", {
-  pattern = { "help", "man" },
-  command = "wincmd L",
-})
+ac(
+  "FileType",
+  {
+    pattern = { "help", "man" },
+    command = "wincmd L",
+  }
+)
 
 ac(
   'FileType',
@@ -216,7 +219,7 @@ ac(
 )
 
 ac(
-  { 'BufEnter' },
+  'BufEnter',
   {
     callback = function()
       optl.ro = false
