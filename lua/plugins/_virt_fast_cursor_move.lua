@@ -96,6 +96,9 @@ local M = {
     "https://github.com/chrisgrieser/nvim-spider",
     config = function()
       km(kmd, "ge", "<cmd>lua require('spider').motion('ge')<CR>")
+      require("spider").setup {
+        skipInsignificantPunctuation = false,
+      }
     end
   }
 }
