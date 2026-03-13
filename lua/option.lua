@@ -198,16 +198,6 @@ ac(
 )
 
 ac(
-  { 'BufEnter' },
-  {
-    callback = function()
-      optl.ro = false
-    end,
-    group = ag_option,
-  }
-)
-
-ac(
   { 'BufReadPre', 'BufWritePost', 'FileChangedShell' },
   {
     callback = function()
@@ -220,6 +210,16 @@ ac(
       end
 
       b.largef = false
+    end,
+    group = ag_option,
+  }
+)
+
+ac(
+  { 'BufEnter' },
+  {
+    callback = function()
+      optl.ro = false
     end,
     group = ag_option,
   }
