@@ -191,10 +191,13 @@ ac(
   }
 )
 
-ac("FileType", {
-  pattern = { "help", "man" },
-  command = "wincmd L",
-})
+ac(
+  "FileType",
+  {
+    pattern = { "help", "man" },
+    command = "wincmd L",
+  }
+)
 
 ac(
   'FileType',
@@ -678,32 +681,32 @@ do
 
   local kmd = { "n", "o", "x" }
 
-    km(kmd, 'h', function() return mv('h', accel_h) end, kopt)
-    km(kmd, 'j', function() return mv('j', accel_v) end, kopt)
-    km(kmd, 'k', function() return mv('k', accel_v) end, kopt)
-    km(kmd, 'l', function() return mv('l', accel_h) end, kopt)
+  km(kmd, 'h', function() return mv('h', accel_h) end, kopt)
+  km(kmd, 'j', function() return mv('j', accel_v) end, kopt)
+  km(kmd, 'k', function() return mv('k', accel_v) end, kopt)
+  km(kmd, 'l', function() return mv('l', accel_h) end, kopt)
 
-    km(kmd, '<Left>', function() return mv('<Left>', accel_h) end, kopt)
-    km(kmd, '<Down>', function() return mv('<Down>', accel_v) end, kopt)
-    km(kmd, '<Up>', function() return mv('<Up>', accel_v) end, kopt)
-    km(kmd, '<Right>', function() return mv('<Right>', accel_h) end, kopt)
+  km(kmd, '<Left>', function() return mv('<Left>', accel_h) end, kopt)
+  km(kmd, '<Down>', function() return mv('<Down>', accel_v) end, kopt)
+  km(kmd, '<Up>', function() return mv('<Up>', accel_v) end, kopt)
+  km(kmd, '<Right>', function() return mv('<Right>', accel_h) end, kopt)
 
-    km(kmd, '-', function() return mv('-', accel_h) end, kopt)
+  km(kmd, '-', function() return mv('-', accel_h) end, kopt)
 
-    km(kmd, '=', function() return mv('+', accel_h) end, kopt)
-    km(kmd, '+', '=')
+  km(kmd, '=', function() return mv('+', accel_h) end, kopt)
+  km(kmd, '+', '=')
 
-    km(kmd, 'w', function() return mv("w", accel_h) end, kopt)
+  km(kmd, 'w', function() return mv("w", accel_h) end, kopt)
 
-    km(kmd, 'W', function() return mv('W', accel_h) end, kopt)
+  km(kmd, 'W', function() return mv('W', accel_h) end, kopt)
 
-    km(kmd, 'e', function() return mv('e', accel_h) end, kopt)
+  km(kmd, 'e', function() return mv('e', accel_h) end, kopt)
 
-    km(kmd, 'E', function() return mv('E', accel_h) end, kopt)
+  km(kmd, 'E', function() return mv('E', accel_h) end, kopt)
 
-    km(kmd, 'b', function() return mv('b', accel_h) end, kopt)
+  km(kmd, 'b', function() return mv('b', accel_h) end, kopt)
 
-    km(kmd, 'B', function() return mv('B', accel_h) end, kopt)
+  km(kmd, 'B', function() return mv('B', accel_h) end, kopt)
   --
 end
 
