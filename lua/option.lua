@@ -275,7 +275,7 @@ uc(
       return
     end
 
-    cmd.e(cmd_scrap_path_output)
+    cmd.e(fn.trim(cmd_scrap_path_output))
   end,
   {}
 )
