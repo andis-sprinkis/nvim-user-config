@@ -289,6 +289,7 @@ uc(
 )
 
 for alias, fcmd in pairs({
+  C = 'Config',
   H = 'help',
   M = 'Man',
   S = 'Scrap',
