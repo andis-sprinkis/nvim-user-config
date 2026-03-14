@@ -657,10 +657,7 @@ do
 end
 
 do
-  -- Accelerates movement of h, j, k, l, arrows and word-motion keys keys.
-  -- Adapted from https://github.com/xiyaowong/fast-cursor-move.nvim (license: MIT).
-
-  -- Accelerates movement of h, j, k, l, arrows and word-motion keys keys.
+  -- Accelerates movement of h, j, k, l, arrow and word-motion keys.
   -- Adapted from https://github.com/xiyaowong/fast-cursor-move.nvim (license: MIT).
 
   local accel_v = { 5, 15, 45, 60, 90, 120, 160, 190, 220, 250, 280, 320 }
