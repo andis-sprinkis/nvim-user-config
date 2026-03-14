@@ -343,6 +343,21 @@ uc(
 )
 
 uc(
+  'Scrap',
+  function()
+    local cmd_scrap_path_output = fn.system({ 'scrap', 'path' })
+
+    if (vim.v.shell_error ~= 0) then
+      vim.notify('Failed to get the scrap note file path', vim.log.levels.ERROR)
+      return
+    end
+
+    cmd.e(cmd_scrap_path_output)
+  end,
+  {}
+)
+
+uc(
   'Config',
   function()
     vim.cmd.edit(vim.fn.stdpath("config"))
@@ -708,6 +723,22 @@ do
 
   km(kmd, 'B', function() return mv('B', accel_h) end, kopt)
   --
+end
+
+local cmd_alias = {
+  H = 'help',
+  man = 'Man',
+  M = 'Man',
+  scrap = 'Scrap'
+}
+
+for alias, fcmd in pairs(cmd_alias) do
+  vim.keymap.set(
+    'ca',
+    alias,
+    function() return (vim.fn.getcmdtype() == ':' and vim.fn.getcmdline() == alias) and fcmd or alias end,
+    { expr = true }
+  )
 end
 
 if g.neoray == 1 then
