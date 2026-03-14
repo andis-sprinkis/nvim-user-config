@@ -290,9 +290,10 @@ uc(
 
 for alias, fcmd in pairs({
   H = 'help',
-  man = 'Man',
   M = 'Man',
-  scrap = 'Scrap'
+  S = 'Scrap',
+  man = 'Man',
+  scrap = 'Scrap',
 }) do
   km(
     'ca',
