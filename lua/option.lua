@@ -725,15 +725,13 @@ do
   --
 end
 
-local cmd_alias = {
+for alias, fcmd in pairs({
   H = 'help',
   man = 'Man',
   M = 'Man',
   scrap = 'Scrap'
-}
-
-for alias, fcmd in pairs(cmd_alias) do
-  vim.keymap.set(
+}) do
+  km(
     'ca',
     alias,
     function() return (vim.fn.getcmdtype() == ':' and vim.fn.getcmdline() == alias) and fcmd or alias end,
