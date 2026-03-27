@@ -589,7 +589,7 @@ do
 
     local function open_variant(variant, is_fp, with_vim_ui_open)
       if is_fp then
-        variant = fn.resolve(fn.expand(variant))
+        variant = fn.resolve(variant)
 
         local success, err, err_name = uv.fs_stat(variant)
 
