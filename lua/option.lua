@@ -591,9 +591,7 @@ do
       if is_fp then
         variant = fn.resolve(variant)
 
-        local success, err, err_name = uv.fs_stat(variant)
-
-        if not success then return false end
+        if not uv.fs_stat(variant) then return false end
 
         if not with_vim_ui_open then
           local cmd_mime_output = fn.system({ 'file', '--mime-type', '--brief', variant })
