@@ -78,11 +78,7 @@ local M = {
 
     local function open_variant(variant, is_fp, with_vim_ui_open)
       if is_fp then
-        local cmd_readlinkf_output = fn.system({ 'readlink', '-f', variant })
-
-        if (vim.v.shell_error ~= 0) then return false end
-
-        variant = fn.trim(cmd_readlinkf_output)
+        variant = fn.resolve(fn.expand(variant))
 
         local success, err, err_name = uv.fs_stat(variant)
 
