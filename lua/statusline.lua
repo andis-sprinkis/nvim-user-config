@@ -19,7 +19,7 @@ local p2 =
     .. '%( ' .. "%{exists('w:statl_bname')?w:statl_bname:''}" .. ' %)'
     .. '%=%#StatusLineNC#'
     .. '%( '
-    .. '%(' .. "%{exists('b:statl_largef')?b:statl_largef:''}" .. '%h%q%r%m' .. ' %)'
+    .. '%(' .. "%{exists('b:statl_largef')?b:statl_largef:''}" .. '%h%q%w%r%m' .. ' %)'
     .. '%(' .. "%{exists('b:statl_mimeft')?b:statl_mimeft:''}" .. ' %)'
     .. '%(' .. "%{exists('b:statl_encfmt')?b:statl_encfmt:''}" .. ' %)'
     .. '%3c %2l/%-L %3p%%'
@@ -42,12 +42,9 @@ end
 local ft_ignore_encfmt = { 'lazy', 'mason', 'man', 'help' }
 
 local function set_statl_encfmt()
-  if vim.bo.buftype ~= '' then
-    b.statl_encfmt = nil
-    return
-  end
-
-  if vim.tbl_contains(ft_ignore_encfmt, bo.ft) then
+  if vim.bo.buftype ~= ''
+      or vim.tbl_contains(ft_ignore_encfmt, bo.ft)
+  then
     b.statl_encfmt = nil
     return
   end
