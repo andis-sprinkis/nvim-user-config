@@ -72,10 +72,9 @@ end
 
 env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
 
-cmd [[
-  aunmenu PopUp
-  autocmd! nvim.popupmenu
-]]
+cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
+cmd.amenu("PopUp.-2-", "<Nop>")
+cmd.amenu("PopUp.Quit", "<Cmd>q<CR>")
 
 -- km({ 'n', 'v' }, '=', '+')
 -- km({ 'n', 'v' }, '+', '=')
