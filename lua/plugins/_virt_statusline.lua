@@ -64,12 +64,9 @@ return {
     local ft_ignore_encfmt = { 'lazy', 'mason', 'man', 'help' }
 
     local function set_statl_encfmt()
-      if vim.bo.buftype ~= '' then
-        b.statl_encfmt = nil
-        return
-      end
-
-      if vim.tbl_contains(ft_ignore_encfmt, bo.ft) then
+      if vim.bo.buftype ~= ''
+          or vim.tbl_contains(ft_ignore_encfmt, bo.ft)
+      then
         b.statl_encfmt = nil
         return
       end
