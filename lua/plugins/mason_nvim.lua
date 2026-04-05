@@ -259,19 +259,16 @@ local M = {
     --
 
     local ft_ignore_lsp = { 'dirvish', 'futigive', 'lazy', 'mason', 'man', 'help', '' }
-    local lsp_severity = { { 'ERROR', 'E' }, { 'WARN', 'W' }, { 'INFO', 'I' }, { 'HINT', 'H' } }
+
+    local lsp_severity = {
+      { vim.diagnostic.severity.ERROR, 'E' },
+      { vim.diagnostic.severity.WARN,  'W' },
+      { vim.diagnostic.severity.INFO,  'I' },
+      { vim.diagnostic.severity.HINT,  'H' },
+    }
 
     api.nvim_create_autocmd(
-      {
-        'BufEnter',
-        'BufWinEnter',
-        'BufWritePost',
-        'CursorHold',
-        'CursorHoldI',
-        'FileChangedShellPost',
-        'ModeChanged',
-        'VimResume'
-      },
+      'DiagnosticChanged',
       {
         callback = function()
           if bo.buftype ~= '' then
