@@ -259,29 +259,16 @@ local M = {
     --
 
     local ft_ignore_lsp = { 'dirvish', 'futigive', 'lazy', 'mason', 'man', 'help', '' }
-
-    local lsp_severity = {
-      { vim.diagnostic.severity.ERROR, 'E' },
-      { vim.diagnostic.severity.WARN,  'W' },
-      { vim.diagnostic.severity.INFO,  'I' },
-      { vim.diagnostic.severity.HINT,  'H' },
-    }
+    local lsp_severity = { { 1, 'E' }, { 2, 'W' }, { 3, 'I' }, { 4, 'H' } }
 
     api.nvim_create_autocmd(
       'DiagnosticChanged',
       {
         callback = function()
-          if bo.buftype ~= '' then
-            b.statl_lsp = nil
-            return
-          end
-
-          if vim.tbl_contains(ft_ignore_lsp, bo.ft) then
-            b.statl_lsp = nil
-            return
-          end
-
-          if vim.tbl_isempty(lsp.get_clients({ bufnr = 0 })) then
+          if bo.buftype ~= ''
+              or vim.tbl_contains(ft_ignore_lsp, bo.ft)
+              or vim.tbl_isempty(lsp.get_clients({ bufnr = 0 }))
+          then
             b.statl_lsp = nil
             return
           end
@@ -295,12 +282,7 @@ local M = {
             end
           end
 
-          if #msg > 0 then
-            b.statl_lsp = table.concat(msg, ' ')
-            return
-          end
-
-          b.statl_lsp = nil
+          b.statl_lsp = #msg > 0 and table.concat(msg, ' ') or nil
         end,
         group = api.nvim_create_augroup('lsp_user', {}),
       }
