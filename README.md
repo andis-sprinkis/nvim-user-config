@@ -22,5 +22,6 @@ git checkout minimal-config
 - `lf`
 - `node`
 - `rust`
+- `tree-sitter-cli`
 - [`previewer`](https://github.com/andis-sprinkis/nix-user-config/blob/master/.local/bin/previewer)
 - [Dictionary word lists](https://github.com/andis-sprinkis/dict)

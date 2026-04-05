@@ -1,6 +1,5 @@
 local M = {
   'https://github.com/RRethy/vim-illuminate',
-  dependencies = { 'nvim-treesitter/nvim-treesitter' },
   config = function()
     require('illuminate').configure({
       filetypes_denylist = {},
@@ -9,7 +8,8 @@ local M = {
         return not vim.b.largef
       end
     })
-  end
+  end,
+  dependencies = { 'https://github.com/nvim-treesitter/nvim-treesitter' }
 }
 
 return M

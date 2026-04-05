@@ -43,19 +43,21 @@ g.exec = {
   rg = executable('rg') == 1,
   rust = executable('rust') == 1,
   tmux = executable('tmux') == 1,
+  tree_sitter_cli = executable('tree-sitter') == 1
 }
 
 local exec = g.exec
 
 g.sys_reqr = {
-  cmp_tmux = exec.tmux,
   cmp_rg = exec.rg,
+  cmp_tmux = exec.tmux,
   fzf_lua = exec.fzf and exec.previewer,
-  previewer = exec.previewer,
   lsp_asm = exec.rust,
   lsp_neocmake = exec.rust,
   lsp_plugins = exec.node,
   markdown_preview = exec.node,
+  nvim_treesitter = exec.tree_sitter_cli,
+  previewer = exec.previewer,
   swenv = exec.python3,
   vim_doge = exec.node,
   -- typst_preview_nvim = exec.curl,
