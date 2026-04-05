@@ -5,7 +5,7 @@ local M = {
   'https://github.com/mason-org/mason.nvim',
   enabled = sys_reqr.lsp_plugins,
   init = function()
-    vim.lsp.set_log_level("OFF")
+    vim.lsp.log.set_level("OFF")
   end,
   config = function()
     local diagnostic = vim.diagnostic
