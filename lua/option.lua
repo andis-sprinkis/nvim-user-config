@@ -160,14 +160,6 @@ ac(
 )
 
 ac(
-  "FileType",
-  {
-    pattern = { "help", "man" },
-    command = "wincmd L",
-  }
-)
-
-ac(
   'FileType',
   {
     group = ag_option,
