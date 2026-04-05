@@ -85,10 +85,9 @@ if not env.LANG then
   env.LANG = 'en_US.UTF-8'
 end
 
-cmd [[
-  aunmenu PopUp
-  autocmd! nvim.popupmenu
-]]
+cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
+cmd.amenu("PopUp.-2-", "<Nop>")
+cmd.amenu("PopUp.Quit", "<Cmd>q<CR>")
 
 -- km({ 'n', 'v' }, '=', '+')
 -- km({ 'n', 'v' }, '+', '=')
