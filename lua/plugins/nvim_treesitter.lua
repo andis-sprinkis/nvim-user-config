@@ -76,6 +76,7 @@ local M = {
       'sh',
       'styled',
       'terraform',
+      'terraform-vars',
       'toml',
       'typescript',
       'typescriptreact',
