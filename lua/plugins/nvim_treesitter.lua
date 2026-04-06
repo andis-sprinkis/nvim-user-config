@@ -12,6 +12,7 @@ local M = {
     local ft = {
       'awk',
       'bash',
+      'c',
       'cpp',
       'css',
       'gitcommit',
@@ -19,13 +20,19 @@ local M = {
       'java',
       'javascript',
       'json',
+      'lua',
       'make',
+      'markdown',
+      'python',
       'styled',
       'tsx',
       'typescript',
+      'vim',
+      'vimdoc',
       'xml',
       'yaml'
     }
+
     require('nvim-treesitter').install(ft)
 
     local api = vim.api
@@ -39,8 +46,11 @@ local M = {
         callback = function()
           if disable() then return end
 
+          vim.treesitter.start()
+
           vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
           vim.wo[0][0].foldmethod = 'expr'
+
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
       }
