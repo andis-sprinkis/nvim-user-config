@@ -109,7 +109,6 @@ require("lazy").setup({
   }
 })
 
-
 vim.keymap.set(
   'ca',
   'L',
