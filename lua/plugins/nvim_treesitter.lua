@@ -9,13 +9,18 @@ local M = {
       return vim.b.largef
     end
 
-    local ft = {
+    local parsers = {
+      'asm',
       'awk',
       'bash',
       'c',
+      'cmake',
       'cpp',
       'css',
+      'editorconfig',
+      'git_config',
       'gitcommit',
+      'gitignore',
       'html',
       'java',
       'javascript',
@@ -23,21 +28,58 @@ local M = {
       'lua',
       'make',
       'markdown',
+      'perl',
       'python',
       'styled',
+      'terraform',
+      'toml',
       'tsx',
       'typescript',
       'vim',
       'vimdoc',
       'xml',
-      'yaml'
+      'yaml',
+      'zsh'
     }
 
-    require('nvim-treesitter').install(ft)
+    require('nvim-treesitter').install(parsers)
 
     local api = vim.api
 
     local ag_nvim_treesitter_cfg = api.nvim_create_augroup('nvim_treesitter_cfg', {})
+
+    local ft = {
+      'asm',
+      'awk',
+      'c',
+      'cmake',
+      'cpp',
+      'css',
+      'sh',
+      'editorconfig',
+      'git',
+      'gitconfig',
+      'gitignore',
+      'html',
+      'java',
+      'javascript',
+      'json',
+      'lua',
+      'make',
+      'markdown',
+      'perl',
+      'python',
+      'styled',
+      'terraform',
+      'toml',
+      'typescript',
+      'typescriptreact',
+      'vim',
+      'vimdoc',
+      'xml',
+      'yaml',
+      'zsh',
+    }
 
     vim.api.nvim_create_autocmd(
       'FileType', {
