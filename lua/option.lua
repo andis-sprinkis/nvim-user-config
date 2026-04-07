@@ -397,7 +397,7 @@ if fn.executable('lf') == 1 then
 
       local cache_sel_path = fn.stdpath("cache") .. "/lf_sel_path"
 
-      local cmd_select_file = "lf -selection-path " .. cache_sel_path .. " " .. (option.fargs[1] or ".")
+      local cmd_select_file = { "lf", "-selection-path", cache_sel_path, (option.fargs[1] or ".") }
 
       local on_exit = function()
         api.nvim_win_close(win, true)
