@@ -139,6 +139,15 @@ local M = {
       end
     end
 
+    local function rm_formatting_capabilities(client, bufnr)
+      local server_capabilities                           = client.server_capabilities
+
+      server_capabilities.documentFormattingProvider      = false
+      server_capabilities.documentRangeFormattingProvider = false
+
+      on_attach(client, bufnr)
+    end
+
     local fn_default_capabilities = require("cmp_nvim_lsp").default_capabilities
 
     lsp.config('*', {
@@ -160,6 +169,7 @@ local M = {
       before_init = function(_, client_config)
         client_config.settings.json.schemas = require('schemastore').json.schemas()
       end,
+      on_attach = rm_formatting_capabilities,
       settings = {
         json = {
           validate = { enable = true },
@@ -181,15 +191,16 @@ local M = {
       },
     })
 
+    lsp.config('css_ls', {
+      on_attach = rm_formatting_capabilities,
+    })
+
+    lsp.config('html', {
+      on_attach = rm_formatting_capabilities,
+    })
+
     lsp.config('ts_ls', {
-      on_attach = function(client, bufnr)
-        local server_capabilities                           = client.server_capabilities
-
-        server_capabilities.documentFormattingProvider      = false
-        server_capabilities.documentRangeFormattingProvider = false
-
-        on_attach(client, bufnr)
-      end
+      on_attach = rm_formatting_capabilities,
     })
 
     local clangd_capabilities = fn_default_capabilities()
