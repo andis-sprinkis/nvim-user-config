@@ -1,5 +1,5 @@
 local M = {
-  'nvim-mini/mini.comment',
+  'https://github.com/nvim-mini/mini.comment',
   version = '*',
 }
 
