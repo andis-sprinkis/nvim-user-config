@@ -189,12 +189,16 @@ return {
 
     ac({ 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
       group = ag_statl,
-      callback = function() wo.statusline = statl_focused end
+      callback = function()
+        if (api.nvim_win_get_config(0).relative == '') then wo.statusline = statl_focused end
+      end
     })
 
     ac({ 'WinLeave', 'FocusLost' }, {
       group = ag_statl,
-      callback = function() wo.statusline = statl_unfocused end
+      callback = function()
+        if (api.nvim_win_get_config(0).relative == '') then wo.statusline = statl_unfocused end
+      end
     })
   end
 }
