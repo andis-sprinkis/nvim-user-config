@@ -2,7 +2,8 @@ local M = {
   'https://github.com/numToStr/Comment.nvim',
   config = function()
     require('Comment').setup {
-      pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+      -- [Error message "\[Comment.nvim\] nil" when plugin is used with vim.pack · Issue #517 · numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim/issues/517)
+      -- pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
     }
   end,
   dependencies = {
