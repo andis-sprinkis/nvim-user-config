@@ -8,7 +8,7 @@ local M = {
     local au_spectre = api.nvim_create_augroup('spectre', {})
 
     api.nvim_create_autocmd(
-      { 'Filetype' },
+      { 'FileType' },
       {
         group = au_spectre,
         pattern = 'spectre_panel',
