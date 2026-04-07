@@ -46,7 +46,7 @@ local M = {
         local cache_sel_path = fn.stdpath("cache") .. "/lf_sel_path"
 
         fn.jobstart(
-          "lf -selection-path " .. cache_sel_path .. " " .. (option.fargs[1] or "."),
+          { "lf", "-selection-path", cache_sel_path, (option.fargs[1] or ".") },
           {
             term = true,
             on_exit = function()
