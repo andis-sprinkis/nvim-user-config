@@ -15,7 +15,7 @@ local M = {
     local ag_dirvish_usr = vim.api.nvim_create_augroup('dirvish_usr', {})
 
     ac(
-      'Filetype',
+      'FileType',
       {
         group = ag_dirvish_usr,
         pattern = 'dirvish',
