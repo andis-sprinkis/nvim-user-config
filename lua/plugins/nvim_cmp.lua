@@ -181,25 +181,9 @@ local M = {
       ),
     })
 
-    cmp.setup.filetype('gitcommit', {
-      sources = cmpc.sources(
-        {
-          { name = 'git' },
-          { name = 'buffer' },
-          { name = 'nvim_lsp' },
-          source_cmp_rg,
-          { name = 'path' },
-          { name = 'tmux' },
-          source_cmp_dictionary,
-          { name = 'emoji' },
-        }
-      ),
-    })
-
     luasnip.filetype_extend('all', { 'loremipsum' })
 
     require("luasnip.loaders.from_vscode").lazy_load()
-    require("cmp_git").setup()
   end,
   dependencies = {
     {
@@ -212,7 +196,6 @@ local M = {
     'https://github.com/hrsh7th/cmp-emoji',
     'https://github.com/hrsh7th/cmp-nvim-lsp',
     'https://github.com/hrsh7th/cmp-path',
-    'https://github.com/petertriho/cmp-git',
     'https://github.com/saadparwaiz1/cmp_luasnip',
     'https://github.com/uga-rosa/cmp-dictionary',
     {
