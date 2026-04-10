@@ -106,7 +106,6 @@ local M = {
         {
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
-          { name = 'nvim_lua' },
           { name = 'path' },
           source_cmp_buffer,
           { name = 'tmux' },
@@ -183,7 +182,6 @@ local M = {
     'https://github.com/hrsh7th/cmp-cmdline',
     'https://github.com/hrsh7th/cmp-emoji',
     'https://github.com/hrsh7th/cmp-nvim-lsp',
-    'https://github.com/hrsh7th/cmp-nvim-lua',
     'https://github.com/hrsh7th/cmp-path',
     'https://github.com/petertriho/cmp-git',
     'https://github.com/saadparwaiz1/cmp_luasnip',
