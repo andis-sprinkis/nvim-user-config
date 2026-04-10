@@ -113,10 +113,6 @@ local M = {
           source_cmp_rg,
           source_cmp_dictionary,
           { name = 'emoji' },
-          {
-            name = 'npm',
-            keyword_length = 3,
-          },
         }
       )
     })
@@ -178,7 +174,6 @@ local M = {
     require("cmp_git").setup()
   end,
   dependencies = {
-    'https://github.com/David-Kunz/cmp-npm',
     {
       'https://github.com/L3MON4D3/LuaSnip',
       dependencies = { 'https://github.com/rafamadriz/friendly-snippets' }
