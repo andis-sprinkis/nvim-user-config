@@ -122,7 +122,7 @@ local M = {
             end
           end,
           s = cmp.mapping.confirm({ select = false }),
-          c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+          -- c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
         }),
       }),
       experimental = {
