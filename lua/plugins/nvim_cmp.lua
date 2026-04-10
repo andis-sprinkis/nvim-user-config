@@ -97,7 +97,17 @@ local M = {
             fallback()
           end
         end),
-        ['<CR>'] = cmp.mapping.confirm({ select = false })
+        ["<CR>"] = cmp.mapping({
+          i = function(fallback)
+            if cmp.visible() and cmp.get_active_entry() then
+              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+            else
+              fallback()
+            end
+          end,
+          s = cmp.mapping.confirm({ select = false }),
+          c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+        }),
       }),
       experimental = {
         ghost_text = { hl_group = 'Whitespace' }
@@ -133,7 +143,10 @@ local M = {
       mapping = cmpm.preset.cmdline(),
       sources = cmpc.sources(
         {
-          { name = 'cmdline' },
+          {
+            name = 'cmdline',
+            ignore_cmds = { 'Man', '!' }
+          },
           { name = 'cmdline_history' },
           {
             name = 'path',
