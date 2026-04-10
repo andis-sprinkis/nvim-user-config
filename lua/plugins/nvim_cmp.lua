@@ -88,15 +88,31 @@ local M = {
             fallback()
           end
         end, { "i", "s" }),
-        ['<Esc>'] = cmp.mapping(function(fallback)
-          -- conditional needed to not break [digit]o/O
-          if cmp.visible() then
-            cmp.abort()
-            vim.defer_fn(function() vim.cmd('stopinsert') end, 0)
-          else
-            fallback()
+        ['<Esc>'] = cmp.mapping({
+          i = function(fallback)
+            -- conditional needed to not break [digit]o/O
+            if cmp.visible() then
+              cmp.abort()
+              vim.defer_fn(function() vim.cmd('stopinsert') end, 0)
+            else
+              fallback()
+            end
+          end,
+          s = function(fallback)
+            if cmp.visible() then
+              cmp.abort()
+            else
+              fallback()
+            end
+          end,
+          c = function()
+            if cmp.visible() then
+              cmp.abort()
+            else
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-c>', true, true, true), 'n', true)
+            end
           end
-        end),
+        }),
         ["<CR>"] = cmp.mapping({
           i = function(fallback)
             if cmp.visible() and cmp.get_active_entry() then
@@ -145,7 +161,7 @@ local M = {
         {
           {
             name = 'cmdline',
-            ignore_cmds = { 'Man', '!' }
+            ignore_cmds = { 'Man', '!', 'Lf' }
           },
           { name = 'cmdline_history' },
           {
