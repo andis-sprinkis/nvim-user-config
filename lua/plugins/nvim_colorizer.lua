@@ -7,6 +7,9 @@ local M = {
       names_opts = {
         uppercase = true
       },
+      exclusions = {
+        'lazy'
+      },
       user_default_options = {
         css = true,
         css_fn = true,
