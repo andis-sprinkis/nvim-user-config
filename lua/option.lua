@@ -85,15 +85,17 @@ if not env.LANG then
   env.LANG = 'en_US.UTF-8'
 end
 
+local dir_up_cmd = ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>'
+
 cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
 cmd.amenu("PopUp.-2-", "<Nop>")
-cmd.amenu("PopUp.Up\\ directory", ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>')
+cmd.amenu("PopUp.Up\\ directory", dir_up_cmd)
 cmd.amenu("PopUp.Quit", "<Cmd>q<CR>")
 
 -- km({ 'n', 'v' }, '=', '+')
 -- km({ 'n', 'v' }, '+', '=')
 km('t', '<C-w>', '<C-\\><C-n>')
-km('n', '<leader>-', ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>')
+km('n', '<leader>-', dir_up_cmd)
 km('n', '<leader>b', ":set nomore <Bar> :ls <Bar> :set more <CR>:b<Space>", { silent = true })
 km({ 'n', 'v' }, '/', '/\\c')
 km({ 'n', 'v' }, '?', '?\\c')
