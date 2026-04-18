@@ -138,6 +138,7 @@ local M = {
       end
     end
 
+    -- To use 'prettier' insead of the LSP formatting capabilities
     local function rm_formatting_capabilities(client, bufnr)
       local server_capabilities                           = client.server_capabilities
 
