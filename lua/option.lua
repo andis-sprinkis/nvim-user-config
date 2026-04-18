@@ -74,6 +74,7 @@ env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
 
 cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
 cmd.amenu("PopUp.-2-", "<Nop>")
+cmd.amenu("PopUp.Up\\ directory", "<Plug>(dirvish_up)")
 cmd.amenu("PopUp.Quit", "<Cmd>q<CR>")
 
 -- km({ 'n', 'v' }, '=', '+')
