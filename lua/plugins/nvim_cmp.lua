@@ -56,7 +56,7 @@ local M = {
       },
       snippet = {
         expand = function(args)
-          require('luasnip').lsp_expand(args.body)
+          luasnip.lsp_expand(args.body)
         end,
       },
       view = {
@@ -180,15 +180,20 @@ local M = {
         }
       ),
     })
-
-    luasnip.filetype_extend('all', { 'loremipsum' })
-
-    require("luasnip.loaders.from_vscode").lazy_load()
   end,
   dependencies = {
     {
-      'https://github.com/L3MON4D3/LuaSnip',
-      dependencies = { 'https://github.com/rafamadriz/friendly-snippets' }
+      'https://github.com/saadparwaiz1/cmp_luasnip',
+      config = function()
+        require("luasnip").filetype_extend('all', { 'loremipsum' })
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+      dependencies = {
+        {
+          'https://github.com/L3MON4D3/LuaSnip',
+          dependencies = { 'https://github.com/rafamadriz/friendly-snippets' }
+        },
+      }
     },
     'https://github.com/dmitmel/cmp-cmdline-history',
     'https://github.com/hrsh7th/cmp-buffer',
@@ -196,7 +201,6 @@ local M = {
     'https://github.com/hrsh7th/cmp-emoji',
     'https://github.com/hrsh7th/cmp-nvim-lsp',
     'https://github.com/hrsh7th/cmp-path',
-    'https://github.com/saadparwaiz1/cmp_luasnip',
     'https://github.com/uga-rosa/cmp-dictionary',
     {
       'https://github.com/lukas-reineke/cmp-rg',
