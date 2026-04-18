@@ -87,6 +87,7 @@ end
 
 cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
 cmd.amenu("PopUp.-2-", "<Nop>")
+cmd.amenu("PopUp.Up\\ directory", ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>')
 cmd.amenu("PopUp.Quit", "<Cmd>q<CR>")
 
 -- km({ 'n', 'v' }, '=', '+')
