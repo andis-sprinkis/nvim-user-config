@@ -52,7 +52,6 @@ local M = {
       'prettier',
       'shellcheck',
       'checkmake',
-      -- 'cspell'
     }
 
     -- Default keymaps (doc/lsp.txt):
@@ -217,7 +216,6 @@ local M = {
     require('mason-null-ls').setup({ ensure_installed = linters_formatters })
 
     local null_ls = require('null-ls')
-    -- local cspell = require("cspell")
 
     null_ls.setup({
       sources = {
@@ -225,12 +223,6 @@ local M = {
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.diagnostics.checkmake,
         null_ls.builtins.code_actions.gitsigns,
-        -- cspell.diagnostics.with({
-        --   diagnostics_postprocess = function(diag)
-        --     diag.severity = vim.diagnostic.severity.HINT
-        --   end,
-        -- }),
-        -- cspell.code_actions
       },
       on_attach = function(client, bufnr)
         local server_capabilities = client.server_capabilities
@@ -302,13 +294,16 @@ local M = {
   dependencies = {
     'https://github.com/RRethy/vim-illuminate',
     'https://github.com/b0o/schemastore.nvim',
-    -- 'https://github.com/davidmh/cspell.nvim',
     'https://github.com/jayp0521/mason-null-ls.nvim',
     'https://github.com/lewis6991/gitsigns.nvim',
     'https://github.com/mason-org/mason-lspconfig.nvim',
     'https://github.com/neovim/nvim-lspconfig',
-    'https://github.com/nvim-lua/plenary.nvim',
-    'https://github.com/nvimtools/none-ls.nvim',
+    {
+      'https://github.com/nvimtools/none-ls.nvim',
+      dependencies = {
+        'https://github.com/nvim-lua/plenary.nvim',
+      }
+    },
   }
 }
 
