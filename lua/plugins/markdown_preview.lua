@@ -9,7 +9,7 @@ local M = {
   end,
   build = function() vim.fn["mkdp#util#install"]() end,
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-  ft = { 'markdown', 'markdown.mdx' },
+  ft = { 'markdown' },
 }
 
 return M
