@@ -16,6 +16,7 @@ local M = {
     local km = vim.keymap.set
 
     diagnostic.config({
+      severity_sort = true,
       virtual_lines = {
         current_line = true
       },
