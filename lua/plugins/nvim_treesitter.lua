@@ -5,10 +5,6 @@ local M = {
   build = ':TSUpdate',
   enabled = vim.g.sys_reqr.nvim_treesitter,
   config = function()
-    local disable = function()
-      return vim.b.largef
-    end
-
     -- https://github.com/nvim-treesitter/nvim-treesitter/tree/main/runtime/queries
     -- https://github.com/nvim-treesitter/nvim-treesitter/blob/main/plugin/filetypes.lua
 
@@ -115,7 +111,7 @@ local M = {
         group = ag_nvim_treesitter_cfg,
         pattern = ft,
         callback = function()
-          if disable() then return end
+          if vim.b.largef then return end
 
           vim.treesitter.start()
 
