@@ -52,12 +52,6 @@ local M = {
       'zsh'
     }
 
-    require('nvim-treesitter').install(parsers)
-
-    local api = vim.api
-
-    local ag_nvim_treesitter_cfg = api.nvim_create_augroup('nvim_treesitter_cfg', {})
-
     local ft = {
       'asm',
       'awk',
@@ -106,7 +100,13 @@ local M = {
       'zsh',
     }
 
-    vim.api.nvim_create_autocmd(
+    require('nvim-treesitter').install(parsers)
+
+    local api = vim.api
+
+    local ag_nvim_treesitter_cfg = api.nvim_create_augroup('nvim_treesitter_cfg', {})
+
+    api.nvim_create_autocmd(
       'FileType', {
         group = ag_nvim_treesitter_cfg,
         pattern = ft,
