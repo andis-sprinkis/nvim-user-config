@@ -5,8 +5,6 @@ local M = {
   'https://github.com/ibhagwan/fzf-lua',
   enabled = sys_reqr.fzf_lua,
   config = function()
-    local km = vim.keymap.set
-
     local fzflua = require('fzf-lua')
 
     fzflua.awesome_colorschemes = nil
@@ -90,6 +88,8 @@ local M = {
 
       fzflua.files({ resume = true })
     end
+
+    local km = vim.keymap.set
 
     km(
       'n',
