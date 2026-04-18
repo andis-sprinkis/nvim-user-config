@@ -55,12 +55,9 @@ g.sys_reqr = {
   lsp_asm = exec.rust,
   lsp_neocmake = exec.rust,
   lsp_plugins = exec.node,
-  markdown_preview = exec.node,
   nvim_treesitter = exec.tree_sitter_cli,
   previewer = exec.previewer,
-  swenv = exec.python3,
   vim_doge = exec.node,
-  -- typst_preview_nvim = exec.curl,
 }
 
 require("lazy").setup({
