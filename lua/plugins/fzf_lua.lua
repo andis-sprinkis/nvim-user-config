@@ -95,7 +95,7 @@ local M = {
       'n',
       '<tab>',
       show_files_with_git,
-      { desc = 'Search file paths in the working directory (Git or all) (fzf-lua)' }
+      { desc = 'Search file paths in the working directory (Git tracked or all) (fzf-lua)' }
     )
 
     km(
@@ -109,7 +109,7 @@ local M = {
       'n',
       '<leader>e',
       function() fzflua.grep({ search = '', resume = true }) end,
-      { desc = 'Search text in files in the working directory (Git or all) (fzf-lua)' }
+      { desc = 'Search text in files in the working directory (all) (fzf-lua)' }
     )
 
     km(
