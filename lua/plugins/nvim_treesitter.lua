@@ -64,7 +64,7 @@ local M = {
       'desktop',
       'dosini',
       'editorconfig',
-      'git',
+      -- 'git',
       'gitconfig',
       'gitdiff',
       'gitignore',
