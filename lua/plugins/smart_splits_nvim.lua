@@ -6,6 +6,10 @@ local M = {
   config = function()
     local smart_splits = require('smart-splits')
 
+    smart_splits.setup({
+      default_amount = 2
+    })
+
     local km = vim.keymap.set
 
     km('n', '<C-A-h>', smart_splits.resize_left, { desc = 'Change window size to the left direction (smart-splits)' })
