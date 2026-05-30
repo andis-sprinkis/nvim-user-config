@@ -726,7 +726,10 @@ for alias, fcmd in pairs({
     'ca',
     alias,
     function() return (vim.fn.getcmdtype() == ':' and vim.fn.getcmdline() == alias) and fcmd or alias end,
-    { expr = true }
+    {
+      expr = true,
+      desc = "Expand command alias \"" .. alias .. "\" to command \"" .. fcmd .. "\" (user)"
+    }
   )
 end
 
