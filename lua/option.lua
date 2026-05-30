@@ -325,7 +325,7 @@ uc(
   function()
     fn.setreg('+', fn.expand('%:.') .. ' ' .. fn.line('.') .. ':' .. fn.col('.') .. '\n')
   end,
-  {}
+  { desc = "Write the relative file path, line and column number into the '+' selection register (user)" }
 )
 
 uc(
@@ -333,7 +333,7 @@ uc(
   function()
     fn.setreg('+', fn.expand('%:p') .. ' ' .. fn.line('.') .. ':' .. fn.col('.') .. '\n')
   end,
-  {}
+  { desc = "Write the absolute file path, line and column number into the '+' selection register (user)" }
 )
 
 uc(
@@ -348,7 +348,7 @@ uc(
 
     cmd.e(fn.trim(cmd_scrap_path_output))
   end,
-  {}
+  { desc = "Open a new scrap note buffer (user)" }
 )
 
 uc(
@@ -356,13 +356,16 @@ uc(
   function()
     vim.cmd.edit(vim.fn.stdpath("config"))
   end,
-  {}
+  { desc = "Open user configuration director (user)" }
 )
 
 uc(
   'ExploreFind',
   'let @/=expand("%:t") | execute \'Explore\' expand("%:h") | normal n',
-  { bang = true }
+  {
+    bang = true,
+    desc = "Open directory of the current file in Netrw (user)"
+  }
 )
 
 -- Opening the lf file manager in a floating terminal window.
@@ -440,7 +443,8 @@ if fn.executable('lf') == 1 then
     end,
     {
       nargs = "?",
-      complete = "dir"
+      complete = "dir",
+      desc = "Open lf file manager in a floating terminal window (user)"
     }
   )
 end
