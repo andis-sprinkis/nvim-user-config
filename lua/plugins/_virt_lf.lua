@@ -73,7 +73,8 @@ local M = {
       end,
       {
         nargs = "?",
-        complete = "dir"
+        complete = "dir",
+        desc = "Open lf file manager in a floating terminal window (user)"
       }
     )
     --

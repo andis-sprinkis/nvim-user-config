@@ -246,7 +246,7 @@ uc(
   function()
     fn.setreg('+', fn.expand('%:.') .. ':' .. fn.line('.') .. ':' .. fn.col('.') .. '\n')
   end,
-  {}
+  { desc = "Write the relative file path, line and column number into the '+' selection register (user)" }
 )
 
 uc(
@@ -254,7 +254,7 @@ uc(
   function()
     fn.setreg('+', fn.expand('%:p') .. ':' .. fn.line('.') .. ':' .. fn.col('.') .. '\n')
   end,
-  {}
+  { desc = "Write the absolute file path, line and column number into the '+' selection register (user)" }
 )
 
 uc(
@@ -269,7 +269,7 @@ uc(
 
     cmd.e(fn.trim(cmd_scrap_path_output))
   end,
-  {}
+  { desc = "Open a new scrap note buffer (user)" }
 )
 
 uc(
@@ -277,7 +277,7 @@ uc(
   function()
     vim.cmd.edit(fn.stdpath("config"))
   end,
-  {}
+  { desc = "Open user configuration director (user)" }
 )
 
 for alias, fcmd in pairs({
