@@ -22,36 +22,38 @@ local M = {
       },
     })
 
+    -- https://github.com/mason-org/mason-registry/tree/main/packages
+
     local lsp_servers = {
-      'awk_ls',
-      'bashls',
-      -- 'clangd',
-      'cssls',
-      'dockerls',
-      'eslint',
-      'html',
-      'jsonls',
-      'lua_ls',
-      -- 'pylsp',
-      'ruff',
-      'stylelint_lsp',
-      'ts_ls',
-      'yamlls',
+      'awk_ls@0.10.6',
+      'bashls@5.6.0',
+      -- 'clangd@22.1.6',
+      'cssls@4.10.0',
+      'dockerls@0.15.0',
+      'eslint@4.10.0',
+      'html@4.10.0',
+      'jsonls@4.10.0',
+      'lua_ls@3.18.2',
+      -- 'pylsp@1.14.0?extra=all',
+      'ruff@0.15.15',
+      'stylelint_lsp@1.1.1',
+      'ts_ls@5.3.0',
+      'yamlls@1.23.0',
     }
 
     if sys_reqr.lsp_neocmake then
-      table.insert(lsp_servers, 'neocmake')
+      table.insert(lsp_servers, 'neocmake@v0.10.2')
     end
 
     if sys_reqr.lsp_asm then
-      table.insert(lsp_servers, 'asm_lsp')
+      table.insert(lsp_servers, 'asm_lsp@0.10.1')
     end
 
     local linters_formatters = {
-      'asmfmt',
-      'prettier',
-      'shellcheck',
-      'checkmake',
+      'asmfmt@v1.3.2',
+      'prettier@3.8.3',
+      'shellcheck@v0.11.0',
+      'checkmake@v0.3.2',
     }
 
     -- Default keymaps (doc/lsp.txt):
