@@ -1,0 +1,20 @@
+{
+  "asm-lsp": "0.10.1",
+  "asmfmt": "v1.3.2",
+  "awk-language-server": "0.10.6",
+  "bash-language-server": "5.6.0",
+  "checkmake": "v0.3.2",
+  "css-lsp": "4.10.0",
+  "dockerfile-language-server": "0.15.0",
+  "eslint-lsp": "4.10.0",
+  "html-lsp": "4.10.0",
+  "json-lsp": "4.10.0",
+  "lua-language-server": "3.18.2",
+  "prettier": "3.8.3",
+  "ruff": "0.15.15",
+  "shellcheck": "v0.11.0",
+  "stylelint-language-server": "1.1.1",
+  "stylelint-lsp": "2.0.1",
+  "typescript-language-server": "5.3.0",
+  "yaml-language-server": "1.23.0"
+}
