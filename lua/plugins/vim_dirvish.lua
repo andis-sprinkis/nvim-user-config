@@ -3,6 +3,8 @@ local ac = vim.api.nvim_create_autocmd
 
 local M = {
   'https://github.com/justinmk/vim-dirvish',
+  branch = 'master',
+  commit = '9525f46ccbf2dd585523fe3e3b72151554df3a42',
   config = function()
     vim.g.dirvish_mode = ':sort i | sort ,^.*[^/]$, ri'
 

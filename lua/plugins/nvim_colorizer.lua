@@ -1,5 +1,7 @@
 local M = {
   'https://github.com/catgoose/nvim-colorizer.lua',
+  branch = 'master',
+  commit = '664c0b7cea1de71f8b65dfe951b7996fc3e6ccde',
   event = "VeryLazy",
   config = function()
     require("colorizer").setup {

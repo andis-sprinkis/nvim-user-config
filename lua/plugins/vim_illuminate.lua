@@ -1,5 +1,7 @@
 local M = {
   'https://github.com/RRethy/vim-illuminate',
+  branch = 'master',
+  commit = '0d1e93684da00ab7c057410fecfc24f434698898',
   config = function()
     require('illuminate').configure({
       filetypes_denylist = {},

@@ -3,6 +3,8 @@ local sys_reqr = g.sys_reqr
 
 local M = {
   'https://github.com/hrsh7th/nvim-cmp',
+  branch = 'main',
+  commit = 'a1d504892f2bc56c2e79b65c6faded2fd21f3eca',
   config = function()
     local cmp = require("cmp")
     local cmpm = cmp.mapping
@@ -184,6 +186,8 @@ local M = {
   dependencies = {
     {
       'https://github.com/saadparwaiz1/cmp_luasnip',
+      branch = 'master',
+      commit = '98d9cb5c2c38532bd9bdb481067b20fea8f32e90',
       config = function()
         require("luasnip").filetype_extend('all', { 'loremipsum' })
         require("luasnip.loaders.from_vscode").lazy_load()
@@ -191,23 +195,63 @@ local M = {
       dependencies = {
         {
           'https://github.com/L3MON4D3/LuaSnip',
-          dependencies = { 'https://github.com/rafamadriz/friendly-snippets' }
+          branch = 'master',
+          commit = '0abc8f390b278c3b4aabc4c004ac8a088b65cf24',
+          dependencies = {
+            {
+              'https://github.com/rafamadriz/friendly-snippets',
+              branch = 'main',
+              commit = '6cd7280adead7f586db6fccbd15d2cac7e2188b9',
+            }
+          }
         },
       }
     },
-    'https://github.com/dmitmel/cmp-cmdline-history',
-    'https://github.com/hrsh7th/cmp-buffer',
-    'https://github.com/hrsh7th/cmp-cmdline',
-    'https://github.com/hrsh7th/cmp-emoji',
-    'https://github.com/hrsh7th/cmp-nvim-lsp',
-    'https://github.com/hrsh7th/cmp-path',
-    'https://github.com/uga-rosa/cmp-dictionary',
+    {
+      'https://github.com/dmitmel/cmp-cmdline-history',
+      branch = 'master',
+      commit = '003573b72d4635ce636234a826fa8c4ba2895ffe',
+    },
+    {
+      'https://github.com/hrsh7th/cmp-buffer',
+      branch = 'main',
+      commit = 'b74fab3656eea9de20a9b8116afa3cfc4ec09657',
+    },
+    {
+      'https://github.com/hrsh7th/cmp-cmdline',
+      branch = 'main',
+      commit = 'd126061b624e0af6c3a556428712dd4d4194ec6d',
+    },
+    {
+      'https://github.com/hrsh7th/cmp-emoji',
+      branch = 'main',
+      commit = 'e8398e2adf512a03bb4e1728ca017ffeac670a9f',
+    },
+    {
+      'https://github.com/hrsh7th/cmp-nvim-lsp',
+      branch = 'main',
+      commit = 'cbc7b02bb99fae35cb42f514762b89b5126651ef',
+    },
+    {
+      'https://github.com/hrsh7th/cmp-path',
+      branch = 'main',
+      commit = 'c642487086dbd9a93160e1679a1327be111cbc25',
+    },
+    {
+      'https://github.com/uga-rosa/cmp-dictionary',
+      branch = 'main',
+      commit = 'fecc3ef2435c2be35818f8fcac4a6c5655f3a8f0',
+    },
     {
       'https://github.com/lukas-reineke/cmp-rg',
+      branch = 'master',
+      commit = '70a43543f61b6083ba9c3b7deb9ccee671410ac6',
       enabled = sys_reqr.cmp_rg,
     },
     {
       'https://github.com/andersevenrud/cmp-tmux',
+      branch = 'main',
+      commit = '95b1b921802e6f60627b3e76afb9380fddd87f9a',
       enabled = sys_reqr.cmp_tmux
     },
   },

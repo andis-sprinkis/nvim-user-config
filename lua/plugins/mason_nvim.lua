@@ -3,6 +3,8 @@ local lsp = vim.lsp
 
 local M = {
   'https://github.com/mason-org/mason.nvim',
+  branch = 'main',
+  commit = '16ba83bfc8a25f52bb545134f5bee082b195c460',
   enabled = sys_reqr.lsp_plugins,
   init = function()
     vim.lsp.log.set_level("OFF")
@@ -296,15 +298,35 @@ local M = {
   end,
   dependencies = {
     'https://github.com/RRethy/vim-illuminate',
-    'https://github.com/b0o/schemastore.nvim',
-    'https://github.com/jayp0521/mason-null-ls.nvim',
+    {
+      'https://github.com/b0o/schemastore.nvim',
+      branch = 'main',
+      commit = 'efa62017f59a6346486cc567d70acce965a00b12',
+    },
+    {
+      'https://github.com/jayp0521/mason-null-ls.nvim',
+      branch = 'main',
+      commit = '8e7806acaa87fae64f0bfde25bb4b87c18bd19b4',
+    },
     'https://github.com/lewis6991/gitsigns.nvim',
-    'https://github.com/mason-org/mason-lspconfig.nvim',
-    'https://github.com/neovim/nvim-lspconfig',
+    {
+      'https://github.com/mason-org/mason-lspconfig.nvim',
+      branch = 'main',
+      commit = '7b01e2974a47d489bb92f47a41e4c0088ea8f86e',
+    },
+    {
+      'https://github.com/neovim/nvim-lspconfig',
+      branch = 'master',
+      commit = '9573948c38bfabeec353ae7dd7d3ffec4c506a6b',
+    },
     {
       'https://github.com/nvimtools/none-ls.nvim',
+      branch = 'main',
+      commit = 'f9d557ac7cd28a3a993b5ea49716498bd540b01f',
       dependencies = {
         'https://github.com/nvim-lua/plenary.nvim',
+        branch = 'master',
+        commit = '74b06c6c75e4eeb3108ec01852001636d85a932b',
       }
     },
   }

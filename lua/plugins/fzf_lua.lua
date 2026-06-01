@@ -3,6 +3,8 @@ local sys_reqr = g.sys_reqr
 
 local M = {
   'https://github.com/ibhagwan/fzf-lua',
+  branch = 'main',
+  commit = 'fea9eedc6894c44d44cbb772a5cd11c93b82d7a1',
   enabled = sys_reqr.fzf_lua,
   config = function()
     local fzflua = require('fzf-lua')

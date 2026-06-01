@@ -1,5 +1,7 @@
 local M = {
   'https://github.com/lewis6991/gitsigns.nvim',
+  branch = 'main',
+  commit = 'dd3f588bacbeb041be6facf1742e42097f62165d',
   config = function()
     require('gitsigns').setup {
       sign_priority = 11

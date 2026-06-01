@@ -1,5 +1,7 @@
 local M = {
   'https://github.com/andersevenrud/nvim_context_vt',
+  branch = 'master',
+  commit = 'fadbd9e57af72f6df3dd33df32ee733aa01cdbc0',
   config = function()
     local context_vt = require("nvim_context_vt")
     local context_vt_utils = require('nvim_context_vt.utils')

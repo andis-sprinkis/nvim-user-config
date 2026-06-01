@@ -94,6 +94,8 @@ local M = {
   },
   dependencies = {
     "https://github.com/chrisgrieser/nvim-spider",
+    branch = 'main',
+    commit = '4fdd56a4f45bca13a607632e15a6f9f8d1b1f99e',
     config = function()
       km(kmd, "ge", "<cmd>lua require('spider').motion('ge')<CR>")
       require("spider").setup({

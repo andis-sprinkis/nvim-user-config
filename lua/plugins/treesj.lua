@@ -1,5 +1,7 @@
 local M = {
   'https://github.com/Wansmer/treesj',
+  branch = 'main',
+  commit = '79aedb401bbdc7e4202f7881eab5f6feb2105b0a',
   config = function()
     local km = vim.keymap.set
     local treesj = require('treesj')
