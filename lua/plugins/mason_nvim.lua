@@ -43,13 +43,8 @@ local M = {
       'yamlls@1.23.0',
     }
 
-    if sys_reqr.lsp_neocmake then
-      table.insert(lsp_servers, 'neocmake@v0.10.2')
-    end
-
-    if sys_reqr.lsp_asm then
-      table.insert(lsp_servers, 'asm_lsp@0.10.1')
-    end
+    if sys_reqr.lsp_neocmake then table.insert(lsp_servers, 'neocmake@v0.10.2') end
+    if sys_reqr.lsp_asm then table.insert(lsp_servers, 'asm_lsp@0.10.1') end
 
     local linters_formatters = {
       'asmfmt@v1.3.2',
