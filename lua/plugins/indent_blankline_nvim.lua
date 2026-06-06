@@ -9,9 +9,7 @@ local M = {
     local hooks = require "ibl.hooks"
     hooks.register(
       hooks.type.ACTIVE,
-      function(bufnr)
-        return not vim.b.largef
-      end
+      function() return not vim.b.largef end
     )
   end,
   dependencies = {
