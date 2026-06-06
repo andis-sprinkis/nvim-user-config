@@ -6,9 +6,7 @@ local M = {
     require('illuminate').configure({
       filetypes_denylist = {},
       delay = 675,
-      should_enable = function(buf)
-        return not vim.b.largef
-      end
+      should_enable = function() return not vim.b.largef end
     })
   end,
   dependencies = { 'https://github.com/nvim-treesitter/nvim-treesitter' }
