@@ -5,6 +5,7 @@ local M = {
   config = function()
     -- Formatting of quickfix and location list for better readability.
     -- Adapted from https://github.com/yorickpeterse/nvim-pqf (license: MPL-2.0).
+
     local api = vim.api
     local fn = vim.fn
 
