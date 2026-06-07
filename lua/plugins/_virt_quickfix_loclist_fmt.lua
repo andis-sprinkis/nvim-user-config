@@ -9,7 +9,7 @@ local M = {
     local api = vim.api
     local fn = vim.fn
 
-    local type_mapping = {
+    local type_map = {
       E = { text = 'E', hl = 'DiagnosticSignError' },
       W = { text = 'W', hl = 'DiagnosticSignWarn' },
       I = { text = 'I', hl = 'DiagnosticSignInfo' },
@@ -47,7 +47,7 @@ local M = {
             index = i,
           }
 
-          if type_mapping[item.type] then show_sign = true end
+          if type_map[item.type] then show_sign = true end
 
           if raw.bufnr > 0 then
             item.location = fn.fnamemodify(fn.bufname(raw.bufnr), ':p:.')
@@ -111,7 +111,7 @@ local M = {
           location = loc_pad
         end
 
-        local sign_conf = type_mapping[item.type]
+        local sign_conf = type_map[item.type]
         local sign = ' '
         local sign_hl = nil
 
