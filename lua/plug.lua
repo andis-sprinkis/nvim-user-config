@@ -33,7 +33,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 g.exec = {
-  bat = executable('bat') == 1,
   fzf = executable('fzf') == 1,
   lf = executable('lf') == 1,
   node = executable('node') == 1,

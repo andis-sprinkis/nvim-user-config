@@ -16,7 +16,6 @@ git checkout minimal-config
 
 ## Dependencies
 
-- `bat`
 - `curl`
 - `fzf`
 - `lf`
