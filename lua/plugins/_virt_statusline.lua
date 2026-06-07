@@ -29,9 +29,8 @@ return {
     local p1 =
         '%#StatusLineNC#'
         .. '%('
-        .. '%( ' .. "%{exists('b:statl_git')?b:statl_git:''}" .. '%)' --[[ plug.gitsigns_nvim ]]
-        .. '%( ' .. "%{exists('b:statl_pyvenv')?b:statl_pyvenv:''}" .. '%)' --[[ plug.swenv_nvim ]]
-        .. '%( ' .. "%{exists('b:statl_lsp')?b:statl_lsp:''}" .. '%)' --[[ plug.mason_nvim ]]
+        .. '%( ' .. "%{exists('b:statl_git')?b:statl_git:''}" .. '%)' -- ./gitsigns_nvim.lua
+        .. '%( ' .. "%{exists('b:statl_lsp')?b:statl_lsp:''}" .. '%)' -- ./mason_nvim.lua
         .. ' %)'
         .. '%#StatusLine'
 
