@@ -3,7 +3,7 @@ local M = {
   virtual = true,
   filetype = 'qf',
   config = function()
-    -- Formatting and highlighting of QuickFix and Location lists for better readability.
+    -- Formatting of QuickFix and Location lists for better readability.
     -- Adapted from https://github.com/yorickpeterse/nvim-pqf (license: MPL-2.0).
 
     local api = vim.api
