@@ -287,7 +287,6 @@ local M = {
 
           b.statl_lsp = #msg > 0 and table.concat(msg, ' ') or nil
         end,
-        group = api.nvim_create_augroup('lsp_user', {}),
       }
     )
   end,

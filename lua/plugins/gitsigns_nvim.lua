@@ -42,7 +42,6 @@ local M = {
 
           b.statl_git = g.gitsigns_head and g.gitsigns_head or nil
         end,
-        group = api.nvim_create_augroup('gitsigns_user', {}),
       }
     )
   end,

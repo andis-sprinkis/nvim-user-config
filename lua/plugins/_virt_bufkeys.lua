@@ -9,7 +9,6 @@ local M = {
     local fn = vim.fn
     local tbl_filter = vim.tbl_filter
     local ac = api.nvim_create_autocmd
-    local ag = api.nvim_create_augroup
     local km = vim.keymap.set
 
     local buf_hist = {}
@@ -17,7 +16,6 @@ local M = {
     ac(
       "BufWinEnter",
       {
-        group = ag("Bufkeys", {}),
         callback = function()
           local curr_buf_id = api.nvim_get_current_buf()
 

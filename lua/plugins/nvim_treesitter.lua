@@ -105,11 +105,8 @@ local M = {
 
     local api = vim.api
 
-    local ag_nvim_treesitter_cfg = api.nvim_create_augroup('nvim_treesitter_cfg', {})
-
     api.nvim_create_autocmd(
       'FileType', {
-        group = ag_nvim_treesitter_cfg,
         pattern = ft,
         callback = function()
           if vim.b.largef then return end

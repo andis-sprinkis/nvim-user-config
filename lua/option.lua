@@ -9,7 +9,6 @@ local km = vim.keymap.set
 local api = vim.api
 local env = vim.env
 local uv = vim.uv
-local ag = api.nvim_create_augroup
 local ac = api.nvim_create_autocmd
 local uc = api.nvim_create_user_command
 
@@ -113,12 +112,9 @@ km(
   { desc = "Toggle line wrap (user)" }
 )
 
-local ag_option = ag('option', {})
-
 ac(
   'VimEnter',
   {
-    group = ag_option,
     callback = function()
       pcall(function() cmd.cd('%:p:h') end)
     end
@@ -128,7 +124,6 @@ ac(
 ac(
   'VimResized',
   {
-    group = ag_option,
     command = "wincmd ="
   }
 )
@@ -136,7 +131,6 @@ ac(
 ac(
   'TermOpen',
   {
-    group = ag_option,
     callback = function()
       optl.number = false
       optl.relativenumber = false
@@ -150,7 +144,6 @@ ac(
 ac(
   'FileType',
   {
-    group = ag_option,
     pattern = { 'man', 'help', 'vimdoc' },
     callback = function()
       optl.number = true
@@ -162,7 +155,6 @@ ac(
 ac(
   'FileType',
   {
-    group = ag_option,
     pattern = { 'asm', 'make', 'gitconfig' },
     callback = function()
       optl.expandtab = false
@@ -173,7 +165,6 @@ ac(
 ac(
   'FileType',
   {
-    group = ag_option,
     pattern = { 'markdown' },
     callback = function()
       optl.formatoptions:append 'r'
@@ -184,7 +175,6 @@ ac(
 ac(
   'TextYankPost',
   {
-    group = ag_option,
     pattern = '*',
     callback = function()
       vim.highlight.on_yank({ timeout = 170 })
@@ -206,7 +196,6 @@ ac(
 
       b.largef = false
     end,
-    group = ag_option,
   }
 )
 
@@ -216,7 +205,6 @@ ac(
     callback = function()
       optl.ro = false
     end,
-    group = ag_option,
   }
 )
 
@@ -236,7 +224,6 @@ ac(
         fn.mkdir(dir, 'p')
       end
     end,
-    group = ag_option,
   }
 )
 --

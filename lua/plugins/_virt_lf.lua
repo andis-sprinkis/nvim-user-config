@@ -9,7 +9,6 @@ local M = {
     local api = vim.api
     local uc = api.nvim_create_user_command
     local ac = api.nvim_create_autocmd
-    local ag = api.nvim_create_augroup
     local fn = vim.fn
     local cmd = vim.cmd
 
@@ -34,7 +33,6 @@ local M = {
         ac(
           "VimResized",
           {
-            group = ag("LfWindow", {}),
             buffer = buf,
             callback = function()
               api.nvim_win_set_width(win, api.nvim_get_option_value("columns", {}))

@@ -14,12 +14,9 @@ local M = {
     km('n', '<leader>c', function() vim.cmd.Dirvish(vim.fn.getcwd()) end,
       { desc = "Go to current working directory (vim-dirvish)", silent = true, nowait = true })
 
-    local ag_dirvish_usr = vim.api.nvim_create_augroup('dirvish_usr', {})
-
     ac(
       'FileType',
       {
-        group = ag_dirvish_usr,
         pattern = 'dirvish',
         callback = function()
           -- Workaround for https://github.com/justinmk/vim-dirvish/issues/257
@@ -46,7 +43,6 @@ local M = {
     ac(
       'StdinReadPre',
       {
-        group = ag_dirvish_usr,
         callback = function()
           has_stdin = true
         end
@@ -56,7 +52,6 @@ local M = {
     ac(
       'UIEnter',
       {
-        group = ag_dirvish_usr,
         callback = function()
           if has_stdin or vim.fn.argc() > 0 or vim.tbl_contains(vim.v.argv, '+Man!') then return end
 

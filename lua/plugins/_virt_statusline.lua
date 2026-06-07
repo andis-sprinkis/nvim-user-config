@@ -11,7 +11,6 @@ return {
     local o = vim.opt
     local wo = vim.wo
     local ac = api.nvim_create_autocmd
-    local ag = api.nvim_create_augroup
 
     -- nvim 0.12.0:
     --
@@ -128,8 +127,6 @@ return {
       end
     end
 
-    local ag_statl = ag('statl', {})
-
     ac(
       {
         'BufReadPre',
@@ -138,7 +135,6 @@ return {
       },
       {
         callback = set_statl_largef,
-        group = ag_statl,
       }
     )
 
@@ -149,7 +145,6 @@ return {
       },
       {
         callback = set_statl_mimeft,
-        group = ag_statl,
       }
     )
 
@@ -165,7 +160,6 @@ return {
       },
       {
         callback = set_statl_encfmt,
-        group = ag_statl,
       }
     )
 
@@ -182,19 +176,16 @@ return {
       },
       {
         callback = set_statl_bname,
-        group = ag_statl,
       }
     )
 
     ac({ 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
-      group = ag_statl,
       callback = function()
         if (api.nvim_win_get_config(0).relative == '') then wo.statusline = statl_focused end
       end
     })
 
     ac({ 'WinLeave', 'FocusLost' }, {
-      group = ag_statl,
       callback = function()
         if (api.nvim_win_get_config(0).relative == '') then wo.statusline = statl_unfocused end
       end
