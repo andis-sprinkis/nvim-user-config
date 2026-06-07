@@ -1,6 +1,5 @@
 local M = {
   "_virt_quickfix_loclist_fmt",
-  enabled = true,
   virtual = true,
   filetype = 'qf',
   config = function()
