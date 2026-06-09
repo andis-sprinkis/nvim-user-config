@@ -12,7 +12,6 @@ local uv = vim.uv
 local ac = api.nvim_create_autocmd
 local uc = api.nvim_create_user_command
 
-g.os = uv.os_uname().sysname
 g.sys_reqr = {}
 g.exec = {}
 g.maxfsize_kb = 100
