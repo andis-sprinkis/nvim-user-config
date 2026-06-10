@@ -107,5 +107,8 @@ vim.keymap.set(
   'ca',
   'L',
   function() return (vim.fn.getcmdtype() == ':' and vim.fn.getcmdline() == 'L') and 'Lazy' or 'L' end,
-  { expr = true }
+  {
+    expr = true,
+    desc = "Expand command alias \"L\" to command \"Lazy\" (user)"
+  }
 )
