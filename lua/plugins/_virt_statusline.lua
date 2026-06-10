@@ -59,7 +59,7 @@ return {
       b.statl_largef = b.largef and largef_msg or ''
     end
 
-    local ft_ignore_encfmt = { 'lazy', 'mason', 'man', 'help' }
+    local ft_ignore_encfmt = { 'dirvish', 'futigive', 'lazy', 'mason', 'man', 'help', 'qf' }
 
     local function set_statl_encfmt()
       if vim.bo.buftype ~= ''

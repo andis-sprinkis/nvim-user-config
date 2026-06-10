@@ -261,7 +261,7 @@ local M = {
     -- })
     --
 
-    local ft_ignore_lsp = { 'dirvish', 'futigive', 'lazy', 'mason', 'man', 'help', '' }
+    local ft_ignore_lsp = { 'dirvish', 'futigive', 'lazy', 'mason', 'man', 'help', 'qf', '' }
     local lsp_severity = { { 1, 'E' }, { 2, 'W' }, { 3, 'I' }, { 4, 'H' } }
 
     api.nvim_create_autocmd(

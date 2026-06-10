@@ -9,7 +9,7 @@ local M = {
 
     local api = vim.api
 
-    local ft_ignore_git = { 'lazy', 'mason', 'man', 'help' }
+    local ft_ignore_git = { 'lazy', 'mason', 'man', 'help', 'qf' }
 
     api.nvim_create_autocmd(
       {
