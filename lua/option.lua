@@ -139,7 +139,7 @@ ac(
       optl.statuscolumn = ''
       cmd.startinsert()
     end,
-    desc = "Set buffer options and start in insert mode (user)"
+    desc = "Set local options and start in insert mode (user)"
   }
 )
 
@@ -151,7 +151,7 @@ ac(
       optl.number = true
       optl.relativenumber = true
     end,
-    desc = "Enable 'number' and 'relativenumber' (user)"
+    desc = "Enable 'number' and 'relativenumber' local options (user)"
   }
 )
 
@@ -162,7 +162,7 @@ ac(
     callback = function()
       optl.expandtab = false
     end,
-    desc = "Disable 'expandtab' (user)"
+    desc = "Disable 'expandtab' local option (user)"
   }
 )
 
@@ -212,7 +212,7 @@ ac(
     callback = function()
       optl.ro = false
     end,
-    desc = "Disable 'ro' (user)"
+    desc = "Disable 'ro' local option (user)"
   }
 )
 
