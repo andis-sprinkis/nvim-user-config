@@ -15,7 +15,8 @@ local M = {
         else
           vim.cmd("MatchParenEnable")
         end
-      end
+      end,
+      desc = "TODO DESC (user)"
     })
   end,
   event = 'VeryLazy'

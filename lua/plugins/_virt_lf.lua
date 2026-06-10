@@ -38,6 +38,7 @@ local M = {
               api.nvim_win_set_width(win, api.nvim_get_option_value("columns", {}))
               api.nvim_win_set_height(win, api.nvim_get_option_value("lines", {}) - 1)
             end,
+            desc = "TODO DESC (user)"
           }
         )
 

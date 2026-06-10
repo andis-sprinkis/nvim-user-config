@@ -34,7 +34,8 @@ local M = {
 
           km('n', '?', '?\\c\\ze[^/]*[/]\\=$<Home><Right><Right>',
             { desc = "Search backward (vim-dirvish)", buffer = true })
-        end
+        end,
+        desc = "TODO DESC (user)"
       }
     )
 
@@ -45,7 +46,8 @@ local M = {
       {
         callback = function()
           has_stdin = true
-        end
+        end,
+        desc = "TODO DESC (user)"
       }
     )
 
@@ -56,7 +58,8 @@ local M = {
           if has_stdin or vim.fn.argc() > 0 or vim.tbl_contains(vim.v.argv, '+Man!') then return end
 
           vim.cmd.Dirvish()
-        end
+        end,
+        desc = "TODO DESC (user)"
       }
     )
   end,

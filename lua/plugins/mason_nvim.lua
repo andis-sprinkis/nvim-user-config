@@ -257,7 +257,8 @@ local M = {
     --         )
     --       end, 10)
     --     end
-    --   end
+    --   end,
+    --   desc = "TODO DESC (user)"
     -- })
     --
 
@@ -287,6 +288,7 @@ local M = {
 
           b.statl_lsp = #msg > 0 and table.concat(msg, ' ') or nil
         end,
+        desc = "TODO DESC (user)"
       }
     )
   end,

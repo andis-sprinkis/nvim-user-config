@@ -23,7 +23,8 @@ local M = {
         if vim.b.largef then
           vim.cmd("ColorizerDetachFromBuffer")
         end
-      end
+      end,
+      desc = "TODO DESC (user)"
     })
   end
 }

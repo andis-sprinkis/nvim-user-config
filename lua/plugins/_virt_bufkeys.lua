@@ -23,6 +23,7 @@ local M = {
 
           table.insert(buf_hist, 1, curr_buf_id)
         end,
+        desc = "TODO DESC (user)"
       }
     )
 

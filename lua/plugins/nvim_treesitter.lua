@@ -117,7 +117,8 @@ local M = {
           vim.wo[0][0].foldmethod = 'expr'
 
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        end
+        end,
+        desc = "TODO DESC (user)"
       }
     )
   end

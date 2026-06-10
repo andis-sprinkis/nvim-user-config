@@ -116,14 +116,16 @@ ac(
   {
     callback = function()
       pcall(function() cmd.cd('%:p:h') end)
-    end
+    end,
+    desc = "Change the current directory to the current file directory (user)"
   }
 )
 
 ac(
   'VimResized',
   {
-    command = "wincmd ="
+    command = "wincmd =",
+    desc = "Make all windows equally high and wide (user)"
   }
 )
 
@@ -147,7 +149,8 @@ ac(
     callback = function()
       optl.number = true
       optl.relativenumber = true
-    end
+    end,
+    desc = "Enable 'number' and 'relativenumber' (user)"
   }
 )
 
@@ -157,7 +160,8 @@ ac(
     pattern = { 'asm', 'make', 'gitconfig' },
     callback = function()
       optl.expandtab = false
-    end
+    end,
+    desc = "Disable 'expandtab' (user)"
   }
 )
 
@@ -167,7 +171,8 @@ ac(
     pattern = { 'markdown' },
     callback = function()
       optl.formatoptions:append 'r'
-    end
+    end,
+    desc = "Extend 'formatoptions' with 'r' (user)"
   }
 )
 
@@ -178,6 +183,7 @@ ac(
     callback = function()
       vim.highlight.on_yank({ timeout = 170 })
     end,
+    desc = "Highlight text yank (user)"
   }
 )
 
@@ -195,6 +201,7 @@ ac(
 
       b.largef = false
     end,
+    desc = "Determine if the current file is large (user)"
   }
 )
 
@@ -204,6 +211,7 @@ ac(
     callback = function()
       optl.ro = false
     end,
+    desc = "Disable 'ro' (user)"
   }
 )
 
@@ -223,6 +231,7 @@ ac(
         fn.mkdir(dir, 'p')
       end
     end,
+    desc = "Create nested directories for the current file (user)"
   }
 )
 --

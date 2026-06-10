@@ -51,7 +51,8 @@ local M = {
             end
           )
         )
-      end
+      end,
+      desc = "TODO DESC (user)"
     })
 
     vim.api.nvim_create_autocmd("FocusGained", {
@@ -96,7 +97,8 @@ local M = {
           end,
           lsp_start_focus_delay
         )
-      end
+      end,
+      desc = "TODO DESC (user)"
     })
     --
   end

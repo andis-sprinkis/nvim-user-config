@@ -42,6 +42,7 @@ local M = {
 
           b.statl_git = g.gitsigns_head and g.gitsigns_head or nil
         end,
+        desc = "TODO DESC (user)"
       }
     )
   end,

@@ -135,6 +135,7 @@ return {
       },
       {
         callback = set_statl_largef,
+        desc = "TODO DESC (user)"
       }
     )
 
@@ -145,6 +146,7 @@ return {
       },
       {
         callback = set_statl_mimeft,
+        desc = "TODO DESC (user)"
       }
     )
 
@@ -160,6 +162,7 @@ return {
       },
       {
         callback = set_statl_encfmt,
+        desc = "TODO DESC (user)"
       }
     )
 
@@ -176,19 +179,22 @@ return {
       },
       {
         callback = set_statl_bname,
+        desc = "TODO DESC (user)"
       }
     )
 
     ac({ 'BufWinEnter', 'WinEnter', 'FocusGained' }, {
       callback = function()
         if (api.nvim_win_get_config(0).relative == '') then wo.statusline = statl_focused end
-      end
+      end,
+      desc = "TODO DESC (user)"
     })
 
     ac({ 'WinLeave', 'FocusLost' }, {
       callback = function()
         if (api.nvim_win_get_config(0).relative == '') then wo.statusline = statl_unfocused end
-      end
+      end,
+      desc = "TODO DESC (user)"
     })
   end
 }
