@@ -138,7 +138,8 @@ ac(
       optl.signcolumn = 'no'
       optl.statuscolumn = ''
       cmd.startinsert()
-    end
+    end,
+    desc = "Set buffer options and start in insert mode (user)"
   }
 )
 
