@@ -112,11 +112,23 @@ km(
   { desc = "Toggle line wrap (user)" }
 )
 
+local ft_ignore_mousefocus = { 'fzf', 'lazy', 'mason' }
+
 km(
   { 'n', 't' },
   '<MouseMove>',
   function()
-    vim.api.nvim_set_current_win(vim.fn.getmousepos().winid)
+    local winid = fn.getmousepos().winid
+
+    if
+        api.nvim_get_current_win() == winid or
+        api.nvim_win_get_config(winid).relative ~= '' or
+        vim.tbl_contains(ft_ignore_mousefocus, vim.bo.ft)
+    then
+      return
+    end
+
+    api.nvim_set_current_win(winid)
   end,
   { desc = "Navigate to the window the mouse cursor is in (user)" }
 )
