@@ -123,6 +123,7 @@ km(
     if
         api.nvim_get_current_win() == winid or
         api.nvim_win_get_config(winid).relative ~= '' or
+        api.nvim_win_get_config(0).relative ~= '' or
         vim.tbl_contains(ft_ignore_mousefocus, vim.bo.ft)
     then
       return
