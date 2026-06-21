@@ -38,6 +38,7 @@ opt.listchars:append {
   tab = '» ',
 }
 o.mouse = 'a'
+o.mousemoveevent = true
 o.mousescroll = 'ver:6,hor:12'
 o.number = true
 o.pumblend = 10
@@ -109,6 +110,15 @@ km(
     vim.notify('vim.wo.wrap = ' .. (vim.wo.wrap and 'true' or 'false'))
   end,
   { desc = "Toggle line wrap (user)" }
+)
+
+km(
+  { 'n', 't' },
+  '<MouseMove>',
+  function()
+    vim.api.nvim_set_current_win(vim.fn.getmousepos().winid)
+  end,
+  { desc = "Navigate to the window the mouse cursor is in (user)" }
 )
 
 ac(
