@@ -29,4 +29,4 @@ git checkout minimal-config
 
 - [`neovim/neovim` on GitHub](https://github.com/neovim/neovim)
 - [`phanen/nvim-suspicious-plugin-scanner` on GitHub](https://github.com/phanen/nvim-suspicious-plugin-scanner)
-- [`/r/neovim` on Reddit](https://www.reddit.com/r/neovim/top/?t=week)
+- [`r/neovim` on Reddit](https://www.reddit.com/r/neovim/top/?t=week)
