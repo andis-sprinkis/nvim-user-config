@@ -4,7 +4,7 @@ local ac = vim.api.nvim_create_autocmd
 local M = {
   'https://github.com/justinmk/vim-dirvish',
   branch = 'master',
-  commit = 'ad478b4ac86484edc525bfc5379f261204dfbf4c',
+  commit = '09c60f20ddc248fa2955c58b3183d44e1885f151',
   config = function()
     vim.g.dirvish_mode = ':sort i | sort ,^.*[^/]$, ri | call appendbufline(bufnr("%"), 0, expand("%:p") . "../") | 0'
 
