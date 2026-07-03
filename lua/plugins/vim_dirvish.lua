@@ -6,7 +6,13 @@ local M = {
   branch = 'master',
   commit = '09c60f20ddc248fa2955c58b3183d44e1885f151',
   config = function()
-    vim.g.dirvish_mode = ':sort i | sort ,^.*[^/]$, ri | call appendbufline(bufnr("%"), 0, expand("%:p") . "../") | 1'
+    function _G.dirvish_mode()
+      vim.cmd [[sort i | sort ,^.*[^/]$, ri]]
+      vim.fn.appendbufline(vim.fn.bufnr("%"), 0, vim.fn.expand("%:p") .. "../")
+      vim.cmd [[2]]
+    end
+
+    vim.g.dirvish_mode = ':lua _G.dirvish_mode()'
 
     vim.keymap.del('n', '-')
 
