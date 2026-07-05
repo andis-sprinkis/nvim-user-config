@@ -4,11 +4,7 @@
     "version": "LuaJIT"
   },
   "workspace": {
-    "library": [
-      "lua",
-      "$VIMRUNTIME",
-      "${3rd}/luv/library"
-    ],
+    "library": ["$VIMRUNTIME/lua"],
     "checkThirdParty": false
   },
   "hint": {
