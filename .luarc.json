@@ -7,6 +7,9 @@
     "library": ["$VIMRUNTIME/lua"],
     "checkThirdParty": false
   },
+  "diagnostics": {
+    "unusedLocalExclude": ["_*"]
+  },
   "hint": {
     "enable": true
   }
