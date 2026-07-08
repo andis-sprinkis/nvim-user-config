@@ -4,7 +4,7 @@ local lsp = vim.lsp
 local M = {
   'https://github.com/mason-org/mason.nvim',
   branch = 'main',
-  commit = '16ba83bfc8a25f52bb545134f5bee082b195c460',
+  commit = '2a6940af80375532e5e9e7c1f2fc6319a1b7a69d',
   enabled = sys_reqr.lsp_plugins,
   init = function()
     vim.lsp.log.set_level("OFF")
@@ -308,17 +308,17 @@ local M = {
     {
       'https://github.com/mason-org/mason-lspconfig.nvim',
       branch = 'main',
-      commit = '7b01e2974a47d489bb92f47a41e4c0088ea8f86e',
+      commit = '47059d71b42d74b0a1e9f61c1d99d301039c3b5b',
     },
     {
       'https://github.com/neovim/nvim-lspconfig',
       branch = 'master',
-      commit = '9573948c38bfabeec353ae7dd7d3ffec4c506a6b',
+      commit = 'd224a1920728ba129880efc700d4a0180ac4ecbb',
     },
     {
       'https://github.com/nvimtools/none-ls.nvim',
       branch = 'main',
-      commit = 'f9d557ac7cd28a3a993b5ea49716498bd540b01f',
+      commit = '01f8e62ea11603e59ad9ff7afcfa94fd183f76d6',
       dependencies = {
         'https://github.com/nvim-lua/plenary.nvim',
         branch = 'master',
