@@ -20,6 +20,7 @@ git checkout minimal-config
 - `fzf`
 - `lf`
 - `node`
+- `npm`
 - `rust`
 - `tree-sitter-cli`
 - [`previewer`](https://github.com/andis-sprinkis/nix-user-config/blob/master/.local/bin/previewer)
