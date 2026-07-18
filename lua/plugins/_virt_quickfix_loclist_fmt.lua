@@ -159,7 +159,7 @@ local M = {
       vim.schedule(
         function()
           for _, hl in ipairs(highlights) do
-            vim.highlight.range(list.qfbufnr, namespace, hl.group, { hl.line, hl.col }, { hl.line, hl.end_col })
+            vim.hl.range(list.qfbufnr, namespace, hl.group, { hl.line, hl.col }, { hl.line, hl.end_col }, {})
           end
         end
       )
