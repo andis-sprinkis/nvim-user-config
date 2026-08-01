@@ -66,9 +66,7 @@ local M = {
               or vim.fn.argc() > 0
               or vim.tbl_contains(
                 vim.v.argv,
-                function(v)
-                  return v:sub(1, 1) == "+" and true or false
-                end,
+                function(v) return v:sub(1, 1) == "+" end,
                 { predicate = true }
               )
           then
