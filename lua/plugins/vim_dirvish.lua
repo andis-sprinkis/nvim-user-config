@@ -67,7 +67,7 @@ local M = {
               or vim.tbl_contains(
                 vim.v.argv,
                 function(v)
-                  if string.sub(v, 1, 1) == "+" then return true end
+                  return v:sub(1, 1) == "+" and true or false
                 end,
                 { predicate = true }
               )
