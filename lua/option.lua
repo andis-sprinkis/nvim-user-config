@@ -308,6 +308,7 @@ for alias, fcmd in pairs({
   H = 'help',
   M = 'Man',
   S = 'Scrap',
+  Q = 'q',
   man = 'Man',
   scrap = 'Scrap',
 }) do

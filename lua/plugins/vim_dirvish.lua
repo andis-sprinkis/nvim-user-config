@@ -61,7 +61,19 @@ local M = {
       'UIEnter',
       {
         callback = function()
-          if has_stdin or vim.fn.argc() > 0 or vim.tbl_contains(vim.v.argv, '+Man!') then return end
+          if
+              has_stdin
+              or vim.fn.argc() > 0
+              or vim.tbl_contains(
+                vim.v.argv,
+                function(v)
+                  if string.sub(v, 1, 1) == "+" then return true end
+                end,
+                { predicate = true }
+              )
+          then
+            return
+          end
 
           vim.cmd.Dirvish()
         end,
