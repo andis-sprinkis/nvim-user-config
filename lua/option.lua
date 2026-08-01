@@ -306,9 +306,10 @@ uc(
 for alias, fcmd in pairs({
   C = 'Config',
   H = 'help',
+  L = 'Lf',
   M = 'Man',
-  S = 'Scrap',
   Q = 'q',
+  S = 'Scrap',
   man = 'Man',
   scrap = 'Scrap',
 }) do
