@@ -4,7 +4,7 @@ local sys_reqr = g.sys_reqr
 local M = {
   'https://github.com/hrsh7th/nvim-cmp',
   branch = 'main',
-  commit = 'a1d504892f2bc56c2e79b65c6faded2fd21f3eca',
+  commit = '2ffe79f1f021def8dd1fcd81deb16f1bb0d989f3',
   config = function()
     local cmp = require("cmp")
     local cmpm = cmp.mapping
