@@ -3,7 +3,6 @@ local M = {
   branch = 'main',
   commit = '577b2cf012ed2f2f5739d1162d7c2e4a710e860a',
   lazy = false,
-  opts = {},
   dependencies = { 'https://github.com/nvim-treesitter/nvim-treesitter' }
 }
 
