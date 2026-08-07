@@ -4,7 +4,7 @@ local ac = vim.api.nvim_create_autocmd
 local M = {
   'https://github.com/justinmk/vim-dirvish',
   branch = 'master',
-  commit = '09c60f20ddc248fa2955c58b3183d44e1885f151',
+  commit = '4cbf39ce024c57f700c4d5502cc172ea91d69360',
   config = function()
     function _G.dirvish_mode()
       vim.cmd [[sort i | sort ,^.*[^/]$, ri]]
