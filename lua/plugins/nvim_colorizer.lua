@@ -24,7 +24,7 @@ local M = {
           vim.cmd("ColorizerDetachFromBuffer")
         end
       end,
-      desc = "TODO DESC (user)"
+      desc = "Detach nvim-colorizer from large buffer (nvim-colorizer)"
     })
   end
 }

@@ -42,7 +42,7 @@ local M = {
 
           b.statl_git = g.gitsigns_head and g.gitsigns_head or nil
         end,
-        desc = "TODO DESC (user)"
+        desc = "Update the statusline Git status variable from gitsigns (gitsigns, statusline)"
       }
     )
   end,

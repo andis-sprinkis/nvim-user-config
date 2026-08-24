@@ -118,7 +118,7 @@ local M = {
 
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end,
-        desc = "TODO DESC (user)"
+        desc = "Initialize nvim-treesitter (nvim-treesitter)"
       }
     )
   end
