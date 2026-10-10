@@ -28,19 +28,19 @@ local M = {
 
     local lsp_servers = {
       'awk_ls@0.10.6',
-      'bashls@5.6.0',
-      -- 'clangd@22.1.6',
+      'bashls@5.8.1',
+      -- 'clangd@23.1.0',
       'cssls@4.10.0',
-      'dockerls@0.15.0',
+      -- 'dockerls@0.15.0',
       'eslint@4.10.0',
       'html@4.10.0',
       'jsonls@4.10.0',
-      'lua_ls@3.18.2',
-      -- 'pylsp@1.14.0?extra=all',
-      'ruff@0.15.15',
+      'lua_ls@3.19.1',
+      -- 'pylsp@1.15.0?extra=all',
+      'ruff@0.16.10',
       'stylelint_lsp@1.1.1',
-      'ts_ls@5.3.0',
-      'yamlls@1.23.0',
+      'ts_ls@6.0.1',
+      'yamlls@1.24.0',
     }
 
     if sys_reqr.lsp_neocmake then table.insert(lsp_servers, 'neocmake@v0.10.2') end
