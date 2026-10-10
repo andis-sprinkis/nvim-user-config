@@ -251,7 +251,7 @@ local M = {
     {
       'https://github.com/andersevenrud/cmp-tmux',
       branch = 'main',
-      commit = '95b1b921802e6f60627b3e76afb9380fddd87f9a',
+      commit = 'd4ae7a4f1358d3ced37b61e0cebc48ac9ab397ea',
       enabled = sys_reqr.cmp_tmux
     },
   },

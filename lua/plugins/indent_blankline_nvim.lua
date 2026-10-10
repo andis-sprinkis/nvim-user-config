@@ -1,7 +1,7 @@
 local M = {
   'https://github.com/lukas-reineke/indent-blankline.nvim',
   branch = 'master',
-  commit = 'd28a3f70721c79e3c5f6693057ae929f3d9c0a03',
+  commit = 'f1e186e44d3b7f9ae918008e2c28ce37c6023d2d',
   config = function()
     require "ibl".setup({
       indent = { char = '│' },

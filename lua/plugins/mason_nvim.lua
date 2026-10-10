@@ -297,7 +297,7 @@ local M = {
     {
       'https://github.com/b0o/schemastore.nvim',
       branch = 'main',
-      commit = 'efa62017f59a6346486cc567d70acce965a00b12',
+      commit = 'b463a5e79f84fd9ca22dd47f41754387d8fe7af4',
     },
     {
       'https://github.com/jayp0521/mason-null-ls.nvim',
@@ -308,17 +308,17 @@ local M = {
     {
       'https://github.com/mason-org/mason-lspconfig.nvim',
       branch = 'main',
-      commit = '47059d71b42d74b0a1e9f61c1d99d301039c3b5b',
+      commit = 'e17625cdc8c2650787467398e02c5d63a2cde966',
     },
     {
       'https://github.com/neovim/nvim-lspconfig',
       branch = 'master',
-      commit = 'd224a1920728ba129880efc700d4a0180ac4ecbb',
+      commit = 'c59fc922f718fa055f69f5f3bc888f23211571eb',
     },
     {
       'https://github.com/nvimtools/none-ls.nvim',
       branch = 'main',
-      commit = '01f8e62ea11603e59ad9ff7afcfa94fd183f76d6',
+      commit = 'c4b82bb63b13856ba4d6b971b7aad3bb38fc6fe2',
       dependencies = {
         'https://github.com/nvim-lua/plenary.nvim',
         branch = 'master',

@@ -1,7 +1,7 @@
 local M = {
   'https://github.com/mrjones2014/smart-splits.nvim',
   branch = 'master',
-  commit = '0fe3bbd99d48458ad188c4c262c31049fa9b018c',
+  commit = '07dbad410256f755e69ffd31cb8d122bcd6b91f7',
   init = function()
     vim.g.smart_splits_multiplexer_integration = false
   end,
