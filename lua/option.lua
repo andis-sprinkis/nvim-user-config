@@ -71,6 +71,8 @@ end
 
 env.PATH = fn.stdpath('config') .. '/bin:' .. env.PATH
 
+vim.cmd("packadd nvim.undotree")
+
 cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
 cmd.amenu("PopUp.-2-", "<Nop>")
 cmd.amenu("PopUp.Up\\ directory", "<Plug>(dirvish_up)")
@@ -95,6 +97,7 @@ km('n', '<leader>j', '<C-w>j', { desc = "Move cursor to window above current one
 km('n', '<leader>k', '<C-w>k', { desc = "Move cursor to window below current one (user)" })
 km('n', '<leader>l', '<C-w>l', { desc = "Move cursor to window left of current one (user)" })
 km('n', '<leader>h', '<C-w>h', { desc = "Move cursor to window right of current one (user)" })
+km('n', '<leader>', require('undotree').open, { desc = "Open undotree (user)" })
 
 km(
   'n',
