@@ -116,7 +116,7 @@ km('n', '<leader>l', '<C-W><C-L>')
 km('n', '<leader>h', '<C-W><C-H>')
 
 if fn.has('nvim-0.12') == 1 then
-  km('n', '<leader>', require("undotree").open)
+  km('n', '<leader>', require('undotree').open)
 end
 
 km(
