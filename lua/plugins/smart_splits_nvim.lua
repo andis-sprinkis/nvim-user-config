@@ -2,14 +2,20 @@ local M = {
   'https://github.com/mrjones2014/smart-splits.nvim',
   branch = 'master',
   commit = '07dbad410256f755e69ffd31cb8d122bcd6b91f7',
-  init = function()
-    vim.g.smart_splits_multiplexer_integration = false
-  end,
   config = function()
     local smart_splits = require('smart-splits')
 
     smart_splits.setup({
-      default_amount = 2
+      resize = {
+        amount = 2
+      },
+      swap = {
+        move_cursor = true
+      },
+      log = {
+        level = 'error',
+        file = false
+      }
     })
 
     local km = vim.keymap.set
@@ -27,14 +33,13 @@ local M = {
     km('n', '<leader>l', smart_splits.move_cursor_right,
       { desc = 'Move cursor to window right of current one (smart-splits)' })
 
-    local swap_opts = { move_cursor = true }
-    km('n', '<leader><leader>h', function() smart_splits.swap_buf_left(swap_opts) end,
+    km('n', '<leader><leader>h', smart_splits.swap_buf_left,
       { desc = 'Swap window with the one in the left direction (smart-splits)' })
-    km('n', '<leader><leader>j', function() smart_splits.swap_buf_down(swap_opts) end,
+    km('n', '<leader><leader>j', smart_splits.swap_buf_down,
       { desc = 'Swap window with the one in the down direction (smart-splits)' })
-    km('n', '<leader><leader>k', function() smart_splits.swap_buf_up(swap_opts) end,
+    km('n', '<leader><leader>k', smart_splits.swap_buf_up,
       { desc = 'Swap window with the one in the up direction (smart-splits)' })
-    km('n', '<leader><leader>l', function() smart_splits.swap_buf_right(swap_opts) end,
+    km('n', '<leader><leader>l', smart_splits.swap_buf_right,
       { desc = 'Swap window with the one in the right direction (smart-splits)' })
   end,
   keys = {
