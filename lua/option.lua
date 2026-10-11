@@ -87,6 +87,10 @@ end
 
 local dir_up_cmd = ':let @/=expand("%:t") <Bar> execute \'Explore\' expand("%:h") <Bar> normal n<CR>'
 
+if fn.has('nvim-0.12') == 1 then
+  vim.cmd("packadd nvim.undotree")
+end
+
 cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
 cmd.amenu("PopUp.-2-", "<Nop>")
 cmd.amenu("PopUp.Up\\ directory", dir_up_cmd)
@@ -110,6 +114,10 @@ km('n', '<leader>j', '<C-W><C-J>')
 km('n', '<leader>k', '<C-W><C-K>')
 km('n', '<leader>l', '<C-W><C-L>')
 km('n', '<leader>h', '<C-W><C-H>')
+
+if fn.has('nvim-0.12') == 1 then
+  km('n', '<leader>', require("undotree").open)
+end
 
 km(
   'n',
