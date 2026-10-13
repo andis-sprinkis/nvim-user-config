@@ -97,7 +97,7 @@ km('n', '<leader>j', '<C-w>j', { desc = "Move cursor to window above current one
 km('n', '<leader>k', '<C-w>k', { desc = "Move cursor to window below current one (user)" })
 km('n', '<leader>l', '<C-w>l', { desc = "Move cursor to window left of current one (user)" })
 km('n', '<leader>h', '<C-w>h', { desc = "Move cursor to window right of current one (user)" })
-km('n', '<leader>', require('undotree').open, { desc = "Open undotree (user)" })
+km('n', '<leader>u', require('undotree').open, { desc = "Open undotree (user)" })
 
 km(
   'n',
