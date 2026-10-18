@@ -176,6 +176,18 @@ ac(
 ac(
   'FileType',
   {
+    pattern = { 'man' },
+    callback = function()
+      vim.keymap.del('n', 'j', { buffer = 0 })
+      vim.keymap.del('n', 'k', { buffer = 0 })
+    end,
+    desc = "Remove the man.lua default j, k bindings (user)"
+  }
+)
+
+ac(
+  'FileType',
+  {
     pattern = { 'man', 'help', 'vimdoc' },
     callback = function()
       optl.number = true
