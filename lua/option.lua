@@ -205,6 +205,19 @@ ac(
   'FileType',
   {
     group = ag_option,
+    pattern = { 'man' },
+    callback = function()
+      vim.keymap.del('n', 'j', { buffer = 0 })
+      vim.keymap.del('n', 'k', { buffer = 0 })
+    end,
+    desc = "Remove the man.lua default j, k bindings (user)"
+  }
+)
+
+ac(
+  'FileType',
+  {
+    group = ag_option,
     pattern = { 'netrw' },
     callback = function()
       km('n', '=', '<Plug>NetrwLocalBrowseCheck', { buffer = true })
