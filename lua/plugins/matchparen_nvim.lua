@@ -1,7 +1,7 @@
 local M = {
   'https://github.com/monkoose/matchparen.nvim',
   branch = 'main',
-  commit = '7a0928f528db7a01807ea32d50d0e4425d629188',
+  commit = '87df7d1459c3376aaf5a67d116f0b293cc65ad13',
   config = function()
     require("matchparen").setup()
 
