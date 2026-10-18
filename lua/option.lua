@@ -209,8 +209,7 @@ ac(
     callback = function()
       vim.keymap.del('n', 'j', { buffer = 0 })
       vim.keymap.del('n', 'k', { buffer = 0 })
-    end,
-    desc = "Remove the man.lua default j, k bindings (user)"
+    end
   }
 )
 
