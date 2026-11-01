@@ -22,6 +22,7 @@ local M = {
     local lsp_has_been_stopped = false
     local lsp_start_focus_delay_counting = false
     local lsp_stop_grace_period_exceeded = false
+    local stopped_lsp_clients = {}
 
     vim.api.nvim_create_autocmd("FocusLost", {
       callback = function()
@@ -43,6 +44,7 @@ local M = {
                   if not vim.tbl_contains(excluded_lsp_clients, client.name) then
                     client:stop()
                     client.rpc.terminate()
+                    stopped_lsp_clients[client.name] = true
                   end
                 end
 
@@ -75,12 +77,11 @@ local M = {
                 if elapsed_retries >= lsp_start_retries then
                   lsp_start_timer:stop()
                   lsp_start_timer:close()
+                  stopped_lsp_clients = {}
                   return
                 end
 
-                for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
-                  vim.lsp.enable(client.name)
-                end
+                for client in pairs(stopped_lsp_clients) do vim.lsp.enable(client) end
 
                 elapsed_retries = elapsed_retries + 1
                 lsp_start_timer:start(lsp_start_retries_timeout, 0, start_lsp_timer_callback)
