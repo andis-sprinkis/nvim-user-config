@@ -90,6 +90,7 @@ local M = {
               lsp_start_timer:start(lsp_start_retries_timeout, 0, start_lsp_timer_callback)
             end
 
+            focus_lost_timer:stop()
             lsp_start_time = os.time()
             focus_lost_current_time = 0
             focus_lost_elapsed_time = 0
