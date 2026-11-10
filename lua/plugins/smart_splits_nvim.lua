@@ -1,7 +1,7 @@
 local M = {
   'https://github.com/mrjones2014/smart-splits.nvim',
   branch = 'master',
-  commit = '07dbad410256f755e69ffd31cb8d122bcd6b91f7',
+  commit = '72d073c5a10f6aec93e7cb7f5dc450f9559ed376',
   config = function()
     local smart_splits = require('smart-splits')
 

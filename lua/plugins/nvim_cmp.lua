@@ -4,7 +4,7 @@ local sys_reqr = g.sys_reqr
 local M = {
   'https://github.com/hrsh7th/nvim-cmp',
   branch = 'main',
-  commit = '2ffe79f1f021def8dd1fcd81deb16f1bb0d989f3',
+  commit = 'fe29aba4117227a6df637bc41e4b4fb4e98864a0',
   config = function()
     local cmp = require("cmp")
     local cmpm = cmp.mapping
@@ -201,7 +201,7 @@ local M = {
             {
               'https://github.com/rafamadriz/friendly-snippets',
               branch = 'main',
-              commit = '6cd7280adead7f586db6fccbd15d2cac7e2188b9',
+              commit = '7a1c9f7897a4eb078b157a04c7af81e5869215b1',
             }
           }
         },
@@ -230,7 +230,7 @@ local M = {
     {
       'https://github.com/hrsh7th/cmp-nvim-lsp',
       branch = 'main',
-      commit = 'cbc7b02bb99fae35cb42f514762b89b5126651ef',
+      commit = 'cd4ee08a988deb47ac3726f418fb27fe1a95729d',
     },
     {
       'https://github.com/hrsh7th/cmp-path',

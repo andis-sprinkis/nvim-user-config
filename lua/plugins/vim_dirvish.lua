@@ -1,11 +1,11 @@
-local km = vim.keymap.set
-local ac = vim.api.nvim_create_autocmd
-
 local M = {
   'https://github.com/justinmk/vim-dirvish',
   branch = 'master',
   commit = '4cbf39ce024c57f700c4d5502cc172ea91d69360',
   config = function()
+    local km = vim.keymap.set
+    local ac = vim.api.nvim_create_autocmd
+
     function _G.dirvish_mode()
       vim.cmd [[sort i | sort ,^.*[^/]$, ri]]
       vim.fn.appendbufline(vim.fn.bufnr("%"), 0, vim.fn.expand("%:p") .. "../")

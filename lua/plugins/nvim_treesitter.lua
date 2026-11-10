@@ -1,7 +1,7 @@
 local M = {
   'https://github.com/nvim-treesitter/nvim-treesitter',
   branch = 'main',
-  commit = '1a4f47b03dfe92d28de7d5654c67327ef008c9e6',
+  commit = '19bdfc04f40ed2ccb3340591d125f759b0406875',
   lazy = false,
   build = ':TSUpdate',
   enabled = vim.g.sys_reqr.nvim_treesitter,
