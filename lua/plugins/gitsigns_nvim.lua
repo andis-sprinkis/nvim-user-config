@@ -4,7 +4,8 @@ local M = {
   commit = 'ef707fb93301a9b856f36eae4c8f56f5b988a794',
   config = function()
     require('gitsigns').setup {
-      sign_priority = 11
+      sign_priority = 11,
+      attach_to_untracked = true
     }
 
     local api = vim.api
