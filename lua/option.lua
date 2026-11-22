@@ -24,7 +24,6 @@ else
   g.os = loop.os_uname().sysname
 end
 
-g.man_hard_wrap = true
 g.mapleader = ' '
 g.maplocalleader = ' '
 g.netrw_banner = false
