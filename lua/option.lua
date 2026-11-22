@@ -18,7 +18,6 @@ g.maxfsize_kb = 100
 g.maxfsize_b = 1024 * g.maxfsize_kb -- 1024 * KB
 
 g.loaded_netrwPlugin = 0
-g.man_hard_wrap = true
 g.mapleader = ' '
 g.maplocalleader = ' '
 o.backup = false
